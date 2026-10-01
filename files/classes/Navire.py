@@ -87,10 +87,8 @@ class Navire:
                 # -------------------------
                 self.EquipMin: int = 0
                 self.EquipMax: int = 0
-                self.equipage: int = 0
-                self.equipage2: float = 0.0
+                self.equipage: int = self.CalculEquipage()
                 self.equipage_tout: int = 0
-                self.lance_equipage: int = 0
                 self.equipage_nom: str = ""
 
                 self.combat: int = 0
@@ -122,6 +120,7 @@ class Navire:
                 # -------------------------
                 self.TonnageMin: float = 0.0
                 self.TonnageMax: float = 0.0
+                self.Tonnage:float=self.CalculTonnage()
                 self.remplissage: int = 0
                 self.poids_total_marchandise: float = 0.0
                 self.cargaison3: int = 0
@@ -280,6 +279,11 @@ class Navire:
     def OrigineNavire(self, region):
                 self.region=region
 
+    def CalculTonnage(self):
+        self.Tonnage= random.randint(self.TonnageMin,self.TonnageMax)
+
+    def CalculEquipage(self):
+        self.Equipage=random.randint(self.EquipMin,self.EquipMax)
     def CheckNavire(self, bateau):
         return bateau, False
 
@@ -399,3 +403,74 @@ class Navire:
 
                 return True
 
+    def CalculType(self, zone, annee):
+        de = random.randint(1, 100)
+
+        df = pd.read_csv(config.BASE_PATH + "/GeneNavire.csv",sep=";",decimal=",",encoding="cp1252")
+
+        df = df[df['Zone'] == zone]
+        df = df[df['PeriodMax'] > annee]
+        df = df[df['Intervalle'] <= de]
+
+        if df.empty:
+            return None
+
+        return df['Bateau'].iloc[-1]
+
+    def CalculCompagnie(self, zone, annee):
+        de = random.randint(1, 100)
+
+        df = pd.read_csv(
+                config.BASE_PATH + "/CompagnieCommerciale.csv",
+                sep=";",
+                decimal=",",
+                encoding="cp1252"
+            )
+
+        df = df[df["Zone"] == zone]
+        df = df[df["PeriodMax"] > annee]
+        df = df[df["Intervalle"] <= de]
+
+        if df.empty:
+            return None
+
+        ligne = df.iloc[-1]
+
+        compagnie = f"{ligne['Acteur']} ({ligne['Nationalite']})"
+
+        return compagnie
+    def ConvertZone(self,region):
+        df = pd.read_csv(config.BASE_PATH + "/ListeRegions.csv", sep=";", decimal=",", encoding="cp1252")
+        df=df[df['RegionsCommerciale']==region]
+        return df['RegionsCommerciale'].iloc[0],df['RegionsCompagnie'].iloc[0],df['RegionsRencontre'].iloc[0]
+
+    def ProbaRencontre(self,zone, annee):
+        df = pd.read_csv(
+                config.BASE_PATH + "/CompagnieCommerciale.csv",
+                sep=";",
+                decimal=",",
+                encoding="cp1252"
+            )
+
+        df = df[df["Zone"] == zone]
+        df = df[df["PeriodMax"] > annee]
+
+        if df.empty:
+            return None
+
+        proba= df.iloc[-1]
+
+
+        return proba
+
+    def DeterRencontre(self,region,de,annee,nom):
+        ZoneCommerce,ZoneCompagnie,ZoneRencontre=self.ConvertZone(region)
+        res=self.ProbaRencontre(ZoneRencontre,anee
+        if de<res:
+            Compagnie=self.CalculCompagnie(ZoneCompagnie,annee)
+            Type=self.CalculType(ZoneRencontre,annee)
+            NavireRencontre=Navire(Type,nom,region)
+            NavireRencontre.compagnie=Compagnie
+            return NavireRencontre
+        else:
+            return none
