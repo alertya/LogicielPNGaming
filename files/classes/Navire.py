@@ -465,7 +465,7 @@ class Navire:
 
     def DeterRencontre(self,region,de,annee,nom):
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=self.ConvertZone(region)
-        res=self.ProbaRencontre(ZoneRencontre,anee
+        res=self.ProbaRencontre(ZoneRencontre,anee)
         if de<res:
             Compagnie=self.CalculCompagnie(ZoneCompagnie,annee)
             Type=self.CalculType(ZoneRencontre,annee)
