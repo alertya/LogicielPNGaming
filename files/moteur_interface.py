@@ -32,6 +32,13 @@ Cas particulier "Journal de bord" -> "Générer" :
     (voir plus bas). Les méthodes `get_instances/get_donnees/get_actions`
     ne sont donc jamais appelées pour ce sous-onglet précis.
 
+Cas particulier "Equipage" -> "Générer" et "Navire" -> "Générer" :
+    Même principe : formulaires dédiés (panneau_generation_equipage.py et
+    panneau_generation_navire.py) qui appellent respectivement
+    `generer_equipage(...)` et `generer_navire(...)` ci-dessous. Les listes
+    déroulantes de ces formulaires viennent de `get_types_equipage()`,
+    `get_types_navire()` et `get_regions_navire()`.
+
 Sous-onglet "Actions" (présent sur chaque onglet vertical) :
     Boutons d'action rapide propres à chaque onglet vertical, listés dans
     `ACTIONS_PAR_ONGLET` ci-dessous (repris de ListeFeatures.xlsx). Pour
@@ -152,6 +159,58 @@ class MoteurBase:
         """
         raise NotImplementedError
 
+    # ------------------------------------------------------------------ #
+    # Méthodes spécifiques à l'onglet "Equipage" -> "Générer"
+    # ------------------------------------------------------------------ #
+    def get_types_equipage(self) -> List[str]:
+        """
+        Renvoie la liste des types d'équipage proposés dans la liste
+        déroulante du formulaire (colonne "Type" de data/ListeProf.csv).
+        """
+        raise NotImplementedError
+
+    def generer_equipage(
+        self, nom: str, type_equipage: str, nombre: int, effectifs: Dict[str, int]
+    ) -> str:
+        """
+        Génère un équipage de `nombre` personnes et l'enregistre en CSV
+        (séparateur ";", décimal ",", encodage "cp1252") sous
+        data/Equipage/<nom>.csv.
+
+        `effectifs` est un dict {typologie: nombre} pour les typologies
+        saisies dans le formulaire : Calfat, Coq, Charpentier, Chirurgien,
+        Pilote, Soldat, Voilier.
+
+        Renvoie un message de confirmation affiché dans la barre de statut.
+        """
+        raise NotImplementedError
+
+    # ------------------------------------------------------------------ #
+    # Méthodes spécifiques à l'onglet "Navire" -> "Générer"
+    # ------------------------------------------------------------------ #
+    def get_types_navire(self) -> List[str]:
+        """
+        Renvoie la liste des types de navire proposés dans la liste
+        déroulante du formulaire (colonne "Typologie" de
+        data/RencontreNavire.csv).
+        """
+        raise NotImplementedError
+
+    def get_regions_navire(self) -> List[str]:
+        """
+        Renvoie la liste des régions d'origine proposées dans la liste
+        déroulante du formulaire (colonne "Regions" de data/ListeRegions.csv).
+        """
+        raise NotImplementedError
+
+    def generer_navire(self, nom: str, type_navire: str, region: str) -> str:
+        """
+        Génère un navire et l'enregistre en CSV (séparateur ";", décimal ",",
+        encodage "cp1252") sous data/Navire/<nom>.csv.
+        Renvoie un message de confirmation affiché dans la barre de statut.
+        """
+        raise NotImplementedError
+
 
 # ---------------------------------------------------------------------------
 # Boutons d'action rapide par onglet vertical (extraits de ListeFeatures.xlsx)
@@ -168,6 +227,14 @@ ACTIONS_PAR_ONGLET: Dict[str, List[str]] = {
     "Infirmerie": ["Voir blessé/malade", "Sacrifier blessé"],
     "Reset": ["Supprimer toutes les données (Navire, Equipage, Escale, Voyage)"],
 }
+
+# ---------------------------------------------------------------------------
+# Typologies d'équipage saisies individuellement dans le formulaire
+# "Equipage" -> "Générer" (voir panneau_generation_equipage.py)
+# ---------------------------------------------------------------------------
+TYPOLOGIES_EQUIPAGE: List[str] = [
+    "Calfat", "Coq", "Charpentier", "Chirurgien", "Pilote", "Soldat", "Voilier",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -208,7 +275,10 @@ class MoteurExemple(MoteurBase):
         # }
         self._voyages: Dict[str, Dict[str, Any]] = {}
         self._navires = copy.deepcopy(self._NAVIRES_INITIAUX)
-        self._equipage = self.ChargerEquipages()
+        self._equipage: Dict[str, Any] = {}
+        # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
+        # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
+        self.ChargerEquipages()
 
     def get_instances(self, onglet, sous_onglet):
         if onglet == "Journal de bord":
@@ -224,29 +294,14 @@ class MoteurExemple(MoteurBase):
         return []
 
     def get_donnees(self, onglet, sous_onglet, instance):
-
         if onglet == "Journal de bord" and sous_onglet == "Journal":
-            if instance is None:
-                return {}
             return self._journal_du_jour(instance)
-
         if onglet == "Navire" and sous_onglet == "Afficher":
-            if self._navires is None:
-                return {}
             return self._navires.get(instance, {})
-
         if onglet == "Equipage" and sous_onglet == "Afficher":
-            if self._equipage is None:
-                return {}
             return self._equipage.get(instance, [])
-
         if onglet == "Marchandises":
-            return {
-                "Rhum": 12,
-                "Bois": 40,
-                "Poudre à canon": 5
-            }
-
+            return {"Rhum": 12, "Bois": 40, "Poudre à canon": 5}
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
 
     def get_actions(self, onglet, sous_onglet, instance):
@@ -385,10 +440,17 @@ class MoteurExemple(MoteurBase):
 
         self._equipage = {}
 
+        if not os.path.isdir(dossier):
+            # Le dossier n'existe pas encore (premier lancement) : on le
+            # crée pour que generer_equipage() puisse y écrire plus tard,
+            # et on repart sur un équipage vide plutôt que de planter.
+            os.makedirs(dossier, exist_ok=True)
+            return
+
         for fichier in os.listdir(dossier):
 
             if not fichier.lower().endswith(".csv"):
-                return self
+                continue
 
             chemin = os.path.join(dossier, fichier)
 
@@ -404,6 +466,94 @@ class MoteurExemple(MoteurBase):
 
             self._equipage[nom] = Equipage.Charger(
                 df,
-                Name=nom,
-                Type=type_equipage
+                Name=nom
             )
+
+    # ------------------------------------------------------------------ #
+    # Listes de référence pour les formulaires "Générer"
+    # ------------------------------------------------------------------ #
+    @staticmethod
+    def _lire_colonne_csv(chemin: str, colonne: str) -> List[str]:
+        """
+        Lit une colonne d'un CSV (séparateur ";", décimal ",", cp1252) et
+        renvoie ses valeurs uniques, triées. Renvoie [] si le fichier ou la
+        colonne est introuvable, plutôt que de faire planter l'interface.
+        """
+        if not os.path.isfile(chemin):
+            print(f"[MoteurExemple] Fichier introuvable : {chemin}")
+            return []
+        try:
+            df = pd.read_csv(chemin, sep=";", decimal=",", encoding="cp1252")
+        except Exception as e:
+            print(f"[MoteurExemple] Erreur de lecture de {chemin} : {e}")
+            return []
+        if colonne not in df.columns:
+            print(f"[MoteurExemple] Colonne « {colonne} » absente de {chemin}")
+            return []
+        return sorted(df[colonne].dropna().astype(str).unique().tolist())
+
+    # ------------------------------------------------------------------ #
+    # Equipage -> Générer
+    # ------------------------------------------------------------------ #
+    def get_types_equipage(self) -> List[str]:
+        chemin = os.path.join(BASE_PATH, "ListeProf.csv")
+        return self._lire_colonne_csv(chemin, "Type")
+
+    def generer_equipage(self, nom, type_equipage, nombre, effectifs):
+        if not nom:
+            return "Merci de saisir un nom d'équipage."
+
+        dossier = os.path.join(BASE_PATH, "Equipage")
+        os.makedirs(dossier, exist_ok=True)
+
+        effectifs = effectifs or {}
+        ligne = {"Nom": nom, "Type": type_equipage, "Nombre": nombre}
+        for typo in TYPOLOGIES_EQUIPAGE:
+            ligne[typo] = int(effectifs.get(typo, 0) or 0)
+
+        # Le reste de l'effectif (non affecté à une typologie précise) est
+        # comptabilisé comme "Matelot" — à adapter si ta génération réelle
+        # répartit l'effectif autrement.
+        affecte = sum(ligne[typo] for typo in TYPOLOGIES_EQUIPAGE)
+        ligne["Matelot"] = max(0, int(nombre or 0) - affecte)
+
+        df = pd.DataFrame([ligne])
+        chemin = os.path.join(dossier, f"{nom}.csv")
+        df.to_csv(chemin, sep=";", decimal=",", encoding="cp1252", index=False)
+
+        # On recharge immédiatement l'équipage généré dans le moteur, avec
+        # la même méthode Equipage.Charger(...) que ChargerEquipages(), pour
+        # qu'il apparaisse tout de suite dans les autres onglets.
+        self._equipage[nom] = Equipage.Charger(df, Name=nom, Type=type_equipage)
+
+        return f"Équipage « {nom} » ({type_equipage}, {nombre} personnes) généré et enregistré dans {chemin}."
+
+    # ------------------------------------------------------------------ #
+    # Navire -> Générer
+    # ------------------------------------------------------------------ #
+    def get_types_navire(self) -> List[str]:
+        chemin = os.path.join(BASE_PATH, "RencontreNavire.csv")
+        return self._lire_colonne_csv(chemin, "Nom")
+
+    def get_regions_navire(self) -> List[str]:
+        chemin = os.path.join(BASE_PATH, "ListeRegions.csv")
+        return self._lire_colonne_csv(chemin, "RegionsCommerciale")
+
+    def generer_navire(self, nom, type_navire, region):
+        if not nom:
+            return "Merci de saisir un nom de navire."
+
+        dossier = os.path.join(BASE_PATH, "Navire")
+        os.makedirs(dossier, exist_ok=True)
+
+        ligne = {"Nom": nom, "Type": type_navire, "Region": region}
+        df = pd.DataFrame([ligne])
+        chemin = os.path.join(dossier, f"{nom}.csv")
+        df.to_csv(chemin, sep=";", decimal=",", encoding="cp1252", index=False)
+
+        # Fiche minimale pour affichage immédiat dans l'onglet Navire -> Afficher.
+        # À remplacer par ta vraie génération (coque, canons, équipage...),
+        # par exemple en appelant ta classe Navire.
+        self._navires[nom] = {"Type": type_navire, "Région d'origine": region}
+
+        return f"Navire « {nom} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."

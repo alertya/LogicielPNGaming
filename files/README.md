@@ -36,6 +36,10 @@ pour que tu puisses voir immédiatement le rendu.
   simulation de voyage jour par jour.
 - `panneau_generation.py` — le formulaire dynamique de création de trajet
   (onglet Journal de bord → Générer), avec bouton **+ Ajouter une étape**.
+- `panneau_generation_equipage.py` — formulaire de création d'équipage
+  (onglet Equipage → Générer).
+- `panneau_generation_navire.py` — formulaire de création de navire
+  (onglet Navire → Générer).
 - `app.py` — l'interface graphique elle-même (onglets verticaux/horizontaux,
   liste déroulante d'instance, affichage automatique, boutons d'action).
   **Tu n'as normalement pas besoin d'y toucher.**
@@ -84,6 +88,47 @@ Formulaire pour construire un trajet maritime, étape par étape :
 Pour ajuster les listes déroulantes (régions, zones, tailles de port) ou la
 table des dés, modifie uniquement `donnees_reference.py` — tout le reste
 (formulaire, moteur) s'appuie dessus automatiquement.
+
+## Equipage → Générer
+
+Formulaire (`panneau_generation_equipage.py`) pour créer un équipage :
+
+- **Nom de l'équipage** (texte), **Type** (liste déroulante — valeurs
+  uniques de la colonne `Type` de `data/ListeProf.csv`), **Nombre de
+  personnes** (saisie numérique).
+- Une saisie numérique par typologie : **Calfat, Coq, Charpentier,
+  Chirurgien, Pilote, Soldat, Voilier**.
+- Le bouton **"Générer l'équipage"** appelle `moteur.generer_equipage(nom,
+  type, nombre, effectifs)`, qui enregistre le résultat dans
+  `data/Equipage/<nom>.csv` (séparateur `;`, décimal `,`, encodage
+  `cp1252`), puis bascule sur "Afficher" pour le montrer immédiatement.
+
+Dans `MoteurExemple`, la ligne CSV générée contient `Nom, Type, Nombre`,
+une colonne par typologie saisie, et `Matelot` pour le reste de l'effectif
+non affecté à une typologie précise — à adapter selon tes propres règles de
+génération (répartition des compétences, etc.).
+
+## Navire → Générer
+
+Formulaire (`panneau_generation_navire.py`) pour créer un navire :
+
+- **Nom du navire** (texte).
+- **Type de navire** (liste déroulante — valeurs uniques de la colonne
+  `Typologie` de `data/RencontreNavire.csv`).
+- **Région d'origine** (liste déroulante — valeurs uniques de la colonne
+  `Regions` de `data/ListeRegions.csv`).
+- Le bouton **"Générer le navire"** appelle `moteur.generer_navire(nom,
+  type, region)`, qui enregistre le résultat dans `data/Navire/<nom>.csv`
+  (mêmes séparateur/décimal/encodage), puis bascule sur "Afficher".
+
+Dans `MoteurExemple`, la fiche générée est minimale (`Nom, Type, Region`) —
+c'est le bon endroit pour brancher ta vraie génération de navire (coque,
+canons, équipage initial...), par exemple en appelant ta classe `Navire`.
+
+Pour ces deux formulaires, si un fichier CSV source ou une colonne
+attendue est introuvable, la liste déroulante correspondante reste vide et
+un avertissement s'affiche dans le panneau plutôt que de faire planter
+l'interface.
 
 ## Boutons d'action par onglet vertical
 

@@ -15,7 +15,8 @@ import os
 import pandas as pd
 import tkinter as tk
 import utils
-from config import *
+from .. import config
+from .. import utils
 from tkinter import messagebox
 from openpyxl import load_workbook
 from Equipage import *

@@ -26,6 +26,8 @@ from typing import Dict, List, Optional
 import theme
 from moteur_interface import MoteurBase
 from panneau_generation import PanneauGenerationTrajet
+from panneau_generation_equipage import PanneauGenerationEquipage
+from panneau_generation_navire import PanneauGenerationNavire
 
 # ---------------------------------------------------------------------------
 # Structure des onglets, dérivée du fichier Excel fourni.
@@ -47,6 +49,8 @@ ONGLETS: Dict[str, List[str]] = {
 # Le nom pointe vers une méthode de App à appeler pour construire ce panneau.
 PANNEAUX_SPECIAUX: Dict[tuple, str] = {
     ("Journal de bord", "Générer"): "_construire_panneau_generation",
+    ("Equipage", "Générer"): "_construire_panneau_generation_equipage",
+    ("Navire", "Générer"): "_construire_panneau_generation_navire",
 }
 
 
@@ -399,3 +403,40 @@ class App(tk.Tk):
         # On bascule sur le journal du navire concerné pour montrer le résultat.
         self.instance_actuelle = navire
         self.selectionner_sous_onglet("Journal")
+
+    # ------------------------------------------------------------------ #
+    # Panneau spécial : Equipage -> Générer
+    # ------------------------------------------------------------------ #
+    def _construire_panneau_generation_equipage(self):
+        for w in self.panneau_contenu.winfo_children():
+            w.destroy()
+
+        types_equipage = self.moteur.get_types_equipage()
+        panneau = PanneauGenerationEquipage(self.panneau_contenu, types_equipage, on_generer=self._generer_equipage)
+        panneau.pack(fill="both", expand=True)
+
+    def _generer_equipage(self, nom: str, type_equipage: str, nombre: int, effectifs: Dict[str, int]):
+        message = self.moteur.generer_equipage(nom, type_equipage, nombre, effectifs)
+        self.statut_var.set(message or "Équipage généré.")
+        # On bascule sur "Afficher" pour montrer immédiatement l'équipage généré.
+        self.instance_actuelle = nom
+        self.selectionner_sous_onglet("Afficher")
+
+    # ------------------------------------------------------------------ #
+    # Panneau spécial : Navire -> Générer
+    # ------------------------------------------------------------------ #
+    def _construire_panneau_generation_navire(self):
+        for w in self.panneau_contenu.winfo_children():
+            w.destroy()
+
+        types_navire = self.moteur.get_types_navire()
+        regions = self.moteur.get_regions_navire()
+        panneau = PanneauGenerationNavire(self.panneau_contenu, types_navire, regions, on_generer=self._generer_navire)
+        panneau.pack(fill="both", expand=True)
+
+    def _generer_navire(self, nom: str, type_navire: str, region: str):
+        message = self.moteur.generer_navire(nom, type_navire, region)
+        self.statut_var.set(message or "Navire généré.")
+        # On bascule sur "Afficher" pour montrer immédiatement le navire généré.
+        self.instance_actuelle = nom
+        self.selectionner_sous_onglet("Afficher")

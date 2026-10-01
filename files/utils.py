@@ -10,6 +10,7 @@ import sys
 import math
 import tkinter as tk
 from tkinter import ttk
+import config
 import pandas as pd
 
 import pandas as pd
