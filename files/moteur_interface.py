@@ -55,6 +55,12 @@ from config import BASE_PATH
 import pandas as pd
 import os
 from classes.Equipage import Equipage
+from classes.Navire import Navire
+from classes.Marchandise import Marchandise
+from classes.PNJ import PNJ
+from classes.Navigation import Navigation
+from classes.Inventaire import Inventaire
+
 # Type d'une "fiche" de données que l'interface sait afficher automatiquement :
 #  - un dict simple  -> affiché en liste clé / valeur
 #  - une liste de dict -> affichée sous forme de tableau (mêmes colonnes)
@@ -278,7 +284,7 @@ class MoteurExemple(MoteurBase):
         self._equipage: Dict[str, Any] = {}
         # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
-        self.ChargerEquipages()
+
 
     def get_instances(self, onglet, sous_onglet):
         if onglet == "Journal de bord":
@@ -449,25 +455,25 @@ class MoteurExemple(MoteurBase):
 
         for fichier in os.listdir(dossier):
 
-            if not fichier.lower().endswith(".csv"):
-                continue
+                if not fichier.lower().endswith(".csv"):
+                    continue
 
-            chemin = os.path.join(dossier, fichier)
+                chemin = os.path.join(dossier, fichier)
 
-            df = pd.read_csv(
-                chemin,
-                sep=";",
-                decimal=",",
-                encoding="cp1252"
-            )
-
-            nom = os.path.splitext(fichier)[0]
-            type_equipage = df["Type"].iloc[0]
-
-            self._equipage[nom] = Equipage.Charger(
-                df,
-                Name=nom
-            )
+                df = pd.read_csv(
+                    chemin,
+                    sep=";",
+                    decimal=",",
+                    encoding="cp1252"
+                )
+                print(fichier)
+                nom = os.path.splitext(fichier)[0]
+                type_equipage = df["Type"].iloc[0]
+                print(nom)
+                self._equipage[nom] = Equipage.Charger(
+                    df,
+                    Name=nom
+                )
 
     # ------------------------------------------------------------------ #
     # Listes de référence pour les formulaires "Générer"
@@ -524,7 +530,7 @@ class MoteurExemple(MoteurBase):
         # On recharge immédiatement l'équipage généré dans le moteur, avec
         # la même méthode Equipage.Charger(...) que ChargerEquipages(), pour
         # qu'il apparaisse tout de suite dans les autres onglets.
-        self._equipage[nom] = Equipage.Charger(df, Name=nom, Type=type_equipage)
+        self._equipage[nom] = Equipage(nombre,type_equipage,nom)
 
         return f"Équipage « {nom} » ({type_equipage}, {nombre} personnes) généré et enregistré dans {chemin}."
 
@@ -554,6 +560,6 @@ class MoteurExemple(MoteurBase):
         # Fiche minimale pour affichage immédiat dans l'onglet Navire -> Afficher.
         # À remplacer par ta vraie génération (coque, canons, équipage...),
         # par exemple en appelant ta classe Navire.
-        self._navires[nom] = {"Type": type_navire, "Région d'origine": region}
+        self._navires[nom] = Navire(type_navire,nom,region)
 
         return f"Navire « {nom} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."

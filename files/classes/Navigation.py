@@ -30,12 +30,6 @@ import numpy as np
 import pandas as pd
 from tkinter import messagebox
 
-import utils
-import FonctionEquipage
-import CalculMarchandise
-from config import *
-
-
 # ---------------------------------------------------------------------------
 # Constantes
 # ---------------------------------------------------------------------------

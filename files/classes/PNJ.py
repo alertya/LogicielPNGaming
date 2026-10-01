@@ -7,7 +7,7 @@ import os
 import random
 
 
-class Equipage:
+class PNJ:
 
 
     def __init__(self, Nb, Type, Name):

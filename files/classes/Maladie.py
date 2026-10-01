@@ -6,9 +6,9 @@ import math
 import random
 import matplotlib.pyplot as plt
 from tkinter import messagebox
-import Equipage
 
-from config import *
+
+
 
 # ----------------- FONCTIONS DE BASE ---------------- #
 

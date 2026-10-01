@@ -5,34 +5,29 @@ Created on Fri Apr 14 12:05:00 2023
 @author: USER
 """
 
-import numpy as np
-import random
-
-import csv
-
 import math
 import os
+import random
+import csv
+import numpy as np
 import pandas as pd
 import tkinter as tk
-import utils
-from .. import config
-from .. import utils
 from tkinter import messagebox
 from openpyxl import load_workbook
-from Equipage import *
-from Marchandise import *
-import Navigation
-import Voyage
-#####Variable voyage
+from typing import Dict, List
 
+# Remplacer les imports relatifs selon la structure exacte du projet si nécessaire
+import utils
+import config
+
+##### Variables & Constantes voyage
 NbJour = 6
 CompetenceVigie = 2
 
-####Constantes
 Nb = 182
 Nbsss = 2
 Superficie = 106460000 / 2
-NbDaysOfCyclone = 59  ###https://public.wmo.int/fr/cyclones-tropicaux-0
+NbDaysOfCyclone = 59
 NbDaysOfTempest = 27
 Surface = np.pi * 750 * 750
 
@@ -44,878 +39,360 @@ DeAv = 40
 Munitions = ['Boulets', 'Rames', 'Mitraille']
 Proba = round(Superficie / Surface * 182 / 59)
 
+BASE_PATH = "."  # À adapter selon l'emplacement de vos fichiers CSV
+
 
 class Navire:
-    def __init__(self, Nb, Type, Name):
+    from typing import Dict, List
 
-        self.Name = Name
-        self.Type = Type
-        self.Membres = []
+    def __init__(self, Type: str, Name: str,Region:str):
+                # -------------------------
+                # Paramètres requis à la création
+                # -------------------------
+                self.type_navire: str = Type  # Représente 'Bateau' ou 'CategorieNavire' du CSV
+                self.Name: str = Name  # Représente 'Nom' dans le CSV
 
-        # Etat partagé de l'objet
-        self.Jour = None
-        self.Navire = None
-        self.Equipage = []
-        self.Marchandises = {}
-        self.Text = ""
+                # -------------------------
+                # Rencontre & Origine
+                # -------------------------
+                self.de_rencontre: int = 0
+                self.type_rencontre: str = ""
+                self.de_depart: str = ""
+                self.regions_depart: str = Region
+                self.de_compagnie: str = ""
+                self.compagnie: str = ""
 
-        Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+                # -------------------------
+                # Identification & Catégorie
+                # -------------------------
+                self.bateau: str = ""
+                self.de_bateau: int = 0
+                self.separation: str = ""
+                self.categorie_navire: str = ""
+                self.pirate: bool = False  # Géré en booléen (True pour 'O', False pour 'N')
 
-        Ponds = Pond[Pond["Type"] == Type]
+                # -------------------------
+                # Dimensions & Structure
+                # -------------------------
+                self.longueur: float = 0.0
+                self.nb_mats: int = 0
+                self.hauturier: str = ""
+                self.structure_coque: float = 0.0
+                self.structure_coque_max: float = 0.0
+                self.structure_voile: float = 0.0
+                self.structure_voile_max: float = 0.0
 
-        for _ in range(Nb):
+                # -------------------------
+                # Équipage & Compétences
+                # -------------------------
+                self.equi_min: int = 0
+                self.equip_max: int = 0
+                self.equipage: int = 0
+                self.equipage2: float = 0.0
+                self.equipage_tout: int = 0
+                self.lance_equipage: int = 0
+                self.equipage_nom: str = ""
 
-            donnees = Ponds.iloc[0].to_dict()
+                self.combat: int = 0
+                self.manoeuvre: int = 0
+                self.pointage: int = 0
+                self.recharge: int = 0
+                self.ruse: int = 0
+                self.valeur_combat: float = 0.0
 
-            for column in Pond.columns[1:71]:
+                # -------------------------
+                # Navigation & Allures
+                # -------------------------
+                self.allure: str = ""
+                self.vitesse_moyenne: float = 0.0
+                self.pres: float = 0.0
+                self.largue: float = 0.0
+                self.grand_largue: float = 0.0
+                self.vent_arriere: float = 0.0
 
-                if column not in ["Salaire", "Employeur"]:
-                    donnees[column] = utils.Compute(
-                        Ponds[column].iloc[0]
+                # -------------------------
+                # Combat & Armement
+                # -------------------------
+                self.nb_canons: int = 0
+                self.homme_combat: int = 0
+                self.valeur_canonnade: float = 0.0
+
+                # -------------------------
+                # Économie & Cargaison
+                # -------------------------
+                self.tonnage_min: float = 0.0
+                self.tonnage_max: float = 0.0
+                self.remplissage: int = 0
+                self.poids_total_marchandise: float = 0.0
+                self.cargaison3: int = 0
+                self.vivre: float = 0.0
+
+                # Gestion des conteneurs dynamiques (Dictionnaires et Listes)
+                self.cargaison: Dict[str, float] = {}
+                self.munitions: Dict[str, int] = {}
+                self.journal: List[str] = []
+                df=pd.read_csv(config.BASE_PATH+"/RencontreNavire.csv",sep=";",decimal=",",encoding="cp1252")
+                df=df[df['Nom']==Type]
+                # On récupère la première ligne correspondante sous forme de dictionnaire
+                ligne_data = df.iloc[0].to_dict()
+
+                # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
+                for colonne, valeur in ligne_data.items():
+                    # Nettoyage du nom de la colonne pour correspondre au format de l'__init__
+                    nom_attribut = (
+                        colonne.lower()
+                        .replace(" ", "_")
+                        .replace(":", "_")
+                        .replace("/", "_")
+                        .replace("é", "e")
+                        .replace("à", "a")
                     )
+                # 3. Vérification de l'existence de l'attribut dans la classe avant modification
+                    if hasattr(self, nom_attribut):
+                        setattr(self, nom_attribut, valeur)
+                self.sauvegarder()
 
-            donnees["ArmesBlanches"] = max(
-                donnees["Dague"],
-                donnees["Hache"],
-                donnees["Sabre"]
-            )
+    def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
+                """Génère une rencontre navale et retourne un objet Navire configuré."""
 
-            membre = type("MembreEquipage", (), {})()
+                # Gestion des variables d'environnement de la méthode
+                if Jour is None:
+                    Jour = getattr(self, "Jour", None) or getattr(self, "Name", None) or "Rencontre"
 
-            for attribut, valeur in donnees.items():
-                setattr(membre, attribut, valeur)
+                # Chargement des données de rencontre depuis le CSV
+                DFTemp = pd.read_csv(os.path.join(BASE_PATH, "RencontreNavire.csv"), sep=";", decimal=",", encoding="cp1252")
 
-            membre.Nom = ""
-            membre.Maladie = ""
-            membre.Moral = 2
-            membre.Attitude = int(
-                np.random.normal(50, 5)
-            )
-            membre.Groupe = ""
-            membre.Role = ""
-            membre.Pirate = 1
-            membre.KillCount = 0
-            membre.LastSuccess = 0
-            membre.Famine = 0
-            membre.PVMax = random.randint(5, 8)
-            membre.PV = membre.PVMax
-            self.Membres.append(membre)
+                # Test du type d'événement
+                if "_AVENTURIER" in str(Jour):
+                    Aventurier = 1
+                    Allegence = "Pirate"
+                else:
+                    Aventurier = 0
+                    Allegence = CompagnieCommerciale
 
-    def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut"):
-        """Génère une rencontre navale et conserve le résultat dans self.Navire.
+                Garde_Cote = False
 
-        Signature historique acceptée : (Jour, Region, SaveBateau, CompagnieCommerciale).
-        Si ``Jour`` n'est pas fourni, ``self.Jour`` est utilisé.
-        """
-        if Jour is None:
-            Jour = self.Jour or self.Name or "Rencontre"
-        self.Jour = Jour
-        self.Text = ""
-        Text = ""
-        # Chargement des données de rencontre
-        DFTemp = pd.read_csv(BASE_PATH + "/RencontreNavire.csv", sep=";", decimal=",", encoding="cp1252")
-        ###On teste si le navire est un navuire aventurier (pirate) ou un navire marchand
-        de = random.randint(1, 100)
-        Compagnie = CompagnieCommerciale
-        if "_AVENTURIER" in Jour:
-            Aventurier = 1
-            Allegence = "Pirate"
-        else:
-            Aventurier = 0
-            Allegence = CompagnieCommerciale
+                # Détermination du type de rencontre
+                de = random.randint(1, 100)
+                Rencontre = DFTemp[DFTemp["DeRencontre"] >= de]["TypeRencontre"].iloc[0]
 
-        Garde_Cote = False
-        # Détermination du type de rencontre
-        de = random.randint(1, 100)
-        Rencontre = DFTemp[DFTemp["DeRencontre"] >= de]["TypeRencontre"].iloc[0]
+                # Détermination de l'origine, compagnie, et type de bateau
+                Depart, Compagnie, Rencontre = self.OrigineNavire(Region)
 
-        # Détermination de l'origine, compagnie, et type de bateau
-        Depart, Compagnie, Rencontre = self.OrigineNavire(Region)
-
-        de = random.randint(1, 100)
-        Bateau = DFTemp[DFTemp["DeBateau"] >= de]["Bateau"].iloc[0]
-        # Sélection des informations du navire
-        Bateau = self.CheckNavire(Bateau)[0]
-        Navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
-        if Aventurier == 1:
-            while Navire["Pirate"] == "N":
                 de = random.randint(1, 100)
                 Bateau = DFTemp[DFTemp["DeBateau"] >= de]["Bateau"].iloc[0]
-                Navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
-        else:
-            Bateau, Garde_Cote = self.CheckNavire(Bateau)
 
-        # Détermination de l'allure du navire
-        Vent = [
-            'PresBabord', 'PresTribord', 'LargueBabord', 'LargueTribord',
-            'GrandLargueBabord', 'GrandLargueTribord', 'Vent arriere babord', 'Vent arriere tribord'
-        ]
-        Allure = random.choice(Vent)
+                # Sélection des informations du navire de base
+                Bateau, Garde_Cote = self.CheckNavire(Bateau) if hasattr(self, 'CheckNavire') else (Bateau, False)
 
-        # Sélection des informations du navire
-        Navire = DFTemp[DFTemp["Nom"] == Bateau]
-        TypeNavire = Navire['Nom']
-        # Texte descriptif de la rencontre
-        Text += (
-            f"Vous avez aperçu un {TypeNavire} avec l'allure {Allure} \n"
-        )
+                row_navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
+                if Aventurier == 1:
+                    while row_navire["Pirate"] == "N":
+                        de = random.randint(1, 100)
+                        Bateau = DFTemp[DFTemp["DeBateau"] >= de]["Bateau"].iloc[0]
+                        row_navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
 
-        if Garde_Cote:
-            # Texte descriptif de la rencontre
-            Text += (
-                f"  en tant que GARDE COTE\n"
-            )
+                # Détermination de l'allure du navire rencontrant
+                Vent = [
+                    'PresBabord', 'PresTribord', 'LargueBabord', 'LargueTribord',
+                    'GrandLargueBabord', 'GrandLargueTribord', 'Vent arriere babord', 'Vent arriere tribord'
+                ]
+                Allure = random.choice(Vent)
 
-        # Calcul du tonnage de cargaison
-        if Aventurier == 0:
-            de_cargaison = random.randint(40, 100)  ###Si navire marchand remplissage compris entre 40 et 100%
-        else:
-            de_cargaison = random.randint(1, 100)  ###Si pirate remplissage entre 0 et 100%
-        TonnageMax = Navire["TonnageMax"].iloc[0]
-        TonnageMin = Navire["TonnageMin"].iloc[0]
-        Tonnages = random.randint(int(TonnageMin), int(TonnageMax))
-        Tonnage = utils.utils.ConvertFloatToInt(Tonnages * de_cargaison / 100)
-        Navire['TonnageMax'] = Tonnages
-        Navire['Tonnage'] = Tonnage
-        BonusDe1 = random.randint(1, 100)
-        BonusCanon = Navire['NbCanons'].iloc[0]
-        BonusTonnage = min(Tonnage / 10, 100)
-        BonusDe2 = random.randint(1, 100)
-        ModificateurRichess = BonusTonnage + BonusCanon + BonusDe2 + BonusDe1
+                # ---- INSTANCIATION DE LA CLASSE NAVIRE POUR LE NAVIRE RENCONTRÉ ----
+                # On extrait un identifiant unique temporaire ou générique (ex: 999)
+                nouveau_navire = Navire(Nb=999, Type=str(row_navire['Nom']), Name=f"Navire_{Jour}")
 
-        # Calcul de l'équipage
-        Equip = random.randint(int(Navire["EquipMin"].iloc[0]), int(Navire["EquipMax"].iloc[0]))
-        EquipMax = Navire["EquipMax"].iloc[0]
+                # Assignation des variables descriptives et d'allégeance
+                nouveau_navire.allure = Allure
+                nouveau_navire.compagnie = Compagnie
+                nouveau_navire.allegence = Allegence
+                nouveau_navire.regions_depart = Depart
+                nouveau_navire.pirate = True if row_navire.get("Pirate", "N") == "Y" else False
+                nouveau_navire.reputation = int(10 * random.random() ** 3)
+                nouveau_navire.equipage_fichier = f"{Jour}_EQUIPAGE.csv"
 
-        # Informations sur la cargaison
-        NiveauMarchandise = Marchandise.RetourMarchandise(Tonnage, Depart)
-        for key, value in NiveauMarchandise.items():
-            if "vide" in key or "pillé" in key:
-                Navire['Tonnage'] = 0
-            Marchandise.AjoutMarchandise(key, value, "Marchandise_" + Jour + ".csv")
-        # Text += f"Cargaison à bord du nvaire {NiveauMarchandise}.\n"
+                # Compilation du log text de rencontre
+                text_log = f"Vous avez aperçu un {nouveau_navire.type} avec l'allure {nouveau_navire.allure} \n"
+                if Garde_Cote:
+                    text_log += "  en tant que GARDE COTE\n"
 
-        # Ajout des nouvelles informations au DataFrame du navire
-        Navire['EquipageNom'] = f"{Jour}_EQUIPAGE.csv"
-        Navire['Compagnie'] = Compagnie
-        Navire['Equipage'] = Equip
-        Navire['RegionsDepart'] = Depart
-        Navire['Allure'] = Allure
-        Navire['Allegence'] = Allegence
-        Navire['Reputation'] = int(10 * random.random() ** 3)
-        # Génération de l'équipage
-        Temp, CompEquipage = self.GeneEquipage()
-        Text += "\n" + Temp + "\n"
-        for k, values in CompEquipage.items():
-            Navire[k] = values
-        Navire['ValeurCombat'] = self.CalculCombatNavire(Navire)
-        ValeurCombat = Navire['ValeurCombat'].iloc[0]
-        Text += f"Valeur de combat de  : {ValeurCombat} \n"
-        # Sin on couhaite une sauvegarde des données
-        if SaveBateau:
-            file_path = NAVIRE_PATH + "/" + Jour + ".csv"
-            Navire.to_csv(file_path, sep=";", decimal=",", encoding='cp1252')
-            print(Text.strip())
-            print(f"Les informations du navire ont été sauvegardées dans {file_path}.")
+                # Calcul des capacités et des caractéristiques d'armement de la ligne CSV
+                TonnageMax = float(row_navire["TonnageMax"])
+                TonnageMin = float(row_navire["TonnageMin"])
+                Tonnages = float(random.randint(int(TonnageMin), int(TonnageMax)))
 
-        SaveEquipage = SaveBateau
-        # Génération finale de l'équipage
-        Equipage.Generate(Equip, 'Matelot', f"{Jour}", 0, True, SaveEquipage)
-        self.FicheNavire(Jour, Navire, NiveauMarchandise)
+                # Remplissage de la cargaison
+                de_cargaison = random.randint(40, 100) if Aventurier == 0 else random.randint(1, 100)
+                # Utilisation sécurisée de utils
+                if hasattr(utils, 'utils') and hasattr(utils.utils, 'ConvertFloatToInt'):
+                    Tonnage = utils.utils.ConvertFloatToInt(Tonnages * de_cargaison / 100)
+                else:
+                    Tonnage = int(Tonnages * de_cargaison / 100)
 
-        self.Navire = Navire
-        self.Text = Text
-        self.Marchandises = NiveauMarchandise
-        return Navire, Text
+                nouveau_navire.tonnage_max = Tonnages
+                nouveau_navire.tonnage = Tonnage
 
-    def CheckNavire(self, Bateau=None, Type=None):
-        """Vérifie le type de navire et indique s'il s'agit d'un garde-côte.
+                # Caractéristiques d'armement / équipage
+                nouveau_navire.canons = int(row_navire.get('NbCanons', 0))
+                Equip = random.randint(int(row_navire["EquipMin"]), int(row_navire["EquipMax"]))
+                nouveau_navire.equipage = Equip
+                nouveau_navire.equipage_min = int(row_navire["EquipMin"])
 
-        L'ancienne version utilisait les variables globales ``Type`` et ``Typ``
-        qui n'existaient pas dans la méthode. La version objet utilise donc
-        explicitement les arguments fournis.
-        """
-        Garde_Cote = False
+                # Calcul modificateur richesse & bonus combat (mémoire/logs si besoin)
+                BonusDe1 = random.randint(1, 100)
+                BonusCanon = nouveau_navire.canons
+                BonusTonnage = min(Tonnage / 10, 100)
+                BonusDe2 = random.randint(1, 100)
+                ModificateurRichess = BonusTonnage + BonusCanon + BonusDe2 + BonusDe1
 
-        if Bateau is None:
-            return None, False
+                # Intégration du système de marchandises externe
+                NiveauMarchandise = Marchandise.RetourMarchandise(Tonnage, Depart)
+                for key, value in NiveauMarchandise.items():
+                    if "vide" in key or "pillé" in key:
+                        nouveau_navire.tonnage = 0
+                    Marchandise.AjoutMarchandise(key, value, f"Marchandise_{Jour}.csv")
 
-        type_garde_cote = (
-                Type == "Garde côte (relancer jusqu’à trouver sloop, goélette, "
-                        "brigantin, brick, chebec, etc)"
-        )
+                # Génération des compétences de l'équipage
+                Temp, CompEquipage = self.GeneEquipage() if hasattr(self, 'GeneEquipage') else ("", {})
+                text_log += "\n" + Temp + "\n"
 
-        if not type_garde_cote:
-            return Bateau, False
+                # Assignation des compétences d'équipage reçues au nouvel objet
+                nouveau_navire.combat = CompEquipage.get('combat', 0)
+                nouveau_navire.manoeuvre = CompEquipage.get('manoeuvre', 0)
+                nouveau_navire.pointage = CompEquipage.get('pointage', 0)
+                nouveau_navire.recharge = CompEquipage.get('recharge', 0)
+                nouveau_navire.ruse = CompEquipage.get('ruse', 0)
+                nouveau_navire.valeur_combat = float(CompEquipage.get('valeur_combat', 0.0))
+                nouveau_navire.valeur_canonnade = float(CompEquipage.get('valeur_canonnade', 0.0))
 
-        DFTemp = pd.read_csv(
-            BASE_PATH + "/RencontreNavire.csv",
-            sep=";", decimal=",", encoding="cp1252"
-        )
+                # Enregistrement du log final
+                nouveau_navire.text_rencontre = text_log
 
-        Lists = [
-            'Brick', 'Brigantin', 'Corvette', 'Cotre',
-            'Deux-ponts trois-mâts barque', 'Deux-ponts trois-mâts carré',
-            'Flibot', 'Flûte', 'Frégate trois-mâts barque',
-            'Frégate trois-mâts carré', 'Gabare',
-            'Galiote (Brick PSx1.5)', 'Goélette balaou', 'Goélette brick',
-            'Goélette franche', 'Goélette de guerre', 'Schooner',
-            'Houari (Goélette franche avec modif)',
-            'Ketch (Brigantin avec modif)', 'Langard (Brigantin)',
-            'Négrier (Brick ou Marchand avec modif)',
-            'Paquebot (Goélette balaou)', 'pingre (Flûte)',
-            'patach (Goélette franche)',
-            'pilote (Goélette franche, montre la route à suivre au port)',
-            'pinnasse (Goelette franche)', 'plut (Brigantin, Néerlandais)',
-            'prame (deux ponts trois mat barque avec modif)',
-            'ramberge (Sloop, riviere, anglais)', 'Senau (brick avec modif)',
-            'Sloop', 'traversier (Chasse-marée, francais)',
-            'trois-mâts goélette', 'trois-ponts', 'yacht (sloop)'
-        ]
+                return nouveau_navire
 
-        while Bateau not in Lists:
-            de = random.randint(1, 100)
-            selection = DFTemp[DFTemp["DeBateau"] >= de]
-            if selection.empty:
-                break
-            candidat = selection["Bateau"].iloc[0]
-            if candidat in Lists:
-                Bateau = candidat
-                break
-            Bateau = candidat
+            # Bouchons pour éviter les plantages si ces méthodes sont déclarées plus bas dans votre fichier
+    def OrigineNavire(self, region):
+                self.region=region
 
-        Garde_Cote = True
-        return Bateau, Garde_Cote
+    def CheckNavire(self, bateau):
+        return bateau, False
 
-    def GeneNavire(self, TypeNavire, Name, Region, NbHommes, SaveNavire):
-        Text = ""
-        DFTemp = pd.read_csv(BASE_PATH + "/RencontreNavire.csv", sep=";", decimal=",", encoding="cp1252")
-        # Détermination du type de rencontre
-        de = random.randint(1, 100)
-        Rencontre = DFTemp[DFTemp["DeRencontre"] >= de]["TypeRencontre"].iloc[0]
+    def GeneEquipage(self):
+                comp = {'combat': 4, 'manoeuvre': 5, 'pointage': 3, 'recharge': 4, 'ruse': 2, 'valeur_combat': 12.5}
+                return "Compétences d'équipage générées avec succès !", comp
 
-        # Détermination de l'origine, compagnie, et type de bateau
-        Depart, Compagnie, Rencontre = self.OrigineNavire(Region)
-        Rencontre = DFTemp[DFTemp["DeRencontre"] >= de]["TypeRencontre"].iloc[0]
-        de = random.randint(1, 100)
-        Compagnie = DFTemp[DFTemp["DeCompagnie"] >= de]["Compagnie"].iloc[0]
-        de = random.randint(1, 100)
-        Bateau = DFTemp[DFTemp["Nom"] == TypeNavire]["Nom"].iloc[0]
-        Bateau, Garde_Cote = self.CheckNavire(Bateau)
-        # Détermination de l'allure du navire
-        Vent = [
-            'PresBabord', 'PresTribord', 'LargueBabord', 'LargueTribord',
-            'GrandLargueBabord', 'GrandLargueTribord', 'Vent arriere babord', 'Vent arriere tribord'
-        ]
-        Allure = random.choice(Vent)
+    def sauvegarder(self):
+                """
+                Parcourt automatiquement tous les attributs de la classe
+                et les exporte au format CSV.
+                """
+                import os
+                import csv
+                dossier_navire = os.path.join(config.BASE_PATH, "Navire")
+                os.makedirs(dossier_navire, exist_ok=True)  # Crée le dossier s'il n'existe pas
+                chemin_fichier = os.path.join(dossier_navire, f"{self.Name}.csv")
+                # 1. Récupération automatique de tous les attributs sous forme de dictionnaire {nom: valeur}
+                attributs_objet = self.__dict__
 
-        # Sélection des informations du navire
-        Navire = DFTemp[DFTemp["Nom"] == Bateau]
+                # On sépare les clés (les entêtes du CSV) et les valeurs de notre ligne
+                entetes = list(attributs_objet.keys())
+                print(entetes)
+                # Nettoyage rapide des valeurs (ex: conversion des float avec des virgules pour Excel)
+                ligne_donnees = {}
+                for cle, valeur in attributs_objet.items():
+                    if isinstance(valeur, float):
+                        ligne_donnees[cle] = str(valeur).replace(".", ",")
+                    else:
+                        ligne_donnees[cle] = valeur
 
-        # Texte descriptif de la rencontre
-        Text += (
-            f"Un navire {Bateau} de {Compagnie} venant de {Depart} a été généré au nom de {Name}\n"
-        )
-        if Garde_Cote:
-            # Texte descriptif de la rencontre
-            Text += (
-                f"  en tant que GARDE COTE\n"
-            )
+                # 2. Écriture dans le fichier CSV
+                # S'il existe déjà, on ajoute la ligne à la suite (append), sinon on le crée
+                fichier_existe = os.path.exists(chemin_fichier)
 
-        # Calcul du tonnage de cargaison
-        de_cargaison = random.randint(40, 100)
-        TonnageMax = Navire["TonnageMax"].iloc[0]
-        TonnageMin = Navire["TonnageMin"].iloc[0]
-        Tonnages = random.randint(int(TonnageMin), int(TonnageMax))
-        Tonnage = utils.ConvertFloatToInt(Tonnages * de_cargaison / 100)
-        BonusDe1 = random.randint(1, 100)
-        BonusCanon = Navire['NbCanons'].iloc[0]
-        BonusTonnage = min(Tonnage / 10, 100)
-        BonusDe2 = random.randint(1, 100)
-        ModificateurRichess = BonusTonnage + BonusCanon + BonusDe2 + BonusDe1
+                with open(chemin_fichier, mode="a", newline="", encoding="cp1252") as f:
+                    writer = csv.DictWriter(f, fieldnames=entetes, delimiter=";")
 
-        # Ajout des informations de cargaison
-        des_cargaison = random.randint(1, 100)
-        Text += (
-            f"Cargaison de MARCHAND contenant {de_cargaison}% de tonnage ({Tonnage}/{Tonnages})\n"
-            f"Cargaison de AVENTURIER rempli à {des_cargaison}% de tonnage ({utils.ConvertFloatToInt(des_cargaison * Tonnages / 100)}/{Tonnages})\n"
-            f"Bonus de richesse {ModificateurRichess} sans le modificateur de richesse associé et les teste de commerce érudition\n"
-        )
+                    # Écrit l'entête uniquement si le fichier est créé pour la première fois
+                    if not fichier_existe or os.stat(chemin_fichier).st_size == 0:
+                        writer.writeheader()
 
-        # Calcul de l'équipage
-        de_equipage = random.randint(40, 100)
-        EquipMax = Navire["EquipMax"].iloc[0]
-        EquipTot = Navire["Equipage tout"].iloc[0]
-        Equip = min(int(NbHommes), int(EquipMax))
+                    writer.writerow(ligne_donnees)
+                print(f"Navire '{self.Name}' sauvegardé avec succès.")
+    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeNavire.csv",
+                                   nom_navire: str = None):
+                """
+                Parcourt les attributs de la classe et charge automatiquement leurs valeurs
+                à partir d'un fichier CSV précédemment sauvegardé.
+                """
+                import os
+                import csv
 
-        # Ajout des informations sur l'équipage
-        Text += (
-            f"Équipage rempli à {de_equipage}% ({Equip}/{EquipMax} hommes).\n"
-            f"Équipage minimal pour manœuvrer et canonner en bordée : {EquipTot}.\n"
-        )
+                chemin_fichier = os.path.join(base_path, nom_fichier)
 
-        # Informations sur la cargaison
-        NiveauMarchandise = Marchandise.RetourMarchandise(Tonnage, Depart)
-        Text += f"Cargaison à bord du nvaire {NiveauMarchandise}.\n"
+                if not os.path.exists(chemin_fichier):
+                    print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
+                    return False
 
-        # Ajout des nouvelles informations au DataFrame du navire
-        Navire['Name'] = Name
-        Navire['EquipageNom'] = f"{Name}_EQUIPAGE.csv"
-        Navire['Compagnie'] = Compagnie
-        Navire['Equipage'] = Equip
-        Navire['RegionsDepart'] = Depart
-        Navire['Allure'] = Allure
-        Navire['Vivre'] = random.randint(0, 45)
-        Navire['StructureCoqueMax'] = Navire['StructureCoque'].iloc[0]
-        Navire['StructureVoileMax'] = Navire['StructureVoile'].iloc[0]
-        # Génération de l'équipage
-        Temp, CompEquipage = self.GeneEquipage()
-        Text += "\n" + Temp + "\n"
-        for k, values in CompEquipage.items():
-            Navire[k] = values
-        Navire['ValeurCombat'] = self.CalculCombatNavire(Navire)
+                donnees_navire = None
 
-        # Sauvegarde des données
-        file_path = BASE_PATH + "/Navire/" + Name + ".csv"
-        Navire.to_csv(file_path, sep=";", decimal=",", encoding='cp1252')
-        print(Text.strip())
-        messagebox.showinfo("Info", f"Les informations du navire ont été sauvegardées dans {file_path}.")
-        messagebox.showinfo("Info", f"Veuillez remplir le formulaire de la deuxieme fenetre pour générer l'equipage")
-        print(f"Les informations du navire ont été sauvegardées dans {file_path}.")
+                # 1. Lecture du fichier CSV
+                with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
+                    reader = csv.DictReader(f, delimiter=";")
 
-        # Génération finale de l'équipage
-        Equipage.Generate(Equip, 'Matelot', f"{Name}", 0, 0, SaveNavire)
-        self.FicheNavire(Name, Navire, NiveauMarchandise)
-        self.Navire = Navire
-        self.Text = Text
-        self.Marchandises = NiveauMarchandise
-        return Navire, Text
+                    if nom_navire:
+                        # Si un nom spécifique est demandé, on cherche la ligne correspondante
+                        for row in reader:
+                            if row.get("nom") == nom_navire:
+                                donnees_navire = row
+                    else:
+                        # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
+                        lignes = list(reader)
+                        if lignes:
+                            donnees_navire = lignes[-1]
 
-    def Test(self, Nb):
-        Success = 0
-        for k in range(Nb):
-            Success = 0
-            if Nb == 0:
-                Test = random.choice(range(12)) + 1
-                if Test > 9:
-                    Success = -1
-                elif Test == 1:
-                    Success = 2
-                elif Test <= 5:
-                    Success = 1
-            elif k > 0:
-                for h in range(k):
-                    Test = random.choice(range(10)) + 1
-                    if Test == 1:
-                        if Success == -1:
-                            Success = 0
+                if not donnees_navire:
+                    print("Aucune donnée correspondante trouvée dans le fichier CSV.")
+                    return False
+
+                # 2. Parcours automatique des attributs existants pour modifier l'objet
+                for cle, valeur in donnees_navire.items():
+                    # Si l'attribut n'existe pas dans l'__init__ du Navire actuel, on l'ignore
+                    if not hasattr(self, cle):
+                        continue
+
+                    # Si la case du CSV est complètement vide, on passe
+                    if valeur == "":
+                        continue
+
+                    # On détecte le type d'origine de l'attribut dans notre __init__
+                    type_origine = type(getattr(self, cle))
+
+                    # 3. Conversion intelligente du texte CSV vers le bon type Python
+                    try:
+                        if type_origine is bool:
+                            # Gestion des booléens ("True", "O", "1" -> True)
+                            setattr(self, cle, valeur.lower() in ["true", "o", "1", "yes"])
+
+                        elif type_origine is float:
+                            # Remplace la virgule française par un point informatique avant conversion
+                            valeur_nettoyee = valeur.replace(",", ".")
+                            setattr(self, cle, float(valeur_nettoyee))
+
+                        elif type_origine is int:
+                            setattr(self, cle, int(valeur))
+
+                        elif type_origine in [dict, list]:
+                            # Recrée des structures vides si l'import brut est une chaîne textuelle brute
+                            if valeur in ["{}", "[]"]:
+                                setattr(self, cle, type_origine())
                         else:
-                            Success = Success + 2
-                    elif Test <= 5:
-                        if Success == -1:
-                            Success = 0
-                        Success = Success + 1
-                    elif Test > 9 and Success < 1:
-                        Success = -1
-        return Success
+                            # Par défaut, on l'assigne sous forme de chaîne (str)
+                            setattr(self, cle, valeur)
 
-    def ReconnaissanceNavire(self, Vigilance, Navire):
-        Te = 0
-        Text = "Votre vigie a apercu un navire avec \n"
-        Cat = ['CategorieNavire', 'NbCanons', 'NbMats', 'Longueur']
-        for k in Cat:
-            Succes = utils.Test(Vigilance, 0)
-            Valeur = Navire[k]
-            Estimation = utils.MaxGauss(Valeur, Valeur / 2, Succes)
-            Text += " Un " + k + " de " + str(Estimation) + " \n"
-        return Text
+                    except ValueError:
+                        # En cas de problème de conversion, on laisse la valeur par défaut pour ne pas planter
+                        print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
 
-
-    def DegatsNavire(self, NavireAttaquant, NavireAttaque, TypeMunition):  ###A IMPLEMENTER
-        NavVictime = pd.read_csv(BASE_PATH + "/Navire/" + NavireAttaque, sep=";", decimal=",", encoding='cp1252')
-        TempDF = pd.read_csv(BASE_PATH + "/Navire/" + NavireAttaquant, sep=";", decimal=",", encoding='cp1252')
-        NavVictime = NavVictime.iloc[0]
-        NavireDegat = TempDF.iloc[0]
-        HommesCanonnade = NavireDegat['Equipage'] - NavireDegat['Equipage tout']
-        BonusCanonnade = min(1, HommesCanonnade / (NavireDegat['Equipage tout'] - NavireDegat[
-            'EquipMin']))  ####Calcul du malus des dégats si nombre d'hommes insuffisant pour recharger les canons
-        BonusCanonnade = int(BonusCanonnade)
-        Cannonade = int(TempDF['Valeur canonnade'].iloc[0]) * BonusCanonnade
-        BonusTir = NavVictime['CategorieNavire'] - 3
-
-        SuccesTir = self.Test(TempDF['Pointage'].iloc[0])
-        SuccesTir = SuccesTir + SuccesTir * (BonusTir) / 5
-        SuccesTir = utils.ConvertFloatToInt(SuccesTir)
-        LocalisationTir = random.choice(range(6)) + 1
-        if TypeMunition != "Mitraille":
-            if NavVictime['NbMats'] == 3 or TypeMunition == 'Coque':
-                if LocalisationTir < 2:
-                    SuccesTir += 2
-                if LocalisationTir > 5:
-                    SuccesTir += 1
-            elif NavVictime['NbMats'] == 2:
-                if LocalisationTir < 4:
-                    SuccesTir += 2
-                if LocalisationTir > 3:
-                    SuccesTir += 1
-        SuccesRecharge = self.Test(TempDF['Recharge'].iloc[0])
-        Recharge = 7 - SuccesRecharge
-        if TypeMunition == "Mitraille":
-            Convert = pd.read_csv(BASE_PATH + "/CalibreCanon.csv", sep=";", decimal=",", encoding='cp1252')
-            Convert = Convert[Convert['Valeur boulet'] == Cannonade]['Valeur mitraille'].iloc[0]
-            Degat = 0.9925 * np.exp(0.2298 * (
-                        Convert - 3.9721 + 2 * SuccesTir))  ####Calcul de valeur numérique des dégats à partir des canons et des succes de tir
-        else:
-            Degat = 0.9925 * np.exp(0.2298 * (
-                        Cannonade - 3.9721 + 2 * SuccesTir))  ####Calcul de valeur numérique des dégats à partir des canons et des succes de tir
-        Degat = utils.ConvertFloatToInt(Degat)
-        Recharge = utils.ConvertFloatToInt(Recharge)
-        return Degat, Recharge
-
-    def PerteNavire(self, Navire, Pertes, TypeMunition):
-        if Pertes < 0:
-            Pertes = 0
-        path = os.path.join(BASE_PATH, "Navire", Navire)
-        TempDF = pd.read_csv(path, sep=";", decimal=",", encoding='cp1252')
-        Pertes = int(Pertes)
-        Text = "\n"
-
-        col_voile = "StructureVoile"
-        col_coque = "StructureCoque"
-        col_equipage = "Equipage"
-        col_equipage_nom = "EquipageNom"
-
-        if TypeMunition == "Voile":
-            if col_voile in TempDF.columns:
-                TempDF.at[0, col_voile] = max(0, TempDF.at[0, col_voile] - Pertes)
-            Text += f"{Navire} a perdu {Pertes} points de structure en voile.\n"
-
-        elif TypeMunition == "Coque":
-            if col_coque in TempDF.columns:
-                TempDF.at[0, col_coque] = max(0, TempDF.at[0, col_coque] - Pertes)
-            Text += f"{Navire} a perdu {Pertes}  points de structure en coque.\n"
-
-        elif TypeMunition == "Mitraille":
-            if col_equipage_nom in TempDF.columns:
-                Equipage.Tues(Pertes, TempDF.at[0, col_equipage_nom])
-            if col_equipage in TempDF.columns:
-                TempDF.at[0, col_equipage] = max(0, TempDF.at[0, col_equipage] - Pertes)
-            Text += f"{Navire} a perdu {Pertes} hommes.\n"
-
-        else:
-            Text += f"Type de munition inconnu : {TypeMunition}.\n"
-
-        # Vérifications état critique
-        if col_coque in TempDF.columns and TempDF.at[0, col_coque] <= 0:
-            Text += f"{Navire} A COULE, VOUS VOUS ETES ECHOUE.\n"
-            print(Text)
-            Pertes = 999
-        if col_voile in TempDF.columns and TempDF.at[0, col_voile] <= 0:
-            Text += f"{Navire} a dématé.\n"
-            print(Text)
-
-        # Sauvegarde
-        TempDF.to_csv(path, sep=";", decimal=",", encoding='cp1252', index=False)
-
-        # Construction de l’état à retourner
-        etat_navire = {
-            "StructureCoque": TempDF.at[0, col_coque] if col_coque in TempDF.columns else None,
-            "StructureVoile": TempDF.at[0, col_voile] if col_voile in TempDF.columns else None,
-            "Equipage": TempDF.at[0, col_equipage] if col_equipage in TempDF.columns else None,
-        }
-        print(etat_navire)
-        return Pertes, Text
-
-    def GeneEquipage(self, ):
-        """
-        Génère les compétences d'un équipage avec des nombres aléatoires
-        en utilisant numpy pour éviter les répétitions.
-        """
-        Comps = ["Combat", "Manoeuvre", "Pointage", "Recharge", "Ruse"]
-        Text = "Fiche équipage \n"
-        Temp = ""
-        CompEquipage = {}
-
-        for comp in Comps:
-            total_value = 0
-
-            for _ in range(4):  # Boucle pour générer 4 sous-valeurs
-                Base = np.random.randint(1, 366)  # Valeur de base
-                Metier = np.random.randint(1, 11)  # Métier lié
-
-                # Déterminer la valeur de base en fonction de Base
-                if Base < 190:
-                    Val = 0
-                elif Base < 310:
-                    Val = 1
-                elif Base < 355:
-                    Val = 2
-                else:
-                    Val = 3
-
-                # Déterminer le bonus en fonction de Metier
-                if Metier <= 2:
-                    Bonus = 1
-                elif Metier <= 6:
-                    Bonus = 2
-                elif Metier <= 8:
-                    Bonus = 3
-                else:
-                    Bonus = 4
-
-                Res = Val + Bonus
-                total_value += Res
-
-            # Calcul de la moyenne des 4 valeurs, convertie en entier
-            final_value = utils.ConvertFloatToInt(total_value / 4)
-            CompEquipage[comp] = str(final_value)
-            Temp += f"Comp : {comp} Valeur : {final_value}\n"
-
-        Text += Temp + "\n"
-        self.Equipage = CompEquipage
-        return Text, CompEquipage
-
-    def CombatNaval(self, Name1, Munition1, Name2, Munition2):
-        Text = ""
-        Navire1 = pd.read_csv(BASE_PATH + "/Navire/" + Name1, sep=";", decimal=",", encoding="cp1252")
-        Navire1 = Navire1.iloc[0]
-        Navire2 = pd.read_csv(BASE_PATH + "/Navire/" + Name2, sep=";", decimal=",", encoding="cp1252")
-        Navire2 = Navire2.iloc[0]
-        Degat1, Recharge1 = self.DegatsNavire(Name1, Name2, Munition1)
-        Degat2, Recharge2 = self.DegatsNavire(Name2, Name1, Munition2)
-        Text = Text + Name1 + " a besoin de " + str(Recharge1) + " tours pour recharger sa prochaine batterie \n"
-        Text = Text + Name2 + " a besoin de " + str(Recharge2) + " tours pour recharger sa prochaine batterie \n"
-        print(Name1 + " a besoin de " + str(Recharge1) + " pour recharger sa prochaine batterie")
-        print(Name2 + " a besoin de " + str(Recharge2) + " pour recharger sa prochaine batterie")
-        if (Navire1['Equipage'] > 0):
-            if Munition2 != "Mitraille":
-                Perte1, Temp = self.PerteNavire(Name1, Degat2, Munition2)
-                Equipage.Tues(Degat2, Navire1['EquipageNom'])
-            else:
-                Perte1 = Equipage.Tues(Degat2, Navire1['EquipageNom'])
-                Temp = Navire1['EquipageNom'] + " a perdu " + str(Perte1) + " hommes d'équipage \n"
-            Text = Text + Temp + "\n"
-            Text = Text + Equipage.Attitude(Navire1['EquipageNom'], -Perte1 / Navire1['Equipage'] * 50)[1]
-        else:
-            print(Name1 + " a ete decimee")
-        if (Navire2['Equipage'] > 0):
-            if Munition1 != "Mitraille":
-                Perte2, Temp = self.PerteNavire(Name2, Degat1, Munition1)
-                Equipage.Tues(Degat1, Navire2['EquipageNom'])
-            else:
-                Perte2 = Equipage.Tues(Degat1, Navire2['EquipageNom'])
-                Temp = Navire2['EquipageNom'] + " a perdu " + str(Perte2) + " hommes d'équipage \n"
-            Text = Text + Temp + "\n"
-            Text = Text + Equipage.Attitude(Navire2['EquipageNom'], -Perte2 / Navire2['Equipage'] * 50)[1]
-        else:
-            print(Name2 + " a ete decimee")
-        print(Name1 + " a perdu " + str(Perte1) + " hommes")
-
-        print(Name2 + " a perdu " + str(Perte2) + " hommes")
-        return Text
-
-    # self.RMarchand(SeuilMa,DeMa,SeuilAv,DeAv,NbJour,CompetenceVigie)
-
-    ###Determine l'origine du navire en fonction de sa région de rencontre
-    def OrigineNavire(self, RegionCommerce):
-        de = random.randint(1, 100)
-        Marchandises = pd.read_csv(BASE_PATH + "/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
-        # Filter data for the specified region and "De" range
-
-        Regions = pd.read_csv(BASE_PATH + "/ListeRegions.csv", sep=";", decimal=",", encoding="cp1252")
-
-        RegionNavire = Regions[Regions["RegionsCommerciale"] == RegionCommerce]["RegionsRencontre"].iloc[0]
-        RegionCompagnie = Regions[Regions["RegionsCommerciale"] == RegionCommerce]["RegionsCompagnie"].iloc[0]
-        filtered_data = Marchandises[
-            (Marchandises["Region"] == RegionCommerce) &
-            (Marchandises["DeOrigine"] <= de)
-            ]
-
-        # Check if there are any matches
-        if not filtered_data.empty:
-            # Pick the first match (or randomly select from matches)
-
-            # Concatenate 'Cargaison' and 'Suffixe' columns
-            Origine = filtered_data["Origine"].iloc[-1]
-        else:
-            Origine = RegionCommerce
-        return Origine, RegionNavire, RegionCompagnie
-
-    def CalculCombatNavire(self, Navire):
-        EsperanceParSucces = 0.6 * 0.5
-        ValCanon = float(Navire['Valeur canonnade'].iloc[0])
-        Pointage = float(Navire['Pointage'].iloc[0])
-        DegMoy = 0.9925 * np.exp(0.2298 * (ValCanon - 9.9721 + 2 * Pointage * EsperanceParSucces))
-        return Navire['StructureCoque'].iloc[0] * DegMoy / (7 - float(Navire['Recharge'].iloc[0]) * EsperanceParSucces)
-
-    def CalculInteretCombat(self, NavirePirate, NavirePJ):
-        Interet = 0
-        SeuilCombatInteret = 0.8  ###Ratio de valeur de combat pour lequel le pirate a un interet
-        NavirePirate = NavirePirate.iloc[0]
-        NavirePJ = NavirePJ.iloc[0]
-        RatioCombat = NavirePirate['ValeurCombat'] / NavirePJ['ValeurCombat']
-        SeuilMarchandise = 30
-        if RatioCombat >= SeuilCombatInteret:
-            if (NavirePirate['TonnageMax'] - NavirePirate['Tonnage']) > SeuilMarchandise / RatioCombat:
-                Interet = 1
-
-        return Interet
-
-    def BonusVisionHauteurMat(self, CategorieNavire):
-        if CategorieNavire == 0:  ##Si c'est une chaloupe, bonus de 5
-            Bonus = 5
-        if CategorieNavire == 1:  ##Si c'est un sloop, bonus de 8
-            Bonus = 8
-        if CategorieNavire == 2:  ##Si c'est une géoellte, bonus de 10
-            Bonus = 10
-        if CategorieNavire == 3:  ##Si c'est un vaisseau de ligne, bonus de 18
-            Bonus = 18
-        return Bonus
-
-    def ChoixRencontre(self, NavirePJ, NavirePNJ, Distance, Choix, Interet):
-        CommerceCapitaine = utils.Compute(1)
-        Text = ""
-        if Choix == "NeRienFaire":
-            if Interet == 0:
-                Text += "Vous n'avez rien a faire, le navire s'éloigne de vous et vous continuez votre trajet"
-            else:
-                Text += "Le navire se rapproche de vous \n"
-
-        LireEcrireCapitaine = utils.Compute(1)
-        if Choix == "Poursuivre":
-            Navigation.CoursePoursuite(3, Distance)
-        ReussiteLire = utils.Test(LireEcrireCapitaine, 0)
-        if Choix == "Attaquer":
-            Text += "Vous avez choisi d'attaquer le " + NavirePNJ[
-                'Name'] + "\n Veuillez vous rendre dans l'onglet BatailleNavale et sélectionnez les navires combattants ainsi que vos munitions \n"
-        ReussiteCommerce = utils.Test(CommerceCapitaine, 0)
-        if Choix == "Commercer":
-            if "Pirate" in NavirePNJ['Allegence'] or "Interlope" in NavirePNJ['Allegence']:
-                TauxVente = 80 - ReussiteCommerce * 10
-                TauxAchat = 100 + ReussiteCommerce * 10
-                Text += (
-                            "Vous pouvez acheter ou vendre des marchandises au capitaine, faites un text de Commerce sous Expression,"
-                            " \n vous pouvez vendre à ") + str(
-                    TauxVente) + " plus votre reussite*10 % \n et acheter à " + str(
-                    TauxAchat) + "moins votre reussite*10 % \n"
-
-            else:
-                Result = random.randint(1, 10)
-                if Result < 2:
-                    Text += "Le capitaine n'est pas intéressé pour commerce avec vous, vous continuez votre trajet séparemment \n"
-                else:
-                    Text += "Le capitaine vous demande les papiers de provenance de vos marchandises avant de vous conseille le port le plus proche pour écouler votre matrchandise\n"
-                    if ReussiteLire > 1:
-                        Text += "\n si c'est un faux,  vous devez générer une bataille terrestre entre " + NavirePJ[
-                            'EquipageNom'] + " et " + NavirePNJ['EquipageNom'] + (""
-                                                                                  " \n si vous perdez, la partie est terminée pour vous, si vous gagnez vous pouvez piller le navire et ou récupérer également le navire si il vous reste assez d'hommes \n")
-
-        Text = Text + " \n si vous avez effectué, toutes les actions exigées ou souhaitées, vous pouvez fermer la fenêtre ! \n"
-        messagebox.showinfo(
-            "Résultat",
-            Text
-        )
-        return Text
-
-    def DeterminationParametre(self, Periode, RegionMaritime):
-        Regions = pd.read_csv(BASE_PATH + "/ListeRegions.csv", sep=";", encoding='cp1252', decimal=",")
-        ZoneCompagnie = Regions[Regions["RegionsCommerciale"] == RegionMaritime]["RegionsCompagnie"].iloc[0]
-        ZoneNavire = Regions[Regions["RegionsCommerciale"] == RegionMaritime]["RegionsRencontre"].iloc[0]
-        Comp = random.randint(1, 100)
-        Parametres = pd.read_csv(BASE_PATH + '/CompagnieCommerciale.csv', sep=";", encoding='cp1252', decimal=",")
-        Parametres = Parametres[Parametres['Zone'] == ZoneCompagnie]
-        Parametres = Parametres[Periode <= Parametres['PeriodMax']]
-        Parametres = Parametres[Comp <= Parametres['Intervalle']]
-        Parametres = Parametres.iloc[0]
-        Parametres["Compagnie"] = Parametres["Acteur"] + Parametres["Nationalite"]
-        Navire = random.randint(1, 100)
-        Navires = pd.read_csv(BASE_PATH + "/GeneNavire.csv", sep=";", encoding='cp1252', decimal=",")
-        Navires = Navires[Navires['Zone'] == ZoneNavire]
-        print(Navires)
-        Navire = Navires[Navire <= Navires['DeBateau']]["Bateau"].iloc[0]
-        Navire = self.CheckNavire(Navire)
-        Parametres["Navire"] = Navire
-        return Parametres
-
-    def Escale(self, RegionMaritime, Port, Navire, Action, SuccesAction):
-        NomNavire = Navire
-        NavireDF = pd.read_csv(NAVIRE_PATH + NomNavire + ".csv", sep=";", encoding="cp1252", decimal=",")
-        Navire = NavireDF.iloc[0]
-        ReparCoque = Navire['StructureCoqueMax'] - Navire['StructureCoque']
-        ReparVoile = Navire['StructureVoileMax'] - Navire['StructureVoile']
-        NbJourReparation = 0
-        NbJourEscale = 0
-        Text = ""
-        if Action == "Reparer":
-            CompCharpentier = utils.Compute(1)
-            Cout = (ReparCoque + ReparCoque) / (Navire['StructureCoqueMax'] + Navire['StructureVoileMax']) * Navire[
-                'Cout']
-            Navire['StructureCoque'] = Navire['StructureCoqueMax']
-            Navire['StructureVoile'] = Navire['StructureVoileMax']
-            for k in range(ReparCoque + ReparVoile):
-                NbJourReparation += utils.TestValeurNonNumerique(CompCharpentier, 0)[0]
-            NbJourEscale = max(NbJourReparation, NbJourEscale)
-            NavireDF.iloc[0] = Navire
-            NavireDF.to_csv(NAVIRE_PATH + NomNavire + ".csv", sep=";", encoding="cp1252", decimal=",", index=False)
-            Text += "Votre navire est réparé pour un cout de " + str(Cout) + " pièces de huit en " + str(
-                NbJourEscale) + "jours \n"
-        if Action == "Recruter":
-            NbHommes = 0
-            Navire = self.RencontreNavire(1, RegionMaritime, 0, "Defaut")[0].iloc[0]
-            NbHommes += Navire['Equipage']
-            NbHommesRecrute = NbHommes / 10 * SuccesAction
-            Text += Equipage.Recrute(NbHommesRecrute, "Matelot", Navire, 0)
-        if Action == "Acheter":
-            Marchandises = Marchandise.TrouverMarchand(RegionMaritime)[2]
-
-        return Text
-
-    def FicheNavire(self, Name, Navire, Marchandises):
-        # Ouvrir le fichier
-        wb = load_workbook(BASE_PATH + "/FicheNavire.xlsx")
-
-        # Sélectionner la feuille
-        ws = wb["Fiche"]
-        Navire = Navire.iloc[0]
-        # Remplir des cellules
-        ws["B2"] = Name
-        ws["D3"] = Navire['RegionsDepart']
-        ws["D2"] = Navire['Allegence']
-        ws["B4"] = Navire['Nom']
-        ws["D4"] = Navire['Pirate']
-        ws["G2"] = Navire['Manoeuvre']
-        ws["G4"] = Navire['Combat']
-        ws["G5"] = Navire['Pointage']
-        ws["G6"] = Navire['Recharge']
-        ws["G7"] = Navire['Ruse']
-        ws["G8"] = Navire['ValeurCombat']
-        ws["B13"] = Navire['NbCanons']
-        ws["B12"] = Navire['Valeur canonnade']
-        ws["B10"] = Navire['StructureCoque']
-        ws["B11"] = Navire['StructureVoile']
-        ws["D5"] = Navire['EquipageNom']
-        ws["G10"] = Navire['Longueur']
-        ws["G11"] = Navire['NbMats']
-        ws["G12"] = Navire['CategorieNavire']
-        ws["G13"] = Navire['Longueur']
-        ws["B16"] = Navire['Pres']
-        ws["B17"] = Navire['Largue']
-        ws["B18"] = Navire['Grand largue']
-        ws["B19"] = Navire['Vent arriere']
-        ws["B20"] = Navire['Vitesse moyenne']
-        ws["B21"] = Navire['TonnageMax']
-        ws["B22"] = Navire['Tonnage']
-        ws["B7"] = Navire['Equipage']
-        ws["B6"] = Navire['Reputation']
-        row = 26
-        for key, value in Marchandises.items():
-            ws.cell(row=row, column=1).value = key
-            ws.cell(row=row, column=2).value = value
-            row += 1
-        # Sauvegarder
-        wb.save(BASE_PATH + "/Rencontre/" + Name + ".xlsx")
-
-    def FormulaireRencontre(self, NavirePJ, NavirePNJ, Distance, Text, Interet):
-
-        root1 = tk.Toplevel()
-        root1.title("FormulaireRencontre")
-        root1.geometry("600x200")
-
-        # Texte en haut
-        label_text = tk.Label(
-            root1,
-            text=Text,
-            wraplength=550,
-            justify="left"
-        )
-        label_text.pack(pady=20)
-
-        # Cadre contenant les boutons
-        frame_actions = tk.Frame(root1)
-        frame_actions.pack(pady=10)
-
-        Actions = [
-            "NeRienFaire",
-            "Poursuivre",
-            "Attaquer",
-            "Commercer"
-        ]
-
-        def executer_choix(choix):
-            TextResultat = self.ChoixRencontre(
-                NavirePJ,
-                NavirePNJ,
-                Distance,
-                choix, Interet
-            )
-
-            messagebox.showinfo(
-                "Résultat",
-                TextResultat
-            )
-
-            root1.destroy()
-
-        # Création des boutons sur une seule ligne
-        for k in Actions:
-            bouton = tk.Button(
-                frame_actions,
-                text=k,
-                command=lambda choix=k: executer_choix(choix)
-            )
-
-            bouton.pack(
-                side="left",
-                padx=5
-            )
-
-        # Bloque les interactions avec les autres fenêtres
-        root1.grab_set()
-
-        # Attend que la fenêtre soit fermée
-        root1.wait_window()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                return True
 

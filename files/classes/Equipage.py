@@ -4,6 +4,7 @@ from config import BASE_PATH
 import numpy as np
 import utils
 import os
+import csv
 import random
 
 
@@ -63,45 +64,98 @@ class Equipage:
             membre.PVMax=random.randint(5,8)
             membre.PV=membre.PVMax
             self.Membres.append(membre)
-
+            Equipage.Save(self)
 
     def Save(self):
+        """
+        Sauvegarde tous les membres de l'équipage dans un fichier CSV.
+        Chaque colonne correspond à un attribut du membre, chaque ligne à un membre.
+        """
+        # Si l'équipage est vide, inutile de créer un fichier vide sans colonnes
+        if not self.Membres:
+            print("L'équipage est vide, sauvegarde annulée.")
+            return
 
-        TempDF = pd.DataFrame([
-            vars(pnj)
-            for pnj in self.Membres
-        ])
+        # Construction du chemin du fichier
+        dossier_equipage = os.path.join(BASE_PATH, "Equipage")
+        os.makedirs(dossier_equipage, exist_ok=True)  # Crée le dossier s'il n'existe pas
+        chemin_fichier = os.path.join(dossier_equipage, f"{self.Name}.csv")
 
-        TempDF.to_csv(BASE_PATH+"/Equipage/"+self.Name+".csv",sep=";",decimal=",",encoding="cp1252", index= False)
+        # 1. Extraction dynamique de tous les attributs possibles du premier membre
+        # (Fonctionne avec vars(pnj) ou pnj.__dict__)
+        entetes = list(vars(self.Membres[0]).keys())
 
-    def Charger(cls, Name):
-        df = pd.read_csv(
-            BASE_PATH+"/Equipage/ "+Name+ ".csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+            # 2. Écriture du fichier CSV
+        with open(chemin_fichier, mode="w", newline="", encoding="cp1252") as f:
+            writer = csv.DictWriter(f, fieldnames=entetes, delimiter=";")
+            writer.writeheader()  # Écrit la ligne des attributs
 
-        equipage = cls.__new__(cls)
+            for pnj in self.Membres:
+                donnees_membre = vars(pnj)
+                ligne_formatee = {}
 
-        equipage.Name = Name
-        equipage.Membres = []
+                    # Nettoyage et formatage des données (ex: gestion des float avec virgule)
+                for cle, valeur in donnees_membre.items():
+                    if isinstance(valeur, float):
+                        ligne_formatee[cle] = str(valeur).replace(".", ",")
+                    else:
+                        ligne_formatee[cle] = valeur
 
-        for _, ligne in df.iterrows():
+                writer.writerow(ligne_formatee)
+        print(f"Équipage '{self.Name}' sauvegardé avec succès.")
 
-            membre = type("MembreEquipage", (), {})()
+    @classmethod
+    def Charger(cls, Name: str) -> 'Equipage':
+        """
+        Méthode de classe qui lit un fichier CSV d'équipage, instancie la classe Equipage,
+        recrée chaque membre ligne par ligne avec ses attributs typés, et renvoie l'objet Equipage.
+        """
+        # Nettoyage de l'espace dans le nom du fichier présent dans votre code d'origine
+        chemin_fichier = os.path.join(BASE_PATH, "Equipage", f"{Name}.csv")
 
-            for attribut, valeur in ligne.items():
+        if not os.path.exists(chemin_fichier):
+            print(f"Le fichier d'équipage {chemin_fichier} n'existe pas.")
+            return None
 
-                # Conversion des valeurs NaN en chaîne vide
-                if pd.isna(valeur):
-                    valeur = ""
+            # 1. Instanciation d'un nouvel équipage tout neuf
+        nouvel_equipage = cls(name=Name)
 
-                setattr(membre, attribut, valeur)
+            # 2. Lecture et parcours du fichier CSV
+        with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
+            reader = csv.DictReader(f, delimiter=";")
 
-            equipage.Membres.append(membre)
+            for row in reader:
+                    # Si vous avez une classe Membre officielle importée (ex: Membre), remplacez par : membre = Membre()
+                    # Sinon, on conserve la création dynamique d'un objet générique propre :
+                membre = type("MembreEquipage", (), {})()
 
-        return equipage
+                    # Pour chaque colonne, on applique dynamiquement l'attribut au membre
+                for attribut, valeur in row.items():
+                        # Conversion des cases vides
+                    if valeur == "":
+                        setattr(membre, attribut, "")
+                        continue
+
+                        # Tentative de conversion de type intelligente pour le membre (int, float, str)
+                    try:
+                        if "," in valeur and valeur.replace(",", "").replace("-", "").isdigit():
+                            setattr(membre, attribut, float(valeur.replace(",", ".")))
+                        elif valeur.replace("-", "").isdigit():
+                            setattr(membre, attribut, int(valeur))
+                        elif valeur.lower() in ["true", "false"]:
+                            setattr(membre, attribut, valeur.lower() == "true")
+                        else:
+                            setattr(membre, attribut, valeur)
+                    except ValueError:
+                        # En cas d'échec de conversion, on laisse la chaîne brute
+                        setattr(membre, attribut, valeur)
+
+                    # Ajout du membre reconstruit dans notre liste d'équipage
+                nouvel_equipage.Membres.append(membre)
+
+            # 3. Renvoi de la classe Equipage peuplée
+        return nouvel_equipage
+
     ###Convertit le nombre de succes en action courte
     def ConvertSuccessToAction(self,Success):
         ActCourte = 4 - Success

@@ -16,7 +16,7 @@ immédiatement avec : python main.py
 
 from app import App
 from moteur_interface import MoteurExemple
-
+import config
 # ---------------------------------------------------------------------
 # ⬇️  Remplace cette ligne par ton propre moteur quand il sera prêt :
 #
