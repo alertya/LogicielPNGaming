@@ -57,9 +57,9 @@ class Navire:
                 # -------------------------
                 self.de_rencontre: int = 0
                 self.type_rencontre: str = ""
-                self.de_depart: str = ""
+                self.de_depart: int = 0
                 self.regions_depart: str = Region
-                self.de_compagnie: str = ""
+                self.de_compagnie: int = 0
                 self.compagnie: str = ""
 
                 # -------------------------
@@ -68,25 +68,25 @@ class Navire:
                 self.bateau: str = ""
                 self.de_bateau: int = 0
                 self.separation: str = ""
-                self.categorie_navire: str = ""
+                self.CategorieNavire: str = ""
                 self.pirate: bool = False  # Géré en booléen (True pour 'O', False pour 'N')
 
                 # -------------------------
                 # Dimensions & Structure
                 # -------------------------
                 self.longueur: float = 0.0
-                self.nb_mats: int = 0
-                self.hauturier: str = ""
-                self.structure_coque: float = 0.0
+                self.NbMats: int = 0
+                self.Hauturier: str = ""
+                self.StructureCoque: float = 0.0
                 self.structure_coque_max: float = 0.0
-                self.structure_voile: float = 0.0
+                self.StructureVoile: float = 0.0
                 self.structure_voile_max: float = 0.0
 
                 # -------------------------
                 # Équipage & Compétences
                 # -------------------------
-                self.equi_min: int = 0
-                self.equip_max: int = 0
+                self.EquipMin: int = 0
+                self.EquipMax: int = 0
                 self.equipage: int = 0
                 self.equipage2: float = 0.0
                 self.equipage_tout: int = 0
@@ -113,20 +113,24 @@ class Navire:
                 # -------------------------
                 # Combat & Armement
                 # -------------------------
-                self.nb_canons: int = 0
+                self.NbCanons: int = 0
                 self.homme_combat: int = 0
-                self.valeur_canonnade: float = 0.0
+                self.ValeurCanonnade: float = 0.0
 
                 # -------------------------
                 # Économie & Cargaison
                 # -------------------------
-                self.tonnage_min: float = 0.0
-                self.tonnage_max: float = 0.0
+                self.TonnageMin: float = 0.0
+                self.TonnageMax: float = 0.0
                 self.remplissage: int = 0
                 self.poids_total_marchandise: float = 0.0
                 self.cargaison3: int = 0
                 self.vivre: float = 0.0
-
+                #Prxi d'achat
+                self.CoutSansCanon:float=0.0
+                self.CoutCommerce:float=0.0
+                self.CoutCourse:float=0.0
+                self.CoutGuerre:float=0.0
                 # Gestion des conteneurs dynamiques (Dictionnaires et Listes)
                 self.cargaison: Dict[str, float] = {}
                 self.munitions: Dict[str, int] = {}
@@ -135,7 +139,7 @@ class Navire:
                 df=df[df['Nom']==Type]
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
-
+                print(ligne_data)
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
                 for colonne, valeur in ligne_data.items():
                     # Nettoyage du nom de la colonne pour correspondre au format de l'__init__
@@ -150,6 +154,7 @@ class Navire:
                 # 3. Vérification de l'existence de l'attribut dans la classe avant modification
                     if hasattr(self, nom_attribut):
                         setattr(self, nom_attribut, valeur)
+                print(self.__dict__)
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
@@ -294,7 +299,7 @@ class Navire:
                 chemin_fichier = os.path.join(dossier_navire, f"{self.Name}.csv")
                 # 1. Récupération automatique de tous les attributs sous forme de dictionnaire {nom: valeur}
                 attributs_objet = self.__dict__
-
+                print(attributs_objet)
                 # On sépare les clés (les entêtes du CSV) et les valeurs de notre ligne
                 entetes = list(attributs_objet.keys())
                 print(entetes)
@@ -312,10 +317,8 @@ class Navire:
 
                 with open(chemin_fichier, mode="a", newline="", encoding="cp1252") as f:
                     writer = csv.DictWriter(f, fieldnames=entetes, delimiter=";")
+                    writer.writeheader()  # Écrit la ligne des attributs
 
-                    # Écrit l'entête uniquement si le fichier est créé pour la première fois
-                    if not fichier_existe or os.stat(chemin_fichier).st_size == 0:
-                        writer.writeheader()
 
                     writer.writerow(ligne_donnees)
                 print(f"Navire '{self.Name}' sauvegardé avec succès.")
