@@ -1,0 +1,28 @@
+Maladie;PopulationFragile;PopulationResistante;Cycle;Virulence;EtatCrise;Vecteur;Médecine;Herboristerie;GraviteMax;Colonie;Contamination;ReductionEtat
+Coqueluche;Amérindiens;Européens;7;3;-2;Toucher, haleine;O;O;-6;O;1;-1
+Choléra;-;-;2;-1;-2;Eau, saleté;N;O;-6;O;1;-1
+Dengue;Européens;Amérindiens;3;3;-3;Moustqiues;O;O;-4;O;1;-1
+Diphtérie;Amérindiens;-;2;0;-4;Haleine, Toux;O;O;-6;O;1;-1
+Dysenterie;Européens;Amérindiens, Africain;2;1;-2;Eau, Saleté;O;R;-6;O;1;-1
+Encéphalite;Amérindiens;Européens;3;1;-1;Tique;O;N;-6;O;1;-1
+Fièvre jaune;Européens;Amérindiens;2;2;-3;Moustiques;O;R;-6;O;1;-1
+Fièvre (rats);-;-;35;4;-1;Morsure de rat;N;O;-3;O;1;-1
+Fièvre typhoïde;Européens;Amérindiens;7;0;-2;Saleté, nourriture;O;O;-6;O;1;-1
+Frambosia;Européens;Amérindiens;18;2;-3;Mouches;N;O;-4;O;1;-1
+Gangrène;-;-;1;-1;-1;;N;R;-6;N;0;-1
+Grippe;Amérindiens;Européens;1;0;-1;Porcs, contact des mains, haleine, toux, eternuement;O;O;-6;O;1;-1
+Malaria;Européens;Amérindiens, Africain;2;-1;-3;Moustiques;N;O;-6;O;1;-1
+Peste pulmonaires;-;-;2;-3;-3;Rats, haleine;N;R;-6;O;1;-1
+Peste bubonique;-;-;2;-1;-2;Rats, haleine;N;R;-6;O;1;-1
+Pied de madura;-;-;30;-3;-1;Fôrets, blessure;N;R;-6;O;0;-1
+Pneumonia;Amérindiens;Européens;2;0;-2;Contact des mains, haleine, toux, eternuement;O;O;-6;O;1;-1
+Rage;-;-;1;-3;-2;Morsure;N;R;-6;O;1;-1
+Roséole;Amérindiens;Européens;1;4;-2;Contact des mains, haleine, toux, eternuement;O;O;-3;O;1;-1
+Rougeole;Amérindiens;Européens;2;1;-3;Contact des mains, haleine, toux, eternuement;O;O;-4;O;1;-1
+Scarlatine;Amérindiens;Européens;2;1;-4;Contact des mains, haleine, toux, eternuement;O;O;-4;O;1;-1
+Syphilis;Amérindiens;;1825;1;-1;Sexe;N;R;-6;O;1;-1
+Tétanos;-;-;2;1;-2;Métal rouillé;O;R;-6;O;0;-1
+Tuberculose;Amérindiens;Européens;90;0;-2;Toux, eternuement;O;R;-6;O;1;-1
+Typhus;-;-;2;0;-3;Saleté;N;R;-6;O;1;-1
+Variole;Amérindiens;Européens;2;0;-3;Postillon, toux, eternuement;O;R;-6;O;1;-1
+Famine;-;-;7;-1;-1;Manque de nourriture;N;N;-6;N;0;-6

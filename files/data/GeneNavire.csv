@@ -1,0 +1,512 @@
+Zone;Bateau;DeBateau
+Atlantique;Bac (barge, riviere et port);1
+Atlantique;Baleinier (Corvette, commerce et défense sans canons);2
+Atlantique;Baleinière (chaoupe pour suivre la baleine harponnée);3
+Atlantique;Barque;5
+Atlantique;Barque longue;7
+Atlantique;Bombarde;8
+Atlantique;Brick;12
+Atlantique;Brigantin;15
+Atlantique;Buche;16
+Atlantique;Canot;17
+Atlantique;Canot-chaloupe;18
+Atlantique;Chaie (brigantin néerlandais disponible partout);19
+Atlantique;Chaland;20
+Atlantique;Chaloupe;22
+Atlantique;Corvette;26
+Atlantique;Cotre;28
+Atlantique;Deux-ponts trois-mâts barque;30
+Atlantique;Deux-ponts trois-mâts carré;32
+Atlantique;Double chaloupe (Lougre, partout);33
+Atlantique;East Indiaman;34
+Atlantique;Fauvette (Tartane);35
+Atlantique;Flibot;36
+Atlantique;Flûte;39
+Atlantique;Frégate trois-mâts barque;40
+Atlantique;Frégate trois-mâts carré;43
+Atlantique;Gabare;44
+Atlantique;Galère (Corvette, pas de bagnes flottants);45
+Atlantique;Galère royale;46
+Atlantique;Galion (en flotte);48
+Atlantique;Galiote (Brick PSx1.5);49
+Atlantique;Galiote (galère);50
+Atlantique;Goélette balaou;51
+Atlantique;Goélette brick;52
+Atlantique;Goélette franche;54
+Atlantique;Goélette de guerre;55
+Atlantique;Schooner;57
+Atlantique;Guigne (Catalane);58
+Atlantique;Houari (Goélette franche avec modif);60
+Atlantique;Ketch (Brigantin avec modif);61
+Atlantique;Langard (Brigantin);62
+Atlantique;Lougre;63
+Atlantique;Marchand;68
+Atlantique;Négrier (Brick ou Marchand avec modif);70
+Atlantique;Oostindievaader;71
+Atlantique;Paquebot;72
+Atlantique;pilote (Goélette franche, montre la route à suivre au port);73
+Atlantique;pinasse (Felouque);74
+Atlantique;Pingre;75
+Atlantique;pinnasse (Goelette franche);76
+Atlantique;Pinque;78
+Atlantique;pinque anglaise (Flibot);79
+Atlantique;plut (Brigantin, Néerlandais);80
+Atlantique;polacre (Barque);81
+Atlantique;polacron (Barque);82
+Atlantique;ramberge (Sloop, riviere, anglais);83
+Atlantique;Sandale;84
+Atlantique;Schooner;85
+Atlantique;Senau (brick avec modif);86
+Atlantique;Sloop;88
+Atlantique;Corvette;91
+Atlantique;tartane;93
+Atlantique;tartane à hunier;94
+Atlantique;terre-neuvier;95
+Atlantique;traversier (Chasse-marée, francais);96
+Atlantique;trois-mâts goélette;97
+Atlantique;trois-ponts;98
+Atlantique;yacht (sloop);98
+Atlantique;youyou (chaloupe);99
+Europe;Accon;1
+Europe;Bac (barge, riviere et port);2
+Europe;bacasas;3
+Europe;Bachot;4
+Europe;Baleinier (Corvette, commerce et défense sans canons);5
+Europe;Baleinière (chaoupe pour suivre la baleine harponnée);6
+Europe;Barge;7
+Europe;Barque;9
+Europe;Batteries flottantes (port seulement);10
+Europe;Bigues (port seulement);11
+Europe;Bombarde;12
+Europe;Both;13
+Europe;Brick;15
+Europe;Brigantin;17
+Europe;Buche;18
+Europe;Canonnière;19
+Europe;Canot;20
+Europe;Canot-chaloupe;21
+Europe;Chaie (brigantin néerlandais disponible partout);22
+Europe;Chaland;24
+Europe;Chaloupe;26
+Europe;Charbonnier;27
+Europe;Citerne (Barge pour port, approvisionne en eau douce les navires) (Barge pour port, approvisionne en eau douce les navires);28
+Europe;Corvette;30
+Europe;Cotre;33
+Europe;Curemolle;34
+Europe;Cutter;35
+Europe;Deux-ponts trois-mâts barque;36
+Europe;Deux-ponts trois-mâts carré;37
+Europe;Double chaloupe (Lougre, partout);38
+Europe;Batiment écurie;39
+Europe;Fauvette (Tartane);40
+Europe;Flette;41
+Europe;Flibot;42
+Europe;Flûte;44
+Europe;Frégate trois-mâts barque;45
+Europe;Frégate trois-mâts carré;46
+Europe;Fuste;47
+Europe;Gabare;48
+Europe;Galère (Corvette, pas de bagnes flottants);49
+Europe;Galère royale;50
+Europe;Galion (en flotte);51
+Europe;Galiote (galère);52
+Europe;Garde-côte;53
+Europe;Goélette brick;54
+Europe;Goélette franche;55
+Europe;Goélette de guerre;56
+Europe;Schooner;57
+Europe;Guigne (Catalane);58
+Europe;Houari (Goélette franche avec modif);59
+Europe;Ketch (Brigantin avec modif);60
+Europe;Langard (Brigantin);61
+Europe;Lougre;62
+Europe;Machine à mâter (port seulement;63
+Europe;Marchand;65
+Europe;Marie-salope;66
+Europe;Paquebot;67
+Europe;patach (Goélette franche);68
+Europe;Péniche;69
+Europe;Pigoulière;70
+Europe;pilote (Goélette franche, montre la route à suivre au port);71
+Europe;pinasse (Felouque);72
+Europe;Pingre;73
+Europe;pinnasse (Goelette franche);74
+Europe;Pinque;75
+Europe;pinque anglaise (Flibot);76
+Europe;polacre (Barque);77
+Europe;polacron (Barque);78
+Europe;Ponton;79
+Europe;poste aux choux (Chaloupe);80
+Europe;prame (deux ponts trois mat barque avec modif);81
+Europe;Rafiau;82
+Europe;ramberge (Sloop, riviere, anglais);83
+Europe;ras de carène (port seulement, chaloupe);84
+Europe;Schooner;85
+Europe;Senau (brick avec modif);86
+Europe;Sentine;87
+Europe;Sloop;90
+Europe;Corvette;92
+Europe;Tortue;93
+Europe;Toue (rivière seulement, chaloupe);94
+Europe;traversier (Chasse-marée, francais);95
+Europe;trois-mâts goélette;96
+Europe;trois-ponts;97
+Europe;yacht (sloop);98
+Europe;Yole;99
+Europe;youyou (chaloupe);100
+Méditerranée;Bac (barge, riviere et port);1
+Méditerranée;Baleinier (Corvette, commerce et défense sans canons);2
+Méditerranée;Baleinière (chaoupe pour suivre la baleine harponnée);3
+Méditerranée;Barge;4
+Méditerranée;Barque;5
+Méditerranée;Barque longue;6
+Méditerranée;Bombarde;7
+Méditerranée;Brick;8
+Méditerranée;Brigantin;9
+Méditerranée;Caïque;10
+Méditerranée;Canot;11
+Méditerranée;Canot-chaloupe;12
+Méditerranée;Caramousal;13
+Méditerranée;Castadelle;14
+Méditerranée;Chaie (brigantin néerlandais disponible partout);15
+Méditerranée;Chaland;16
+Méditerranée;Chaloupe;17
+Méditerranée;Chebec;19
+Méditerranée;Chebec à voiles carrées;21
+Méditerranée;Chitiha;22
+Méditerranée;Citerne (Barge pour port, approvisionne en eau douce les navires) (Barge pour port, approvisionne en eau douce les navires);23
+Méditerranée;Coraline;24
+Méditerranée;Corvette;26
+Méditerranée;Cotre;27
+Méditerranée;Cutter;28
+Méditerranée;Deux-ponts trois-mâts barque;29
+Méditerranée;Deux-ponts trois-mâts carré;30
+Méditerranée;Dhau;31
+Méditerranée;Djerme;32
+Méditerranée;Double chaloupe (Lougre, partout);33
+Méditerranée;Fauvette (Tartane);34
+Méditerranée;Felouque;36
+Méditerranée;Flûte;37
+Méditerranée;Frégate trois-mâts barque;38
+Méditerranée;Frégate trois-mâts carré;39
+Méditerranée;Fregaton;40
+Méditerranée;Gabare;41
+Méditerranée;Galéasse;42
+Méditerranée;Galère (Corvette, pas de bagnes flottants);43
+Méditerranée;Galère royale;44
+Méditerranée;Galion (en flotte);45
+Méditerranée;Galiote (galère);46
+Méditerranée;Garde-côte;47
+Méditerranée;Goélette brick;48
+Méditerranée;Goélette franche;49
+Méditerranée;Goélette de guerre;50
+Méditerranée;Schooner;51
+Méditerranée;Guigne (Catalane);52
+Méditerranée;Houari (Goélette franche avec modif);53
+Méditerranée;Ketch (Brigantin avec modif);54
+Méditerranée;Kiosque;55
+Méditerranée;Langard (Brigantin);56
+Méditerranée;Lesteur (Tartane);57
+Méditerranée;Liburne;58
+Méditerranée;Loud;59
+Méditerranée;Lougre;60
+Méditerranée;Machine à mâter (port seulement;61
+Méditerranée;Mahonne;62
+Méditerranée;Marchand;63
+Méditerranée;Marsillanne;64
+Méditerranée;Mistique;65
+Méditerranée;Paquebot;66
+Méditerranée;patach (Goélette franche);67
+Méditerranée;Péniche;68
+Méditerranée;pilote (Goélette franche, montre la route à suivre au port);69
+Méditerranée;pinasse (Felouque);70
+Méditerranée;Pingre;71
+Méditerranée;pinnasse (Goelette franche);72
+Méditerranée;Pinque;73
+Méditerranée;pinque anglaise (Flibot);74
+Méditerranée;plut (Brigantin, Néerlandais);75
+Méditerranée;polacre (Barque);77
+Méditerranée;polacron (Barque);78
+Méditerranée;poste aux choux (Chaloupe);79
+Méditerranée;prame (deux ponts trois mat barque avec modif);80
+Méditerranée;ramberge (Sloop, riviere, anglais);81
+Méditerranée;ras de carène (port seulement, chaloupe);82
+Méditerranée;Saïque;83
+Méditerranée;Samequin;84
+Méditerranée;Sandale;85
+Méditerranée;Saugue;86
+Méditerranée;Schooner;87
+Méditerranée;Senau (brick avec modif);88
+Méditerranée;Sentine;89
+Méditerranée;Sloop;90
+Méditerranée;Spéronare;91
+Méditerranée;Sultane;92
+Méditerranée;Tartane;94
+Méditerranée;Tartane à hunier;95
+Méditerranée;Trabac;96
+Méditerranée;traversier (Chasse-marée, francais);97
+Méditerranée;trois-mâts goélette;98
+Méditerranée;trois-ponts;99
+Méditerranée;youyou (chaloupe);100
+Afrique;Bac (barge, riviere et port);1
+Afrique;Baleinier (Corvette, commerce et défense sans canons);2
+Afrique;Baleinière (chaoupe pour suivre la baleine harponnée);3
+Afrique;Barge;5
+Afrique;Barque;7
+Afrique;Brick;9
+Afrique;Brigantin;11
+Afrique;Canot-chaloupe;12
+Afrique;Chaie (brigantin néerlandais disponible partout);13
+Afrique;Chaland;15
+Afrique;Chaloupe;17
+Afrique;Canot;18
+Afrique;Citerne (Barge pour port, approvisionne en eau douce les navires) (Barge pour port, approvisionne en eau douce les navires);19
+Afrique;Corvette;21
+Afrique;Cotre;24
+Afrique;Cutter;25
+Afrique;Deux-ponts trois-mâts barque;26
+Afrique;Deux-ponts trois-mâts carré;27
+Afrique;Double chaloupe (Lougre, partout);28
+Afrique;Fauvette (Tartane);29
+Afrique;Flibot;30
+Afrique;Flûte;35
+Afrique;Frégate trois-mâts barque;36
+Afrique;Frégate trois-mâts carré;38
+Afrique;Gabare;39
+Afrique;Galère royale;40
+Afrique;Galion (en flotte);41
+Afrique;Galiote (galère);42
+Afrique;Garde-côte;45
+Afrique;Goélette brick;46
+Afrique;Goélette franche;48
+Afrique;Goélette de guerre;50
+Afrique;Schooner;52
+Afrique;Guigne (Catalane);53
+Afrique;Houari (Goélette franche avec modif);56
+Afrique;Ketch (Brigantin avec modif);57
+Afrique;Langard (Brigantin);58
+Afrique;Lesteur (Tartane);59
+Afrique;Lougre;62
+Afrique;Machine à mâter (port seulement;63
+Afrique;Marchand;72
+Afrique;Paquebot;73
+Afrique;patach (Goélette franche);74
+Afrique;pilote (Goélette franche, montre la route à suivre au port);77
+Afrique;pinnasse (feloque);77
+Afrique;Pingre;78
+Afrique;pinnasse (Goelette franche);79
+Afrique;Pinque;80
+Afrique;pinque anglaise (Flibot);81
+Afrique;plut (Brigantin, Néerlandais);82
+Afrique;polacre (Barque);85
+Afrique;poste aux choux (Chaloupe);86
+Afrique;prame (deux ponts trois mat barque avec modif);87
+Afrique;ras de carène (port seulement, chaloupe);88
+Afrique;Schooner;89
+Afrique;Senau (brick avec modif);90
+Afrique;Sloop;93
+Afrique;tartane;94
+Afrique;tartane à hunier;95
+Afrique;traversier (Chasse-marée, francais);97
+Afrique;trois-mâts goélette;98
+Afrique;trois-ponts;99
+Afrique;youyou (chaloupe);100
+Proche-orient;Bac (barge, riviere et port);2
+Proche-orient;Baleinier (Corvette, commerce et défense sans canons);3
+Proche-orient;Baleinière (chaoupe pour suivre la baleine harponnée);4
+Proche-orient;Barge;7
+Proche-orient;Barque;10
+Proche-orient;Brick;12
+Proche-orient;Brigantin;15
+Proche-orient;Canot;16
+Proche-orient;Canot-chaloupe;17
+Proche-orient;Chaie (brigantin néerlandais disponible partout);18
+Proche-orient;Chaloupe;20
+Proche-orient;Citerne (Barge pour port, approvisionne en eau douce les navires) (Barge pour port, approvisionne en eau douce les navires);21
+Proche-orient;Corvette;23
+Proche-orient;Cotre;26
+Proche-orient;Cutter;28
+Proche-orient;Deux-ponts trois-mâts barque;30
+Proche-orient;Deux-ponts trois-mâts carré;32
+Proche-orient;Dhau;35
+Proche-orient;Double chaloupe (Lougre, partout);36
+Proche-orient;Fauvette (Tartane);38
+Proche-orient;Flibot;39
+Proche-orient;Flûte;41
+Proche-orient;Frégate trois-mâts barque;42
+Proche-orient;Frégate trois-mâts carré;45
+Proche-orient;Gabare;46
+Proche-orient;Galère (Corvette, pas de bagnes flottants);47
+Proche-orient;Galère royale;48
+Proche-orient;Galion (en flotte);49
+Proche-orient;Garde-côte;53
+Proche-orient;Goélette brick;54
+Proche-orient;Goélette franche;55
+Proche-orient;Goélette de guerre;56
+Proche-orient;Schooner;58
+Proche-orient;Guigne (Catalane);59
+Proche-orient;Houari (Goélette franche avec modif);61
+Proche-orient;Ketch (Brigantin avec modif);62
+Proche-orient;Langard (Brigantin);63
+Proche-orient;Lesteur (Tartane);64
+Proche-orient;Lougre;65
+Proche-orient;Marchand;69
+Proche-orient;Paquebot;70
+Proche-orient;patach (Goélette franche);71
+Proche-orient;pinasse (Felouque);72
+Proche-orient;Pingre;73
+Proche-orient;pinnasse (Goelette franche);74
+Proche-orient;Pinque;75
+Proche-orient;pinque anglaise (Flibot);78
+Proche-orient;plut (Brigantin, Néerlandais);79
+Proche-orient;polacre (Barque);82
+Proche-orient;polacron (Barque);84
+Proche-orient;prame (deux ponts trois mat barque avec modif);85
+Proche-orient;ramberge (Sloop, riviere, anglais);86
+Proche-orient;ras de carène (port seulement, chaloupe);87
+Proche-orient;Schooner;89
+Proche-orient;Senau (brick avec modif);90
+Proche-orient;Sloop;93
+Proche-orient;Corvette;95
+Proche-orient;Toue (rivière seulement, chaloupe);96
+Proche-orient;Tartane;94
+Proche-orient;traversier (Chasse-marée, francais);97
+Proche-orient;trois-mâts goélette;98
+Proche-orient;trois-ponts;99
+Proche-orient;youyou (chaloupe);100
+Indes orientales;Baleinier (Corvette, commerce et défense sans canons);1
+Indes orientales;Baleinière (chaoupe pour suivre la baleine harponnée);2
+Indes orientales;Barge;4
+Indes orientales;Barque;6
+Indes orientales;Brick;8
+Indes orientales;Brigantin;9
+Indes orientales;Canot;10
+Indes orientales;Canot-chaloupe;11
+Indes orientales;Catimaron;12
+Indes orientales;Chaie (brigantin néerlandais disponible partout);13
+Indes orientales;Chaland;15
+Indes orientales;Chaloupe;17
+Indes orientales;Corvette;22
+Indes orientales;Cotre;23
+Indes orientales;Cutter;24
+Indes orientales;Deux-ponts trois-mâts barque;25
+Indes orientales;Deux-ponts trois-mâts carré;28
+Indes orientales;Double chaloupe (Lougre, partout);29
+Indes orientales;Figale;32
+Indes orientales;Flibot;33
+Indes orientales;Flûte;38
+Indes orientales;Fauvette (Tartane);40
+Indes orientales;Frégate trois-mâts barque;42
+Indes orientales;Frégate trois-mâts carré;45
+Indes orientales;Gabare;47
+Indes orientales;Galère (Corvette, pas de bagnes flottants);48
+Indes orientales;Galion (en flotte);49
+Indes orientales;Garde-côte;50
+Indes orientales;Goélette brick;51
+Indes orientales;Goélette franche;52
+Indes orientales;Goélette de guerre;53
+Indes orientales;Houari (Goélette franche avec modif);55
+Indes orientales;Ketch (Brigantin avec modif);56
+Indes orientales;Langard (Brigantin);57
+Indes orientales;Lougre;58
+Indes orientales;Machine à mâter (port seulement;59
+Indes orientales;Marchand;63
+Indes orientales;Palme;66
+Indes orientales;Paquebot;67
+Indes orientales;patach (Goélette franche);68
+Indes orientales;pinnasse (feloque);69
+Indes orientales;Pingre;70
+Indes orientales;pinnasse (Goelette franche);71
+Indes orientales;Pinque;72
+Indes orientales;Pirogue;74
+Indes orientales;pirogue à balancier;76
+Indes orientales;plut (Brigantin, Néerlandais);78
+Indes orientales;polacre (Barque);80
+Indes orientales;polacron (Barque);81
+Indes orientales;poste aux choux (Chaloupe);82
+Indes orientales;prame (deux ponts trois mat barque avec modif);83
+Indes orientales;ramberge (Sloop, riviere, anglais);84
+Indes orientales;ras de carène (port seulement, chaloupe);85
+Indes orientales;Schooner;86
+Indes orientales;Senau (brick avec modif);88
+Indes orientales;Sloop;90
+Indes orientales;Corvette;95
+Indes orientales;Toue (rivière seulement, chaloupe);96
+Indes orientales;traversier (Chasse-marée, francais);97
+Indes orientales;trois-mâts goélette;98
+Indes orientales;trois-ponts;99
+Indes orientales;youyou (chaloupe);100
+Indes occidentales;Bac (barge, riviere et port);1
+Indes occidentales;Baleinier (Corvette, commerce et défense sans canons);2
+Indes occidentales;Baleinière (chaoupe pour suivre la baleine harponnée);3
+Indes occidentales;Barge;4
+Indes occidentales;Barque;6
+Indes occidentales;Barque caraïbe;8
+Indes occidentales;Bigues (Barge,port seulement);9
+Indes occidentales;Both;10
+Indes occidentales;Brick;13
+Indes occidentales;Brigantin;17
+Indes occidentales;Canot;18
+Indes occidentales;Canot-chaloupe;19
+Indes occidentales;Chaie (brigantin néerlandais disponible partout);20
+Indes occidentales;Chaland;21
+Indes occidentales;Chaloupe;22
+Indes occidentales;Citerne (Barge pour port, approvisionne en eau douce les navires);23
+Indes occidentales;Corvette;26
+Indes occidentales;Cotre;29
+Indes occidentales;Deux-ponts trois-mâts barque;30
+Indes occidentales;Deux-ponts trois-mâts carré;31
+Indes occidentales;Double chaloupe (Lougre, partout);32
+Indes occidentales;Bâtiment écurie (barge, transport de chevaux, port);33
+Indes occidentales;Fauvette (Tartane);34
+Indes occidentales;Flibot;35
+Indes occidentales;Flûte;38
+Indes occidentales;Frégate trois-mâts barque;39
+Indes occidentales;Frégate trois-mâts carré;41
+Indes occidentales;Gabare;42
+Indes occidentales;Galère (Corvette, pas de bagnes flottants);43
+Indes occidentales;Galion (en flotte);45
+Indes occidentales;Galiote (Brick PSx1.5);46
+Indes occidentales;Galiote (galère);47
+Indes occidentales;Garde côte (relancer jusqu’à trouver sloop, goélette, brigantin, brick, chebec, etc);49
+Indes occidentales;Goélette balaou;50
+Indes occidentales;Goélette brick;51
+Indes occidentales;Goélette franche;53
+Indes occidentales;Goélette de guerre;54
+Indes occidentales;Schooner;56
+Indes occidentales;Guigne (Catalane);57
+Indes occidentales;Houari (Goélette franche avec modif);59
+Indes occidentales;Ketch (Brigantin avec modif);60
+Indes occidentales;Langard (Brigantin);61
+Indes occidentales;Lesteur (Tartane) (Tartane);62
+Indes occidentales;Lougre;63
+Indes occidentales;Machine à mâter (port seulement;64
+Indes occidentales;Marchand;68
+Indes occidentales;Négrier (Brick ou Marchand avec modif);69
+Indes occidentales;Paquebot (Goélette balaou);70
+Indes occidentales;pingre (Flûte);71
+Indes occidentales;patach (Goélette franche);72
+Indes occidentales;pilote (Goélette franche, montre la route à suivre au port);73
+Indes occidentales;pinasse (Felouque);74
+Indes occidentales;pinnasse (Goelette franche);75
+Indes occidentales;Pinque (Barque);76
+Indes occidentales;pinque anglaise (Flibot);77
+Indes occidentales;Pirogue;78
+Indes occidentales;pirogue à balancier;79
+Indes occidentales;plut (Brigantin, Néerlandais);80
+Indes occidentales;polacre (Barque);81
+Indes occidentales;polacron (Barque);82
+Indes occidentales;poste aux choux (Chaloupe);83
+Indes occidentales;prame (deux ponts trois mat barque avec modif) (deux ponts trois mat barque avec modif);84
+Indes occidentales;ramberge (Sloop, riviere, anglais);85
+Indes occidentales;ras de carène (port seulement, chaloupe);86
+Indes occidentales;Schooner;87
+Indes occidentales;Senau (brick avec modif);88
+Indes occidentales;Sloop;91
+Indes occidentales;Corvette;93
+Indes occidentales;Toue (rivière seulement, chaloupe) (rivière seulement, chaloupe);94
+Indes occidentales;traversier (Chasse-marée, francais) (Chasse-marée, francais);95
+Indes occidentales;trois-mâts goélette;96
+Indes occidentales;trois-ponts;97
+Indes occidentales;yacht (sloop);98
+Indes occidentales;youyou (chaloupe);99

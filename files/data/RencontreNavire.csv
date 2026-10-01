@@ -1,0 +1,132 @@
+DeRencontre;TypeRencontre;DeDepart;RegionsDepart;DeCompagnie;Compagnie;Bateau;DeBateau;Separation;Nom;TonnageMin;TonnageMax;EquipMin;EquipMax;Pirate;Vitesse moyenne;Equipage tout;Pres;Largue;Grand largue;Vent arriere;StructureVoile;StructureCoque;Valeur canonnade;NbCanons;CategorieNavire;NbMats;Longueur;Hauturier;CoutSansCanon;CputCommerce;CoutCourse;CoutGuerre;
+-1;;-1;;-1;;Bac (barge, riviere et port);1;;Accon;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Accon
+75;Navire de commerce;50;RégionActuelle;26;Marchand de Seville E;Baleinier (Corvette, commerce et défense sans canons);2;;Bac (barge, riviere et port);45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Bac (barge, riviere et port)
+79;Navire de guerre;59;Europe du nord;30;Flotte des indes (E);Baleinière (chaoupe pour suivre la baleine harponnée);3;;Bacasas;90;90;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Tartane;4800;;10800;16800;Bacasas
+80;Navire de pêche;78;Europe du sud;38;Marchand (GB);Barge;4;;Bachot;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;25;;56;;Bachot
+90;Navire de commerce voyageant de conserve;85;Nord ouest de l'Afrique;43;Royal African Company (GB);Barque;6;;Baleinier (Corvette, commerce et défense sans canons);310;310;40;150;O;110;80;2,5;10;11;8;18;18;10;10;2;3;56;Baleinier (Corvette, commerce et défense sans canons);18500;;;;Baleinier (Corvette, commerce et défense sans canons)
+100;Convoi;93;Gofle de guinée;47;Compagnie des mers du sud (GB);Barque caraïbe;8;;Baleinière (chaoupe pour suivre la baleine harponnée);2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;25;;56;;Baleinière (chaoupe pour suivre la baleine harponnée)
+;;99;Sud-ouest de l'Afrique;50;Interlope (D);Bigues (Barge,port seulement);9;;Barge;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Barge
+;;100;Madagascar;55;Compagnie danoise des Indes occidentales et de Guinée (D);Both;10;;Barque;120;120;20;60;N;75;26;4,5;7,5;6,5;3,5;8;8;2;2;2;3;43;Barque;6600;8250;14800;23000;Barque
+;;;;63;Marchand (F);Brick;13;;Barque caraïbe;12;65;6;50;O;90;21;4;10,5;7,5;4;9;8;0;3;1;1;25;Barque caraïbe;180;225;405;630;Barque caraïbe
+;;;;65;Interlope (F);Brigantin;17;;Barque longue;75;75;10;50;O;100;25;4;10;10;7;8;8;-7;0;1;3;34;Lougre;3975;5000;9000;13900;Barque longue
+;;;;71;Compagnie du Sénégal (F);Canot;18;;Bâtiment écurie (barge, transport de chevaux, port);45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Bâtiment écurie (barge, transport de chevaux, port);3000;;;;Bâtiment écurie (barge, transport de chevaux, port)
+;;;;78;Compagnie du mississipi (F);Canot-chaloupe;19;;Bigues (Barge,port seulement);45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Bigues (Barge,port seulement);3000;;;;Bigues (Barge,port seulement)
+;;;;86;Compagnie de l'Asiento (F);Chaie (brigantin néerlandais disponible partout);20;;Bisquine;25;25;7;20;O;100;10;3,5;9;9;6;5;4;-3;0;1;3;28;Bisquine;180;225;405;;Bisquine
+;;;;92;Compagnie de la louisiane (F);Chaland;21;;Bombarde;300;300;40;150;O;110;80;2,5;10;11;8;18;18;10;10;2;3;56;Corvette;18500;23100;41600;64750;Bombarde
+;;;;100;Marchand (PU);Chaloupe;22;;Both;12;65;6;50;O;90;21;4;10,5;7,5;4;9;8;0;3;1;1;25;Both;180;225;405;;Both
+;;;;;;Citerne (Barge pour port, approvisionne en eau douce les navires);23;;Brick;180;180;22;150;O;100;54;3;11;12;8;17;17;5;4;3;2;71;Brick;16500;27500;40500;63500;Brick
+;;;;;;Corvette;26;;Brigantin;90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Brigantin;;6500;11500;18000;Brigantin
+;;;;;;Cotre;29;;Buche;80;80;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Lesteur (Tartane);;6500;11500;18000;Buche
+;;;;;;Deux-ponts trois-mâts barque;30;;Caïque;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;15;;;52;Caïque
+;;;;;;Deux-ponts trois-mâts carré;31;;Canonnière;90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Brigantin;;6500;11500;18000;Canonnière
+;;;;;;Double chaloupe (Lougre, partout);32;;Canot;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Canot;15;;;52;Canot
+;;;;;;Bâtiment écurie (barge, transport de chevaux, port);33;;Canot-chaloupe;2;2;2;15;N;65;5;3;6,5;6,5;5;4;4;-16;0;0;1;9;Canot chaloupe;15;;;52;Canot-chaloupe
+;;;;;;Fauvette (Tartane);34;;Caramousal;100;100;19;120;O;120;51;5;12;10,5;5,5;10;12;3;3;2;2;54;Goélette à hunier;5300;6700;12000;18700;Caramousal
+;;;;;;Flibot;35;;Castadelle;35;35;11;35;N;100;25;5;10;8;4,5;6;6;-3;1;1;3;24;Felouque;1300;;3000;;Castadelle
+;;;;;;Flûte;38;;Catalane;4;4;2;9;O;75;4;4;7,5;6,5;3,5;3;3;-16;0;0;1;12;Catalane;15;;56;;Catalane
+;;;;;;Frégate trois-mâts barque;39;;Catimaron;7;7;1;30;O;120;1;10;18;15;8,5;0;2;-999;0;0;1;17;Pirogue;8;;;;Catimaron
+;;;;;;Frégate trois-mâts carré;41;;Chaie (brigantin néerlandais disponible partout);90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Chaie (brigantin néerlandais disponible partout);;6500;11500;18000;Chaie (brigantin néerlandais disponible partout)
+;;;;;;Gabare;42;;Chaland;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Chaland;3000;;;;Chaland
+;;;;;;Galère (Corvette, pas de bagnes flottants);43;;Chaloupe;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;15;;;52;Chaloupe
+;;;;;;Galion (en flotte);45;;Charbonnier;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Charbonnier
+;;;;;;Galiote (Brick PSx1.5);46;;Chasse-marée;40;40;9;30;O;100;21;3,5;9;9;6;5;5;0;2;1;3;34;Chasse-marée;3000;;;;Chasse-marée
+;;;;;;Galiote (galère);47;;Chebec;250;250;20;220;O;120;57;6,5;12;10;6,5;20;20;10;10;2;3;60;Chebec;15000;;31500;50000;Chebec
+;;;;;;Garde côte (relancer jusqu’à trouver sloop, goélette, brigantin, brick, chebec, etc);49;;Chitiha;90;90;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Tartane;;6500;11500;18000;Chitiha
+;;;;;;Goélette balaou;50;;Citerne (Barge pour port, approvisionne en eau douce les navires);45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Citerne (Barge pour port, approvisionne en eau douce les navires);3000;;;;Citerne (Barge pour port, approvisionne en eau douce les navires)
+;;;;;;Goélette brick;51;;Coraline;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;15;;;52;Coraline
+;;;;;;Goélette franche;53;;Corvette;310;310;40;150;O;110;80;2,5;10;11;8;18;18;10;10;2;3;56;Corvette;18500;23100;41600;64750;Corvette
+;;;;;;Goélette de guerre;54;;Cotre;80;80;10;60;O;105;34;4;10,5;9,5;5;12;10;0;2;1;2;33;Cotre;3500;4300;7700;12000;Cotre
+;;;;;;Schooner;56;;Curemolle;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Curemolle
+;;;;;;Guigne (Catalane);57;;Cutter;80;80;10;60;O;105;34;4;10,5;9,5;5;12;10;0;2;1;2;33;Cotre;3500;4300;7700;12000;Cutter
+;;;;;;Houari (Goélette franche avec modif);59;;Deux-ponts trois-mâts barque;660;660;75;550;O;85;170;2,5;7,5;8,5;5;80;80;-999;12;4;3;83;Deux-ponts trois-mâts barque;42200;280000;95000;147600;Deux-ponts trois-mâts barque
+;;;;;;Ketch (Brigantin avec modif);60;;Deux-ponts trois-mâts carré;950;950;80;650;N;85;376;2;7,5;8,5;5;150;150;20;21;4;3;111;Deux-ponts trois-mâts carré;91500;;;320000;Deux-ponts trois-mâts carré
+;;;;;;Langard (Brigantin);61;;Dhau;250;250;20;220;O;120;57;6,5;12;10;6,5;20;20;10;10;2;3;60;Chebec;15000;;31500;50000;Dhau
+;;;;;;Lesteur (Tartane);62;;Double chaloupe (Lougre, partout);75;75;10;50;O;100;25;4;10;10;7;8;8;-7;0;1;3;34;Double chaloupe (Lougre, partout);3950;5000;9000;13900;Double chaloupe (Lougre, partout)
+;;;;;;Lougre;63;;Dundee;45;45;10;30;N;85;16;3,5;9,5;7;4;5;5;2;2;1;2;39;Dundee;2750;3450;9500;;Dundee
+;;;;;;Machine à mâter (port seulement;64;;East Indiaman;329;329;21;170;N;90;37;2;9;7,5;7;17;17;6;4;3;3;63;Marchand;27000;36500;65000;107000;East Indiaman
+;;;;;;Marchand;68;;Fauvette (Tartane);90;90;8;60;O;85;23;5,5;10,5;8,5;5;9;9;0;2;1;3;25;Fauvette (tartane);4800;;10800;16800;Fauvette (Tartane)
+;;;;;;Négrier (Brick ou Marchand avec modif);69;;Felouque;35;35;11;35;N;100;25;5;10;8;4,5;6;6;-3;1;1;3;24;Felouque;1300;;3000;;Felouque
+;;;;;;Paquebot (Goélette balaou);70;;Figale;12;65;6;50;O;90;21;3;9,5;6,5;3;9;7;0;2;1;1;25;Sloop;180;225;405;630;Figale
+;;;;;;pingre (Flûte);71;;Flette;60;60;5;20;N;85;11;3,5;9,5;7;4;9;7;0;2;1;1;33;Poon de hollande;3450;4300;;;Flette
+;;;;;;patach (Goélette franche);72;;Flibot;70;70;8;60;O;80;40;3;8,5;7,5;4,5;6;7;0;2;1;2;36;Flibot;3000;;6750;;Flibot
+;;;;;;pilote (Goélette franche, montre la route à suivre au port);73;;flibot (grand);200;200;15;120;N;80;24;3;7;7;4,5;14;12;3;3;2;3;49;flibot (grand);3000;;6750;;flibot (grand)
+;;;;;;pinasse (Felouque);74;;Flûte;450;1700;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;Flûte;60000;;;;Flûte
+;;;;;;pinnasse (Goelette franche);75;;Frégate trois-mâts barque;370;370;50;250;O;105;102;3;9;10;6,5;20;20;6;5;3;3;85;Frégate trois-mâts barque;21000;26200;47200;73500;Frégate trois-mâts barque
+;;;;;;pinque (Barque);76;;Frégate trois-mâts carré;510;510;60;350;O;105;140;2,5;9;10;7;40;40;13;20;3;3;87;Frégate trois-mâts carré;30000;;;;Frégate trois-mâts carré
+;;;;;;pinque anglaise (Flibot);77;;Frégaton;400;400;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;Flûte;60000;;;;Frégaton
+;;;;;;Pirogue;78;;Gabare;450;1700;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;Gabare;60000;;;;Gabare
+;;;;;;pirogue à balancier;79;;Galéasse;300;300;250;600;N;100;370;1;3,5;3,5;2,5;200;200;17;20;4;3;78;Galéasse;25000;;;88000;Galéasse
+;;;;;;plut (Brigantin, Néerlandais);80;;Galère (Corvette, pas de bagnes flottants);310;310;40;150;O;110;80;2,5;10;11;8;18;18;10;10;2;3;56;Galère (Corvette, pas de bagnes flottants);18500;;;;Galère (Corvette, pas de bagnes flottants)
+;;;;;;polacre (Barque);81;;Galère royale;90;90;150;260;N;140;177;2;4,5;4,5;3;15;15;9;6;3;2;56;Galère royale;125000;;;;Galère royale
+;;;;;;polacron (Barque);82;;Galion (en flotte);1200;1200;90;700;N;60;130;1;5;6;4;100;100;10;5;4;3;89;Galion (en flotte);220000;280000;;780000;Galion (en flotte)
+;;;;;;poste aux choux (Chaloupe);83;;Galiote;60;60;60;150;N;120;68;1,5;4;4;2,5;13;13;3;1;2;2;45;Galiote;4000;;;14000;Galiote
+;;;;;;prame (deux ponts trois mat barque avec modif);84;;Galiote (Brick PSx1.5);180;180;22;150;O;100;54;3;11;12;8;25,5;25,5;5;4;3;2;71;Galiote (Brick PSx1.5);16500;27500;40500;63500;Galiote (Brick PSx1.5)
+;;;;;;ramberge (Sloop, riviere, anglais);85;;Galiote (galère);60;60;60;150;N;120;68;1,5;4;4;2,5;13;13;3;1;2;2;45;Galiote;125000;;;;Galiote (galère)
+;;;;;;ras de carène (port seulement, chaloupe);86;;Goélette à hunier;100;100;19;120;O;120;51;5;12;10,5;5,5;10;12;3;3;2;2;54;Goélette à hunier;5300;6700;12000;18700;Goélette à hunier
+;;;;;;Schooner;87;;Goélette balaou;50;50;14;50;O;135;26;5,5;13,5;12;6,5;7;8;3;4;2;2;36;Goélette balaou;3000;;10500;;Goélette balaou
+;;;;;;Senau (brick avec modif);88;;Goélette brick;90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Goélette brick;16500;27500;40500;63500;Goélette brick
+;;;;;;Sloop;91;;Goélette de guerre;100;100;22;140;O;120;56;4;12;11;6;13;15;10;7;2;2;50;Goélette de guerre;5300;6700;12000;18700;Goélette de guerre
+;;;;;;Corvette;93;;Goélette franche;80;80;12;60;O;120;24;5,5;12;10;5,5;8;10;0;2;2;2;45;Goélette franche;4500;5600;10000;15750;Goélette franche
+;;;;;;Toue (rivière seulement, chaloupe);95;;Guigne (Catalane);4;4;2;9;O;75;4;4;7,5;6,5;3,5;3;3;-16;0;0;1;12;Guigne (Catalane);25;;56;;Guigne (Catalane)
+;;;;;;traversier (Chasse-marée, francais);96;;Houari (Goélette franche avec modif);80;80;12;60;O;120;24;5,5;12;10;5,5;7;9;0;2;2;2;45;Goélette franche;4500;5600;10000;15750;Houari (Goélette franche avec modif)
+;;;;;;trois-mâts goélette;97;;Hourque;50;50;14;30;N;70;23;1,5;6;6,5;4,5;10;10;2;3;1;2;26;Hourque;3000;3750;;;Hourque
+;;;;;;trois-ponts;98;;Ketch (Brigantin avec modif);50;200;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Ketch (Brigantin avec modif);;6500;11500;18000;Ketch (Brigantin avec modif)
+;;;;;;yacht (sloop);99;;Kiosque;12;65;6;50;O;90;21;4;10,5;7,5;4;9;7;0;2;1;1;25;Sloop;180;225;405;630;Kiosque
+;;;;;;youyou (chaloupe);100;;Langard (Brigantin);90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Goélette brick;15;6500;11500;18000;Langard (Brigantin)
+;;;;;;;;;Lesteur (Tartane);90;90;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Lesteur (Tartane);4800;;10800;16800;Lesteur (Tartane)
+;;;;;;;;;Liburne;35;35;11;35;N;100;25;5;10;8;4,5;6;6;-3;1;1;3;24;Felouque;1300;;3000;;Liburne
+;;;;;;;;;Lougre;75;75;10;50;O;100;25;4;10;10;7;8;8;-7;0;1;3;34;Lougre;3975;5000;9000;13900;Lougre
+;;;;;;;;;Machine à mâter (port seulement;;;;;;;;;;;;;;-999;;;;;Machine à mâter (port seulement;;;;;Machine à mâter (port seulement
+;;;;;;;;;Mahonne;300;300;250;600;N;100;370;1;3,5;3,5;2,5;150;150;17;10;4;3;78;Galéasse;25000;;;88000;Mahonne
+;;;;;;;;;Marchand;329;329;21;170;N;90;37;2;9;7,5;7;17;17;6;4;3;3;63;Marchand;29000;36000;65000;107000;Marchand
+;;;;;;;;;Marie-salope;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Marie-salope
+;;;;;;;;;Marsillanne;100;100;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;Flûte;60000;;;;Marsillanne
+;;;;;;;;;Mistique;40;40;9;30;O;100;21;3,5;9;9;6;5;5;0;2;1;3;34;Chasse-marée;3000;;;;Mistique
+;;;;;;;;;Négrier (Brick ou Marchand avec modif);700;700;22;150;O;100;54;3;11;12;8;17;17;5;4;3;2;71;Négrier (Brick ou Marchand avec modif);16500;27500;40500;63500;Négrier (Brick ou Marchand avec modif)
+;;;;;;;;;Oostindievaader;600;600;21;170;N;90;37;2;9;7,5;7;17;17;6;4;3;3;63;Marchand;29000;36000;65000;107000;Oostindievaader
+;;;;;;;;;Palme;90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Brigantin;;6500;11500;18000;Palme
+;;;;;;;;;Paquebot (Goélette balaou);50;50;14;50;O;135;26;5,5;13,5;12;6,5;7;8;3;4;2;2;36;Goélette balaou;3000;;10500;;Paquebot (Goélette balaou)
+;;;;;;;;;patach (Goélette franche);80;80;12;60;O;120;24;5,5;12;10;5,5;8;10;0;2;2;2;45;Goélette franche;4500;5600;10000;15750;patach (Goélette franche)
+;;;;;;;;;Péniche;60;60;60;150;N;120;68;1,5;4;4;2,5;13;13;3;1;2;2;45;Galiote;18500;;;;Péniche
+;;;;;;;;;Pigoulière;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Pigoulière
+;;;;;;;;;pilote (Goélette franche, montre la route à suivre au port);80;80;12;60;O;120;24;5,5;12;10;5,5;8;10;0;2;2;2;45;Goélette franche;4500;5600;10000;15750;pilote (Goélette franche, montre la route à suivre au port)
+;;;;;;;;;pinasse (Felouque);35;35;11;35;N;100;25;5;10;8;4,5;6;6;-3;1;1;3;24;pinasse (Felouque);1300;;3000;;pinasse (Felouque)
+;;;;;;;;;Pingre;450;1700;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;Flûte;60000;;;;Pingre
+;;;;;;;;;pingre (Flûte);450;1700;25;200;N;80;51;2;7;7,5;5;30;30;9;7;3;3;64;pingre (Flûte);60000;;;;pingre (Flûte)
+;;;;;;;;;pinnasse (Goelette franche);80;80;12;60;O;120;24;5,5;12;10;5,5;8;10;0;2;2;2;45;Goélette franche;4500;5600;10000;15750;pinnasse (Goelette franche)
+;;;;;;;;;Pinque;120;120;20;60;N;75;26;4,5;7,5;6,5;3,5;8;8;2;2;2;3;43;Pinque;6600;8250;14800;23000;Pinque
+;;;;;;;;;pinque (Barque);120;120;20;60;N;75;26;4,5;7,5;6,5;3,5;8;8;2;2;2;3;43;pinque (Barque);6600;8250;14800;23000;pinque (Barque)
+;;;;;;;;;pinque anglaise (Flibot);200;200;15;120;N;80;24;3;7;7;4,5;14;12;3;3;2;3;49;pinque anglaise (Flibot);3000;;6750;;pinque anglaise (Flibot)
+;;;;;;;;;Pirogue;7;7;1;30;O;120;1;10;18;15;8,5;0;2;-999;0;0;1;17;Pirogue;12;;;;Pirogue
+;;;;;;;;;pirogue à balancier;7;7;1;30;O;120;1;10;18;15;8,5;0;2;-999;0;0;1;17;Pirogue;12;;;;pirogue à balancier
+;;;;;;;;;plut (Brigantin, Néerlandais);90;90;18;90;O;105;43;3,5;10,5;11,5;7,5;11;10;0;2;2;2;51;Goélette brick;;6500;11500;18000;plut (Brigantin, Néerlandais)
+;;;;;;;;;polacre (Barque);120;120;20;60;N;75;26;4,5;7,5;6,5;3,5;8;8;2;2;2;3;43;polacre (Barque);6600;8250;14800;23000;polacre (Barque)
+;;;;;;;;;polacron (Barque);120;120;20;60;N;75;26;4,5;7,5;6,5;3,5;8;8;2;2;2;3;43;polacron (Barque);6600;8250;14800;23000;polacron (Barque)
+;;;;;;;;;Ponton;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;3000;;;;Ponton
+;;;;;;;;;Poon de hollande;60;60;5;20;N;85;11;3,5;9,5;7;4;9;7;0;2;1;1;33;Poon de hollande;3450;4300;;;Poon de hollande
+;;;;;;;;;poste aux choux (Chaloupe);2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;poste aux choux (Chaloupe);15;;;52;poste aux choux (Chaloupe)
+;;;;;;;;;prame (deux ponts trois mat barque avec modif);660;660;75;550;O;85;170;1,5;6,5;7,5;4;80;80;15;12;4;3;83;prame (deux ponts trois mat barque avec modif);42200;;95000;147600;prame (deux ponts trois mat barque avec modif)
+;;;;;;;;;Prao caraïbe;12;12;4;40;N;80;1;6;12,5;10;5,5;5;4;-999;0;1;1;26;Prao caraïbe;8;;;;Prao caraïbe
+;;;;;;;;;Rafiau;4;4;2;9;O;75;4;4;7,5;6,5;3,5;3;3;-16;0;0;1;12;Catalane;25;;56;;Rafiau
+;;;;;;;;;ramberge (Sloop, riviere, anglais);12;65;6;50;O;90;21;4;10,5;7,5;4;9;7;0;2;1;1;25;ramberge (Sloop, riviere, anglais);180;225;405;630;ramberge (Sloop, riviere, anglais)
+;;;;;;;;;ras de carène (port seulement, chaloupe);2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;ras de carène (port seulement, chaloupe);15;;;52;ras de carène (port seulement, chaloupe)
+;;;;;;;;;Saïque;45;45;10;30;N;85;16;3,5;9,5;7;4;5;5;2;2;1;2;39;Dundee;2750;3450;9500;;Saïque
+;;;;;;;;;Samequin;12;65;6;50;O;90;21;4;10,5;7,5;4;9;7;0;2;1;1;25;Sloop;180;225;405;630;Samequin
+;;;;;;;;;Sandale;180;180;22;150;O;100;54;3;11;12;8;17;17;5;4;3;2;71;Brick;16500;27500;40500;63500;Sandale
+;;;;;;;;;Saugue;4;4;2;9;O;75;4;4;7,5;6,5;3,5;3;3;-16;0;0;1;12;Catalane;4800;;10800;16800;Saugue
+;;;;;;;;;Schooner;100;100;19;120;O;120;51;5;12;10,5;5,5;10;12;3;3;2;2;54;Schooner;5300;6700;12000;18700;Schooner
+;;;;;;;;;Senau (brick avec modif);180;300;22;150;O;100;54;2,5;11;12,5;8;17;15;5;4;2;2;71;Senau (brick avec modif);16500;27500;40500;63500;Senau (brick avec modif)
+;;;;;;;;;Sentine;2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Chaloupe;15;;;52;Sentine
+;;;;;;;;;Sloop;12;65;6;50;O;90;21;4;10,5;7,5;4;9;7;0;2;1;1;25;Sloop;180;225;405;630;Sloop
+;;;;;;;;;Spéronare;45;45;5;50;N;75;11;3;7,5;6,5;3,5;7;6;0;0;2;2;60;Barge;25;;56;;Spéronare
+;;;;;;;;;Sultane;950;950;80;650;N;85;376;2;7,5;8,5;5;150;150;20;21;4;3;111;Deux-ponts trois-mâts carré;91500;;;320000;Sultane
+;;;;;;;;;Tartane;90;90;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Tartane;4800;;10800;16800;Tartane
+;;;;;;;;;Tartane à hunier;90;90;8;60;O;100;23;5;10;8;4,5;9;9;0;2;1;3;25;Tartane;4800;;10800;16800;Tartane à hunier
+;;;;;;;;;Terre-neuvier;180;180;22;150;O;100;54;3;11;12;8;17;17;5;4;3;2;71;Brick;16500;27500;40500;63500;Terre-neuvier
+;;;;;;;;;Toue (rivière seulement, chaloupe);2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;Toue (rivière seulement, chaloupe);15;;;52;Toue (rivière seulement, chaloupe)
+;;;;;;;;;Trabac;40;40;9;30;O;100;21;3,5;9;9;6;5;5;0;2;1;3;34;Chasse-marée;3000;;;;Trabac
+;;;;;;;;;traversier (Chasse-marée, francais);40;40;9;30;O;100;21;3,5;9;9;6;5;5;0;2;1;3;34;traversier (Chasse-marée, francais);3000;;;;traversier (Chasse-marée, francais)
+;;;;;;;;;trois-mâts goélette;210;210;30;90;N;105;42;4;10,5;9,5;5;10;10;3;4;2;3;51;trois-mâts goélette;12750;15900;27700;;trois-mâts goélette
+;;;;;;;;;trois-ponts;1250;1250;100;1200;N;70;635;1,5;6;6,5;4,5;200;200;21;40;4;3;119;trois-ponts;280000;;;980000;trois-ponts
+;;;;;;;;;yacht (sloop);12;65;6;50;O;90;21;4;10,5;7,5;4;9;7;0;2;1;1;25;yacht (sloop);180;225;405;630;yacht (sloop)
+;;;;;;;;;youyou (chaloupe);2;2;2;15;N;65;5;2;5,5;5,5;4;4;4;-16;0;0;1;9;youyou (chaloupe);15;;;52;youyou (chaloupe)

@@ -1,0 +1,656 @@
+De;Cargaison;Suffixe;Region;Volume;Origine;DeOrigine;UtilisationParJourParPersonne;;PrixPenurie;PrixNormal;PrixExces;Densité;ModRichesseNormal;ModRichessePort;BonusRichesseNormal;BonusRichessePort;ID;Nom
+20;10 fourrures de Nouvelle-France (ex : castor) (1T);P : 4000, N : 2000, E : 1000;Acadie, baie d'Hudson et terre-neuve;10;Europe du nord;85;;;4000;2000;1000;1;1;1;0;0;1;Fourrures
+83;11 morue de terre-neuve (très demandée en Europe pour le repas du Vendredi Saint sur les navires) (1T);P : 30, N : 10, E : 5;Acadie, baie d'Hudson et terre-neuve;11;Côte est d'amérique du nord;96;;;30;10;5;1;1;1;0;0;2;Morue
+84;9 passagers de marque;Mod. de richesse : D100-5;Acadie, baie d'Hudson et terre-neuve;9;Grandes antilles;99;;0;;;;;100;1;-5;-5;3;Passagers de marque
+89;9 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : D20 (D20+10 dans les ports);Acadie, baie d'Hudson et terre-neuve;9;Petites antilles;100;;0;;;;;20;20;0;10;4;Pièces de monnaie (vente de marchandises)
+90;7 déjà pillé par un aventurier; ;Acadie, baie d'Hudson et terre-neuve;7;;;;0;0;0;0;1;1;1;0;0;5;Navire déjà pillé
+100;vide; ;Acadie, baie d'Hudson et terre-neuve;10;;;;0;0;0;0;1;1;1;0;0;6;Vide
+12;9 acajou du Congo (1T) (P : 300, N : 250, E : 150); ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);9;;;;;100;100;100;;1;1;0;0;7;Acajou
+25;9 cuivre du Cap (Afrique du Sud) (1T) (P : 100, N : 100, E : 100); ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);9;;;;;100;100;100;;1;1;0;0;8;Cuivre
+28;2 diamants du Botswana (Afrique du Sud) (carré du nombre de carats × Extraordinaire : 50, Normal : 25, Grossier : 10); ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);2;;;;;;;;;1;1;0;0;9;Diamants
+77;10 esclaves noirs (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);10;;;;;;;;0,5;1;1;0;0;10;Esclaves
+78;2 passagers de marque (Mod. de richesse : D100); ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);2;;;;0;;;;;100;1;0;0;11;Passagers de marque
+85;3 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : -20 (+10 dans les comptoirs)); ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);3;;;;0;;;;;1;1;-20;10;12;Pièces de monnaie (vente de marchandises)
+93;10 sel du Congo; ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);10;;;;;400;285;140;1;1;1;0;0;13;Sel
+97;10 déjà pillé par un aventurier; ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);10;;;;0;0;0;0;1;1;1;0;0;14;Navire déjà pillé
+100;vide; ;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);10;;;;0;0;0;0;1;1;1;0;0;15;Vide
+10;6 ambre gris du Mozambique; ;Afrique orientale (Mozambique à Kenya);6;Afrique orientale (Mozambique à Kenya);50;;;1000;950;900;0,01;1;1;0;0;16;Ambre gris
+35;8 défenses d’éléphants du Mozambique et du Kenya; ;Afrique orientale (Mozambique à Kenya);8;Europe du sud;52;;;1100;900;300;1;1;1;0;0;17;Défenses d’éléphant
+45;10 ébène du Mozambique (1T) (P : 160, N : 140, E : 80); ;Afrique orientale (Mozambique à Kenya);10;Madagascar;55;;;160;140;80;1;1;1;0;0;18;Ébène
+81;10 esclaves du Kenya (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Afrique orientale (Mozambique à Kenya);10;Mer rouge;62;;;;;;0,5;1;1;0;0;19;Esclaves
+82;2 passagers de marque (Mod. de richesse : D100); ;Afrique orientale (Mozambique à Kenya);2;Arabie;69;;0;;;;;100;1;0;0;20;Passagers de marque
+87;2 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : -10 (+0 dans les comptoirs)); ;Afrique orientale (Mozambique à Kenya);2;Perse;73;;0;;;;;1;1;-10;-10;21;Pièces de monnaie (vente de marchandises)
+91;2 rubis du Mozambique, du Malawi ou du Kenya (carré du nombre de carats × Extraordinaire : 32, Normal : 16, Grossier : 8); ;Afrique orientale (Mozambique à Kenya);2;Surate et péninsule de Gujarat;82;;;;;;;1;1;0;0;22;Rubis
+95;10 déjà pillé par un aventurier; ;Afrique orientale (Mozambique à Kenya);10;Côte de Malabar;90;;0;0;0;0;1;1;1;0;0;23;Navire déjà pillé
+100;vide; ;Afrique orientale (Mozambique à Kenya);10;Cap comorin et Ceylan;96;;0;0;0;0;1;1;1;0;0;24;Vide
+100;vide; ;Afrique orientale (Mozambique à Kenya);10;Bengale;97;;0;0;0;0;1;1;1;0;0;25;Vide
+101;vide; ;Afrique orientale (Mozambique à Kenya);11;Siam et Tonkin;99;;0;0;0;0;1;1;1;0;0;26;Vide
+102;vide; ;Afrique orientale (Mozambique à Kenya);12;Indonésie et Philippines;100;;0;0;0;0;1;1;1;0;0;27;Vide
+3;7 cacao de Suriname;Faible production;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;50;;;1200;800;700;1;1;1;0;0;28;Cacao
+6;7 café de Guyane;Faible production depuis 1725;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;Europe du nord;76;;;750;650;220;1;1;1;0;0;29;Café
+16;8 café du Suriname;Depuis 1718;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;8;Côte est d'amérique du nord;80;;;750;650;220;1;1;1;0;0;30;Café
+27;8 maïs; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;8;Petites antilles;86;;;20;15;10;1;1;1;0;0;31;Maïs
+48;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +10 (+30 dans les ports);Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;6;Venezuela;93;;0;;;;;1;1;10;30;32;Pièces de monnaie (vente de marchandises)
+54;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100-20;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;Brésil;100;;0;;;;;100;1;-20;-20;33;Pièces de monnaie (vente d’esclaves)
+68;7 rhum de Guyane;Depuis 1700;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;;;;;1400;800;600;1;1;1;0;0;34;Rhum
+76;6 rocou de Guyane (1T);P : 500, N : 450, E : 100;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;6;;;;;500;450;100;1;1;1;0;0;35;Roucou
+91;10 sucre;Depuis le milieu du XVIIe siècle;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;;1200;750;450;1;1;1;0;0;36;Sucre
+94;3 vanille de Guyane;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;3;;;;;1400;1200;800;1;1;1;0;0;37;Vanille
+95;10 déjà pillé par un aventurier; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;0;0;0;0;1;1;1;0;0;38;Navire déjà pillé
+100;vide; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;0;0;0;0;1;1;1;0;0;39;Vide
+19;Excellent café d'Arabie (prix × 1.5); ;Arabie;10;Arabie;50;;;1125;975;330;1;1;1;0;0;40;Café
+23;Chevaux d'Arabie (Mascate x10); ;Arabie;10;Mer rouge;61;;;;;;;1;1;0;0;41;Chevaux
+29;Cuivre du Dhofar (Oman) (1T, 100); ;Arabie;9;Perse;64;;;100;100;100;1;1;1;0;0;42;Cuivre
+34;Curcuma (100kg, P : 250 N:200, E:100); ;Arabie;6;Surate et péninsule de Gujarat;76;;;250;200;100;0,1;1;1;0;0;43;Curcuma
+43;Encens de l’Hadramaout (Yémen) (100kg, P:700,N:600,E:150)); ;Arabie;7;Côte de Malabar;80;;;700;600;150;0,1;1;1;0;0;44;Encens
+48;Oliban du Dhofar ou du Yémen (sève cristallisée) (100kg, P:140, N:120,E:40); ;Arabie;5;Cap comorin et Ceylan;85;;;140;120;40;0,1;1;1;0;0;45;Oliban
+54;Opium d’Arabie (1kg, P : 600, N:550,E:200); ;Arabie;10;Côte de Coromandel;89;;;600;550;200;0,001;1;1;0;0;46;Opium
+55;Passagers de marque (Mod : D100+10); ;Arabie;2;Bengale;92;;0;;;;;100;1;-10;-10;47;Passagers de marque
+62;Pavot d'Arabie (100kg, P:200,N:180,E:10); ;Arabie;7;Siam et Tonkin;94;;;200;180;10;0,1;1;1;0;0;48;Pavot
+74;Pèlerins arabes pour la Mecque (D20+75); ;Arabie;10;Chine, Mer de Chine, Corée et Japon;100;;;;;;;20;1;75;0;49;Pèlerins pour la Mecque
+85;Pièces de monnaie résultant de la vente de marchandises +30 (+60 pour la Compagnie néerlandaise des Indes Occidentales); ;Arabie;3;;;;0;;;;;1;1;30;0;50;Pièces de monnaie (vente de marchandises)
+92;Pièces de monnaie résultant de la vente d’esclaves (D100+10); ;Arabie;5;;;;0;;;;;100;1;10;0;51;Pièces de monnaie (vente d’esclaves)
+95;Déjà pillé par un aventurier; ;Arabie;10;;;;0;0;0;0;1;1;1;0;0;52;Navire déjà pillé
+24;8 maïs; ;Argentine;8;Argentine;50;;;20;15;10;1;1;1;0;0;53;Maïs
+29;3 passagers de marque (Mod. de richesse : D100); ;Argentine;3;Europe du sud;88;;0;;;;;100;1;0;0;54;Passagers de marque
+54;9 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +0 (+20 dans les ports)); ;Argentine;9;Chili;91;;0;;;;;1;1;0;20;55;Pièces de monnaie (vente de marchandises)
+61;9 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100-15); ;Argentine;9;Pérou;94;;0;;;;;100;1;-15;-15;56;Pièces de monnaie (vente d’esclaves)
+89;10 sel de la Terre de Feu; ;Argentine;10;Nouvelle-Grenade;97;;;400;285;140;1;1;1;0;0;57;Sel
+90;10 déjà pillé par un aventurier; ;Argentine;10;Indonésie et Philippines;100;;0;0;0;0;1;1;1;0;0;58;Navire déjà pillé
+100;vide; ;Argentine;10;;;;0;0;0;0;1;1;1;0;0;59;Vide
+2;Aneth (100kg, P:250,N:200,E:100); ;Bengale;4;Bengale;50;;;250;200;100;0,1;1;1;0;0;60;Aneth
+5;Céleri (100kg, P:250,N:200,E:100); ;Bengale;3;Europe du nord;72;;;250;200;100;0,1;1;1;0;0;61;Céleri
+9;Cumin (100kg, P:500,N:420,E:180); ;Bengale;4;Europe du nud;82;;;500;420;180;0,1;1;1;0;0;62;Cumin
+17;Défenses d’éléphants; ;Bengale;8;Afrique orientale (Mozambique à Kenya);84;;;1100;900;300;1;1;1;0;0;63;Défenses d’éléphant
+19;Émeraudes du Bengale et de la vallée du Panjshir (Extraordinaire: 14, Normal: 7, Grossier: 3) Carré du nombre de carats ×:; ;Bengale;2;Madagascar;86;;;;;;;1;1;0;0;64;Émeraudes
+22;Fenugrec (100kg, P:250,N:200,E:100); ;Bengale;4;Mer rouge;88;;;250;200;100;0,1;1;1;0;0;65;Fenugrec
+34;Indigo (Excellent)(Prix x1,25); ;Bengale;8;Siam et Tonkin;91;;;1250;875;750;0,1;1;1;0;0;66;Indigo
+44;Mousselines (1T, P:1300,N:1100,E:900); ;Bengale;6;Chine, Mer de Chine, Corée et Japon;100;;;1300;1100;900;1;1;1;0;0;67;Mousseline
+50;"Nacre (1kg, P:1000,N:900;E:200)"; ;Bengale;3;;;;;1000;900;200;0,01;1;1;0;0;68;Nacre
+52;Oliban (sève cristallisée de l’arbre à encens) (100kg, P:140,N:120, E:40); ;Bengale;3;;;;;140;120;40;0,1;1;1;0;0;69;Oliban
+60;Opium (1kg, P:600,N:550,E:200); ;Bengale;10;;;;;600;550;200;0,01;1;1;0;0;70;Opium
+63;Bois de palissandre (1T, P:160,N:140,E:80); ;Bengale;9;;;;;160;140;80;1;1;1;0;0;71;Bois de palissandre
+65;Passagers de marque Mod. de richesse : D100; ;Bengale;4;;;;0;;;;;100;1;0;0;72;Passagers de marque
+68;Pavot (100kg, P:200,N:180,E:10); ;Bengale;7;;;;;200;180;10;0,1;1;1;0;0;73;Pavot
+69;Pèlerins pour la Mecque Mod. de richesse : D20 + 75; ;Bengale;10;;;;;;;;;20;1;75;0;74;Pèlerins pour la Mecque
+70;Pièces de monnaie (vente de marchandises) Mod. de richesse : -50 (+40 pour la Compagnie néerlandaise des Indes Occidentales); ;Bengale;2;;;;0;;;;;1;1;-50;-50;75;Pièces de monnaie
+71;Pièces de monnaie (vente d’esclaves, D100-5); ;Bengale;2;;;;0;;;;;100;1;-5;-5;76;Pièces de monnaie
+74;Piment naga (100kg, P:150, N:120,E:60);;Bengale;3;;;;;180;150;70;0,1;1;1;0;0;77;Piment naga
+79;poivre noir d’Inde;;Bengale;8;;;;;1900;1700;1200;1;1;1;0;0;78;Poivre noir
+81;Salpêtre (1T) P:120,N:100,E:50;;Bengale;10;;;;;120;100;50;0,1;1;1;0;0;79;Salpêtre
+85;Bois de santal (100kg) P:400,N:350,E:250;;Bengale;7;;;;;400;350;250;0,1;1;1;0;0;80;Bois de santal
+88;sel;;Bengale;9;;;;;400;285;140;1;1;1;0;0;81;Sel
+93;sucre;;Bengale;10;;;;;1200;750;450;1;1;1;0;0;82;Sucre
+94;Mélange tandoori (100kg, P:180,N:150,E:70);;Bengale;3;;;;;180;150;70;0,1;1;1;0;0;83;Mélange tandoori
+95;déjà pillé par un aventurier;;Bengale;10;;;;0;0;0;0;1;1;1;0;0;84;Navire déjà pillé
+100;vide;;Bengale;10;;;;0;0;0;0;1;1;1;0;0;85;Vide
+3;4 ambre gris du Brésil; ;Brésil;4;Brésil;50;;;1000;950;900;0,01;1;1;0;0;86;Ambre gris
+5;7 cacao d’Amazonie;Faible production;Brésil;7;Europe du nord;65;;;1200;800;700;1;1;1;0;0;87;Cacao
+10;6 cannelle du Brésil; ;Brésil;6;Europe du sud;90;;;800;700;250;1;1;1;0;0;88;Cannelle
+11;2 diamants de Mato Grosso et de Minas Gerais (Brésil);Carré du nombre de carats × Extraordinaire : 50, Normal : 25, Grossier : 10;Brésil;2;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;98;;;;;;;1;1;0;0;89;Diamants
+20;10 esclaves;D100 esclaves pour 100 tonneaux utiles du navire, du fait de la mortalité (Rio de Janeiro est la plaque tournante du commerce triangulaire);Brésil;10;Indonésie et Philippines;100;;;;;;0,5;1;1;0;0;90;Esclaves
+21;6 gomme du Brésil; ;Brésil;6;;;;;;;;;1;1;0;0;91;Gomme du Brésil
+22;6 huile de baleine du Brésil; ;Brésil;6;;;;;;;;;1;1;0;0;92;Huile de baleine
+24;8 maïs; ;Brésil;8;;;;;20;15;10;1;1;1;0;0;93;Maïs
+25;4 or du Brésil; ;Brésil;4;;;;;;;;;1;1;0;0;94;Or
+28;9 bois de palissandre du Brésil (1T);P : 160, N : 140, E : 80;Brésil;9;;;;;160;140;80;1;1;1;0;0;95;Bois de palissandre
+33;9 bois de palissandre de Rio de Janeiro (Brésil) (1T);P : 160, N : 140, E : 80;Brésil;9;;;;;160;140;80;1;1;1;0;0;96;Bois de palissandre
+35;3 passagers de marque;Mod. de richesse : D100+10;Brésil;3;;;;0;;;;;100;1;10;0;97;Passagers de marque
+37;5 perroquet du Brésil; ;Brésil;5;;;;;;;;;1;1;0;0;98;Perroquets
+49;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +40 (+80 dans les ports);Brésil;6;;;;0;;;;;1;1;40;80;99;Pièces de monnaie (vente de marchandises)
+56;10 pièces de monnaie résultant de la vente d’esclaves;Hors-la-loi sauf navire spécial, Mod. de richesse : D100+20;Brésil;10;;;;0;;;;;100;1;20;0;100;Pièces de monnaie (vente d’esclaves)
+61;7 poivre blanc ou noir du Bélem (Brésil); ;Brésil;7;;;;;1900;1700;1200;1;1;1;0;0;101;Poivre blanc
+71;10 rhum jugé mauvais du Brésil;Depuis 1700, 1T (P : 800, N : 600, E : 300);Brésil;10;;;;;1400;800;600;1;1;1;0;0;102;Rhum
+75;10 riz du Brésil; ;Brésil;10;;;;;300;250;200;1;1;1;0;0;103;Riz
+87;10 sucre;Depuis le milieu du XVIIe siècle;Brésil;10;;;;;1200;750;450;1;1;1;0;0;104;Sucre
+92;9 tabac du Brésil; ;Brésil;9;;;;;800;500;350;1;1;1;0;0;105;Tabac
+94;3 fève tonka du Brésil (100kg);P : 450, N : 400, E : 50;Brésil;3;;;;;450;400;50;1;1;1;0;0;106;Fève tonka
+95;10 déjà pillé par un aventurier; ;Brésil;10;;;;0;0;0;0;1;1;1;0;0;107;Navire déjà pillé
+100;vide; ;Brésil;10;;;;0;0;0;0;1;1;1;0;0;108;Vide
+3;Aneth (100kg, P:250,N:200,E:100); ;Cap comorin et Ceylan;4;Cap comorin et Ceylan;50;;;250;200;100;0,1;1;1;0;0;109;Aneth
+11;Café de Ceylan (depuis 1658); ;Cap comorin et Ceylan;9;Europe du nord;80;;;750;650;220;1;1;1;0;0;110;Café
+14;Cannelle de Ceylan; ;Cap comorin et Ceylan;4;Europe du sud;82;;;800;700;250;1;1;1;0;0;111;Cannelle
+33;Cardamome de Ceylan (100kg, P:900,N:750,E:550); ;Cap comorin et Ceylan;8;Afrique orientale (Mozambique à Kenya);84;;;900;750;550;0,1;1;1;0;0;112;Cardamome
+48;Ébène de Ceylan (1T, P:160,N:140,E:80); ;Cap comorin et Ceylan;8;Madagascar;86;;;160;140;80;1;1;1;0;0;113;Ébène
+68;Indigo; ;Cap comorin et Ceylan;7;Mer rouge;88;;;1000;700;600;0,1;1;1;0;0;114;Indigo
+72;Passagers de marque (D100); ;Cap comorin et Ceylan;6;Siam et Tonkin;91;;0;;;;;100;1;0;0;115;Passagers de marque
+75;Perles de Taprobane (1kg, P:10000,N:9000,E:2000); ;Cap comorin et Ceylan;2;Chine, Mer de Chine, Corée et Japon;100;;;10000;9000;2000;0,01;1;1;0;0;116;Perles
+80;Pièces de monnaie de la vente de marchandises -50 (+50 pour la Compagnie néerlandaise des Indes Occidentales); ;Cap comorin et Ceylan;2;;;;0;;;;;1;1;-50;-50;117;Pièces de monnaie (vente de marchandises)
+86;Pièces de monnaie de la vente d’esclaves D100 -5; ;Cap comorin et Ceylan;2;;;;0;;;;;100;1;-5;-5;118;Pièces de monnaie (vente d’esclaves)
+88;Rubis venant de Palani; ;Cap comorin et Ceylan;2;;;;;;;;;1;1;0;0;119;Rubis
+90;Rubis de Taprobane (Ceylan) 32 (Extraordinaire), 16 (Normal), 8 (Grossier); ;Cap comorin et Ceylan;2;;;;;;;;;1;1;0;0;120;Rubis
+91;Saphirs de Taprobane (Ceylan) (grand producteur) (Extraordinaire: 14, Normal: 7, Grossier: 4); ;Cap comorin et Ceylan;2;;;;;;;;;1;1;0;0;121;Saphirs
+92;Déjà pillé par un aventurier; ;Cap comorin et Ceylan;10;;;;0;0;0;0;1;1;1;0;0;122;Navire déjà pillé
+100;vide; ;Cap comorin et Ceylan;10;;;;0;0;0;0;1;1;1;0;0;123;Vide
+27;8 cuivre du Chili (1T) (P : 100, N : 100, E : 100); ;Chili;8;Chili;50;;;100;100;100;1;1;1;0;0;124;Cuivre
+51;7 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +10 (+30 dans les ports)); ;Chili;7;Nouvelle-Grenade;55;;0;;;;;1;1;10;30;125;Pièces de monnaie (vente de marchandises)
+61;10 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100-10); ;Chili;10;Pérou;100;;0;;;;;100;1;-10;-10;126;Pièces de monnaie (vente d’esclaves)
+89;9 poivre de Chiloé (Chili); ;Chili;9;;;;;1900;1700;1200;1;1;1;0;0;127;Poivre de Chiloé
+90;10 déjà pillé par un aventurier; ;Chili;10;;;;0;0;0;0;1;1;1;0;0;128;Navire déjà pillé
+100;vide; ;Chili;10;;;;0;0;0;0;1;1;1;0;0;129;Vide
+1;Argent du Japon;N/A;Chine, Mer de Chine, Corée et Japon;3;Chine, Mer de Chine, Corée et Japon;50;;;;;;;1;1;0;0;130;Argent
+2;Baies de Goji du Tibet (100kg);100, 90, 10;Chine, Mer de Chine, Corée et Japon;2;Europe du nord;75;;;100;90;10;;1;1;0;0;131;Baies de goji
+5;Bois de santal du Népal (100kg);400, 350, 250;Chine, Mer de Chine, Corée et Japon;7;Mexique;77;;;400;350;250;0,1;1;1;0;0;132;Bois de santal
+7;Citronnelle de Chine (1T);400, 350, 50;Chine, Mer de Chine, Corée et Japon;3;Guatemala, Costa Rica et Panama;78;;;400;350;20;1;1;1;0;0;133;Citronnelle
+8;Émeraudes de Chine;(carré des carats × Extraordinaire : 14, Normal : 7, Grossier : 3);Chine, Mer de Chine, Corée et Japon;2;Nouvelle-Grenade;79;;;;;;;1;1;0;0;134;Émeraudes
+10;Galanga de Chine (100kg);200, 170, 60;Chine, Mer de Chine, Corée et Japon;3;Pérou;80;;;200;170;60;0,1;1;1;0;0;135;Galanga
+12;Gingembre de Chine (1T);600, 500, 150;Chine, Mer de Chine, Corée et Japon;4;Arabie;83;;;600;500;150;;1;1;0;0;136;Gingembre
+15;Jade de Chine (100kg);1300, 1000, 500;Chine, Mer de Chine, Corée et Japon;5;Surate et péninsule de Gujarat;85;;;1300;1000;500;0,1;1;1;0;0;137;Jade
+16;Or de Corée;N/A;Chine, Mer de Chine, Corée et Japon;3;Côte de Malabar;87;;;;;;;1;1;0;0;138;Or
+17;Passagers de marque;Mod. de richesse : D100+15;Chine, Mer de Chine, Corée et Japon;2;Cap comorin et Ceylan;89;;0;;;;;100;1;15;0;139;Passagers de marque
+21;Perles de Chine (1kg);5000, 4500, 1000;Chine, Mer de Chine, Corée et Japon;3;Bengale;91;;;5000;4500;1000;0,001;1;1;0;0;140;Perles
+25;Pièces de monnaie (marchandises);Mod. de richesse : -40 (+70 pour la Cie néerlandaise);Chine, Mer de Chine, Corée et Japon;2;Siam et Tonkin;96;;0;;;;;1;1;40;0;141;Pièces de monnaie
+26;Piment anneaux de fer de Chine;150, 120, 60;Chine, Mer de Chine, Corée et Japon;4;Indonésie et Philippines;100;;;120;60;1;;1;1;0;0;142;Piment anneaux de fer
+27;Piment cheveux d’ange de Chine;150, 120, 60;Chine, Mer de Chine, Corée et Japon;4;;;;;150;120;60;1;1;1;0;0;143;Piment cheveux d’ange
+29;Poivre du Sichuan (Chine);N/A;Chine, Mer de Chine, Corée et Japon;8;;;;;1700;1200;1;;1;1;0;0;144;Poivre du Sichuan
+30;Poivre sansho du Japon;N/A;Chine, Mer de Chine, Corée et Japon;8;;;;;1700;1200;1;;1;1;0;0;145;Poivre sansho
+43;Porcelaine de Chine (10kg);500, 500, 300;Chine, Mer de Chine, Corée et Japon;8;;;;;500;500;300;0,01;1;1;0;0;146;Porcelaine
+45;Magnifique porcelaine de King-Té-Ching;1000, 950, 600;Chine, Mer de Chine, Corée et Japon;8;;;;;1000;950;600;1;1;1;0;0;147;Porcelaine
+49;Porcelaine du Japon (10kg);300, 300, 200;Chine, Mer de Chine, Corée et Japon;7;;;;;300;300;200;0,01;1;1;0;0;148;Porcelaine
+51;Riz de Chine et du Japon;N/A;Chine, Mer de Chine, Corée et Japon;9;;;;;300;250;100;1;1;1;0;0;149;Riz
+52;Rubis du Tonkin;(carré des carats × Extraordinaire : 32, Normal : 16, Grossier : 8);Chine, Mer de Chine, Corée et Japon;1;;;;;;;;;1;1;0;0;150;Rubis
+54;Safran de Chine;N/A;Chine, Mer de Chine, Corée et Japon;3;;;;;850;700;0,01;;1;1;0;0;151;Safran
+56;Sel;N/A;Chine, Mer de Chine, Corée et Japon;9;;;;;285;140;1;;1;1;0;0;152;Sel
+60;Soierie du Japon;N/A;Chine, Mer de Chine, Corée et Japon;5;;;;;1500;1400;1;;1;1;0;0;153;Soieries
+70;Soieries de Chine;N/A;Chine, Mer de Chine, Corée et Japon;5;;;;;1500;1400;1;;1;1;0;0;154;Soieries
+72;Sucre de Chine;N/A;Chine, Mer de Chine, Corée et Japon;9;;;;;750;450;1;;1;1;0;0;155;Sucre
+74;Tabac (pénalités diverses);"Chine : décapitation ; Japon : esclavage ; Russie : déportation";Chine, Mer de Chine, Corée et Japon;7;;;;;500;350;1;;1;1;0;0;156;Tabac
+90;Thé de Chine;N/A;Chine, Mer de Chine, Corée et Japon;8;;;;;;;;;1;1;0;0;157;Thé
+93;Thé du Japon;N/A;Chine, Mer de Chine, Corée et Japon;7;;;;;;;;;1;1;0;0;158;Thé
+94;Wasabi d’Hakata (Japon) (100kg);800, 600, 300;Chine, Mer de Chine, Corée et Japon;4;;;;;800;600;300;0,1;1;1;0;0;159;Wasabi
+97;Déjà pillé par un aventurier;N/A;Chine, Mer de Chine, Corée et Japon;10;;;;0;0;0;1;;1;1;0;0;160;Navire déjà pillé
+100;vide;N/A;Chine, Mer de Chine, Corée et Japon;10;;;;0;0;0;1;;1;1;0;0;161;Vide
+2;Ambre gris de Coromandel; ;Côte de Coromandel;7;;;;;950;900;0,01;;1;1;0;0;162;Ambre gris
+3;Aneth (100kg, P:250,N:200,E:100); ;Côte de Coromandel;4;Côte de Coromandel;50;;;200;100;0,1;;1;1;0;0;163;Aneth
+5;Cannelle d’Inde; ;Côte de Coromandel;4;Europe du nord;72;;;700;250;1;;1;1;0;0;164;Cannelle
+6;Céleri (100kg, P:250,N:200,E:100); ;Côte de Coromandel;3;Europe du sud;82;;;200;100;0,1;;1;1;0;0;165;Céleri
+8;Cumin (100kg, P:500,N:420,E:180); ;Côte de Coromandel;4;Afrique orientale (Mozambique à Kenya);84;;;420;180;0,1;;1;1;0;0;166;Cumin
+16;Défenses d’éléphants; ;Côte de Coromandel;8;Madagascar;86;;;900;300;1;;1;1;0;0;167;Défenses d’éléphant
+17;Diamants (les plus gros du monde) de Golkonda, de Wajrakarur et de Chhattisgarh Carré du nombre de carats ×:(Extraordinaire: 60, Normal: 30, Grossier: 15); ;Côte de Coromandel;2;Mer rouge;88;;;;;;;1;1;0;0;168;Diamants
+30;Ébène de Coromandel (1T, P:160,N,140,E:80); ;Côte de Coromandel;9;Siam et Tonkin;91;;;140;80;1;;1;1;0;0;169;Ébène
+39;Curry de Madras (100kg, P:600,N:480,E:200); ;Côte de Coromandel;6;Chine, Mer de Chine, Corée et Japon;95;;;480;200;1;;1;1;0;0;170;Curry de Madras
+42;Fenugrec (100kg, P:250,N:200,E:100); ;Côte de Coromandel;4;Indonésie et Philippines;100;;;200;100;0,1;;1;1;0;0;171;Fenugrec
+52;Indiennes de coton de Coromandel (calicot Prix des draps x2); ;Côte de Coromandel;10;;;;;600;300;1;;1;1;0;0;172;Coton
+56;Indigo; ;Côte de Coromandel;6;;;;;700;600;0,1;;1;1;0;0;173;Indigo
+58;Oliban (sève cristallisée de l’arbre à encens) (100kg, P:140,N:120,E:40); ;Côte de Coromandel;3;;;;;120;40;0,1;;1;1;0;0;174;Oliban
+59;Passagers de marque Mod. de richesse : D100 + 10; ;Côte de Coromandel;4;;;;0;;;;;100;1;10;0;175;Passagers de marque
+61;Bois de palissandre (1T, P:160,N:140,E:80); ;Côte de Coromandel;9;;;;;140;80;1;;1;1;0;0;176;Bois de palissandre
+63;Pavot (100kg, P:200,E:180,N:10); ;Côte de Coromandel;7;;;;;180;10;0,1;;1;1;0;0;177;Pavot
+64;Pèlerins pour la Mecque Mod. de richesse : D20 + 75; ;Côte de Coromandel;10;;;;;;;;;20;1;75;0;178;Pèlerins pour la Mecque
+67;Pièces de monnaie (vente de marchandises) Mod. de richesse : -50 (+40 pour la Compagnie néerlandaise des Indes Occidentales); ;Côte de Coromandel;2;;;;0;;;;;1;1;-50;-50;179;Pièces de monnaie
+68;Pièces de monnaie (vente d’esclaves) Mod. de richesse : D100; ;Côte de Coromandel;2;;;;0;;;;;100;1;0;0;180;Pièces de monnaie
+73;Piment naga P:150,N:120,E:60; ;Côte de Coromandel;3;;;;;120;60;1;;1;1;0;0;181;Piment naga
+77;Poivre noir d’Inde; ;Côte de Coromandel;8;;;;;1700;1200;1;;1;1;0;0;182;Poivre noir
+78;Rubis venant de l’intérieur des terres (Extraordinaire: 32, Normal: 16, Grossier: 8) Carré du nombre de carats ×; ;Côte de Coromandel;3;;;;;;;;;1;1;0;0;183;Rubis
+80;Salpêtre (1T) P:120,N:100,E:50; ;Côte de Coromandel;10;;;;;100;50;1;;1;1;0;0;184;Salpêtre
+84;Bois de santal (100kg) P:400,N:350,E:250; ;Côte de Coromandel;7;;;;;350;250;0,1;;1;1;0;0;185;Bois de santal
+88;Sel; ;Côte de Coromandel;9;;;;;285;140;1;;1;1;0;0;186;Sel
+92;Sucre; ;Côte de Coromandel;10;;;;;750;450;1;;1;1;0;0;187;Sucre
+93;Mélange tandoori (100kg, P:180,N:150,E:70); ;Côte de Coromandel;3;;;;;150;70;0,1;;1;1;0;0;188;Mélange tandoori
+95;Zinc (1T, P:40,N:40,E:40); ;Côte de Coromandel;9;;;;;40;40;1;;1;1;0;0;189;Zinc
+96;Déjà pillé par un aventurier; ;Côte de Coromandel;10;;;;0;0;0;1;;1;1;0;0;190;Navire déjà pillé
+100;vide; ;Côte de Coromandel;10;;;;0;0;0;1;;1;1;0;0;191;Vide
+2;Aneth (100kg, P:250,N:200,E:100); ;Côte de Malabar;4;Côte de Malabar;50;;;200;100;0,1;;1;1;0;0;192;Aneth
+5;Cannelle d'Inde; ;Côte de Malabar;4;Europe du nord;72;;;700;250;1;;1;1;0;0;193;Cannelle
+10;Cardamome de Malabar (100kg, P:900,N:750,E:550); ;Côte de Malabar;5;Europe du sud;82;;;750;550;0,1;;1;1;0;0;194;Cardamome
+12;Céleri (100kg, P:250,N:200,E:100); ;Côte de Malabar;3;Afrique orientale (Mozambique à Kenya);84;;;200;100;0,1;;1;1;0;0;195;Céleri
+15;Cumin (100kg, P:500,N:420,E:180); ;Côte de Malabar;4;Madagascar;86;;;420;180;0,1;;1;1;0;0;196;Cumin
+16;Diamants de Wajrakarur (en carats), 60 (Extraordinaire), 30 (Normal), 15 (Grossier); ;Côte de Malabar;2;Mer rouge;88;;;;;;;1;1;0;0;197;Diamants
+20;Fenugrec (100kg, P:250,N:200,E:100); ;Côte de Malabar;4;Siam et Tonkin;91;;;200;100;0,1;;1;1;0;0;198;Fenugrec
+30;Pèlerins pour la Mecque (richesses avec eux) D20 +75; ;Côte de Malabar;10;Chine, Mer de Chine, Corée et Japon;95;;;;;;;20;1;75;0;199;Pèlerins pour la Mecque
+34;Bois de palissandre (1T, P:160,N:140,E:80); ;Côte de Malabar;9;Indonésie et Philippines;100;;;140;80;1;;1;1;0;0;200;Bois de palissandre
+35;Passagers de marque D100 +10; ;Côte de Malabar;2;;;;0;;;;;100;1;10;0;201;Passagers de marque
+41;Pavot (100kg, P:200,N:180,E:10); ;Côte de Malabar;7;;;;;180;10;0,1;;1;1;0;0;202;Pavot
+43;Pièces de monnaie de la vente de marchandises -50 (+40 pour la Compagnie néerlandaise des Indes Occidentales); ;Côte de Malabar;2;;;;0;;;;;1;1;-50;-50;203;Pièces de monnaie (vente de marchandises)
+46;Pièces de monnaie de la vente d’esclaves D100; ;Côte de Malabar;2;;;;0;;;;;100;1;0;0;204;Pièces de monnaie (vente d’esclaves)
+49;Piment naga (100kg, P:150, N:120,E:60); ;Côte de Malabar;3;;;;;120;60;0,1;;1;1;0;0;205;Piment naga
+53;Poivre noir d’Inde; ;Côte de Malabar;8;;;;;1700;1200;1;;1;1;0;0;206;Poivre noir
+57;Poivre blanc de Malabar; ;Côte de Malabar;8;;;;;1700;1200;1;;1;1;0;0;207;Poivre blanc
+61;Poivre de Malabar; ;Côte de Malabar;8;;;;;1700;1200;1;;1;1;0;0;208;Poivre de Malabar
+66;Poivre de Tellicherry; ;Côte de Malabar;8;;;;;1700;1200;1;;1;1;0;0;209;Poivre de Tellicherry
+69;Salpêtre (1T, P:120,N:100,E:50); ;Côte de Malabar;10;;;;;100;50;0,1;;1;1;0;0;210;Salpêtre
+75;Bois de santal (100kg, P:400,N:350,E:250); ;Côte de Malabar;7;;;;;350;250;0,1;;1;1;0;0;211;Bois de santal
+76;Rubis venant de l’intérieur des terres 32 (Extraordinaire), 16 (Normal), 8 (Grossier); ;Côte de Malabar;2;;;;;;;;;1;1;0;0;212;Rubis
+82;Sel; ;Côte de Malabar;9;;;;;285;140;1;;1;1;0;0;213;Sel
+90;Sucre; ;Côte de Malabar;10;;;;;750;450;1;;1;1;0;0;214;Sucre
+92;Mélange tandoori (100kg, P:180,N:150,E:70); ;Côte de Malabar;3;;;;;150;70;0,1;;1;1;0;0;215;Mélange tandoori
+95;Zinc (1T,P:40,N:40,E:40); ;Côte de Malabar;9;;;;;40;40;1;;1;1;0;0;216;Zinc
+97;Déjà pillé par un aventurier; ;Côte de Malabar;10;;;;0;0;0;1;;1;1;0;0;217;Navire déjà pillé
+100;vide; ;Côte de Malabar;10;;;;0;0;0;1;;1;1;0;0;218;Vide
+7;8 bois de construction de Nouvelle-Angleterre; ;Côte est d'amérique du nord;8;Europe du nord;80;;;140;80;1;;1;1;0;0;219;Bois de construction
+16;7 chanvre du Maine;P : 20, N : 15, E : 5;Côte est d'amérique du nord;7;Acadie, baie d'Hudson et terre-neuve;87;;;20;15;5;1;1;1;0;0;220;Chanvre
+26;8 coton de Caroline du Sud; ;Côte est d'amérique du nord;8;Grandes antilles;94;;;150;100;1;;1;1;0;0;221;Huile
+29;5 cuivre du Maine;P : 100, N : 100, E : 100;Côte est d'amérique du nord;5;Petites antilles;100;;;100;100;100;1;1;1;0;0;222;Cuivre
+35;9 fer du Maine; ;Côte est d'amérique du nord;9;;;;;150;100;1;;1;1;0;0;223;Fer
+37;2 indigo de Caroline du Sud; ;Côte est d'amérique du nord;2;;;;;700;600;0,1;;1;1;0;0;224;Indigo
+51;8 maïs; ;Côte est d'amérique du nord;8;;;;;15;10;1;;1;1;0;0;225;Maïs
+52;2 passagers de marque;Mod. de richesse : D100;Côte est d'amérique du nord;2;;;;0;;;;;100;1;0;0;226;Passagers de marque
+65;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +15 (D20+15 dans les ports);Côte est d'amérique du nord;6;;;;0;;;;;1;20;15;15;227;Pièces de monnaie (vente de marchandises)
+73;8 poisson de Nouvelle-Angleterre (à destination des Caraïbes) (1T);P : 5, N : 4, E : 2;Côte est d'amérique du nord;8;;;;;5;4;2;1;1;1;0;0;228;Poisson
+75;7 plomb du Maine;P : 30, N : 30, E : 30;Côte est d'amérique du nord;7;;;;;30;30;30;1;1;1;0;0;229;Plomb
+79;7 riz de Caroline du Sud; ;Côte est d'amérique du nord;7;;;;;300;250;100;1;1;1;0;0;230;Riz
+80;2 safran de Pennsylvanie (depuis 1730); ;Côte est d'amérique du nord;2;;;;;850;700;0,01;;1;1;0;0;231;Safran
+94;6 tabac de Virginie (depuis 1606); ;Côte est d'amérique du nord;6;;;;;500;350;1;;1;1;0;0;232;Tabac
+95;10 déjà pillé par un aventurier; ;Côte est d'amérique du nord;10;;;;0;0;0;1;;1;1;0;0;233;Navire déjà pillé
+100;vide; ;Côte est d'amérique du nord;10;;;;0;0;0;1;;1;1;0;0;234;Vide
+3;7 argent du Guatemala (1733-1753); ;Du guatemala au Panama;7;Nouvelle-Espagne;50;;;;;;;1;1;0;0;235;Argent
+13;9 excellent cacao du Darien (prix × 1,25); ;Du guatemala au Panama;9;Europe du sud;77;;;1000;875;1;;1;1;0;0;236;Cacao
+26;8 maïs; ;Du guatemala au Panama;8;Nord ouest de l'Afrique;85;;;15;10;1;;1;1;0;0;237;Maïs
+28;7 or du Guatemala (1733-1753); ;Du guatemala au Panama;7;Golfe de Guinée;87;;;;;;;1;1;0;0;238;Or
+32;6 passagers de marque;Mod. de richesse : D100;Du guatemala au Panama;6;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);88;;0;;;;;100;1;0;0;239;Passagers de marque
+48;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+60 dans les ports);Du guatemala au Panama;6;Madagascar;100;;0;;;;;1;1;30;60;240;Pièces de monnaie (vente de marchandises)
+72;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100+5;Du guatemala au Panama;10;;;;0;;;;;100;1;5;0;241;Pièces de monnaie (vente d’esclaves)
+85;9 sel de Panama; ;Du guatemala au Panama;9;;;;;285;140;1;;1;1;0;0;242;Sel
+88;10 déjà pillé par un aventurier; ;Du guatemala au Panama;10;;;;0;0;0;1;;1;1;0;0;243;Navire déjà pillé
+100;vide; ;Du guatemala au Panama;10;;;;0;0;0;1;;1;1;0;0;244;Vide
+13;8 excellent café d’Égypte (prix × 1,25); ;Egypte;8;;;;;812,5;275;1;;1;1;0;0;245;Café
+24;4 carvi d’Égypte (1T) (P : 600, N : 500, E : 200); ;Egypte;4;;;;;600;500;200;1;1;1;0;0;246;Carvi
+34;7 indigo d’Égypte; ;Egypte;7;;;;;700;600;0,1;;1;1;0;0;247;Indigo
+41;5 oliban de Haute Égypte (sève cristallisée de l'arbre à encens) (100kg) (P : 140, N : 120, E : 40); ;Egypte;5;;;;;140;120;40;1;1;1;0;0;248;Oliban
+47;2 passagers de marque (Mod. de richesse : D100-5); ;Egypte;2;;;;0;;;;;100;1;-5;-5;249;Passagers de marque
+65;7 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +20 (+30 dans les ports)); ;Egypte;7;;;;0;;;;;1;1;20;30;250;Pièces de monnaie (vente de marchandises)
+73;10 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100-10); ;Egypte;10;;;;0;;;;;1;1;0;0;251;Pièces de monnaie (vente d’esclaves)
+90;10 riz du Nil (Égypte); ;Egypte;10;;;;;300;250;100;1;1;1;0;0;252;Riz
+93;10 déjà pillé par un aventurier; ;Egypte;10;;;;0;0;0;1;;1;1;0;0;253;Navire déjà pillé
+100;vide; ;Egypte;10;;;;0;0;0;1;;1;1;0;0;254;Vide
+1;3 bas de soie et de laine; ;Europe du nord;3;Europe du nord;25;;;1500;1400;1;;1;1;0;0;255;Bas de soie et de laine
+3;9 blé d’Europe du nord; ;Europe du nord;9;Europe du sud;50;;;60;50;;;1;1;0;0;256;Blé
+7;8 bois de construction d’Europe du nord; ;Europe du nord;8;;;;;140;80;1;;1;1;0;0;257;Bois de construction
+17;7 caisses de clous (50kg);P : 21, N : 14, E : 7;Europe du nord;7;;;;;14;7;1;;1;1;0;0;258;Clous
+18;3 caisses de livres non-précieux;P : 120, N : 80, E : 60;Europe du nord;3;;;;;80;60;1;;1;1;0;0;259;Livres non précieux
+19;2 caisses de livres précieux;P : 1000, N : 900, E : NA;Europe du nord;2;;;;;900;0;1;;1;1;0;0;260;Livres précieux
+21;5 calvados de France; ;Europe du nord;5;;;;;;;;;1;1;0;0;261;Calvados
+22;2 chapeaux; ;Europe du nord;2;;;;;;;;;1;1;0;0;262;Chapeaux
+23;3 cire blanche d’Allemagne (1T);P : 175, N : 150, E : 100;Europe du nord;3;;;;;150;100;1;;1;1;0;0;263;Cire blanche
+26;9 cuivre de Cornouailles; ;Europe du nord;9;;;;;;;;;1;1;0;0;264;Cuivre
+30;8 délinquants (vers le Nouveau Monde); ;Europe du nord;8;;;;;;;;;1;1;0;0;265;Délinquants
+31;4 dentelles, tissus d’or et d’argent; ;Europe du nord;4;;;;;550;400;1;;1;1;0;0;266;Dentelles et tissus précieux
+36;9 fer de Lorraine ou de Clermont-Ferrand, brut ou ouvré : socs de charrues, fers à cheval par milliers de douzaines; ;Europe du nord;9;;;;;150;100;1;;1;1;0;0;267;Fer
+43;10 or ou argent pour les Indes Orientales (East Indianman seulement);Mod. de richesse : +80;Europe du nord;10;;;;;;;;;1;1;80;0;268;Or et argent
+49;10 outils pour les colonies (1T);P : 200, N : 150, E : 100;Europe du nord;10;;;;;150;100;1;;1;1;0;0;269;Huile
+57;2 pacotille pour l’achat d’esclaves (par esclave);P : 6, N : 4, E : 3;Europe du nord;2;;;;;4;3;1;;1;1;0;0;270;Esclaves
+59;4 papier de France; ;Europe du nord;4;;;;;;;;;1;1;0;0;271;Papier
+61;1 passagers de marque;Mod. de richesse : +D100-10;Europe du nord;1;;;;0;;;;;100;1;-10;-10;272;Passagers de marque
+63;9 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +20 (D100+20 dans les ports);Europe du nord;9;;;;0;;;;;1;100;20;20;273;Pièces de monnaie (vente de marchandises)
+67;8 convoi exceptionnel d’exemplaires uniques de pièces de monnaies;Mod. de richesse : -10;Europe du nord;8;;;;0;;;;;1;1;-10;-10;274;Pièces de monnaie exceptionnelles
+71;8 prostituées (vers le Nouveau Monde); ;Europe du nord;8;;;;;;;;;1;1;0;0;275;Prostituées
+73;9 salpêtre (1T);P : 120, N : 100, E : 50;Europe du nord;9;;;;;100;50;1;;1;1;0;0;276;Salpêtre
+77;9 sel de Bretagne ou de Pologne; ;Europe du nord;9;;;;;285;140;1;;1;1;0;0;277;Sel
+78;1 silex du Danemark, d’Alsace ou de Clermont-Ferrand (10kg);P : 800, N : 800, E : NA (interdit à la vente à l’étranger);Europe du nord;1;;;;;800;100;0,01;;1;1;0;0;278;Fer
+81;10 toiles de Rouen, de Bretagne ou de Hollande, ou draps de France ou d’Angleterre; ;Europe du nord;10;;;;;300;150;1;;1;1;0;0;279;Huile
+83;3 trousses de soin, avec simples, trépan et instruments de chirurgie; ;Europe du nord;3;;;;;;;;;1;1;0;0;280;Trousses de soin
+86;6 vêtements à la mode; ;Europe du nord;6;;;;;;;;;1;1;0;0;281;Vêtements à la mode
+89;5 vêtements de roturiers; ;Europe du nord;5;;;;;;;;;1;1;0;0;282;Vêtements de roturiers
+92;8 vin l’Alsace et de Bourgogne; ;Europe du nord;8;;;;;300;200;1;;1;1;0;0;283;Vin
+94;6 whisky d’Écosse ou d’Irlande; ;Europe du nord;6;;;;;;;;;1;1;0;0;284;Whisky
+95;10 déjà pillé par un aventurier; ;Europe du nord;10;;;;0;0;0;1;;1;1;0;0;285;Navire déjà pillé
+100;vide; ;Europe du nord;10;;;;0;0;0;1;;1;1;0;0;286;Vide
+1;2 bas de soie et de laine; ;Europe du sud;2;;;;;1500;1400;1;;1;1;0;0;287;Bas de soie et de laine
+3;7 caisses de clous (50kg);P : 21, N : 14, E : 7;Europe du sud;7;;;;;21;14;7;0,02;1;1;0;0;288;Clous
+8;3 caisses de livres non-précieux;P : 120, N : 80, E : 60;Europe du sud;3;;;;;120;80;60;1;1;1;0;0;289;Livres non précieux
+9;2 caisses de livres précieux;P : 1000, N : 900, E : NA;Europe du sud;2;;;;;1000;900;;1;1;1;0;0;290;Livres précieux
+10;2 chapeaux; ;Europe du sud;2;;;;;;;;;1;1;0;0;291;Chapeaux
+14;8 délinquants (vers le Nouveau Monde); ;Europe du sud;8;;;;;;;;;1;1;0;0;292;Délinquants
+15;4 dentelles, tissus d’or et d’argent; ;Europe du sud;4;;;;;550;400;1;;1;1;0;0;293;Dentelles et tissus précieux
+18;10 draps de France; ;Europe du sud;10;;;;;300;150;1;;1;1;0;0;294;Draps
+23;5 eau de vie; ;Europe du sud;5;;;;;;;;;1;1;0;0;295;Eau-de-vie
+25;7 fer d’Ávila brut (utilisé notamment pour forger les armes de Tolède);prix × 2;Europe du sud;7;;;;;300;200;1;;1;1;0;0;296;Fer
+28;9 fer de Biscaye (France), de Rio Tinto (Espagne) ou d’Ávila (utilisé à Tolède), brut ou ouvré : socs de charrues, fers à cheval par milliers de douzaines; ;Europe du sud;9;;;;;150;100;1;;1;1;0;0;297;Fer
+29;8 huile d’olive et fruits secs de la campagne andalouse (1T);P : 60, N : 50, E : 40;Europe du sud;8;;;;;60;50;40;1;1;1;0;0;298;Huile
+31;10 lin des Asturies; ;Europe du sud;10;;;;;;;;;1;1;0;0;299;Lin
+34;10 mercure d’Almadén (Espagne) (100kg);P : 50000, N : 50000, E : 20000;Europe du sud;10;;;;;50000;50000;20000;0,1;1;1;0;0;300;Mercure
+39;10 or ou argent pour les Indes Orientales;Mod. de richesse : +100;Europe du sud;10;;;;;;;;;1;1;100;0;301;Or et argent
+45;2 outils (1T);P : 300, N : 200, E : 150;Europe du sud;2;;;;;200;150;1;;1;1;0;0;302;Outils
+51;4 pacotille pour l’achat d’esclaves (par esclave);P : 6, N : 4, E : 3;Europe du sud;4;;;;;6;4;3;1;1;1;0;0;303;Esclaves
+53;1 papier de France; ;Europe du sud;1;;;;;;;;;1;1;0;0;304;Papier
+56;2 passagers de marque;Mod. de richesse : +D100-10;Europe du sud;2;;;;0;;;;;100;1;-10;-10;305;Passagers de marque
+58;9 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (D100+30 dans les ports);Europe du sud;9;;;;0;;;;;1;100;30;30;306;Pièces de monnaie (vente de marchandises)
+60;9 pimentons de la Vera (Espagne) (1T);P : 100, N : 80, E : 50;Europe du sud;9;;;;;100;80;50;1;1;1;0;0;307;Piment
+63;8 poivre d’Espagne (piment doux) (1T);P : 80, N : 70, E : 40;Europe du sud;8;;;;;70;40;1;;1;1;0;0;308;Poivre d’Espagne
+67;9 prostituées (vers le Nouveau Monde); ;Europe du sud;9;;;;;;;;;1;1;0;0;309;Prostituées
+70;9 salpêtre (1T);P : 120, N : 100, E : 50;Europe du sud;9;;;;;120;100;50;1;1;1;0;0;310;Salpêtre
+73;9 sel de Cardonne (Espagne); ;Europe du sud;9;;;;;285;140;1;;1;1;0;0;311;Sel
+76;9 sel de Vendée; ;Europe du sud;9;;;;;285;140;1;;1;1;0;0;312;Sel
+77;1 silex du Poitou (10kg);P : 800, N : 800, E : NA (interdit à la vente à l’étranger);Europe du sud;1;;;;;800;800;;1;1;1;0;0;313;Silex
+80;8 sucre des Canaries (Espagne); ;Europe du sud;8;;;;;750;450;1;;1;1;0;0;314;Sucre
+82;3 trousses de soin, avec simples, trépan et instruments de chirurgie; ;Europe du sud;3;;;;;;;;;1;1;0;0;315;Trousses de soin
+85;6 vêtements à la mode; ;Europe du sud;6;;;;;;;;;1;1;0;0;316;Vêtements à la mode
+88;5 vêtements de roturiers; ;Europe du sud;5;;;;;;;;;1;1;0;0;317;Vêtements de roturiers
+94;4 vin de Madère ou de Bordeaux; ;Europe du sud;4;;;;;900;450;1;;1;1;0;0;318;Vin
+95;10 déjà pillé par un aventurier; ;Europe du sud;10;;;;0;0;0;1;;1;1;0;0;319;Navire déjà pillé
+100;vide; ;Europe du sud;10;;;;0;0;0;1;;1;1;0;0;320;Vide
+2;1 bas de soie et de laine; ;Europe méditerranéenne;1;;;;;1500;1400;1;;1;1;0;0;321;Bas de soie et de laine
+4;3 caisses de livres non-précieux;P : 120, N : 80, E : 60;Europe méditerranéenne;3;;;;;120;80;60;1;1;1;0;0;322;Livres non précieux
+5;2 caisses de livres précieux;P : 1000, N : 900, E : NA;Europe méditerranéenne;2;;;;;1000;900;;1;1;1;0;0;323;Livres précieux
+7;2 chapeaux; ;Europe méditerranéenne;2;;;;;;;;;1;1;0;0;324;Chapeaux
+13;4 cire blanche du Levant (1T);P : 175, N : 150, E : 100;Europe méditerranéenne;4;;;;;175;150;100;1;1;1;0;0;325;Cire blanche
+16;7 cotonnine de la Méditerranée (1T);P : 500, N : 450, E : 400;Europe méditerranéenne;7;;;;;150;100;1;;1;1;0;0;326;Coton
+18;4 dentelles, tissus d’or et d’argent; ;Europe méditerranéenne;4;;;;;550;400;1;;1;1;0;0;327;Dentelles et tissus précieux
+26;9 fer des Alpes, brut ou ouvré : socs de charrues, fers à cheval par milliers de douzaines; ;Europe méditerranéenne;9;;;;;150;100;1;;1;1;0;0;328;Fer
+30;8 huile d’olive et fruits secs de la campagne andalouse (1T);P : 60, N : 50, E : 40;Europe méditerranéenne;8;;;;;60;50;40;1;1;1;0;0;329;Huile
+34;4 papier de Gênes; ;Europe méditerranéenne;4;;;;;;;;;1;1;0;0;330;Papier
+42;6 paprika de Hongrie (1T);P : 1000, N : 700, E : 600;Europe méditerranéenne;6;;;;;1000;700;600;1;1;1;0;0;331;Paprika de Hongrie
+44;2 passagers de marque;Mod. de richesse : D100-10;Europe méditerranéenne;2;;;;0;;;;;100;1;-10;-10;332;Passagers de marque
+47;9 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +20 (2D20+30 dans les ports);Europe méditerranéenne;9;;;;0;;;;;1;40;20;30;333;Pièces de monnaie (vente de marchandises)
+53;8 poivre d’Espagne (piment doux) (1T);P : 80, N : 70, E : 40;Europe méditerranéenne;8;;;;;70;40;1;;1;1;0;0;334;Poivre d’Espagne
+55;9 sel de Cardonne (Espagne); ;Europe méditerranéenne;9;;;;;285;140;1;;1;1;0;0;335;Sel
+60;9 sel de Hongrie; ;Europe méditerranéenne;9;;;;;285;140;1;;1;1;0;0;336;Sel
+65;9 sel noir de Chypre; ;Europe méditerranéenne;9;;;;;285;140;1;;1;1;0;0;337;Sel
+69;8 sucre des Baléares (Espagne); ;Europe méditerranéenne;8;;;;;750;450;1;;1;1;0;0;338;Sucre
+71;6 tissus nobles : velours, serges, étamines d’Italie; ;Europe méditerranéenne;6;;;;;;;;;1;1;0;0;339;Tissus nobles
+77;3 trousses de soin, avec simples, trépan et instruments de chirurgie; ;Europe méditerranéenne;3;;;;;;;;;1;1;0;0;340;Trousses de soin
+81;6 vêtements à la mode; ;Europe méditerranéenne;6;;;;;;;;;1;1;0;0;341;Vêtements à la mode
+88;5 vêtements de roturiers; ;Europe méditerranéenne;5;;;;;;;;;1;1;0;0;342;Vêtements de roturiers
+94;5 vin de Hongrie; ;Europe méditerranéenne;5;;;;;100;80;1;;1;1;0;0;343;Vin
+95;10 déjà pillé par un aventurier; ;Europe méditerranéenne;10;;;;0;0;0;1;;1;1;0;0;344;Navire déjà pillé
+100;vide; ;Europe méditerranéenne;10;;;;0;0;0;1;;1;1;0;0;345;Vide
+4;9 acajou de Guinée (1T) (P : 300, N : 250, E : 150); ;Golfe de Guinée;9;;;;;300;250;150;1;1;1;0;0;346;Acajou
+7;10 coton du Delta du Niger (Côte de Guinée); ;Golfe de Guinée;10;;;;;150;100;1;;1;1;0;0;347;Coton
+16;8 défenses d’éléphants de la Côte de l’Ivoire (Guinée); ;Golfe de Guinée;8;;;;;900;300;1;;1;1;0;0;348;Défenses d’éléphant
+17;2 diamants (carré du nombre de carats × Extraordinaire : 50, Normal : 25, Grossier : 10); ;Golfe de Guinée;2;;;;;;;;;1;1;0;0;349;Diamants
+20;9 ébène de la Côte des Princes (ex-Gabon) (1T) (P : 160, N : 140, E : 80); ;Golfe de Guinée;9;;;;;160;140;80;1;1;1;0;0;350;Ébène
+65;10 esclaves noirs (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Golfe de Guinée;10;;;;;;;;0,5;1;1;0;0;351;Esclaves
+68;6 gingembre du Bénin (1T) (P : 600, N : 500, E : 150); ;Golfe de Guinée;6;;;;;600;500;150;1;1;1;0;0;352;Gingembre
+70;7 maïs du Golfe de Guinée; ;Golfe de Guinée;7;;;;;15;10;1;;1;1;0;0;353;Maïs
+72;7 indigo du Delta du Niger (Côte de Guinée); ;Golfe de Guinée;7;;;;;700;600;0,1;;1;1;0;0;354;Indigo
+73;2 passagers de marque (Mod. de richesse : D100); ;Golfe de Guinée;2;;;;0;;;;;100;1;0;0;355;Passagers de marque
+75;2 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +10 (+40 dans les comptoirs)); ;Golfe de Guinée;2;;;;0;;;;;1;1;10;40;356;Pièces de monnaie (vente de marchandises)
+83;2 poudre d’or de Guinée (dont le Delta du Niger); ;Golfe de Guinée;2;;;;;950;900;0,01;;1;1;0;0;357;Or
+85;4 oseille de Guinée (1T) (P : 200, N : 150, E : 40); ;Golfe de Guinée;4;;;;;200;150;40;1;1;1;0;0;358;Oseille de Guinée
+86;3 piment oiseau et piment pili-pili du Bénin (1T) (P : 200, N : 150, E : 80); ;Golfe de Guinée;3;;;;;200;150;80;1;1;1;0;0;359;Piment
+88;4 piment noir de Guinée (1T) (P : 150, N : 120, E : 60); ;Golfe de Guinée;4;;;;;150;120;60;1;1;1;0;0;360;Piment
+91;7 poivre blanc, noir ou vert du Bénin; ;Golfe de Guinée;7;;;;;1700;1200;1;;1;1;0;0;361;Poivre blanc
+94;9 sel du Delta du Niger (Guinée); ;Golfe de Guinée;9;;;;;285;140;1;;1;1;0;0;362;Sel
+97;10 déjà pillé par un aventurier; ;Golfe de Guinée;10;;;;0;0;0;1;;1;1;0;0;363;Navire déjà pillé
+100;vide; ;Golfe de Guinée;10;;;;0;0;0;1;;1;1;0;0;364;Vide
+1;7 acajou de Cuba (1T);P : 350, N : 300, E : 200;Grandes antilles;7;Grandes antilles;50;;;350;300;100;1;1;1;0;0;365;Acajou
+2;2 animaux exotiques (perroquet, singe, toucan); ;Grandes antilles;2;Europe du nord;59;;;;;;;1;1;0;0;366;Animaux exotiques
+8;8 café d’Hispaniola (faible production depuis 1721, production forte et croissante depuis 1755); ;Grandes antilles;8;Europe du sud;78;;;650;220;1;;1;1;0;0;367;Café
+16;8 café de Cuba (depuis la fin du XVIIIe siècle); ;Grandes antilles;8;Nord ouest de l'Afrique;85;;;650;220;1;;1;1;0;0;368;Café
+21;8 café de la Jamaïque (croissante depuis 1728); ;Grandes antilles;8;Golfe de Guinée;93;;;650;220;1;;1;1;0;0;369;Café
+29;8 coton d’Hispaniola (production croissante depuis 1740 et très forte depuis 1764); ;Grandes antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;150;100;1;;1;1;0;0;370;Huile
+33;7 cuir d’Hispaniola et de La Tortue (1630-1700); ;Grandes antilles;7;Madagascar;100;;;300;200;1;;1;1;0;0;371;Huile
+35;2 gingembre de Puerto Rico (1T);P : 600, N : 500, E : 150;Grandes antilles;2;;;;;600;500;150;1;1;1;0;0;372;Gingembre
+36;2 passagers de marque;Mod. de richesse : +D100+5;Grandes antilles;2;;;;0;;;;;100;1;5;0;373;Passagers de marque
+45;2 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+60 dans les ports);Grandes antilles;2;;;;0;;;;;1;1;30;60;374;Pièces de monnaie (vente de marchandises)
+56;5 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100+20;Grandes antilles;5;;;;0;;;;;100;1;20;0;375;Pièces de monnaie (vente d’esclaves)
+59;4 piment antillais (1T);P : 150, N : 120, E : 60;Grandes antilles;4;;;;;150;120;60;1;1;1;0;0;376;Piment
+62;4 piment de la Jamaïque (1T);P : 150, N : 120, E : 60;Grandes antilles;4;;;;;150;120;60;1;1;1;0;0;377;Piment
+64;6 sel d’Hispaniola; ;Grandes antilles;6;;;;;285;140;1;;1;1;0;0;378;Sel
+82;9 sucre (depuis le milieu du XVIIe siècle); ;Grandes antilles;9;;;;;750;450;1;;1;1;0;0;379;Sucre
+85;6 tabac de La Tortue (1630-1700); ;Grandes antilles;6;;;;;500;350;1;;1;1;0;0;380;Tabac
+94;6 tabac des Grandes Antilles; ;Grandes antilles;6;;;;;500;350;1;;1;1;0;0;381;Tabac
+95;4 tortue des Îles Caymans (1T);P : 120, N : 100, E : 60;Grandes antilles;4;;;;;120;100;60;1;1;1;0;0;382;Tortue des Îles Caymans
+96;10 déjà pillé par un aventurier; ;Grandes antilles;10;;;;0;0;0;1;;1;1;0;0;383;Navire déjà pillé
+100;vide; ;Grandes antilles;10;;;;0;0;0;1;;1;1;0;0;384;Vide
+27;9 indigo du Guatemala (Côte Pacifique); ;Guatemala, Costa Rica Panama;9;Nouvelle-Espagne;50;;;700;600;0,1;;1;1;0;0;385;Indigo
+30;10 passagers de marque (Mod. de richesse : D100); ;Guatemala, Costa Rica Panama;10;Europe du sud;77;;0;;;;;100;1;0;0;386;Passagers de marque
+38;10 perles de l’Île San Juan de Coiba (1kg) (P : 10000, N : 9000, E : 2000); ;Guatemala, Costa Rica Panama;10;Nord ouest de l'Afrique;85;;;10000;9000;2000;0,001;1;1;0;0;387;Perles
+78;5 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +30 (+60 dans les ports)); ;Guatemala, Costa Rica Panama;5;Golfe de Guinée;86;;0;;;;;1;1;30;60;388;Pièces de monnaie (vente de marchandises)
+88;5 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100); ;Guatemala, Costa Rica Panama;5;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);88;;0;;;;;100;1;0;0;389;Pièces de monnaie (vente d’esclaves)
+90;10 déjà pillé par un aventurier; ;Guatemala, Costa Rica Panama;10;Madagascar;100;;0;0;0;1;;1;1;0;0;390;Navire déjà pillé
+100;vide; ;Guatemala, Costa Rica Panama;10;;;;0;0;0;1;;1;1;0;0;391;Vide
+1;Aloès des Philippines (1T);200, 180, 120;Indonésie et Philippines;3;;;;;200;180;120;1;1;1;0;0;392;Aloès des Philippines
+2;Ambre gris de Nouvelle-Calédonie;N/A;Indonésie et Philippines;4;;;;;950;900;0,01;;1;1;0;0;393;Ambre gris
+3;Animaux exotiques de Sumatra;N/A;Indonésie et Philippines;1;;;;;;;;;1;1;0;0;394;Animaux exotiques
+4;Bois de fer des Philippines (1T);200, 180, 120;Indonésie et Philippines;8;;;;;180;120;1;;1;1;0;0;395;Bois
+6;Bois de Campêche des Philippines;N/A;Indonésie et Philippines;8;;;;;180;50;1;;1;1;0;0;396;Bois
+8;Bois précieux des Célèbes;N/A;Indonésie et Philippines;8;;;;;180;50;1;;1;1;0;0;397;Bois précieux des Célèbes
+11;Cacao;N/A;Indonésie et Philippines;7;;;;;800;700;1;;1;1;0;0;398;Cacao
+14;Café de Java ou Batavia;N/A (dispo à partir de 1658 et 1690);Indonésie et Philippines;7;;;;;650;220;1;;1;1;0;0;399;Café
+16;Camphre de Bornéo (100kg);280, 220, 80;Indonésie et Philippines;4;;;;;280;220;80;0,1;1;1;0;0;400;Camphre de Bornéo
+18;Cannelle de Java;N/A;Indonésie et Philippines;3;;;;;700;250;1;;1;1;0;0;401;Cannelle
+21;Cèdre des Philippines (1T);50, 40, 10;Indonésie et Philippines;7;;;;;50;40;10;1;1;1;0;0;402;Cèdre des Philippines
+31;Clous de girofle des Moluques;N/A (seul producteur jusqu’au XVIIIe);Indonésie et Philippines;6;;;;;800;700;0,1;;1;1;0;0;403;Clous de girofle
+33;Cuivre de Bornéo (1T);100, 100, 100;Indonésie et Philippines;8;;;;;100;100;100;1;1;1;0;0;404;Cuivre
+34;Diamants de Kalimantan (Bornéo);(carré des carats × Extraordinaire : 50, Normal : 25, Grossier : 10);Indonésie et Philippines;2;;;;;;;;;1;1;0;0;405;Diamants
+35;Diamants de Malacca;(idem Kalimantan);Indonésie et Philippines;2;;;;;;;;;1;1;0;0;406;Diamants
+38;Ébène de Makassar (1T);160, 140, 80;Indonésie et Philippines;7;;;;;160;140;80;1;1;1;0;0;407;Ébène
+41;Ébène des Philippines (1T);160, 140, 80;Indonésie et Philippines;7;;;;;160;140;80;1;1;1;0;0;408;Ébène
+43;Gingembre de Malacca (1T);600, 500, 150;Indonésie et Philippines;4;;;;;600;500;150;1;1;1;0;0;409;Gingembre
+45;Macis des Moluques;1600, 1500, 1000;Indonésie et Philippines;3;;;;;1600;1500;1000;1;1;1;0;0;410;Huile
+46;Mercure des Philippines (100kg);50000, 50000, 20000;Indonésie et Philippines;10;;;;;50000;50000;20000;0,1;1;1;0;0;411;Mercure
+49;Muscade de Batavia;N/A;Indonésie et Philippines;5;;;;;1000;700;0,1;;1;1;0;0;412;Muscade de Batavia
+52;Muscade de Malacca;N/A;Indonésie et Philippines;5;;;;;1000;700;0,1;;1;1;0;0;413;Muscade de Malacca
+57;Muscade des Moluques;N/A;Indonésie et Philippines;5;;;;;1000;700;0,1;;1;1;0;0;414;Huile
+58;Or de Bornéo;N/A;Indonésie et Philippines;7;;;;;1000;950;900;0,01;1;1;0;0;415;Or
+59;Pépites d’or de Malacca;N/A;Indonésie et Philippines;4;;;;;1000;950;900;0,01;1;1;0;0;416;Or
+60;Or de Papouasie;N/A;Indonésie et Philippines;5;;;;;1000;950;900;0,01;1;1;0;0;417;Or
+61;Or des Philippines;N/A;Indonésie et Philippines;5;;;;;1000;950;900;0,01;1;1;0;0;418;Or
+62;Passagers de marque;Mod. de richesse : D100;Indonésie et Philippines;2;;;;0;;;;;100;1;0;0;419;Passagers de marque
+63;Peaux d’animaux exotiques de Sumatra (1T);3000, 1800, 700;Indonésie et Philippines;7;;;;;3000;1800;700;1;1;1;0;0;420;Animaux exotiques
+66;Perles de Palawan (Philippines, 1kg);10000, 9000, 2000;Indonésie et Philippines;3;;;;;10000;9000;2000;0,001;1;1;0;0;421;Perles
+70;Perles de Tahiti (1kg);10000, 9000, 2000;Indonésie et Philippines;3;;;;;10000;9000;2000;0,001;1;1;0;0;422;Perles
+74;Pièces de monnaie (marchandises);Mod. de richesse : -50 (+40 pour la Cie néerlandaise);Indonésie et Philippines;2;;;;0;;;;;1;1;-50;-50;423;Pièces de monnaie
+75;Pierres fines de Malacca (1kg);Extraordinaire : 20000, Normal : 10000, Grossier : 5000;Indonésie et Philippines;2;;;;;20000;10000;5000;0,001;1;1;0;0;424;Pierres fines
+76;Pierres fines des Philippines (1kg);Extraordinaire : 20000, Normal : 10000, Grossier : 5000;Indonésie et Philippines;2;;;;;20000;10000;5000;0,001;1;1;0;0;425;Pierres fines
+78;Poivre de Bornéo;N/A;Indonésie et Philippines;9;;;;;1700;1200;1;;1;1;0;0;426;Poivre de Bornéo
+79;Poivre de Malacca;N/A;Indonésie et Philippines;7;;;;;1700;1200;1;;1;1;0;0;427;Poivre de Malacca
+80;Poivre à queue de Java;N/A;Indonésie et Philippines;7;;;;;1700;1200;1;;1;1;0;0;428;Poivre à queue de Java
+83;Poivre blanc ou noir de Bornéo;(considéré comme le meilleur au monde);Indonésie et Philippines;10;;;;;1700;1200;1;;1;1;0;0;429;Poivre blanc
+84;Poivre blanc d’Indonésie;N/A;Indonésie et Philippines;6;;;;;1700;1200;1;;1;1;0;0;430;Poivre blanc
+85;Poivre blanc de Muntok;N/A;Indonésie et Philippines;6;;;;;1700;1200;1;;1;1;0;0;431;Poivre blanc
+86;Poivre de Tasmanie;N/A;Indonésie et Philippines;6;;;;;1700;1200;1;;1;1;0;0;432;Poivre de Tasmanie
+87;Poivre long de Java;N/A;Indonésie et Philippines;6;;;;;1700;1200;1;;1;1;0;0;433;Poivre long de Java
+88;Poivre noir de Bali ou Lampong;N/A;Indonésie et Philippines;6;;;;;1700;1200;1;;1;1;0;0;434;Poivre noir
+90;Riz;N/A;Indonésie et Philippines;8;;;;;300;250;100;1;1;1;0;0;435;Riz
+91;Bois de santal de Bornéo (100kg);400, 350, 250;Indonésie et Philippines;7;;;;;350;250;0,1;;1;1;0;0;436;Bois de santal
+92;Bois de santal des Philippines (100kg);400, 350, 250;Indonésie et Philippines;7;;;;;350;250;0,1;;1;1;0;0;437;Bois de santal
+95;Tabac des Philippines;N/A;Indonésie et Philippines;8;;;;;500;350;1;;1;1;0;0;438;Tabac
+96;Vanille des Philippines (1T);1400, 1200, 800 (dispo après 1724);Indonésie et Philippines;3;;;;;1400;1200;800;1;1;1;0;0;439;Vanille
+99;Déjà pillé par un aventurier;N/A;Indonésie et Philippines;10;;;;0;0;0;1;;1;1;0;0;440;Navire déjà pillé
+100;vide;N/A;Indonésie et Philippines;10;;;;0;0;0;1;;1;1;0;0;441;Vide
+5;5 acajou de Madagascar (peu exploité) (1T) (P : 300, N : 250, E : 150); ;Madagascar;5;;;;;300;250;150;1;1;1;0;0;442;Acajou
+8;5 aloès de Madagascar (peu exploité) (1T) (P : 200, N : 180, E : 120); ;Madagascar;5;;;;;200;180;120;1;1;1;0;0;443;Aloès de Madagascar
+13;7 ambre gris; ;Madagascar;7;;;;;950;900;0,01;;1;1;0;0;444;Ambre gris
+16;4 benjoin de Madagascar (peu exploité) (1T) (P : 1000, N : 900, E : 400); ;Madagascar;4;;;;;1000;900;400;1;1;1;0;0;445;Benjoin de Madagascar
+20;8 cannelle de Madagascar; ;Madagascar;8;;;;;700;250;1;;1;1;0;0;446;Cannelle
+23;5 cèdre de Madagascar (peu exploité) (1T) (P : 50, N : 40, E : 10); ;Madagascar;5;;;;;50;40;10;1;1;1;0;0;447;Cèdre de Madagascar
+25;3 clous de girofle de Madagascar; ;Madagascar;3;;;;;800;700;0,1;;1;1;0;0;448;Clous de girofle
+30;4 citron combava de Madagascar (1T) (P : 200, N : 180, E : 50); ;Madagascar;4;;;;;200;180;50;1;1;1;0;0;449;Citron combava
+35;7 coton de Madagascar; ;Madagascar;7;;;;;150;100;1;;1;1;0;0;450;Coton
+41;8 ébène de Madagascar (1T) (P : 160, N : 140, E : 80); ;Madagascar;8;;;;;160;140;80;1;1;1;0;0;451;Ébène
+71;10 esclaves de Madagascar (3D20 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Madagascar;10;;;;;;;;0,3;1;1;0;0;452;Esclaves
+74;5 gingembre de Madagascar (1T) (P : 600, N : 500, E : 150); ;Madagascar;5;;;;;600;500;150;1;1;1;0;0;453;Gingembre
+78;7 gommes de Madagascar (1T) (P : 50, N : 30, E : 10); ;Madagascar;7;;;;;50;30;10;1;1;1;0;0;454;Gommes de Madagascar
+81;6 indigo de Madagascar; ;Madagascar;6;;;;;700;600;0,1;;1;1;0;0;455;Indigo
+82;1 pièce de monnaie résultant de la vente de marchandises (Mod. de richesse : -40); ;Madagascar;1;;;;0;;;;;1;1;-40;-40;456;Pièces de monnaie (vente de marchandises)
+87;4 poivre rouge de Voatsiperifery (Madagascar); ;Madagascar;4;;;;;1700;1200;1;;1;1;0;0;457;Fer
+88;1 rubis de Madagascar (carré du nombre de carats × Extraordinaire : 32, Normal : 16, Grossier : 8); ;Madagascar;1;;;;;;;;;1;1;0;0;458;Rubis
+92;2 samsam (colliers d’agate) du Royaume de Bataw (Madagascar) (100kg) (P : 180, N : 160, E : 30); ;Madagascar;2;;;;;180;160;30;0,1;1;1;0;0;459;Samsam
+95;5 vanille de Madagascar (à partir de 1820) (1T) (P : 1400, N : 1200, E : 800); ;Madagascar;5;;;;;1400;1200;800;1;1;1;0;0;460;Vanille
+98;10 déjà pillé par un aventurier; ;Madagascar;10;;;;0;0;0;1;;1;1;0;0;461;Navire déjà pillé
+100;vide; ;Madagascar;10;;;;0;0;0;1;;1;1;0;0;462;Vide
+8;4 ambre gris du Maghreb; ;Maghreb;4;;;;;950;900;0,01;;1;1;0;0;463;Ambre gris
+23;8 café du Maghreb; ;Maghreb;8;;;;;650;220;1;;1;1;0;0;464;Café
+33;6 coriandre du Maroc (1T) (P : 500, N : 420, E : 180); ;Maghreb;6;;;;;500;420;180;1;1;1;0;0;465;Coriandre du Maroc
+40;6 cumin du Maghreb (100kg) (P : 300, N : 250, E : 100); ;Maghreb;6;;;;;300;250;100;0,1;1;1;0;0;466;Cumin
+45;10 esclaves chrétiens (2D20 esclaves pour 100 tonneaux utiles du navire); ;Maghreb;10;;;;;;;;0,2;1;1;0;0;467;Esclaves
+50;2 passagers de marque (Mod. de richesse : D100-10); ;Maghreb;2;;;;0;;;;;100;1;-10;-10;468;Passagers de marque
+70;7 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +5 (+10 dans les ports)); ;Maghreb;7;;;;0;;;;;1;1;5;10;469;Pièces de monnaie (vente de marchandises)
+90;10 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100-20); ;Maghreb;10;;;;0;;;;;100;1;-20;-20;470;Pièces de monnaie (vente d’esclaves)
+93;10 déjà pillé par un aventurier; ;Maghreb;10;;;;0;0;0;1;;1;1;0;0;471;Navire déjà pillé
+100;vide; ;Maghreb;10;;;;0;0;0;1;;1;1;0;0;472;Vide
+12;4 cire blanche du Levant (1T) (P : 175, N : 150, E : 100); ;Méditérranée orientale;4;;;;;175;150;100;1;1;1;0;0;473;Cire blanche
+22;6 curcuma (100kg) (P : 250, N : 200, E : 100); ;Méditérranée orientale;6;;;;;250;200;100;0,1;1;1;0;0;474;Curcuma
+31;5 fenouil de Turquie (1T) (P : 175, N : 150, E : 100); ;Méditérranée orientale;5;;;;;175;150;100;1;1;1;0;0;475;Fenouil de Turquie
+41;7 origan de Turquie (100kg) (P : 250, N : 200, E : 100); ;Méditérranée orientale;7;;;;;250;200;100;0,1;1;1;0;0;476;Origan de Turquie
+42;2 passagers de marque (Mod. de richesse : D100); ;Méditérranée orientale;2;;;;0;;;;;100;1;0;0;477;Passagers de marque
+47;3 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +20 (+40 dans les comptoirs)); ;Méditérranée orientale;3;;;;0;;;;;1;1;20;40;478;Pièces de monnaie (vente de marchandises)
+60;9 sucre de Turquie; ;Méditérranée orientale;9;;;;;750;450;1;;1;1;0;0;479;Sucre
+72;4 sésame de Turquie (1T) (P : 150, N : 125, E : 80); ;Méditérranée orientale;4;;;;;150;125;80;1;1;1;0;0;480;Sésame de Turquie
+79;5 sumac de Turquie (100kg) (P : 200, N : 180, E : 70); ;Méditérranée orientale;5;;;;;200;180;70;0,1;1;1;0;0;481;Sumac de Turquie
+91;8 tabac de Turquie; ;Méditérranée orientale;8;;;;;500;350;1;;1;1;0;0;482;Tabac
+93;10 déjà pillé par un aventurier; ;Méditérranée orientale;10;;;;0;0;0;1;;1;1;0;0;483;Navire déjà pillé
+100;vide; ;Méditérranée orientale;10;;;;0;0;0;1;;1;1;0;0;484;Vide
+8;6 curcuma (100kg) (P : 250, N : 200, E : 100); ;Mer rouge et éthiopie;6;;;;;250;200;100;0,1;1;1;0;0;485;Curcuma
+28;10 pèlerins arabes ou moghols pour la Mecque emportant toutes leurs richesses avec eux; ;Mer rouge et éthiopie;10;;;;;;;;;1;1;0;0;486;Pèlerins pour la Mecque
+43;10 esclaves d’Éthiopie ou de Nubie (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Mer rouge et éthiopie;10;;;;;;;;0,5;1;1;0;0;487;Esclaves
+47;5 fenouil de Turquie (1T) (P : 175, N : 150, E : 100); ;Mer rouge et éthiopie;5;;;;;175;150;100;1;1;1;0;0;488;Fenouil de Turquie
+54;5 oliban d’Éthiopie (sève cristallisée de l’arbre à encens) (100kg) (P : 140, N : 120, E : 40); ;Mer rouge et éthiopie;5;;;;;140;120;40;0,1;1;1;0;0;489;Oliban
+59;Or d'Éthiopie; ;Mer rouge et éthiopie;4;;;;;;;;;1;1;0;0;490;Or
+66;Origan de Turquie (100kg, P :250, N :200, E :100); ;Mer rouge et éthiopie;6;;;;;250;200;100;0,1;1;1;0;0;491;Origan de Turquie
+67;Passagers de marque (+D100); ;Mer rouge et éthiopie;2;;;;0;;;;;100;1;0;0;492;Passagers de marque
+72;Pièces de monnaie résultant de la vente de marchandises (Mod : +40); ;Mer rouge et éthiopie;5;;;;0;;;;;1;1;40;0;493;Pièces de monnaie (vente de marchandises)
+75;Sésame de Turquie (1T, P : 150, N : 125, E:80)); ;Mer rouge et éthiopie;4;;;;;150;125;80;1;1;1;0;0;494;Sésame de Turquie)
+82;Sucre de Turquie; ;Mer rouge et éthiopie;9;;;;;750;450;1;;1;1;0;0;495;Sucre
+86;Sumac de Turquie (100kg, P : 200, N: 180, E : 70); ;Mer rouge et éthiopie;5;;;;;200;180;70;0,1;1;1;0;0;496;Sumac de Turquie
+93;Tabac de Turquie; ;Mer rouge et éthiopie;8;;;;;500;350;1;;1;1;0;0;497;Tabac
+95;Déjà pillé par un aventurier; ;Mer rouge et éthiopie;10;;;;0;0;0;1;;1;1;0;0;498;Navire déjà pillé
+25;9 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : -40); ;Mexique;9;Mexique;50;;0;;;;;1;1;-40;-40;499;Pièces de monnaie (vente de marchandises)
+89;10 poisson; ;Mexique;10;Indonésie et Philippines;60;;;;;;;1;1;0;0;500;Poisson
+90;10 déjà pillé par un aventurier; ;Mexique;10;Guatemala, Costa Rica et Panama;100;;0;0;0;1;;1;1;0;0;501;Navire déjà pillé
+100;vide; ;Mexique;10;;;;0;0;0;1;;1;1;0;0;502;Vide
+8;9 bois de teinture (rouge) du Sénégal et de Sierra Leone (1T) (P : 400, N : 300, E : 50); ;Nord ouest de l'Afrique;9;;;;;350;250;0,1;;1;1;0;0;503;Bois
+13;9 cacao de Haute Guinée; ;Nord ouest de l'Afrique;9;;;;;800;700;1;;1;1;0;0;504;Cacao
+14;2 diamants (carré du nombre de carats × Extraordinaire : 50, Normal : 25, Grossier : 10); ;Nord ouest de l'Afrique;2;;;;;;;;;1;1;0;0;505;Diamants
+44;10 esclaves noirs (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Nord ouest de l'Afrique;10;;;;;;;;0,5;1;1;0;0;506;Esclaves
+51;4 gingembre du Sénégal (1T) (P : 600, N : 500, E : 150); ;Nord ouest de l'Afrique;4;;;;;600;500;150;1;1;1;0;0;507;Gingembre
+59;3 maniguette de Haute Guinée (100kg) (P : 900, N : 750, E : 550); ;Nord ouest de l'Afrique;3;;;;;900;750;550;0,1;1;1;0;0;508;Maniguette
+60;2 passagers de marque (Mod. de richesse : D100); ;Nord ouest de l'Afrique;2;;;;0;;;;;100;1;0;0;509;Passagers de marque
+65;2 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : -20 (+10 dans les comptoirs)); ;Nord ouest de l'Afrique;2;;;;0;;;;;1;1;-20;10;510;Pièces de monnaie (vente de marchandises)
+70;4 piment doux du Sénégal (1T) (P : 120, N : 100, E : 50); ;Nord ouest de l'Afrique;4;;;;;120;100;50;1;1;1;0;0;511;Piment
+77;6 rocou de Haute Guinée (1T) (P : 500, N : 450, E : 100); ;Nord ouest de l'Afrique;6;;;;;500;450;100;1;1;1;0;0;512;Roucou
+89;3 sel du Cap-Vert (très abondant), faisant du Cap-Vert une escale obligée vers les Indes; ;Nord ouest de l'Afrique;3;;;;;285;140;1;;1;1;0;0;513;Sel
+94;8 sel du Sénégal; ;Nord ouest de l'Afrique;8;;;;;285;140;1;;1;1;0;0;514;Sel
+95;10 déjà pillé par un aventurier; ;Nord ouest de l'Afrique;10;;;;0;0;0;1;;1;1;0;0;515;Navire déjà pillé
+100;vide; ;Nord ouest de l'Afrique;10;;;;0;0;0;1;;1;1;0;0;516;Vide
+3;7 acajou de Tabasco (Yucatan) (1T);P : 300, N : 250, E : 150;Nouvelle-Espagne;7;Nouvelle-Espagne;50;;;300;250;150;1;1;1;0;0;517;Acajou
+6;9 animaux exotiques (perroquet, singe, toucan); ;Nouvelle-Espagne;9;Europe du sud;77;;;;;;;1;1;0;0;518;Animaux exotiques
+16;8 cacao de Nouvelle-Espagne, de Santa Marta, Trujillo et Puerto Cabello (Honduras); ;Nouvelle-Espagne;8;Nord ouest de l'Afrique;85;;;800;700;1;;1;1;0;0;519;Cacao
+24;7 cardamone du Honduras (100kg);P : 900, N : 750, E : 550;Nouvelle-Espagne;7;Golfe de Guinée;87;;;900;750;550;1;1;1;0;0;520;Cardamone du Honduras
+29;6 cochenille de Nouvelle-Espagne; ;Nouvelle-Espagne;6;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);88;;;900;700;0,1;;1;1;0;0;521;Cochenille
+34;6 indigo de Louisiane; ;Nouvelle-Espagne;6;Madagascar;100;;;700;600;0,1;;1;1;0;0;522;Indigo
+39;6 indigo du Yucatan; ;Nouvelle-Espagne;6;;;;;700;600;0,1;;1;1;0;0;523;Indigo
+50;9 maïs; ;Nouvelle-Espagne;9;;;;;15;10;1;;1;1;0;0;524;Maïs
+52;2 passagers de marque;Mod. de richesse : D100+10;Nouvelle-Espagne;2;;;;0;;;;;100;1;10;0;525;Passagers de marque
+57;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +20 (+50 dans les ports);Nouvelle-Espagne;6;;;;0;;;;;1;1;20;50;526;Pièces de monnaie (vente de marchandises)
+62;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100+20;Nouvelle-Espagne;10;;;;0;;;;;100;1;20;0;527;Pièces de monnaie (vente d’esclaves)
+67;4 piment ancho du Mexique (1T);P : 150, N : 120, E : 60;Nouvelle-Espagne;4;;;;;150;120;30;1;1;1;0;0;528;Piment
+72;4 piment chipotle du Mexique (1T);P : 150, N : 120, E : 60;Nouvelle-Espagne;4;;;;;150;120;60;1;1;1;0;0;529;Piment
+83;8 tabac de Nouvelle-Espagne; ;Nouvelle-Espagne;8;;;;;500;350;1;;1;1;0;0;530;Tabac
+93;4 vanille du Mexique (seul producteur jusqu’en 1720) (1T);P : 1400, N : 1200, E : 800;Nouvelle-Espagne;4;;;;;1400;1200;800;1;1;1;0;0;531;Vanille
+94;10 déjà pillé par un aventurier; ;Nouvelle-Espagne;10;;;;0;0;0;1;;1;1;0;0;532;Navire déjà pillé
+100;vide; ;Nouvelle-Espagne;10;;;;0;0;0;1;;1;1;0;0;533;Vide
+40;10 cacao de Nouvelle-Grenade (Côte Pacifique); ;Nouvelle-Grenade;10;Nouvelle-Grenade;50;;;800;700;1;;1;1;0;0;534;Cacao
+47;3 émeraudes de Muzo et Chivor (Bogotá en Nouvelle-Grenade) (principal producteur) (Extraordinaire : 14, Normal : 7, Grossier : 3); ;Nouvelle-Grenade;3;Mexique;52;;;;;;;1;1;0;0;535;Émeraudes
+51;3 passagers de marque (Mod. de richesse : D100+5); ;Nouvelle-Grenade;3;Guatemala, Costa Rica et Panama;69;;0;;;;;100;1;5;0;536;Passagers de marque
+81;5 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +20 (+40 dans les ports)); ;Nouvelle-Grenade;5;Pérou;88;;0;;;;;1;1;20;40;537;Pièces de monnaie (vente de marchandises)
+88;5 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100-5); ;Nouvelle-Grenade;5;Chili;97;;0;;;;;100;1;-5;-5;538;Pièces de monnaie (vente d’esclaves)
+90;10 déjà pillé par un aventurier; ;Nouvelle-Grenade;10;Chine, Mer de Chine, Corée et Japon;98;;0;0;0;1;;1;1;0;0;539;Navire déjà pillé
+100;vide; ;Nouvelle-Grenade;10;Indonésie et Philippines;100;;0;0;0;1;;1;1;0;0;540;Vide
+2;7 animaux exotiques (perroquet, singe, toucan); ;Nouvelle-Grenade et Venezuela;7;Nouvelle-Espagne;50;;;;;;;1;1;0;0;541;Animaux exotiques
+8;8 cacao de Bahia de Porteté, de Maracaibo et de Gibraltar (Nouvelle-Grenade); ;Nouvelle-Grenade et Venezuela;8;Europe du sud;77;;;800;700;1;;1;1;0;0;542;Cacao
+17;8 cacao de Curaçao (plaque tournante du cacao espagnol); ;Nouvelle-Grenade et Venezuela;8;Nord ouest de l'Afrique;85;;;800;700;1;;1;1;0;0;543;Cacao
+26;10 esclaves de Curaçao (D100 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Nouvelle-Grenade et Venezuela;10;Golfe de Guinée;87;;;;;;0,5;1;1;0;0;544;Esclaves
+30;8 maïs; ;Nouvelle-Grenade et Venezuela;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);88;;;15;10;1;;1;1;0;0;545;Maïs
+34;5 passagers de marque;Mod. de richesse : + D100+5;Nouvelle-Grenade et Venezuela;5;Madagascar;100;;0;;;;;100;1;5;0;546;Passagers de marque
+38;2 perles de Rio de la Hacha (1kg);P : 10000, N : 9000, E : 2000;Nouvelle-Grenade et Venezuela;2;;;;;10000;9000;2000;0,001;1;1;0;0;547;Perles
+60;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +20 (+40 dans les ports);Nouvelle-Grenade et Venezuela;6;;;;0;;;;;1;1;20;40;548;Pièces de monnaie (vente de marchandises)
+71;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100;Nouvelle-Grenade et Venezuela;10;;;;0;;;;;100;1;0;0;549;Pièces de monnaie (vente d’esclaves)
+84;10 sel de Punta Araya (Venezuela);utilisé par les Espagnols pour extraire l’argent;Nouvelle-Grenade et Venezuela;10;;;;;285;140;1;;1;1;0;0;550;Sel
+94;9 sucre (depuis le milieu du XVIIe siècle); ;Nouvelle-Grenade et Venezuela;9;;;;;750;450;1;;1;1;0;0;551;Sucre
+95;10 déjà pillé par un aventurier; ;Nouvelle-Grenade et Venezuela;10;;;;0;0;0;1;;1;1;0;0;552;Navire déjà pillé
+100;vide; ;Nouvelle-Grenade et Venezuela;10;;;;0;0;0;1;;1;1;0;0;553;Vide
+7;6 ambre gris de l’Île de France; ;Océan indien (Ile de France, Bourbon);6;;;;;950;900;0,01;;1;1;0;0;554;Ambre gris
+14;5 anis étoilé de l’Île Bourbon (depuis 1767) (100kg) (P : 300, N : 250, E : 100); ;Océan indien (Les mascareignes);5;;;;;300;200;100;0,1;1;1;0;0;555;Anis étoilé
+21;4 baies roses de l’Île de France (Maurice) (1T) (P : 1500, N : 1200, E : 800); ;Océan indien (Les mascareignes);4;;;;;1500;1200;800;1;1;1;0;0;556;Baies roses
+28;10 café de l’Île Bourbon (depuis 1715, avec une production notable depuis 1724); ;Océan indien (Les mascareignes);10;;;;;650;220;1;;1;1;0;0;557;Café
+34;10 cannelle de l’Île Bourbon (depuis 1767); ;Océan indien (Les mascareignes);10;;;;;700;250;1;;1;1;0;0;558;Cannelle
+41;7 citronnelle de l’Île Bourbon (1T) (P : 400, N : 350, E : 50); ;Océan indien (Les mascareignes);7;;;;;400;350;50;1;1;1;0;0;559;Citronnelle
+46;5 clous de girofle de l’Île de France (Maurice) (depuis 1746) et de l’Île Bourbon (depuis 1767); ;Océan indien (Les mascareignes);5;;;;;800;700;0,1;;1;1;0;0;560;Clous de girofle
+56;8 corail de l’Île de France (Maurice) (depuis 1722) (1T) (P : 100, N : 30, E : 10); ;Océan indien (Les mascareignes);8;;;;;100;30;10;1;1;1;0;0;561;Corail de l’Île de France
+60;10 ébène de l’Île de France (Maurice) (1T) (P : 160, N : 140, E : 80); ;Océan indien (Les mascareignes);10;;;;;160;140;80;1;1;1;0;0;562;Ébène
+69;7 esclaves de Madagascar (3D20 esclaves pour 100 tonneaux utiles du navire) du fait de la mortalité; ;Océan indien (Les mascareignes);7;;;;;;;;0,3;1;1;0;0;563;Esclaves
+73;6 noix de muscade d’Île de France (Maurice) (depuis 1755); ;Océan indien (Les mascareignes);6;;;;;1000;700;0,1;;1;1;0;0;564;Noix de muscade
+74;2 passagers de marque (Mod. de richesse : D100); ;Océan indien (Les mascareignes);2;;;;0;;;;;100;1;0;0;565;Passagers de marque
+77;4 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +30 (+60 dans les ports)); ;Océan indien (Les mascareignes);4;;;;0;;;;;1;1;30;60;566;Pièces de monnaie (vente de marchandises)
+85;6 poivre de l’Île Bourbon (depuis 1767); ;Océan indien (Les mascareignes);6;;;;;1700;1200;1;;1;1;0;0;567;Poivre de l’Île Bourbon
+92;6 vanille de l’Île Bourbon (à partir de 1820) (1T) (P : 1400, N : 1200, E : 800); ;Océan indien (Les mascareignes);6;;;;;1400;1200;800;1;1;1;0;0;568;Vanille
+95;10 déjà pillé par un aventurier; ;Océan indien (Les mascareignes);10;;;;0;0;0;1;;1;1;0;0;569;Navire déjà pillé
+100;vide; ;Océan indien (Les mascareignes);10;;;;0;0;0;1;;1;1;0;0;570;Vide
+7;9 acajou du Pérou (peu exploité) (1T) (P : 300, N : 250, E : 150); ;Pérou;9;Pérou;50;;;300;250;150;1;1;1;0;0;571;Acajou
+18;9 cuivre du Pérou (1T) (P : 100, N : 100, E : 100); ;Pérou;9;Mexique;52;;;100;100;100;1;1;1;0;0;572;Cuivre
+32;7 indigo du Pérou; ;Pérou;7;Guatemala, Costa Rica et Panama;61;;;700;600;0,1;;1;1;0;0;573;Indigo
+38;10 mercure de Huancavelica (Pérou) (100kg) (P : 50000, N : 50000, E : 20000); ;Pérou;10;Nouvelle-Grenade;73;;;50000;50000;20000;0,1;1;1;0;0;574;Mercure
+42;2 passagers de marque (Mod. de richesse : D100+10); ;Pérou;2;Chili;97;;0;;;;;100;1;10;0;575;Passagers de marque
+67;5 pièces de monnaie résultant de la vente de marchandises (Mod. de richesse : +40 (+70 dans les ports)); ;Pérou;5;Chine, Mer de Chine, Corée et Japon;99;;0;;;;;1;1;40;70;576;Pièces de monnaie (vente de marchandises)
+79;9 pièces de monnaie résultant de la vente d’esclaves (Mod. de richesse : D100+10); ;Pérou;9;Indonésie et Philippines;100;;0;;;;;100;1;10;0;577;Pièces de monnaie (vente d’esclaves)
+94;10 sel du Pérou; ;Pérou;10;;;;;285;140;1;;1;1;0;0;578;Sel
+95;10 déjà pillé par un aventurier; ;Pérou;10;;;;0;0;0;1;;1;1;0;0;579;Navire déjà pillé
+100;vide; ;Pérou;10;;;;0;0;0;1;;1;1;0;0;580;Vide
+6;Anis de Perse (100kg, P:300,N:250,E:100); ;Perse;4;;;;;250;100;0,1;;1;1;0;0;581;Anis de Perse
+14;Café de Perse; ;Perse;9;;;;;650;220;1;;1;1;0;0;582;Café
+21;Cumin noir de Perse (100kg, P:500,N:420, E:180); ;Perse;6;;;;;420;180;0,1;;1;1;0;0;583;Cumin
+26;Curcuma (100kg, P:250,N:200,E:100); ;Perse;6;;;;;200;100;0,1;;1;1;0;0;584;Curcuma
+27;Passagers de marque (Mod:D100+5); ;Perse;2;;;;0;;;;;100;1;5;0;585;Passagers de marque
+35;Réglisse de Perse (100kg, P:200,N:150,E:50); ;Perse;6;;;;;150;50;0,1;;1;1;0;0;586;Réglisse de Perse
+49;Safran de Perse; ;Perse;2;;;;;850;700;0,01;;1;1;0;0;587;Safran
+58;Sel bleu de Perse; ;Perse;10;;;;;285;140;1;;1;1;0;0;588;Sel
+66;Sucre de Perse; ;Perse;10;;;;;750;450;1;;1;1;0;0;589;Sucre
+75;Tabac de Perse (Peine pour les marchands et consommateurs: nez coupé); ;Perse;8;;;;;500;350;1;;1;1;0;0;590;Tabac
+88;Pièces de monnaie résultant de la vente de marchandises +30 (+60 pour la Compagnie néerlandaise des Indes Orientales); ;Perse;5;;;;0;;;;;1;1;30;0;591;Pièces de monnaie (vente de marchandises)
+94;Pièces de monnaie résultant de la vente d’esclaves (D100+5); ;Perse;5;;;;0;;;;;100;1;5;0;592;Pièces de monnaie (vente d’esclaves)
+95;Déjà pillé par un aventurier; ;Perse;10;;;;0;0;0;1;;1;1;0;0;593;Navire déjà pillé
+1;7 animaux exotiques (perroquet, singe, toucan); ;Petites antilles;7;Petites antilles;50;;;;;;;1;1;0;0;594;Animaux exotiques
+7;9 cacao de la Martinique; ;Petites antilles;9;Europe du nord;59;;;800;700;1;;1;1;0;0;595;Cacao
+8;5 café de la Guadeloupe, de la Martinique;Très faible production depuis 1721;Petites antilles;5;Europe du sud;78;;;650;220;1;;1;1;0;0;596;Café
+11;6 cannelle; ;Petites antilles;6;Nord ouest de l'Afrique;85;;;700;250;1;;1;1;0;0;597;Cannelle
+12;5 clous de girofle de la Grenade;Depuis le dernier tiers du XVIIIe siècle;Petites antilles;5;Golfe de Guinée;93;;;800;700;0,1;;1;1;0;0;598;Clous de girofle
+13;8 coton;Faible production;Petites antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;600;300;1;;1;1;0;0;599;Coton
+17;7 curcuma de la Grenade (100kg);P : 250, N : 200, E : 100;Petites antilles;7;Madagascar;100;;;250;20;100;0,1;1;1;0;0;600;Curcuma
+22;6 indigo de la Guadeloupe et de la Martinique; ;Petites antilles;6;;;;;700;600;0,1;;1;1;0;0;601;Indigo
+23;3 macis (« fleur de muscade ») de la Grenade (100kg);P : 1500, N : 1400, E : 900;Petites antilles;3;;;;;1400;900;0,1;;1;1;0;0;602;Macis de la Grenade
+25;6 noix de muscade de la Grenade; ;Petites antilles;6;;;;;1000;700;0,1;;1;1;0;0;603;Noix de muscade
+26;2 passagers de marque;Mod. de richesse : D100;Petites antilles;2;;;;0;;;;;100;1;0;0;604;Passagers de marque
+32;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+40 dans les ports);Petites antilles;6;;;;0;;;;;1;1;30;40;605;Pièces de monnaie (vente de marchandises)
+39;8 pièces de monnaie résultant d’esclaves;Mod. de richesse : D100-5;Petites antilles;8;;;;0;;;;;100;1;-5;-5;606;Pièces de monnaie
+45;4 piment antillais (1T);P : 150, N : 120, E : 60;Petites antilles;4;;;;;150;120;60;1;1;1;0;0;607;Piment
+50;8 rhum de la Barbade;Depuis 1627 ou 1688, sans distillation jusqu’au début du XVIIIe siècle;Petites antilles;8;;;;;800;600;1;;1;1;0;0;608;Rhum
+56;5 excellent rhum de la Martinique;Depuis 1694, de la Guadeloupe (plus tard) (prix × 1,5);Petites antilles;5;;;;;800;600;1;;1;1;0;0;609;Rhum
+61;9 riz de la Barbade; ;Petites antilles;9;;;;;300;250;100;1;1;1;0;0;610;Riz
+63;8 rocou (1T);P : 500, N : 450, E : 100;Petites antilles;8;;;;;500;450;100;1;1;1;0;0;611;Roucou
+67;10 sel de Tobago; ;Petites antilles;10;;;;;285;140;1;;1;1;0;0;612;Sel
+83;9 sucre;Depuis le milieu du XVIIe siècle;Petites antilles;9;;;;;750;450;1;;1;1;0;0;613;Sucre
+88;8 tabac de Saint Christophe;1628-1713, Saint Kitts (depuis 1628) et Nevis (1628-1706);Petites antilles;8;;;;;500;350;1;;1;1;0;0;614;Tabac
+94;7 excellent tabac de la Martinique;Prix × 1,5 jusqu’en 1674, abandonné au profit du sucre;Petites antilles;7;;;;;750;525;1;;1;1;0;0;615;Tabac
+95;3 vanille de la Martinique et de la Guadeloupe;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Petites antilles;3;;;;;1400;1200;800;1;1;1;0;0;616;Vanille
+96;10 déjà pillé par un aventurier; ;Petites antilles;10;;;;0;0;0;1;;1;1;0;0;617;Navire déjà pillé
+100;vide; ;Petites antilles;10;;;;0;0;0;1;;1;1;0;0;618;Vide
+5;Curry du Siam (100kg);500, 450, 150;Siam et Tonkin;7;;;;;500;450;150;0,1;1;1;0;0;619;Curry du Siam
+15;Opium du Siam (1kg);600, 550, 200;Siam et Tonkin;10;;;;;600;550;200;0,001;1;1;0;0;620;Opium
+23;Pavot du Siam (100kg);200, 180, 10;Siam et Tonkin;7;;;;;200;180;10;0,1;1;1;0;0;621;Pavot
+24;Passagers de marque;Mod. de richesse : D100-5;Siam et Tonkin;2;;;;0;;;;;100;1;-5;-5;622;Passagers de marque
+25;Pièces de monnaie (marchandises);Mod. de richesse : -40 (+20 pour la Cie néerlandaise);Siam et Tonkin;2;;;;0;;;;;1;1;-40;-40;623;Pièces de monnaie
+26;Pièces de monnaie (esclaves);Mod. de richesse : D100-20;Siam et Tonkin;2;;;;0;;;;;100;1;-20;-20;624;Pièces de monnaie
+34;Poivre blanc, noir ou rouge de Kampot;N/A;Siam et Tonkin;8;;;;;1900;1700;1200;1;1;1;0;0;625;Poivre blanc
+59;Riz du Tonkin;N/A;Siam et Tonkin;10;;;;;300;250;100;1;1;1;0;0;626;Riz
+61;Rubis du Pegu et du Siam;(carré des carats × Extraordinaire : 32, Normal : 16, Grossier : 8);Siam et Tonkin;2;;;;;;;;;1;1;0;0;627;Rubis
+63;Saphirs de Tschandabun (Birmanie);(carré des carats × Extraordinaire : 14, Normal : 7, Grossier : 4);Siam et Tonkin;2;;;;;;;;;1;1;0;0;628;Saphirs
+70;Sel;N/A;Siam et Tonkin;10;;;;;400;285;140;1;1;1;0;0;629;Sel
+82;Sucre du Siam;N/A;Siam et Tonkin;9;;;;;1200;750;450;1;1;1;0;0;630;Sucre
+90;Tabac du Siam;N/A;Siam et Tonkin;7;;;;;800;500;350;1;1;1;0;0;631;Tabac
+93;Déjà pillé par un aventurier;N/A;Siam et Tonkin;10;;;;0;0;0;0;1;1;1;0;0;632;Navire déjà pillé
+100;vide;N/A;Siam et Tonkin;10;;;;0;0;0;0;1;1;1;0;0;633;Vide
+4;Aneth (100kg, P:250, N:200,E:100); ;Surate et péninsule de Gujarat;4;;;;;250;200;100;0,1;1;1;0;0;634;Aneth
+19;Indiennes de coton du Kashmir (calicot) (Prix des draps x2); ;Surate et péninsule de Gujarat;10;;;;;400;300;150;1;1;1;0;0;635;Coton
+25;Safran du Kashmir; ;Surate et péninsule de Gujarat;2;;;;;1100;850;700;0,01;1;1;0;0;636;Safran
+30;Or de Surate; ;Surate et péninsule de Gujarat;4;;;;;;;;;1;1;0;0;637;Or
+39;Pèlerins pour la Mecque (richesses avec eux, mod D20+75); ;Surate et péninsule de Gujarat;10;;;;;;;;;20;1;75;0;638;Pèlerins pour la Mecque
+43;Bois de palissandre (1T, P:160,N:140,E:80); ;Surate et péninsule de Gujarat;9;;;;;160;140;80;1;1;1;0;0;639;Bois de palissandre
+44;Passagers de (D100+5); ;Surate et péninsule de Gujarat;2;;;;0;;;;;100;1;5;0;640;Passagers de marque
+52;Pavot (100kg, P:200,N:180,E:10); ;Surate et péninsule de Gujarat;7;;;;;200;180;10;0,1;1;1;0;0;641;Pavot
+53;Pièces de monnaie résultant de la vente de marchandises -50 (-30 dans les comptoirs et ports); ;Surate et péninsule de Gujarat;2;;;;0;;;;;1;1;-50;-30;642;Pièces de monnaie (vente de marchandises)
+56;Pièces de monnaie résultant de la vente d’esclaves (D100); ;Surate et péninsule de Gujarat;2;;;;0;;;;;100;1;0;0;643;Pièces de monnaie (vente d’esclaves)
+59;Piment naga (100kg, P:150,N:120,E:60); ;Surate et péninsule de Gujarat;3;;;;;150;120;60;0,1;1;1;0;0;644;Piment naga
+67;Poivre noir d'Inde; ;Surate et péninsule de Gujarat;8;;;;;1900;1700;1200;1;1;1;0;0;645;Poivre noir
+70;Salpêtre (1T, P:120,N:100,E:50); ;Surate et péninsule de Gujarat;10;;;;;120;100;50;1;1;1;0;0;646;Salpêtre
+76;Bois de santal (100kg, P:400,N:350,E:250); ;Surate et péninsule de Gujarat;7;;;;;400;350;250;0,1;1;1;0;0;647;Bois de santal
+82;Sel; ;Surate et péninsule de Gujarat;9;;;;;400;285;140;1;1;1;0;0;648;Sel
+90;Sucre; ;Surate et péninsule de Gujarat;10;;;;;1200;750;450;1;1;1;0;0;649;Sucre
+92;Mélange tandoori (100kg,P:180,N:150,E:70); ;Surate et péninsule de Gujarat;3;;;;;180;150;70;0,1;1;1;0;0;650;Mélange tandoori
+95;Zinc (1T, P:40,N:40,E:40); ;Surate et péninsule de Gujarat;9;;;;;40;40;40;1;1;1;0;0;651;Zinc
+97;Déjà pillé par un aventurier; ;Surate et péninsule de Gujarat;10;;;;0;0;0;0;1;1;1;0;0;652;Navire déjà pillé
+100;vide; ;Surate et péninsule de Gujarat;10;;;;0;0;0;0;1;1;1;0;0;653;Vide
+;;;;;;;;;0;0;0;1;1;1;0;0;654;
+;;;;;;;;;0;0;0;1;1;1;0;0;655;

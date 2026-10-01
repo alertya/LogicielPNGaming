@@ -1,0 +1,42 @@
+Text;PieceDeHuit;TypePassager;ValeurDe;ValeurInferieur;ValeurSuperieure
+14 ou moins;1;Insignifiant;14;0;24
+15-24;2;Fille de marchand;24;0;39
+25-39;4;Nonne;39;14;44
+40-44;6;Moine;44;24;49
+45-49;8;Vicaire;49;39;64
+50-64;10;Prêtre;64;44;74
+65-74;20;Fils de marchand;74;49;89
+75-89;40;Fils unique de marchand;89;64;94
+90-94;60;Fils de notable;94;74;99
+95-99;80;Bâtard de petite noblesse;99;89;114
+100-114;100;Fils unique de notable;114;94;124
+115-124;200;Simple marchand;124;99;139
+125-139;400;Mère supérieure;139;114;144
+140-144;600;Abbé;144;124;149
+145-149;800;Fille de noble;149;139;164
+150-164;1000;Fils de noble;164;144;174
+165-174;2000;Gentilhomme;174;149;189
+175-189;4000;Bâtard de grande noblesse;189;164;194
+190-194;6000;Notable;194;174;199
+195-199;8000;Fille de grand noble;199;189;214
+200-214;10000;Fils de grand noble;214;194;224
+215-224;20000;Fils aîné de grand noble;224;199;239
+225-239;40000;Baronnet ou officier de port;239;214;244
+240-244;60000;Riche marchand ou officier de marine;244;224;249
+245-249;80000;Évêque ou Intendant;249;239;264
+250-264;100000;Baron ou Officier supérieur de port;264;244;274
+265-274;200000;Marquis ou Officier supérieur de marine;274;249;289
+275-289;400000;Archevêque;289;264;294
+290-294;600000;Gouverneur, Consul;294;274;299
+295-299;800000;Comte;299;289;314
+300-314;1000000;Cardinal;314;294;324
+315-324;2000000;Duc;324;299;339
+325-339;4000000;Vice-roi;339;314;344
+340-344;6000000;Membre de la famille royale;344;324;349
+345-349;8000000;Maréchal ou Général des Armées navales;349;339;364
+350-364;10000000;Prince;364;344;374
+365-374;20000000;Reine;374;349;389
+375-389;40000000;Prince héritier;389;364;394
+390-394;60000000;Roi;394;374;399
+395-399;80000000;Relancer le D100;399;389;400
+400 et plus;100000000;Relancer le D100;400;394;400

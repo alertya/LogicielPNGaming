@@ -1,0 +1,68 @@
+Categorie;Intitule;Competence;Groupe;ConsequenceDoubleIuPLus;ConsequenceReussiteSimple;ConsequenceEchecSimple;ConsequenceEchecCritique
+Artillerie;Canonnade;Pointage;Equipage;Rien;Rien;Rien;Rien
+Embarquement;EmbarquerMarchandise;Recharge;Equipage;Rien;Rien;Rien;Rien
+Artillerie;Recharge;Recharge;Equipage;Rien;Rien;Rien;Rien
+Artillerie;Pointage;Pointage;Equipage;Rien;Rien;Rien;Rien
+Combat;CorpsACorps;ArmesBlanches;Equipage;Rien;Rien;Rien;Rien
+Combat;Reveil;Combat;Equipage;Rien;Rien;Rien;Rien
+Manœuvre;Reveil;Combat;Equipage;Rien;Rien;Rien;Rien
+Combat;Tir;Mousquet;Equipage;Rien;Rien;Rien;Rien
+Combat;Grenade;Grenade;Equipage;Rien;Rien;Rien;Mort
+Manœuvre;Acrobatie;Acrobatie;Equipage;Rien;Relance;RelanceMalus;Mort
+Manœuvre;CoursePoursuiteTerre;Athletisme;Equipage;Rien;Rien;Rien;Rien
+Manœuvre;EntreeFracassante;Athletisme;Equipage;Rien;Rien;Rien;Rien
+Manœuvre;Escalade;Acrobatie;Equipage;Rien;Relance;RelanceMalus;Mort
+Combat;Esquive;Esquive;Equipage;Rien;Rien;Rien;Rien
+Mer;Collision;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;Abordage;Acrobatie;Equipage;Rien;Relance;RelanceMalus;Mort
+Mer;MettreEnPanne;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;BranleBas;Adresse;Equipage;Rien;Rien;Rien;Rien
+Mer;Recif;Timonerie;Timonier;Rien;Rien;Rien;Rien
+Mer;Recif;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;EntreePort;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;EntreePort;Timonerie;Timonier;Rien;Rien;Rien;Rien
+Pilote;Mouillage;Hydrographie;Pilote;Rien;Rien;Rien;Rien
+Mer;FiletAbordage;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;Poursuite;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;Poursuite;Timonerie;Timonier;Rien;Rien;Rien;Rien
+Mer;Poursuite;Pratique nautique;Gabier;Rien;Rien;Rien;Rien
+Mer;ReduireVoilure;Pratique nautique;Gabier;Rien;Rien;Rien;Rien
+Mer;AugmenterVoilure;Pratique nautique;Gabier;Rien;Rien;Rien;Rien
+Mer;MettreACouple;Pratique nautique;Matelot;Rien;Rien;Rien;Rien
+Mer;TenueGrosTemps;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Mer;VirementBord;Pratique nautique;Equipage;Rien;Rien;Rien;Rien
+Ruse;AttaqueNuit;Discretion;Equipage;Rien;Rien;Rien;Denonce
+Ruse;CollecteInformation;Empathie;Equipage;Rien;Rien;Rien;Denonce
+Ruse;DeplacementSilencieux;Discretion;Equipage;Rien;Rien;Rien;Denonce
+Ruse;Embuscade;Discretion;Equipage;Rien;Rien;Rien;Denonce
+Ruse;TenirLangue;Comedie;Equipage;Rien;Rien;Rien;Denonce
+Ruse;InfiltrationGroupe;Comedie;Equipage;Rien;Rien;Rien;Denonce
+Ruse;MaquillageNavire;Charpenterie;Equipage;Rien;Rien;Rien;Rien
+Ruse;CacherNombre;Comedie;Equipage;Rien;Rien;Rien;Denonce
+Ruse;FairePasserPourAutre;Comedie;Equipage;Rien;Relance;RelanceMalus;Mort
+Pilote;Cyclone;Hydrographie;Pilote;Rien;Rien;Rien;Rien
+Calfat;HautsFonds;Calfatage;Calfat;Rien;Rien;Rien;Rien
+Pilote;LongueTraversee;Navigation;Pilote;Rien;Rien;Rien;Rien
+Pilote;TrouverMouillage;Geographie;Pilote;Rien;Rien;Rien;Rien
+Construction;AmeliorationNavire;IngenierieNavale;IngenieurNaval;Rien;Rien;Rien;Rien
+Construction;ConstructionFortin;Charpenterie;Equipage;Rien;Rien;Rien;Rien
+Construction;ConstructionNavire;Charpenterie;Charpentier;Rien;Rien;Rien;Rien
+Reparation;ReparationsComplete;Charpenterie;Equipage;Rien;Rien;Rien;Rien
+Reparation;ReparationsFortune;Calfatage;Equipage;Rien;Rien;Rien;Rien
+Maladie;ContractionMaladie;Resistance;Equipage;Rien;Relance;TestMaladie;TestMaladie
+Soins;SoinsBlesses;Chirurgie;Chirurgien;Rien;Relance;Relance;Rien
+Maladie;PropagationMaladie;Resistance;Equipage;Rien;RelanceBonus;TestMaladie;TestMaladie
+Vigie;Sentinelle;Vigilance;Equipage;Rien;Rien;Rien;Rien
+Vigie;VoileEnVue;Vigilance;Vigie;Rien;Rien;Rien;Rien
+Recrutement;RecrutementEquipage;Persuasion;MaitreEquipage;Rien;Rien;Rien;Rien
+Recrutement;RecrutementPort;Persuasion;MaitreEquipage;Rien;Rien;Rien;Rien
+Recrutement;EvaluerMarin;Empathie;MaitreEquipage;Rien;Rien;Rien;Rien
+Recrutement;ConvaincrePiraterie;Persuasion;MaitreEquipage;Rien;Rien;Rien;Denonce
+Moral;TestMoral;Combat;Equipage;Rien;Relance;RelanceMalus;Mort
+Cuisine;CuisineGroupe;Cuisine;Coq;Rien;Rien;Rien;Rien
+Utilitaire;Chasse;Chasse;Equipage;Rien;Rien;Rien;Mort
+Utilitaire;Peche;Peche;Equipage;Rien;Rien;Rien;Mort
+Utilitaire;PlantesMedicinales;Herboristerie;Equipage;Rien;Rien;Rien;Mort
+Utilitaire;Noyade;Natation;Equipage;Rien;Relance;RelanceMalus;Mort
+Combat;Bagarre;MainsNues;Equipage;Rien;Rien;Rien;Blessure
+Utilitaire;Charpenterie;Charpenterie;Equipage;Rien;Relance;RelanceMalus;Mort
