@@ -39,7 +39,7 @@ class Marchandise:
         self.BonusRichesseNormal=1
         self.BonusRichessePort=1
         self.ID=1
-        self.Nom='Test'
+        self.Name='Test.csv'
 
 
     def ConvertRancon(self,Nombre):
@@ -319,8 +319,7 @@ class Marchandise:
             encoding="cp1252",
             index=False
         )
-    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeMarchandise.csv",
-                                   nom_marchandise: str = None):
+    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeMarchandise"):
                 """
                 Parcourt les attributs de la classe et charge automatiquement leurs valeurs
                 à partir d'un fichier CSV précédemment sauvegardé.
@@ -328,7 +327,7 @@ class Marchandise:
                 import os
                 import csv
 
-                chemin_fichier = os.path.join(config.BASE_PATH, nom_fichier)
+                chemin_fichier = os.path.join(config.BASE_PATH, "Marchandise",f"{nom_fichier}.csv")
 
                 if not os.path.exists(chemin_fichier):
                     print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
@@ -339,17 +338,10 @@ class Marchandise:
                 # 1. Lecture du fichier CSV
                 with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
                     reader = csv.DictReader(f, delimiter=";")
-
-                    if nom_marchandise:
-                        # Si un nom spécifique est demandé, on cherche la ligne correspondante
-                        for row in reader:
-                            if row.get("Cargaison") == nom_marchandise:
-                                donnees_marchandise = row
-                    else:
-                        # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
-                        lignes = list(reader)
-                        if lignes:
-                            donnees_marchandise = lignes[-1]
+                    # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
+                    lignes = list(reader)
+                    if lignes:
+                        donnees_marchandise = lignes[-1]
 
                 if not donnees_marchandise:
                     print("Aucune donnée correspondante trouvée dans le fichier CSV.")
@@ -395,3 +387,37 @@ class Marchandise:
                         print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
 
                 return True
+    def GetActions(self):
+        return {
+            "Acheter": [
+                {"type": "checkbox", "nom": "Capitaine"},
+                {"type": "checkbox", "nom": "Second"},
+                {"type": "checkbox", "nom": "Pilote"}
+            ],
+
+            "Vendre": [
+                {"type": "checkbox", "nom": "Primes"},
+                {"type": "checkbox", "nom": "Officiers"}
+            ],
+
+            "Piller": [
+                {"type": "combobox", "nom": "Compétence",
+                 "valeurs": ["Combat", "Navigation", "Commerce"]},
+                {"type": "entry", "nom": "XP"}
+            ]
+        }
+
+    def executer_action(self, action):
+
+        if action == "Vendre":
+            self.CalculSalaire()
+            self.sauvegarder(self.Name)
+
+        elif action == "Acheter":
+            self.AttribuerRole()
+            self.sauvegarder(self.Name)
+        elif action == "Piller":
+            self.Pillage(NameMarchandisePillant,self.Name)
+            self.sauvegarder(self.Name)
+            self.sauvegarder(NameMarchandisePillant)
+        return f"{action} effectué."

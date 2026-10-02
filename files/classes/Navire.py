@@ -147,12 +147,14 @@ class Navire:
                 self.Equipage: int = self.CalculEquipage()
                 self.StructureCoqueMax: float = self.StructureCoque
                 self.StructureVoileMax: float = self.StructureVoile
-                EquipageNavire=Equipage(self.Equipage,"Matelot",self.Name+"_Equipage.csv")
-                self.EquipageNom=self.Name+"_Equipage.csv"
+                EquipageNavire=Equipage(self.Equipage,"Matelot",self.Name+"_Equipage")
+                self.EquipageNom=self.Name+"_Equipage"
                 self.Marchandise = Marchandise()
                 self.Marchandise =self.Marchandise.GenerateMarchandise(Region)
                 self.Marchandise.Tonnage=self.TonnageMarchandise
-                self.Marchandise.sauvegarder(self.Name+"_Marchandises.csv")
+                self.Marchandise.Name = self.Name + "_Marchandises"
+                self.Marchandise.sauvegarder(self.Name+"_Marchandises")
+
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
@@ -306,8 +308,7 @@ class Navire:
             encoding="cp1252",
             index=False
         )
-    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeNavire.csv",
-                                   nom_navire: str = None):
+    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeNavire"):
                 """
                 Parcourt les attributs de la classe et charge automatiquement leurs valeurs
                 à partir d'un fichier CSV précédemment sauvegardé.
@@ -315,9 +316,10 @@ class Navire:
                 import os
                 import csv
 
-                chemin_fichier = os.path.join(base_path, nom_fichier)
+                chemin_fichier = os.path.join(config.BASE_PATH,'Navire', f"{nom_fichier}.csv")
 
                 if not os.path.exists(chemin_fichier):
+                    print(chemin_fichier)
                     print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
                     return False
 
@@ -327,16 +329,10 @@ class Navire:
                 with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
                     reader = csv.DictReader(f, delimiter=";")
 
-                    if nom_navire:
-                        # Si un nom spécifique est demandé, on cherche la ligne correspondante
-                        for row in reader:
-                            if row.get("nom") == nom_navire:
-                                donnees_navire = row
-                    else:
-                        # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
-                        lignes = list(reader)
-                        if lignes:
-                            donnees_navire = lignes[-1]
+                    # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
+                    lignes = list(reader)
+                    if lignes:
+                        donnees_navire = lignes[-1]
 
                 if not donnees_navire:
                     print("Aucune donnée correspondante trouvée dans le fichier CSV.")

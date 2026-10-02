@@ -105,7 +105,7 @@ class Equipage:
         print(f"Équipage '{self.Name}' sauvegardé avec succès.")
 
     @classmethod
-    def Charger(cls, Name: str) -> 'Equipage':
+    def charger_depuis_csv(cls, Name: str) -> 'Equipage':
         """
         Méthode de classe qui lit un fichier CSV d'équipage, instancie la classe Equipage,
         recrée chaque membre ligne par ligne avec ses attributs typés, et renvoie l'objet Equipage.
@@ -118,7 +118,7 @@ class Equipage:
             return None
 
             # 1. Instanciation d'un nouvel équipage tout neuf
-        nouvel_equipage = cls(name=Name)
+        nouvel_equipage = Equipage(10,"Matelot","TestEquipage")
 
             # 2. Lecture et parcours du fichier CSV
         with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
@@ -1082,3 +1082,5 @@ class Equipage:
 
         return Equipage
 
+    def get_actions(self):
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes"]

@@ -228,7 +228,7 @@ class MoteurBase:
 ACTIONS_PAR_ONGLET: Dict[str, List[str]] = {
     "Navire": ["Combattre", "Poursuite"],
     "Equipage": ["Bataille terrestre", "Test compétence"],
-    "Marchandises": ["Vendre à un marchand"],
+    "Marchandises": ["Vendre","Acheter"],
     "Escale": ["Recruter au port", "Réparer navire", "Trouver marchand", "Enquêter"],
     "Infirmerie": ["Voir blessé/malade", "Sacrifier blessé"],
     "Reset": ["Supprimer toutes les données (Navire, Equipage, Escale, Voyage)"],
@@ -280,34 +280,55 @@ class MoteurExemple(MoteurBase):
         #     "journal": {jour: [evenements]} # historique des événements par jour
         # }
         self._voyages: Dict[str, Dict[str, Any]] = {}
-        self._navires = copy.deepcopy(self._NAVIRES_INITIAUX)
-        self._equipage: Dict[str, Any] = {}
+        self._navires = Navire("Sloop","NavireTest","Brésil")
+        self._equipage= Equipage(10,"Matelot","EquipageTest")
+        self._marchandise=Marchandise()
         # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
 
+    def _get_instances_dossier(self, nom_dossier):
+        dossier = os.path.join(BASE_PATH, nom_dossier)
+
+        if not os.path.isdir(dossier):
+            return []
+
+        return sorted(
+            os.path.splitext(f)[0]
+            for f in os.listdir(dossier)
+            if f.lower().endswith(".csv")
+        )
 
     def get_instances(self, onglet, sous_onglet):
+
         if onglet == "Journal de bord":
-            # "Générer" est géré par un formulaire dédié (panneau_generation.py)
-            # et n'a donc pas besoin de liste déroulante d'instance ici.
-            return self.get_navires() if sous_onglet == "Journal" else []
-        if onglet in ("Navire", "Equipage", "Escale", "Infirmerie"):
-            return list(self._navires.keys())
+            return self._get_instances_dossier("Navire") if sous_onglet == "Journal" else []
+
+        if onglet == "Navire":
+            return self._get_instances_dossier("Navire")
+
+        if onglet == "Equipage":
+            return self._get_instances_dossier("Equipage")
+
         if onglet == "Marchandises":
-            return ["Cale principale", "Cale secondaire"]
+            return self._get_instances_dossier("Marchandise")
+
+        if onglet in ("Escale", "Infirmerie"):
+            return self._get_instances_dossier("PNJ")
+
         if onglet == "Reset":
             return []
+
         return []
 
     def get_donnees(self, onglet, sous_onglet, instance):
         if onglet == "Journal de bord" and sous_onglet == "Journal":
             return self._journal_du_jour(instance)
         if onglet == "Navire" and sous_onglet == "Afficher":
-            return self._navires.get(instance, {})
+            return self._navires.charger_depuis_csv(instance)
         if onglet == "Equipage" and sous_onglet == "Afficher":
-            return self._equipage.get(instance, [])
+            return self._equipage.charger_depuis_csv(instance)
         if onglet == "Marchandises":
-            return {"Rhum": 12, "Bois": 40, "Poudre à canon": 5}
+            return self._marchandise.charger_depuis_csv(instance)
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
 
     def get_actions(self, onglet, sous_onglet, instance):
@@ -563,3 +584,61 @@ class MoteurExemple(MoteurBase):
         self._navires[nom] = Navire(type_navire,nom,region)
 
         return f"Navire « {nom} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
+
+    def get_actions(self, onglet, sous_onglet, instance):
+
+        if sous_onglet != "Actions":
+            return []
+
+        if onglet == "Navire":
+            navire = Navire.charger_depuis_csv(instance+".csv")
+            return navire.get_actions() if navire else []
+
+        if onglet == "Equipage":
+            equipage = Equipage.charger_depuis_csv(instance)
+            return equipage.get_actions() if equipage else []
+
+        if onglet == "Marchandises":
+            marchandise = Marchandise.charger_depuis_csv(instance)
+            return marchandise.get_actions() if marchandise else []
+
+        if onglet == "Escale":
+            escale = Escale.charger_depuis_csv(instance)
+            return escale.get_actions() if escale else []
+
+        if onglet == "Infirmerie":
+            return self._navires[instance].Equipage.Infirmerie.get_actions()
+
+        return []
+
+    def executer_action(self, onglet, sous_onglet, instance, action):
+
+        if onglet == "Equipage":
+            equipage = Equipage.charger_depuis_csv(instance)
+            return equipage.executer_action(action)
+        if onglet == "Navire":
+            navire = Navire.charger_depuis_csv(instance)
+            return navire.executer_action(action)
+        if onglet == "Marchandise":
+            marchandise = Marchandise.charger_depuis_csv(instance)
+            return marchandise.executer_action(action)
+
+        return ""
+
+    def get_boutons_action(self, onglet, instance, action):
+
+        if onglet == "Equipage":
+            equipage = Equipage.charger_depuis_csv(instance)
+            return equipage.get_boutons(action) if equipage else []
+
+        if onglet == "Navire":
+            navire = Navire.charger_depuis_csv(instance)
+            return navire.get_boutons(action) if navire else []
+        if onglet == "Marchandise":
+            marchandise = Marchandise.charger_depuis_csv(instance)
+            return marchandise.get_boutons(action) if marchandise else []
+
+        return []
+
+    def get_formulaire_action(self, onglet: str, action: str):
+        return None
