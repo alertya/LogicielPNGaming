@@ -151,6 +151,7 @@ class Navire:
                 self.EquipageNom=self.Name+"_Equipage.csv"
                 self.Marchandise = Marchandise()
                 self.Marchandise =self.Marchandise.GenerateMarchandise(Region)
+                self.Marchandise.Tonnage=self.TonnageMarchandise
                 self.Marchandise.sauvegarder(self.Name+"_Marchandises.csv")
                 self.sauvegarder()
 
