@@ -85,8 +85,6 @@ class Navire:
                 # -------------------------
                 self.EquipMin: int = 0
                 self.EquipMax: int = 0
-
-                self.equipage_tout: int = 0
                 self.equipage_nom: str = ""
 
                 self.combat: int = 0
@@ -273,10 +271,10 @@ class Navire:
                 self.region=region
 
     def CalculTonnage(self):
-        self.Tonnage= random.randint(int(self.TonnageMin),int(self.TonnageMax))
+        return random.randint(int(self.TonnageMin), int(self.TonnageMax))
 
     def CalculEquipage(self):
-        self.Equipage=random.randint(int(self.EquipMin),int(self.EquipMax))
+        return random.randint(int(self.EquipMin), int(self.EquipMax))
     def CheckNavire(self, bateau):
         return bateau, False
 
