@@ -118,9 +118,9 @@ class Navire:
                 # -------------------------
                 # Économie & Cargaison
                 # -------------------------
-                self.TonnageMin: float = 0.0
-                self.TonnageMax: float = 0.0
-                self.Tonnage:float=self.CalculTonnage()
+                self.TonnageMin: int = 0
+                self.TonnageMax: int = 0
+                self.Tonnage:int=self.CalculTonnage()
                 self.remplissage: int = 0
                 self.poids_total_marchandise: float = 0.0
                 self.cargaison3: int = 0
@@ -153,7 +153,8 @@ class Navire:
                 # 3. Vérification de l'existence de l'attribut dans la classe avant modification
                     if hasattr(self, nom_attribut):
                         setattr(self, nom_attribut, valeur)
-                print(self.__dict__)
+                        print(nom_attribut)
+                        print(valeur)
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
@@ -292,40 +293,21 @@ class Navire:
                 return "Compétences d'équipage générées avec succès !", comp
 
     def sauvegarder(self):
-                """
-                Parcourt automatiquement tous les attributs de la classe
-                et les exporte au format CSV.
-                """
-                import os
-                import csv
-                dossier_navire = os.path.join(config.BASE_PATH, "Navire")
-                os.makedirs(dossier_navire, exist_ok=True)  # Crée le dossier s'il n'existe pas
-                chemin_fichier = os.path.join(dossier_navire, f"{self.Name}.csv")
-                # 1. Récupération automatique de tous les attributs sous forme de dictionnaire {nom: valeur}
-                attributs_objet = self.__dict__
-                print(attributs_objet)
-                # On sépare les clés (les entêtes du CSV) et les valeurs de notre ligne
-                entetes = list(attributs_objet.keys())
-                print(entetes)
-                # Nettoyage rapide des valeurs (ex: conversion des float avec des virgules pour Excel)
-                ligne_donnees = {}
-                for cle, valeur in attributs_objet.items():
-                    if isinstance(valeur, float):
-                        ligne_donnees[cle] = str(valeur).replace(".", ",")
-                    else:
-                        ligne_donnees[cle] = valeur
 
-                # 2. Écriture dans le fichier CSV
-                # S'il existe déjà, on ajoute la ligne à la suite (append), sinon on le crée
-                fichier_existe = os.path.exists(chemin_fichier)
+        ligne = {}
 
-                with open(chemin_fichier, mode="a", newline="", encoding="cp1252") as f:
-                    writer = csv.DictWriter(f, fieldnames=entetes, delimiter=";")
-                    writer.writeheader()  # Écrit la ligne des attributs
+        for cle, valeur in self.__dict__.items():
+            ligne[cle] = valeur
 
+        df = pd.DataFrame([ligne])
 
-                    writer.writerow(ligne_donnees)
-                print(f"Navire '{self.Name}' sauvegardé avec succès.")
+        df.to_csv(
+            os.path.join(config.BASE_PATH, "Navire", f"{self.Name}.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )
     def charger_depuis_csv(self, nom_fichier: str = "SauvegardeNavire.csv",
                                    nom_navire: str = None):
                 """
