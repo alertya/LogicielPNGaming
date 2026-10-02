@@ -1084,3 +1084,27 @@ class Equipage:
 
     def get_actions(self):
         return ["Recruter", "Attribuer les rôles", "Distribuer les soldes"]
+
+    def executer_action(self, action, valeurs=None):
+
+        if action == "Recruter":
+
+            self.RecruteEquipage(
+                valeurs["Equipage_source"],
+                valeurs["Equipage_cible"],
+                valeurs["Nombre"]
+            )
+
+            return "Recrutement effectué."
+
+        elif action == "Attribuer les rôles":
+
+            # On fera cette partie plus tard
+            return "Fonction non implémentée."
+
+        elif action == "Distribuer les soldes":
+
+            # On fera cette partie plus tard
+            return "Fonction non implémentée."
+
+        return "Action inconnue."

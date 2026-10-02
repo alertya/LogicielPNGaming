@@ -611,17 +611,17 @@ class MoteurExemple(MoteurBase):
 
         return []
 
-    def executer_action(self, onglet, sous_onglet, instance, action):
+    def executer_action(self, onglet, sous_onglet, instance, action,valeurs=None):
 
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
-            return equipage.executer_action(action)
+            return equipage.executer_action(action,valeurs)
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
-            return navire.executer_action(action)
+            return navire.executer_action(action,valeurs)
         if onglet == "Marchandise":
             marchandise = Marchandise.charger_depuis_csv(instance)
-            return marchandise.executer_action(action)
+            return marchandise.executer_action(action,valeurs)
 
         return ""
 

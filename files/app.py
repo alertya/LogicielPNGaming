@@ -28,7 +28,7 @@ from moteur_interface import MoteurBase
 from panneau_generation import PanneauGenerationTrajet
 from panneau_generation_equipage import PanneauGenerationEquipage
 from panneau_generation_navire import PanneauGenerationNavire
-
+from formulaire_action import FormulaireAction
 # ---------------------------------------------------------------------------
 # Structure des onglets, dérivée du fichier Excel fourni.
 # Clé   = onglet vertical
@@ -378,12 +378,25 @@ class App(tk.Tk):
                 command=lambda a=nom_action: self._executer_action(a),
             ).pack(side="left", padx=(0, 10))
 
-    def _executer_action(self, action: str):
+    def _executer_action(self, action):
+
+        if action == "Recruter":
+            FormulaireAction(
+                self,
+                action="Recruter",
+                moteur=self.moteur,
+                on_valider=self._valider_formulaire
+            )
+            return
+
         message = self.moteur.executer_action(
-            self.onglet_actuel, self.sous_onglet_actuel, self.instance_actuelle, action
+            self.onglet_actuel,
+            self.sous_onglet_actuel,
+            self.instance_actuelle,
+            action
         )
-        self.statut_var.set(message or "Action exécutée.")
-        # On rafraîchit instances + contenu, au cas où l'action ait modifié l'état du moteur
+
+        self.statut_var.set(message)
         self.rafraichir_instances()
 
     # ------------------------------------------------------------------ #
@@ -440,3 +453,16 @@ class App(tk.Tk):
         # On bascule sur "Afficher" pour montrer immédiatement le navire généré.
         self.instance_actuelle = nom
         self.selectionner_sous_onglet("Afficher")
+
+    def _valider_formulaire(self, action, valeurs):
+
+        message = self.moteur.executer_action(
+            self.onglet_actuel,
+            self.sous_onglet_actuel,
+            self.instance_actuelle,
+            action,
+            valeurs
+        )
+
+        self.statut_var.set(message)
+        self.rafraichir_instances()
