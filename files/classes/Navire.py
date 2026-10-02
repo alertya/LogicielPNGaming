@@ -15,7 +15,8 @@ import tkinter as tk
 from tkinter import messagebox
 from openpyxl import load_workbook
 from typing import Dict, List
-
+from .Equipage import Equipage
+from .Marchandise import Marchandise
 # Remplacer les imports relatifs selon la structure exacte du projet si nécessaire
 import utils
 import config
@@ -85,7 +86,7 @@ class Navire:
                 # -------------------------
                 self.EquipMin: int = 0
                 self.EquipMax: int = 0
-                self.equipage_nom: str = ""
+                self.EquipageNom: str = ""
 
                 self.combat: int = 0
                 self.manoeuvre: int = 0
@@ -142,9 +143,15 @@ class Navire:
                     if hasattr(self, colonne):
                         setattr(self, colonne, valeur)
                 self.Tonnage:int=self.CalculTonnage()
+                self.TonnageMarchandise=random.randint(4,10)/10*self.Tonnage
                 self.Equipage: int = self.CalculEquipage()
                 self.StructureCoqueMax: float = self.StructureCoque
                 self.StructureVoileMax: float = self.StructureVoile
+                EquipageNavire=Equipage(self.Equipage,"Matelot",self.Name+"_Equipage.csv")
+                self.EquipageNom=self.Name+"_Equipage.csv"
+                self.Marchandise = Marchandise()
+                self.Marchandise =self.Marchandise.GenerateMarchandise(Region)
+                self.Marchandise.sauvegarder(self.Name+"_Marchandises.csv")
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':

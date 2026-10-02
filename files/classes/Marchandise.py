@@ -16,9 +16,8 @@ import math
 import pandas as pd
 import matplotlib.pyplot as plt
 from tkinter import messagebox
-
 import utils
-from config import *
+import config
 
 
 
@@ -27,7 +26,7 @@ class Marchandise:
 
     def __init__(self):
 
-        self.Cargaison = "MarchandiseTest"
+        self.Cargaison = "Rhum"
         self.Region = "Europe du nord"
         self.Volume = 1
         self.PrixPenurie=150
@@ -44,7 +43,7 @@ class Marchandise:
 
 
     def ConvertRancon(self,Nombre):
-        Rancon = pd.read_csv(BASE_PATH + "/ValeursRancon.csv", sep=";", decimal=",", encoding="cp1252")
+        Rancon = pd.read_csv(config.BASE_PATH + "/ValeursRancon.csv", sep=";", decimal=",", encoding="cp1252")
         Rancon = Rancon[Rancon['ValeurDe'] >= Nombre]
         Rancon = Rancon.iloc[0]
         return Rancon
@@ -96,7 +95,7 @@ class Marchandise:
         CompNeutre = ['SympathisantPirate']
 
         # Charger les données
-        Ports = pd.read_csv(BASE_PATH+"/CaracterePort.csv", sep=";", decimal=",", encoding="cp1252")
+        Ports = pd.read_csv(config.BASE_PATH+"/CaracterePort.csv", sep=";", decimal=",", encoding="cp1252")
 
         # Copie pour éviter de modifier l'original directement
         df = Ports.copy()
@@ -128,7 +127,7 @@ class Marchandise:
 
     def AjoutMarchandise(self,NameMarchandise, TonnageMarchandise, Name):
         # Chargement de toutes les marchandises disponibles
-        MarchandisesDisponibles = pd.read_csv(BASE_PATH + "/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
+        MarchandisesDisponibles = pd.read_csv(config.BASE_PATH + "/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
 
         # Filtrage sur la marchandise choisie
         ligne_marchandise = MarchandisesDisponibles[MarchandisesDisponibles['Cargaison'] == NameMarchandise].copy()
@@ -138,8 +137,8 @@ class Marchandise:
         ligne_marchandise['Cours'] = 0
 
         # Chemin du fichier de cargaison du navire
-        output_path = os.path.join(MARCHANDISE_PATH, Name )
-        os.makedirs(MARCHANDISE_PATH, exist_ok=True)
+        output_path = os.path.join(config.MARCHANDISE_PATH, Name )
+        os.makedirs(config.MARCHANDISE_PATH, exist_ok=True)
 
         # Si le fichier existe déjà, on met à jour ou ajoute
         if os.path.exists(output_path):
@@ -165,7 +164,7 @@ class Marchandise:
         Si le tonnage devient <= 0, la ligne est supprimée.
         """
 
-        file_path = os.path.join(MARCHANDISE_PATH, Name)
+        file_path = os.path.join(config.MARCHANDISE_PATH, Name)
 
         if not os.path.exists(file_path):
             print(f"Le fichier {file_path} n'existe pas.")
@@ -203,20 +202,20 @@ class Marchandise:
 
 
     def Pillage(self,NomNavirePillant,NomNavirePille):
-        NavirePillant=pd.read_csv(os.path.join(BASE_PATH, "Navire", NomNavirePillant), sep=";",
+        NavirePillant=pd.read_csv(os.path.join(config.BASE_PATH, "Navire", NomNavirePillant), sep=";",
                                    decimal=",", encoding="cp1252")
         TonnageMax=NavirePillant['TonnageMax']-NavirePillant['Tonnage']
         TonnageMax=TonnageMax.iloc[0]
-        MarchandisePille=pd.read_csv(os.path.join(BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePille ), sep=";",
+        MarchandisePille=pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePille ), sep=";",
                                    decimal=",", encoding="cp1252")
 
-        MarchandisePillant=pd.read_csv(os.path.join(BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant ), sep=";",decimal=",", encoding="cp1252")
+        MarchandisePillant=pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant ), sep=";",decimal=",", encoding="cp1252")
 
         # Remplacer les NaN (vides ou erreurs) par 0
         MarchandisePille["PrixNormal"] = MarchandisePille["PrixNormal"].fillna(0)
         #MarchandisePille = MarchandisePille.sort_values(by="PrixNormal", ascending=False)
         while (not MarchandisePille.empty and TonnageMax > 0):
-            MarchandisePille = pd.read_csv(os.path.join(BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
+            MarchandisePille = pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
                                            sep=";",
                                            decimal=",", encoding="cp1252")
             MarchandiseNom=MarchandisePille['Cargaison'].iloc[0]
@@ -224,14 +223,14 @@ class Marchandise:
             self.SupprimerMarchandise(MarchandiseNom, "Marchandise_"+NomNavirePille, 1)
             NavirePillant['Tonnage']+=1
             TonnageMax-=1
-        MarchandisePillant.to_csv(os.path.join(BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant), sep=";",
+        MarchandisePillant.to_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant), sep=";",
                                    decimal=",", encoding="cp1252")
 
-        MarchandisePille.to_csv(os.path.join(BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
+        MarchandisePille.to_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
                                        sep=";",
                                        decimal=",", encoding="cp1252")
 
-        NavirePillant.to_csv(os.path.join(BASE_PATH, "Navire", NomNavirePillant), sep=";",
+        NavirePillant.to_csv(os.path.join(config.BASE_PATH, "Navire", NomNavirePillant), sep=";",
                                     decimal=",", encoding="cp1252")
 
 
@@ -241,7 +240,7 @@ class Marchandise:
         return Text
 
     def RetourMarchandise(self,Tonnage,Region):
-        Marchandises=pd.read_csv(BASE_PATH+"/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
+        Marchandises=pd.read_csv(config.BASE_PATH+"/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
         Volum=-999
         Total = 0
         Cargaison=[]
@@ -281,7 +280,7 @@ class Marchandise:
 
 
     def GetMarchandise(self,Nom):
-        Marchandises=pd.read_csv(BASE_PATH + "/Marchandises.csv",encoding="cp1252",decimal=",",sep=";")
+        Marchandises=pd.read_csv(config.BASE_PATH + "/Marchandises.csv",encoding="cp1252",decimal=",",sep=";")
         donnees = Marchandises[
             Marchandises["Cargaison"].str.contains(Nom, na=False)
         ].iloc[0].to_dict()
@@ -291,7 +290,7 @@ class Marchandise:
         return objet
     def GenerateMarchandise(self,Region):
         de=random.randint(1,100)
-        Marchandises = pd.read_csv(BASE_PATH + "/Marchandises.csv", encoding="cp1252", decimal=",",
+        Marchandises = pd.read_csv(config.BASE_PATH + "/Marchandises.csv", encoding="cp1252", decimal=",",
                                    sep=";")
 
 
@@ -304,10 +303,95 @@ class Marchandise:
 
 
 
+    def sauvegarder(self,Name):
 
+        ligne = {}
 
-Test=Marchandise()
-Test=Test.GenerateMarchandise("Brésil")
-Test=Test.CheckButin(0,0,0,0)
-print(Test.Nom)
-print(Test.PrixNormal)
+        for cle, valeur in self.__dict__.items():
+            ligne[cle] = valeur
+
+        df = pd.DataFrame([ligne])
+
+        df.to_csv(
+            os.path.join(config.BASE_PATH, "Marchandise", f"{Name}.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )
+    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeMarchandise.csv",
+                                   nom_marchandise: str = None):
+                """
+                Parcourt les attributs de la classe et charge automatiquement leurs valeurs
+                à partir d'un fichier CSV précédemment sauvegardé.
+                """
+                import os
+                import csv
+
+                chemin_fichier = os.path.join(config.BASE_PATH, nom_fichier)
+
+                if not os.path.exists(chemin_fichier):
+                    print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
+                    return False
+
+                donnees_marchandise = None
+
+                # 1. Lecture du fichier CSV
+                with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
+                    reader = csv.DictReader(f, delimiter=";")
+
+                    if nom_marchandise:
+                        # Si un nom spécifique est demandé, on cherche la ligne correspondante
+                        for row in reader:
+                            if row.get("Cargaison") == nom_marchandise:
+                                donnees_marchandise = row
+                    else:
+                        # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
+                        lignes = list(reader)
+                        if lignes:
+                            donnees_marchandise = lignes[-1]
+
+                if not donnees_marchandise:
+                    print("Aucune donnée correspondante trouvée dans le fichier CSV.")
+                    return False
+
+                # 2. Parcours automatique des attributs existants pour modifier l'objet
+                for cle, valeur in donnees_marchandise.items():
+                    # Si l'attribut n'existe pas dans l'__init__ du Navire actuel, on l'ignore
+                    if not hasattr(self, cle):
+                        continue
+
+                    # Si la case du CSV est complètement vide, on passe
+                    if valeur == "":
+                        continue
+
+                    # On détecte le type d'origine de l'attribut dans notre __init__
+                    type_origine = type(getattr(self, cle))
+
+                    # 3. Conversion intelligente du texte CSV vers le bon type Python
+                    try:
+                        if type_origine is bool:
+                            # Gestion des booléens ("True", "O", "1" -> True)
+                            setattr(self, cle, valeur.lower() in ["true", "o", "1", "yes"])
+
+                        elif type_origine is float:
+                            # Remplace la virgule française par un point informatique avant conversion
+                            valeur_nettoyee = valeur.replace(",", ".")
+                            setattr(self, cle, float(valeur_nettoyee))
+
+                        elif type_origine is int:
+                            setattr(self, cle, int(valeur))
+
+                        elif type_origine in [dict, list]:
+                            # Recrée des structures vides si l'import brut est une chaîne textuelle brute
+                            if valeur in ["{}", "[]"]:
+                                setattr(self, cle, type_origine())
+                        else:
+                            # Par défaut, on l'assigne sous forme de chaîne (str)
+                            setattr(self, cle, valeur)
+
+                    except ValueError:
+                        # En cas de problème de conversion, on laisse la valeur par défaut pour ne pas planter
+                        print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
+
+                return True
