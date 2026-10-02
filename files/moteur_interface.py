@@ -581,7 +581,7 @@ class MoteurExemple(MoteurBase):
         # Fiche minimale pour affichage immédiat dans l'onglet Navire -> Afficher.
         # À remplacer par ta vraie génération (coque, canons, équipage...),
         # par exemple en appelant ta classe Navire.
-        self._navires[nom] = Navire(type_navire,nom,region)
+        self._navires = Navire(type_navire,nom,region)
 
         return f"Navire « {nom} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
 
@@ -619,7 +619,7 @@ class MoteurExemple(MoteurBase):
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
             return navire.executer_action(action,valeurs)
-        if onglet == "Marchandise":
+        if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.executer_action(action,valeurs)
 
@@ -634,7 +634,7 @@ class MoteurExemple(MoteurBase):
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
             return navire.get_boutons(action) if navire else []
-        if onglet == "Marchandise":
+        if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_boutons(action) if marchandise else []
 

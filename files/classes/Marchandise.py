@@ -125,7 +125,7 @@ class Marchandise:
         TaillePort=df[df['Ville']==Ville]
         return TaillePort
 
-    def AjoutMarchandise(self,NameMarchandise, TonnageMarchandise, Name):
+    def AjoutMarchandise(self,Name, TonnageMarchandise):
         # Chargement de toutes les marchandises disponibles
         MarchandisesDisponibles = pd.read_csv(config.BASE_PATH + "/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
 
@@ -158,7 +158,7 @@ class Marchandise:
             ligne_marchandise.to_csv(output_path, sep=";", decimal=",", encoding="cp1252", index=False)
 
         return ligne_marchandise
-    def SupprimerMarchandise(self,NameMarchandise, Name, quantite=1):
+    def SupprimerMarchandise(self, Name, quantite=1):
         """
         Retire `quantite` de tonnage à la marchandise `NameMarchandise` dans le fichier `Name.csv`.
         Si le tonnage devient <= 0, la ligne est supprimée.
@@ -319,98 +319,59 @@ class Marchandise:
             encoding="cp1252",
             index=False
         )
-    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeMarchandise"):
-                """
-                Parcourt les attributs de la classe et charge automatiquement leurs valeurs
-                à partir d'un fichier CSV précédemment sauvegardé.
-                """
-                import os
-                import csv
 
-                chemin_fichier = os.path.join(config.BASE_PATH, "Marchandise",f"{nom_fichier}.csv")
+    @classmethod
+    def charger_depuis_csv(cls, nom_fichier: str):
 
-                if not os.path.exists(chemin_fichier):
-                    print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
-                    return False
+        import os
+        import csv
 
-                donnees_marchandise = None
+        chemin_fichier = os.path.join(
+            config.BASE_PATH,
+            "Marchandise",
+            f"{nom_fichier}.csv"
+        )
 
-                # 1. Lecture du fichier CSV
-                with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
-                    reader = csv.DictReader(f, delimiter=";")
-                    # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
-                    lignes = list(reader)
-                    if lignes:
-                        donnees_marchandise = lignes[-1]
+        if not os.path.exists(chemin_fichier):
+            print(f"Le fichier {chemin_fichier} n'existe pas.")
+            return None
 
-                if not donnees_marchandise:
-                    print("Aucune donnée correspondante trouvée dans le fichier CSV.")
-                    return False
+        # Création d'un objet Marchandise vide
+        marchandise = cls()
 
-                # 2. Parcours automatique des attributs existants pour modifier l'objet
-                for cle, valeur in donnees_marchandise.items():
-                    # Si l'attribut n'existe pas dans l'__init__ du Navire actuel, on l'ignore
-                    if not hasattr(self, cle):
-                        continue
+        import pandas as pd
 
-                    # Si la case du CSV est complètement vide, on passe
-                    if valeur == "":
-                        continue
+        df = pd.read_csv(
+            chemin_fichier,
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
 
-                    # On détecte le type d'origine de l'attribut dans notre __init__
-                    type_origine = type(getattr(self, cle))
+        if df.empty:
+            return marchandise
 
-                    # 3. Conversion intelligente du texte CSV vers le bon type Python
-                    try:
-                        if type_origine is bool:
-                            # Gestion des booléens ("True", "O", "1" -> True)
-                            setattr(self, cle, valeur.lower() in ["true", "o", "1", "yes"])
+        # Dernière ligne du fichier
+        donnees = df.iloc[-1]
 
-                        elif type_origine is float:
-                            # Remplace la virgule française par un point informatique avant conversion
-                            valeur_nettoyee = valeur.replace(",", ".")
-                            setattr(self, cle, float(valeur_nettoyee))
+        for cle, valeur in donnees.items():
 
-                        elif type_origine is int:
-                            setattr(self, cle, int(valeur))
+            if not hasattr(marchandise, cle):
+                continue
 
-                        elif type_origine in [dict, list]:
-                            # Recrée des structures vides si l'import brut est une chaîne textuelle brute
-                            if valeur in ["{}", "[]"]:
-                                setattr(self, cle, type_origine())
-                        else:
-                            # Par défaut, on l'assigne sous forme de chaîne (str)
-                            setattr(self, cle, valeur)
+            # Ignore les valeurs manquantes
+            if pd.isna(valeur):
+                continue
 
-                    except ValueError:
-                        # En cas de problème de conversion, on laisse la valeur par défaut pour ne pas planter
-                        print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
+            setattr(marchandise, cle, valeur)
 
-                return True
-    def GetActions(self):
-        return {
-            "Acheter": [
-                {"type": "checkbox", "nom": "Capitaine"},
-                {"type": "checkbox", "nom": "Second"},
-                {"type": "checkbox", "nom": "Pilote"}
-            ],
+        return marchandise
 
-            "Vendre": [
-                {"type": "checkbox", "nom": "Primes"},
-                {"type": "checkbox", "nom": "Officiers"}
-            ],
-
-            "Piller": [
-                {"type": "combobox", "nom": "Compétence",
-                 "valeurs": ["Combat", "Navigation", "Commerce"]},
-                {"type": "entry", "nom": "XP"}
-            ]
-        }
-
-    def executer_action(self, action):
+    def get_actions(self):        return ["Acheter", "Vendre", "Piller"]
+    def executer_action(self, action,valeurs=None):
 
         if action == "Vendre":
-            self.CalculSalaire()
+            self.SupprimerMarchandise(valeurs["Marchandise_source"],valeurs['Tonnage'])
             self.sauvegarder(self.Name)
 
         elif action == "Acheter":

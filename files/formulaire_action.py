@@ -20,6 +20,58 @@ class FormulaireAction(tk.Toplevel):
         self.construire()
 
     def construire(self):
+        if self.action == "Vendre":
+            # ---------------- Marchandise ----------------
+            tk.Label(
+                        self,
+                        text="Marchandise à vendre"
+                    ).grid(row=0, column=0, padx=10, pady=10)
+
+            self.variables["Marchandise"] = tk.StringVar()
+
+            ttk.Combobox(
+                        self,
+                        textvariable=self.variables["Marchandise"],
+                        values=self.moteur.get_instances("Marchandise", "Afficher"),
+                        state="readonly"
+                    ).grid(row=0, column=1, padx=10, pady=10)
+
+                    # ---------------- Tonnage ----------------
+            tk.Label(
+                        self,
+                        text="Tonnage à vendre"
+                    ).grid(row=1, column=0, padx=10, pady=10)
+
+            self.variables["Tonnage"] = tk.IntVar(value=0)
+
+            tk.Spinbox(
+                        self,
+                        from_=0,
+                        to=10000,
+                        textvariable=self.variables["Tonnage"]
+                    ).grid(row=1, column=1, padx=10, pady=10)
+
+            # ---------------- Succès ----------------
+            tk.Label(
+                        self,
+                        text="Succès de commerce"
+                    ).grid(row=2, column=0, padx=10, pady=10)
+
+            self.variables["Succes"] = tk.IntVar(value=0)
+
+            tk.Spinbox(
+                        self,
+                        from_=0,
+                        to=10,
+                        textvariable=self.variables["Succes"]
+                    ).grid(row=2, column=1, padx=10, pady=10)
+
+                    # ---------------- Validation ----------------
+            tk.Button(
+                        self,
+                        text="Valider",
+                        command=self.valider
+                    ).grid(row=3, column=0, columnspan=2, pady=20)
         if self.action == "Recruter":
             tk.Label(
                 self,
@@ -55,7 +107,7 @@ class FormulaireAction(tk.Toplevel):
 
             tk.Label(
                 self,
-                text="Nombre"
+                text="Succes de MeneurHomme sous Charisme"
             ).grid(row=2, column=0, padx=10, pady=10)
 
             self.variables["Nombre"] = tk.IntVar(value=0)
