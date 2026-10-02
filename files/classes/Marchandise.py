@@ -164,7 +164,7 @@ class Marchandise:
         Si le tonnage devient <= 0, la ligne est supprimée.
         """
 
-        file_path = os.path.join(config.MARCHANDISE_PATH, Name)
+        file_path = os.path.join(config.MARCHANDISE_PATH, Name+".csv")
 
         if not os.path.exists(file_path):
             print(f"Le fichier {file_path} n'existe pas.")
@@ -371,7 +371,7 @@ class Marchandise:
     def executer_action(self, action,valeurs=None):
 
         if action == "Vendre":
-            self.SupprimerMarchandise(valeurs["Marchandise_source"],valeurs['Tonnage'])
+            self.SupprimerMarchandise(valeurs["Marchandise"],valeurs['Tonnage'])
             self.sauvegarder(self.Name)
 
         elif action == "Acheter":

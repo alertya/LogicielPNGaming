@@ -32,7 +32,7 @@ class FormulaireAction(tk.Toplevel):
             ttk.Combobox(
                         self,
                         textvariable=self.variables["Marchandise"],
-                        values=self.moteur.get_instances("Marchandise", "Afficher"),
+                        values=self.moteur.get_instances("Marchandises", "Afficher"),
                         state="readonly"
                     ).grid(row=0, column=1, padx=10, pady=10)
 
