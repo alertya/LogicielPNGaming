@@ -60,7 +60,7 @@ class Navire:
                 self.de_depart: int = 0
                 self.regions_depart: str = Region
                 self.de_compagnie: int = 0
-                self.compagnie: str = ""
+                self.Compagnie: str = ""
 
                 # -------------------------
                 # Identification & Catégorie
@@ -68,26 +68,24 @@ class Navire:
                 self.bateau: str = ""
                 self.de_bateau: int = 0
                 self.separation: str = ""
-                self.CategorieNavire: str = ""
+                self.CategorieNavire: int = 0
                 self.pirate: bool = False  # Géré en booléen (True pour 'O', False pour 'N')
 
                 # -------------------------
                 # Dimensions & Structure
                 # -------------------------
-                self.longueur: float = 0.0
+                self.Longueur: int = 0
                 self.NbMats: int = 0
                 self.Hauturier: str = ""
                 self.StructureCoque: float = 0.0
-                self.structure_coque_max: float = 0.0
                 self.StructureVoile: float = 0.0
-                self.structure_voile_max: float = 0.0
 
                 # -------------------------
                 # Équipage & Compétences
                 # -------------------------
                 self.EquipMin: int = 0
                 self.EquipMax: int = 0
-                self.equipage: int = self.CalculEquipage()
+
                 self.equipage_tout: int = 0
                 self.equipage_nom: str = ""
 
@@ -102,11 +100,11 @@ class Navire:
                 # Navigation & Allures
                 # -------------------------
                 self.allure: str = ""
-                self.vitesse_moyenne: float = 0.0
-                self.pres: float = 0.0
-                self.largue: float = 0.0
-                self.grand_largue: float = 0.0
-                self.vent_arriere: float = 0.0
+                self.VitesseMoyenne: float = 0.0
+                self.Pres: float = 0.0
+                self.Largue: float = 0.0
+                self.GrandLargue: float = 0.0
+                self.VentArriere: float = 0.0
 
                 # -------------------------
                 # Combat & Armement
@@ -120,7 +118,7 @@ class Navire:
                 # -------------------------
                 self.TonnageMin: int = 0
                 self.TonnageMax: int = 0
-                self.Tonnage:int=self.CalculTonnage()
+
                 self.remplissage: int = 0
                 self.poids_total_marchandise: float = 0.0
                 self.cargaison3: int = 0
@@ -141,20 +139,14 @@ class Navire:
                 print(ligne_data)
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
                 for colonne, valeur in ligne_data.items():
-                    # Nettoyage du nom de la colonne pour correspondre au format de l'__init__
-                    nom_attribut = (
-                        colonne.lower()
-                        .replace(" ", "_")
-                        .replace(":", "_")
-                        .replace("/", "_")
-                        .replace("é", "e")
-                        .replace("à", "a")
-                    )
+
                 # 3. Vérification de l'existence de l'attribut dans la classe avant modification
-                    if hasattr(self, nom_attribut):
-                        setattr(self, nom_attribut, valeur)
-                        print(nom_attribut)
-                        print(valeur)
+                    if hasattr(self, colonne):
+                        setattr(self, colonne, valeur)
+                self.Tonnage:int=self.CalculTonnage()
+                self.Equipage: int = self.CalculEquipage()
+                self.StructureCoqueMax: float = self.StructureCoque
+                self.StructureVoileMax: float = self.StructureVoile
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
@@ -281,10 +273,10 @@ class Navire:
                 self.region=region
 
     def CalculTonnage(self):
-        self.Tonnage= random.randint(self.TonnageMin,self.TonnageMax)
+        self.Tonnage= random.randint(int(self.TonnageMin),int(self.TonnageMax))
 
     def CalculEquipage(self):
-        self.Equipage=random.randint(self.EquipMin,self.EquipMax)
+        self.Equipage=random.randint(int(self.EquipMin),int(self.EquipMax))
     def CheckNavire(self, bateau):
         return bateau, False
 
@@ -452,7 +444,7 @@ class Navire:
             Compagnie=self.CalculCompagnie(ZoneCompagnie,annee)
             Type=self.CalculType(ZoneRencontre,annee)
             NavireRencontre=Navire(Type,nom,region)
-            NavireRencontre.compagnie=Compagnie
+            NavireRencontre.Compagnie=Compagnie
             return NavireRencontre
         else:
             return None
