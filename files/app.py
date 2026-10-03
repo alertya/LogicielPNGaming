@@ -379,7 +379,7 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer"):
+        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre"):
             FormulaireAction(
                 self,
                 action=action,
@@ -466,3 +466,10 @@ class App(tk.Tk):
 
         self.statut_var.set(message)
         self.rafraichir_instances()
+
+    def _bataille_terrestre(self, nomAllie: str, nomAdverse: str, CompAllie: str,CompAdverse: str, BonusAllie: int,BonusAdverse:int):
+        message = self.moteur.BatailleTerrestre(nomAllie, nomAdverse, CompAllie, CompAdverse,BonusAllie,BonusAdverse)
+        self.statut_var.set(message or "Équipage généré.")
+        # On bascule sur "Afficher" pour montrer immédiatement l'équipage généré.
+        self.instance_actuelle = nom
+        self.selectionner_sous_onglet("Actions")

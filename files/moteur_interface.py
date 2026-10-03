@@ -527,7 +527,6 @@ class MoteurExemple(MoteurBase):
         return self._lire_colonne_csv(chemin, "Type")
 
     def generer_equipage(self, nom, type_equipage, nombre, effectifs):
-        print("3 Equipage en génération")
 
         equipage = Equipage.generer(
             nom,
@@ -539,6 +538,23 @@ class MoteurExemple(MoteurBase):
         self._equipage = equipage
 
         return f"Équipage {nom} généré."
+    def BatailleTerrestre(self,
+            NomArmeeAlliee,
+            NomArmeeAdverse,
+            Comp1,
+            Comp2,
+            Bonus1,
+            Bonus2
+    ):
+        return BatailleTerrestre(self,
+            NomArmeeAlliee,
+            NomArmeeAdverse,
+            Comp1,
+            Comp2,
+            Bonus1,
+            Bonus2
+    )
+
     # ------------------------------------------------------------------ #
     # Navire -> Générer
     # ------------------------------------------------------------------ #

@@ -522,18 +522,19 @@ class Equipage:
         return Mort
 
 
-    def BatailleTerrestre(
-            self,
-            ArmeeAdverse,
+    def BatailleTerrestre(self,
+            NomArmeeAlliee,
+            NomArmeeAdverse,
             Comp1,
             Comp2,
             Bonus1,
             Bonus2
     ):
-
+        ArmeeAlliee=self.charger_depuis_csv(NomArmeeAlliee)
+        ArmeeAdverse = self.charger_depuis_csv(NomArmeeAdverse)
         Text = ""
 
-        Armee1Valide = self.HommesValides()
+        Armee1Valide = ArmeeAlliee.HommesValides()
         Armee2Valide = ArmeeAdverse.HommesValides()
 
         Armee1Valide = [
@@ -547,7 +548,7 @@ class Equipage:
         ]
 
         Text += (
-            f"{self.Name} a encore "
+            f"{ArmeeAlliee.Name} a encore "
             f"{len(Armee1Valide)} disponibles au combat\n"
         )
 
@@ -556,7 +557,7 @@ class Equipage:
             f"{len(Armee2Valide)} disponibles au combat\n"
         )
 
-        Degat1 = self.Degats(Comp1, Bonus1)
+        Degat1 = ArmeeAlliee.Degats(Comp1, Bonus1)
         Degat2 = ArmeeAdverse.Degats(Comp2, Bonus2)
 
         Perte1 = 0
@@ -564,16 +565,16 @@ class Equipage:
 
         if Armee1Valide:
 
-            Perte1 = self.Perte(Degat2)
+            Perte1 = ArmeeAlliee.Perte(Degat2)
 
-            Text += self.Attitude(
-                -Perte1 / len(self.Membres) * 50
+            Text += ArmeeAlliee.Attitude(
+                -Perte1 / len(ArmeeAlliee.Membres) * 50
             )[1]
 
         else:
 
             Text += (
-                f"{self.Name} a été décimé "
+                f"{ArmeeAlliee.Name} a été décimé "
                 "ou s'est rendu/enfui\n"
             )
 
@@ -591,7 +592,8 @@ class Equipage:
                 f"{ArmeeAdverse.Name} a été décimé "
                 "ou s'est rendu/enfui\n"
             )
-
+        ArmeeAlliee.Save(NomArmeeAlliee)
+        ArmeeAdverse.Save(NomArmeeAdverse)
         return Text
 
     ###Exemple, cl
@@ -864,7 +866,9 @@ class Equipage:
                 patient = random.choice(blesses)
                 patient.PV += 1
                 soins_restants -= 1
-
+        for Member in self.Membres:
+            Member.PVMax=Member.PVMax
+        self.Save(self.Name)
         return self
     def RepartCompetence(self, Seuil, Lists):
 
@@ -1115,17 +1119,16 @@ class Equipage:
             return "Les roles ont été attribués dans "+self.Name
 
         elif action == "Distribuer les soldes":
-            return "Vous payez le salaire du jour de votre equipage, veuillez retirer "+str(self.CalculSalaireJournalier())+" pièces de huit de votre inventaire."
+            return "Vous payez le salaire du jour de votre equipage, veuillez retirer "+str(int(self.CalculSalaireJournalier()))+" pièces de huit de votre inventaire."
             # On fera cette partie plus tard
 
         elif action == "Soins":
-            self.SoinsEquipage(2,2)
+            return self.SoinsEquipage()
+
+        elif action == "BatailleTerrestre":
+            return self.BatailleTerrestre(valeurs['Equipage1'],valeurs["Equipage2"],valeurs["Competence1"],valeurs["Competence2"],valeurs["Bonus1"],valeurs['Bonus2'])
             # On fera cette partie plus tard
-            return "Fonction non implémentée."
-        elif action == "Bataille":
-            self.BatailleTerrestre(2,2)
-            # On fera cette partie plus tard
-            return "Fonction non implémentée."
+
         return "Action inconnue."
 
     @classmethod
