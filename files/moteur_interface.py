@@ -49,17 +49,35 @@ Sous-onglet "Actions" (présent sur chaque onglet vertical) :
 
 from __future__ import annotations
 import copy
+import copy
+print("A")
+
 import random
-from typing import Any, Dict, List, Optional, Union
-from config import BASE_PATH
+print("A1")
+
 import pandas as pd
+print("A2")
+
+import utils
+print("A3")
+from typing import Any, Dict, List, Optional, Union
+print("B")
+import config
+print("B1")
+print("B2")
 import os
+print("B3")
+print("C")
 from classes.Equipage import Equipage
+print("C1")
 from classes.Navire import Navire
+print("C2")
 from classes.Marchandise import Marchandise
-from classes.PNJ import PNJ
-from classes.Navigation import Navigation
-from classes.Inventaire import Inventaire
+print("C3")
+print("D")
+import numpy as np
+print("E")
+
 
 # Type d'une "fiche" de données que l'interface sait afficher automatiquement :
 #  - un dict simple  -> affiché en liste clé / valeur
@@ -67,7 +85,7 @@ from classes.Inventaire import Inventaire
 #  - une chaîne / liste de chaînes -> affichée comme du texte (ex : journal de bord)
 DonneesAffichables = Union[Dict[str, Any], List[Dict[str, Any]], str, List[str], None]
 
-
+print("F")
 class MoteurBase:
     """
     Classe abstraite (contrat). Hérite de cette classe pour brancher ton
@@ -287,7 +305,7 @@ class MoteurExemple(MoteurBase):
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
 
     def _get_instances_dossier(self, nom_dossier):
-        dossier = os.path.join(BASE_PATH, nom_dossier)
+        dossier = os.path.join(config.BASE_PATH, nom_dossier)
 
         if not os.path.isdir(dossier):
             return []
@@ -463,7 +481,7 @@ class MoteurExemple(MoteurBase):
 
     def ChargerEquipages(self):
 
-        dossier = os.path.join(BASE_PATH, "Equipage")
+        dossier = os.path.join(config.BASE_PATH, "Equipage")
 
         self._equipage = {}
 
@@ -522,7 +540,7 @@ class MoteurExemple(MoteurBase):
     # Equipage -> Générer
     # ------------------------------------------------------------------ #
     def get_types_equipage(self) -> List[str]:
-        chemin = os.path.join(BASE_PATH, "ListeProf.csv")
+        chemin = os.path.join(config.BASE_PATH, "ListeProf.csv")
         return self._lire_colonne_csv(chemin, "Type")
 
     def generer_equipage(self, nom, type_equipage, nombre, effectifs):
@@ -537,39 +555,24 @@ class MoteurExemple(MoteurBase):
         self._equipage = equipage
 
         return f"Équipage {nom} généré."
-    def BatailleTerrestre(self,
-            NomArmeeAlliee,
-            NomArmeeAdverse,
-            Comp1,
-            Comp2,
-            Bonus1,
-            Bonus2
-    ):
-        return BatailleTerrestre(self,
-            NomArmeeAlliee,
-            NomArmeeAdverse,
-            Comp1,
-            Comp2,
-            Bonus1,
-            Bonus2
-    )
+
 
     # ------------------------------------------------------------------ #
     # Navire -> Générer
     # ------------------------------------------------------------------ #
     def get_types_navire(self) -> List[str]:
-        chemin = os.path.join(BASE_PATH, "RencontreNavire.csv")
+        chemin = os.path.join(config.BASE_PATH, "RencontreNavire.csv")
         return self._lire_colonne_csv(chemin, "Nom")
 
     def get_regions_navire(self) -> List[str]:
-        chemin = os.path.join(BASE_PATH, "ListeRegions.csv")
+        chemin = os.path.join(config.BASE_PATH, "ListeRegions.csv")
         return self._lire_colonne_csv(chemin, "RegionsCommerciale")
 
     def generer_navire(self, nom, type_navire, region):
         if not nom:
             return "Merci de saisir un nom de navire."
 
-        dossier = os.path.join(BASE_PATH, "Navire")
+        dossier = os.path.join(config.BASE_PATH, "Navire")
         os.makedirs(dossier, exist_ok=True)
 
         ligne = {"Nom": nom, "Type": type_navire, "Region": region}
@@ -648,7 +651,7 @@ class MoteurExemple(MoteurBase):
 
     def get_types_membre(self):
         df = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
+            config.BASE_PATH + "/ListeProf.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -659,7 +662,7 @@ class MoteurExemple(MoteurBase):
     def Recrute(self, Nb, Type, Bonus):
 
         Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
+            config.BASE_PATH + "/ListeProf.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"

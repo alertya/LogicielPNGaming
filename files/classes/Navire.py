@@ -11,15 +11,15 @@ import random
 import csv
 import numpy as np
 import pandas as pd
-import tkinter as tk
-from tkinter import messagebox
-from openpyxl import load_workbook
 from typing import Dict, List
 from .Equipage import Equipage
+print("NavireA2")
 from .Marchandise import Marchandise
-# Remplacer les imports relatifs selon la structure exacte du projet si nécessaire
-import utils
+print("NavireA3")
+
+print("NavireA4")
 import config
+print("NavireA5")
 
 ##### Variables & Constantes voyage
 NbJour = 6

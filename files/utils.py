@@ -15,7 +15,7 @@ import pandas as pd
 
 import pandas as pd
 from config import *
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 def ListeRegions():
     df=pd.read_csv(BASE_PATH+"/ListeRegions.csv",sep=";",encoding="cp1252")

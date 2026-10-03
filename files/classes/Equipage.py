@@ -1,12 +1,13 @@
 
 import pandas as pd
-from config import BASE_PATH
 import numpy as np
-import utils
+
 import os
 import csv
 import random
+import utils
 import config
+
 
 class Equipage:
 
@@ -18,7 +19,7 @@ class Equipage:
         self.Membres = []
 
         Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
+            config.BASE_PATH+ "/ListeProf.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -79,7 +80,7 @@ class Equipage:
         df = pd.DataFrame(lignes)
 
         df.to_csv(
-            os.path.join(BASE_PATH, "Equipage", f"{nom}.csv"),
+            os.path.join(config.BASE_PATH, "Equipage", f"{nom}.csv"),
             sep=";",
             decimal=",",
             encoding="cp1252",
@@ -94,7 +95,7 @@ class Equipage:
         recrée chaque membre ligne par ligne avec ses attributs typés, et renvoie l'objet Equipage.
         """
         # Nettoyage de l'espace dans le nom du fichier présent dans votre code d'origine
-        chemin_fichier = os.path.join(BASE_PATH, "Equipage", f"{Name}.csv")
+        chemin_fichier = os.path.join(config.BASE_PATH, "Equipage", f"{Name}.csv")
 
         if not os.path.exists(chemin_fichier):
             print(f"Le fichier d'équipage {chemin_fichier} n'existe pas.")
@@ -163,7 +164,7 @@ class Equipage:
     def Recrute(self, Nb, Type, Bonus):
 
         Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
+            config.BASE_PATH+ "/ListeProf.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -321,7 +322,7 @@ class Equipage:
     def AttributeGroupeMembre(self, membre):
 
         Roles = pd.read_csv(
-            BASE_PATH + "/RoleColonie.csv",
+            config.BASE_PATH+ "/RoleColonie.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -898,7 +899,7 @@ class Equipage:
 
         # Lecture de la définition de l'action
         Actions = pd.read_csv(
-            BASE_PATH + "/ListeActions.csv",
+            config.BASE_PATH+ "/ListeActions.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -955,7 +956,7 @@ class Equipage:
     def AttributeGroupe(self):
 
         Roles = pd.read_csv(
-            BASE_PATH + "/RoleColonie.csv",
+            config.BASE_PATH+ "/RoleColonie.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -982,7 +983,7 @@ class Equipage:
     def AttributionSalaireParRole(self):
 
         SalairesRole = pd.read_csv(
-            BASE_PATH + "/SalaireRole.csv",
+            config.BASE_PATH+ "/SalaireRole.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -1014,7 +1015,7 @@ class Equipage:
     def CalculSalaireEquipage(self):
 
         SalairesRole = pd.read_csv(
-            BASE_PATH + "/SalaireRole.csv",
+            config.BASE_PATH+ "/SalaireRole.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
@@ -1202,7 +1203,7 @@ class Equipage:
 
     def AjoutTrait(self):
         df = pd.read_csv(
-            config.BASE_PATH + "/Competences.csv",
+            config.BASE_PATH+ "/Competences.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
