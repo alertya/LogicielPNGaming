@@ -365,8 +365,8 @@ class MoteurExemple(MoteurBase):
     # ------------------------------------------------------------------ #
     # Journal de bord / trajet
     # ------------------------------------------------------------------ #
-    def get_navires(self) -> List[str]:
-        return list(self._navires.keys())
+    def get_navires(self):
+        return [self._navires.Name]
 
     def creer_trajet(self, navire, annee_historique, etapes):
         if not navire:

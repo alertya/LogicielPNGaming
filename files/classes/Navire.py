@@ -201,7 +201,7 @@ class Navire:
             "Économie": {
                 "type": "formulaire",
                 "donnees": {
-                    "Cargaison": self.Marchandise.Name,
+                    "Cargaison": self.Name+"_Marchandise",
                     "Tonnage": self.Tonnage,
                     "Marchandises": self.TonnageMarchandise,
                     "Coque": f"{self.StructureCoque}/{self.StructureCoqueMax}",
