@@ -379,7 +379,7 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre"):
+        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType'):
             FormulaireAction(
                 self,
                 action=action,
@@ -473,3 +473,66 @@ class App(tk.Tk):
         # On bascule sur "Afficher" pour montrer immédiatement l'équipage généré.
         self.instance_actuelle = nom
         self.selectionner_sous_onglet("Actions")
+    def _Recrute(self, Nb, Type, Bonus):
+
+        Pond = pd.read_csv(
+            BASE_PATH + "/ListeProf.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
+
+        Ponds = Pond[Pond["Type"] == Type]
+
+        Temp = ""
+
+        for _ in range(Nb):
+
+            donnees = Ponds.iloc[0].to_dict()
+
+            # Génération des compétences
+            for k in Ponds.columns[1:71]:
+
+                if k not in ["Salaire", "Employeur"]:
+                    donnees[k] = utils.Compute(Ponds[k].iloc[0])
+
+            # Armes blanches
+            donnees["ArmesBlanches"] = max(
+                donnees["Dague"],
+                donnees["Hache"],
+                donnees["Sabre"]
+            )
+
+            # Attributs propres au membre
+            donnees["Nom"] = ""
+            donnees["Maladie"] = ""
+            donnees["Moral"] = 2
+            donnees["Groupe"] = ""
+            donnees["Pirate"] = 1
+            donnees["Score"] = 0
+            donnees["Role"] = ""
+            donnees["Famine"] = 0
+            donnees["KillCount"] = 0
+            donnees["LastSuccess"] = 0
+
+            donnees["Attitude"] = int(
+                np.random.normal(50, 5)
+            )
+
+            # Création du membre
+            membre = type("Membre", (), {})()
+
+            for attribut, valeur in donnees.items():
+                setattr(membre, attribut, valeur)
+            # Initialisation des PV
+            membre.PVMax = random.randint(5, 8)
+            membre.PV = membre.PVMax
+            # Calculs individuels
+            self.ScoreMembre(membre)
+            self.AttributeGroupeMembre(membre)
+
+            self.Membres.append(membre)
+            self.AjoutTrait()
+        self.ValeurCombat = self.CalculCombatEquipage()
+
+        return Temp

@@ -407,7 +407,58 @@ class FormulaireAction(tk.Toplevel):
                 text="Valider",
                 command=self.valider
             ).grid(row=4, column=0, columnspan=2, pady=20)
+        if self.action == "RecruterType":
+            tk.Label(
+                self,
+                text="Equipage recruteur"
+            ).grid(row=0, column=0, padx=10, pady=10)
 
+            self.variables["Equipage_source"] = tk.StringVar()
+
+            combo = ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage_source"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly"
+            )
+
+            combo.grid(row=0, column=1)
+
+            tk.Label(
+                self,
+                text="Type a recruter"
+            ).grid(row=1, column=0, padx=10, pady=10)
+
+            self.variables["Type"] = tk.StringVar()
+
+            combo = ttk.Combobox(
+                self,
+                textvariable=self.variables["Type"],
+                values=self.moteur.get_types_equipage(),
+                state="readonly"
+            )
+
+            combo.grid(row=1, column=1)
+
+            tk.Label(
+                self,
+                text="Nombre de type a recruter"
+            ).grid(row=2, column=0, padx=10, pady=10)
+
+            self.variables["Nombre"] = tk.IntVar(value=0)
+
+            tk.Spinbox(
+                self,
+                from_=0,
+                to=10,
+                textvariable=self.variables["Nombre"]
+            ).grid(row=2, column=1)
+
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(row=3, column=0, columnspan=2, pady=20)
     def recuperer_valeurs(self):
         return {
             nom: variable.get()

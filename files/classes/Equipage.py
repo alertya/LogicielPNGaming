@@ -70,7 +70,7 @@ class Equipage:
 
     def Save(self, nom=None):
         nom = nom or self.Name
-
+        self.AjoutTrait()
         lignes = []
 
         for membre in self.Membres:
@@ -1102,7 +1102,7 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins"]
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType']
 
     def executer_action(self, action, instance,valeurs=None):
 
@@ -1165,7 +1165,19 @@ class Equipage:
         elif action == "BatailleTerrestre":
             return self.BatailleTerrestre(valeurs['Equipage1'],valeurs["Equipage2"],valeurs["Competence1"],valeurs["Competence2"],valeurs["Bonus1"],valeurs['Bonus2'])
             # On fera cette partie plus tard
+        elif action == "RecruterType":
 
+            equipage = Equipage.charger_depuis_csv(
+
+                valeurs['Equipage_source']
+
+            )
+
+            equipage.Recrute(valeurs['Nombre'],valeurs['Type'],0)
+
+            equipage.Save(equipage.Name)
+
+            return f"Recrutement effectué pour {equipage.Name}"
         return "Action inconnue."
 
     @classmethod
