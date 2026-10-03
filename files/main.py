@@ -26,8 +26,5 @@ import config
 
 moteur = MoteurExemple()
 if __name__ == "__main__":
-    print("Debut app")
     app = App(moteur)
-    print("Fin app")
     app.mainloop()
-    print("Done")

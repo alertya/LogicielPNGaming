@@ -19,25 +19,24 @@ main.py.
 """
 
 from __future__ import annotations
-print("A")
+
 import tkinter as tk
-print("B")
+
 from tkinter import ttk
-print("C")
+
 from typing import Dict, List, Optional
 
 import theme
-print("D")
+
 from moteur_interface import MoteurBase
-print("E")
+
 from panneau_generation import PanneauGenerationTrajet
-print("F")
+
 from panneau_generation_equipage import PanneauGenerationEquipage
-print("G")
+
 from panneau_generation_navire import PanneauGenerationNavire
-print("H")
+
 from formulaire_action import FormulaireAction
-print("I")
 # ---------------------------------------------------------------------------
 # Structure des onglets, dérivée du fichier Excel fourni.
 # Clé   = onglet vertical
