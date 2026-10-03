@@ -146,6 +146,72 @@ class Navire:
                 self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
                 self.sauvegarder()
 
+    def Affichage(self):
+
+        return {
+            "Identification": {
+                "type": "formulaire",
+                "donnees": {
+                    "Nom": self.Name,
+                    "Type": self.type_navire,
+                    "Compagnie": self.Compagnie,
+                    "Région": self.regions_depart,
+                    "Pirate": self.pirate,
+                }
+            },
+
+            "Navigation": {
+                "type": "formulaire",
+                "donnees": {
+                    "Longueur": self.Longueur,
+                    "Mâts": self.NbMats,
+                    "Allure": self.allure,
+                    "Vitesse": self.VitesseMoyenne,
+                    "Près": self.Pres,
+                    "Largue": self.Largue,
+                    "Grand largue": self.GrandLargue,
+                    "Vent arrière": self.VentArriere,
+                }
+            },
+
+            "Combat": {
+                "type": "formulaire",
+                "donnees": {
+                    "Canons": self.NbCanons,
+                    "Combat": self.combat,
+                    "Manœuvre": self.manoeuvre,
+                    "Pointage": self.pointage,
+                    "Recharge": self.recharge,
+                    "Ruse": self.ruse,
+                    "Valeur combat": self.valeur_combat,
+                    "Canonnade": self.ValeurCanonnade,
+                }
+            },
+
+            "Équipage": {
+                "type": "formulaire",
+                "donnees": {
+                    "Équipage": self.EquipageNom,
+                    "Minimum": self.EquipMin,
+                    "Maximum": self.EquipMax,
+                    "Présents": self.NombreEquipage,
+                }
+            },
+
+            "Économie": {
+                "type": "formulaire",
+                "donnees": {
+                    "Cargaison": self.Marchandise.Name,
+                    "Tonnage": self.Tonnage,
+                    "Marchandises": self.TonnageMarchandise,
+                    "Coque": f"{self.StructureCoque}/{self.StructureCoqueMax}",
+                    "Voiles": f"{self.StructureVoile}/{self.StructureVoileMax}",
+                    "Coût commerce": self.CoutCommerce,
+                    "Coût guerre": self.CoutGuerre,
+                }
+            }
+        }
+
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
                 """Génère une rencontre navale et retourne un objet Navire configuré."""
 

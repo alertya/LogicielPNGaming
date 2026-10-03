@@ -24,7 +24,21 @@ class Marchandise:
         self.Cargaisons = []
         self.Name = "Test.csv"
 
-
+    def Affichage(self):
+        return {
+            "Cargaison": {
+                "type": "tableau",
+                "colonnes": ["Marchandise", "Tonnage", "Prix"],
+                "donnees": [
+                    {
+                        "Marchandise": c["Nom"],
+                        "Tonnage": c["Tonnage"],
+                        "Prix": c["PrixNormal"],
+                    }
+                    for c in self.Cargaisons
+                ]
+            }
+        }
     def ConvertRancon(self,Nombre):
         Rancon = pd.read_csv(config.BASE_PATH + "/ValeursRancon.csv", sep=";", decimal=",", encoding="cp1252")
         Rancon = Rancon[Rancon['ValeurDe'] >= Nombre]
@@ -36,14 +50,6 @@ class Marchandise:
         Bonus=random.randint(0,90)
         return Base+Bonus
 
-    def CheckButin(self,TonnageNavire,NbCanons,Port,SuccesCommerce):
-        for cargaison in self.Cargaisons:
-            if k in cargaison["Cargaison"]:
-                cargaison["PrixNormal"] = Valeur
-                cargaison["PrixExces"] = Valeur
-                cargaison["PrixPenurie"] = Valeur
-
-        return self
 
     def CalculMonetaireMarchandise(
             self,

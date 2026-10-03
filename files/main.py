@@ -28,7 +28,7 @@ import config
 
 moteur = MoteurExemple()
 if __name__ == "__main__":
-    print("1")
+    print("Calcul generation interface moteur-graphisme")
     app = App(moteur)
-    print("2")
+    print("Affichage écran")
     app.mainloop()

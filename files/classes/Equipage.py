@@ -8,7 +8,7 @@ import random
 import utils
 import config
 
-
+from collections import Counter
 class Equipage:
 
 
@@ -68,6 +68,45 @@ class Equipage:
             self.Membres.append(membre)
             self.AjoutTrait()
             Equipage.Save(self)
+
+    def Affichage(self):
+
+        # Répartition par type
+        repartition = Counter(m.Type for m in self.Membres)
+
+        # Nombre de malades
+        nb_malades = sum(
+            1 for m in self.Membres
+            if getattr(m, "Maladie", "")
+        )
+
+        # Salaire journalier
+        salaire = self.CalculSalaireJournalier()
+
+        return {
+            "Résumé": {
+                "type": "formulaire",
+                "donnees": {
+                    "Nom": self.Name,
+                    "Type": self.Type,
+                    "Effectif": len(self.Membres),
+                    "Malades": nb_malades,
+                    "Salaire journalier": salaire
+                }
+            },
+
+            "Répartition des métiers": {
+                "type": "tableau",
+                "colonnes": ["Type", "Nombre"],
+                "donnees": [
+                    {
+                        "Type": type_membre,
+                        "Nombre": nombre
+                    }
+                    for type_membre, nombre in repartition.items()
+                ]
+            }
+        }
 
     def Save(self, nom=None):
         nom = nom or self.Name
@@ -1043,7 +1082,7 @@ class Equipage:
 
         # Salaire total de l'équipage
         self.Salaire = self.CalculSalaireJournalier()
-
+        self.Salaire = round(self.Salaire, 2)
         return self.Salaire
 
     def CalculSalaireJournalier(self):

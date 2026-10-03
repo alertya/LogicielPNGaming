@@ -801,3 +801,19 @@ class MoteurExemple(MoteurBase):
         CompCharpentier=utils.Compute(1)
         TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
         return CoutReparation,TempsEnJourReparation
+
+    def get_affichage(self, module, instance):
+
+        if module == "Navire":
+            objet = Navire.charger_depuis_csv(instance)
+
+        elif module == "Equipage":
+            objet = Equipage.charger_depuis_csv(instance)
+
+        elif module == "Marchandises":
+            objet = Marchandise.charger_depuis_csv(instance)
+
+        else:
+            raise ValueError(f"Module inconnu : {module}")
+
+        return objet.Affichage()

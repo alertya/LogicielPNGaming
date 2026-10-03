@@ -282,9 +282,18 @@ class App(tk.Tk):
         for w in self.panneau_contenu.winfo_children():
             w.destroy()
 
-        donnees = self.moteur.get_donnees(
-            self.onglet_actuel, self.sous_onglet_actuel, self.instance_actuelle
-        )
+        if self.sous_onglet_actuel == "Afficher":
+            donnees = self.moteur.get_affichage(
+                self.onglet_actuel,
+                self.instance_actuelle
+            )
+        else:
+            donnees = self.moteur.get_donnees(
+                self.onglet_actuel,
+                self.sous_onglet_actuel,
+                self.instance_actuelle
+            )
+
         self._afficher_donnees(donnees)
         self._construire_barre_actions()
 
@@ -304,7 +313,13 @@ class App(tk.Tk):
             return
 
         if isinstance(donnees, dict):
-            self._afficher_fiche(parent, donnees)
+
+            # Nouveau format d'affichage
+            if all(isinstance(v, dict) and "type" in v for v in donnees.values()):
+                self._afficher_blocs(parent, donnees)
+            else:
+                # Ancien format
+                self._afficher_fiche(parent, donnees)
             return
 
         if isinstance(donnees, list) and isinstance(donnees[0], dict):
@@ -350,17 +365,37 @@ class App(tk.Tk):
                 font=theme.FONT_TEXT, anchor="w",
             ).pack(side="left")
 
-    def _afficher_tableau(self, parent, lignes: List[Dict]):
-        colonnes = list(lignes[0].keys()) if lignes else []
+    def _afficher_tableau(self, parent, lignes, colonnes=None):
+
+        if not lignes:
+            return
+
+        if colonnes is None:
+            colonnes = list(lignes[0].keys())
+
         cadre = tk.Frame(parent, bg=theme.BG_PANEL, padx=12, pady=12)
         cadre.pack(fill="both", expand=True, pady=4)
 
-        table = ttk.Treeview(cadre, columns=colonnes, show="headings", height=min(12, len(lignes) or 1))
+        table = ttk.Treeview(
+            cadre,
+            columns=colonnes,
+            show="headings",
+            height=min(12, len(lignes))
+        )
+
         for col in colonnes:
             table.heading(col, text=col)
-            table.column(col, width=140, anchor="w")
+            table.column(col, width=140, anchor="center")
+
         for ligne in lignes:
-            table.insert("", "end", values=[ligne.get(c, "") for c in colonnes])
+            if isinstance(ligne, dict):
+                valeurs = [ligne.get(c, "") for c in colonnes]
+            else:
+                # Cas où ligne est un tuple ou une liste
+                valeurs = ligne
+
+            table.insert("", "end", values=valeurs)
+
         table.pack(fill="both", expand=True)
 
     def _construire_barre_actions(self):
@@ -624,3 +659,28 @@ class App(tk.Tk):
         CompCharpentier=utils.Compute(1)
         TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
         return CoutReparation,TempsEnJourReparation
+
+    def _afficher_blocs(self, parent, blocs):
+
+        for titre, bloc in blocs.items():
+
+            cadre = tk.LabelFrame(
+                parent,
+                text=titre,
+                padx=10,
+                pady=10
+            )
+            cadre.pack(fill="x", padx=10, pady=10)
+
+            if bloc["type"] == "tableau":
+                self._afficher_tableau(
+                    cadre,
+                    bloc["donnees"]
+                )
+
+            elif bloc["type"] == "formulaire":
+                self._afficher_fiche(
+                    cadre,
+                    bloc["donnees"]
+                )
+
