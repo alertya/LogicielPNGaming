@@ -25,7 +25,8 @@ import os
 import random
 from dataclasses import dataclass, field
 from typing import Any, Optional
-
+from classes.Navire import Navire
+from classes.Equipage import Equipage
 import numpy as np
 import pandas as pd
 from tkinter import messagebox
@@ -199,71 +200,261 @@ class Navigation:
     # Tempêtes / avaries
     # ------------------------------------------------------------------
 
-    def Tempest(self, Name1: Any = None, Proba: int = PROBA_TEMPETE_BASE, NbJour: Optional[int] = None):
-        """
-        Teste la survenue d'une tempête pour un jour donné.
-
-        Retourne ``(texte, variation_distance)`` pour rester compatible avec
-        ``Voyage``.
-        """
-        nom_navire = self._nom_navire(Name1)
-        navire_df = self._charger_navire(Name1 if Name1 is not None else self.navire1)
-        jour = self.jour if NbJour is None else NbJour
-        self.jour = jour
+    def Tempest(self, nom_navire):
+        navire = Navire.charger_depuis_csv(nom_navire)
+        equipage = Equipage.charger_depuis_csv(navire.Equipage)
 
         texte = ""
-        variation_distance = 0.0
+        variation_distance = 0
 
-        try:
-            proba = max(1, int(Proba))
-        except (TypeError, ValueError):
-            proba = 1
+        # 1 chance sur 40
+        if random.randint(1, 40) != 1:
+            return texte, variation_distance
 
-        if random.randint(0, proba) <= 1:
-            texte += f"Affrontement d'une tempête au bout de {jour} jours\n"
-            manoeuvre = navire_df.iloc[0].get("Manoeuvre", 0)
-            reussite = self._resultat_test(self.lancer_de(manoeuvre))
+        texte += "⛈️ Une tempête éclate !\n"
 
-            if reussite > 1:
-                avarie = -1
+        # Test des hydrographes
+        meilleur_test = -99
+
+        for membre in equipage.Membres:
+            if "Hydrographe" not in membre.Trait:
+                continue
+
+            test = utils.Test(membre.Hydrographie, 0)[0]
+            meilleur_test = max(meilleur_test, test)
+
+        # Aucun hydrographe
+        if meilleur_test == -99:
+            meilleur_test = -1
+
+        texte += f"Meilleur test Hydrographie : {meilleur_test}\n"
+
+        if meilleur_test < 2:
+
+            if meilleur_test > 0:
+                avarie = 0
+            elif meilleur_test == 0:
+                avarie = 1
             else:
-                avarie = 0 if reussite == 1 else (1 if reussite == 0 else 2)
+                avarie = 2
 
-            vitesse = float(navire_df.iloc[0].get("Vitesse moyenne", 0) or 0)
-            resultat_avarie = self.AvarieResultat(avarie, nom_navire, vitesse)
-            texte += resultat_avarie[0]
-            variation_distance += float(resultat_avarie[1])
+            txt, variation_distance = self.AvarieResultat(
+                avarie,
+                nom_navire,
+                navire.VitesseMoyenne
+            )
+            texte += txt
+        else:
+            texte += "Les hydrographes anticipent la tempête et le navire l'évite.\n"
 
-            self._message("Info", texte)
-
-        self._sauver_navire(nom_navire, navire_df)
-        equipage = self._charger_equipage(navire_df)
-        self._sauver_equipage(navire_df, equipage)
+        navire.sauvegarder()
+        equipage.sauvegarder()
 
         return texte, variation_distance
 
-    def AvarieResultat(self, Avarie: int, Name1: Any, VitesseMoyenne: float):
-        """Résout les conséquences d'une tempête."""
-        nom_navire = self._nom_navire(Name1)
-        navire_df = self._charger_navire(Name1 if Name1 is not None else self.navire1)
-        equipage = self._charger_equipage(navire_df)
+    def AvarieResultat(
+            self,
+            avarie: int,
+            vitesse_moyenne: float,
+            nom_navire: str,
+            nom_equipage: str):
+        """
+        Résout les conséquences d'une tempête.
+        """
+
+        navire = Navire.charger_depuis_csv(nom_navire)
+        equipage = Equipage.charger_depuis_csv(nom_equipage)
 
         texte = ""
-        degat = 0
-        distance = 0.0
+        distance = 0
         de = random.randint(1, 6)
 
-        if equipage is None:
-            # Sans fichier d'équipage, on applique seulement les dégâts coque/voile.
-            equipage = pd.DataFrame()
+        if avarie == 0:
 
-        nom_equipage = self._nom_equipage(navire_df)
+            if de == 1:
+                equipage.Perte(1)
+
+            elif de == 2:
+                perte = navire.StructureVoile * 0.2
+                _, tmp = navire.PerteNavire(nom_navire, perte, "Voile")
+                texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n"
+                texte += tmp
+
+            elif de == 3:
+                equipage.Tues(1)
+                equipage.Perte(3)
+                texte += "VOUS AVEZ PERDU UN MEMBRE D'EQUIPAGE DURANT LA TEMPETE\n"
+
+            elif de == 4:
+                _, moyen = equipage.ActionEquipage("Charpenterie", "Charpentier")
+                perte = max(0, navire.StructureVoile * 0.3 - moyen)
+                _, tmp = navire.PerteNavire(nom_navire, perte, "Voile")
+                texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n"
+                texte += tmp
+
+            else:
+
+                _, moyen = equipage.ActionEquipage("VirementBord", "Equipage", -2)
+
+                if moyen == 0:
+                    distance += vitesse_moyenne
+
+                elif moyen < 0:
+
+                    _, voilure = equipage.ActionEquipage("ReduireVoilure")
+
+                    if voilure < 2:
+
+                        _, hache = equipage.ActionEquipage("Hache")
+
+                        if hache < 2:
+
+                            _, mat = equipage.ActionEquipage("Hache")
+                            _, construction = equipage.ActionEquipage("ConstructionNavire")
+
+                            distance += vitesse_moyenne * (7 - construction)
+
+                            if mat < 2:
+                                _, tmp1 = navire.PerteNavire(
+                                    nom_navire,
+                                    navire.StructureVoile,
+                                    "Voile"
+                                )
+
+                                _, tmp2 = navire.PerteNavire(
+                                    nom_navire,
+                                    navire.StructureCoque,
+                                    "Coque"
+                                )
+
+                                texte += (
+                                        "VOUS AVEZ PERDU UNE PARTIE DU MAT ET DE LA COQUE\n"
+                                        + tmp1 + tmp2
+                                )
+
+        elif avarie == 1:
+
+            if de == 1:
+
+                equipage.Tues(3)
+                equipage.Perte(20)
+
+                texte += (
+                    "VOUS AVEZ PERDU TROIS MEMBRES D'EQUIPAGE "
+                    "DURANT LA TEMPETE ET BLESSE D'AUTRES\n"
+                )
+
+            elif de == 2:
+
+                moyen = 0
+                essais = 0
+
+                while moyen < navire.Calibre / 6 and essais < 20:
+                    _, gain = equipage.ActionEquipage("EmbarquerMarchandise")
+                    moyen += gain
+                    essais += 1
+
+                _, tmp = navire.PerteNavire(
+                    nom_navire,
+                    navire.StructureCoque * 0.2,
+                    "Coque"
+                )
+
+                equipage.Perte(1)
+
+                texte += (
+                    "VOUS AVEZ BLESSE UN MEMBRE D'EQUIPAGE "
+                    "ET ENDOMMAGE LA COQUE\n"
+                )
+                texte += tmp
+
+            elif de == 3:
+
+                _, tmp = navire.PerteNavire(
+                    nom_navire,
+                    navire.StructureVoile * 0.4,
+                    "Voile"
+                )
+
+                equipage.Perte(int(navire.StructureVoile * 0.4))
+
+                texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n"
+                texte += tmp
+
+            elif de == 4:
+
+                _, moyen = equipage.ActionEquipage("VirementBord")
+
+                perte = max(0, navire.StructureVoile * 0.4 * (4 - moyen))
+
+                _, tmp = navire.PerteNavire(
+                    nom_navire,
+                    perte,
+                    "Voile"
+                )
+
+                texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n"
+                texte += tmp
+
+            else:
+
+                _, moyen = equipage.ActionEquipage("ReparationsFortune")
+
+                _, tmp = navire.PerteNavire(
+                    nom_navire,
+                    max(0, 5 - moyen),
+                    "Coque"
+                )
+
+                texte += "VOUS AVEZ PERDU UNE PARTIE DE LA COQUE\n"
+                texte += tmp
+
+        elif avarie == 2:
+
+            _, moyen = equipage.ActionEquipage("ReparationsFortune")
+
+            _, tmp = navire.PerteNavire(
+                nom_navire,
+                max(0, 5 - moyen),
+                "Coque"
+            )
+
+            texte += "VOUS AVEZ PERDU UNE PARTIE DE LA COQUE\n"
+            texte += tmp
+
+            if moyen == 0:
+                distance += vitesse_moyenne
+
+            elif moyen < 0:
+
+                _, voilure = equipage.ActionEquipage("ReduireVoilure")
+
+                if voilure < 2:
+
+                    _, hache = equipage.ActionEquipage("Hache")
+
+                    if hache < 2:
+                        _, construction = equipage.ActionEquipage("ConstructionNavire")
+
+                        distance += vitesse_moyenne * (7 - construction)
+
+        # Recharge l'état du navire après les pertes
+        navire = Navire.charger_depuis_csv(nom_navire)
+
+        if navire.StructureCoque <= 0:
+            texte += "LE NAVIRE A COULE. FIN DU VOYAGE.\n"
+            distance = -999999999999999999
+
+        navire.sauvegarder()
+        equipage.sauvegarder()
+
+        return texte, distance
 
         def action_equipage(action: str, groupe: str = "Equipage", bonus: int = 0):
             if not nom_equipage:
                 return 0, 0
             try:
-                return FonctionEquipage.ActionEquipage(
+                return equipage.ActionEquipage(
                     action, groupe, bonus, nom_equipage
                 )
             except Exception:
@@ -272,19 +463,19 @@ class Navigation:
         if Avarie == 0:
             if de == 1 and nom_equipage:
                 try:
-                    FonctionEquipage.Perte(1, nom_equipage)
+                    equipage.Perte(1, nom_equipage)
                 except Exception:
                     pass
 
             elif de == 2:
                 structure = float(navire_df.iloc[0].get("StructureVoile", 0) or 0)
-                degat, tmp = self.PerteNavire(nom_navire, structure / 10 * 2, "Voile")
+                degat, tmp = navire.PerteNavire(nom_navire, structure / 10 * 2, "Voile")
                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n" + tmp
 
             elif de == 3 and nom_equipage:
                 try:
-                    FonctionEquipage.Tues(1, nom_equipage)
-                    FonctionEquipage.Perte(3, nom_equipage)
+                    equipage.Tues(1, nom_equipage)
+                    equipage.Perte(3, nom_equipage)
                 except Exception:
                     pass
                 texte += "VOUS AVEZ PERDU UN MEMBRE D'EQUIPAGE DURANT LA TEMPETE\n"
@@ -292,7 +483,7 @@ class Navigation:
             elif de == 4:
                 _, moyen = action_equipage("Charpenterie", "Charpentier", 0)
                 structure = float(navire_df.iloc[0].get("StructureVoile", 0) or 0)
-                degat, tmp = self.PerteNavire(nom_navire, structure / 10 * 3 - moyen, "Voile")
+                degat, tmp = navire.PerteNavire(nom_navire, structure / 10 * 3 - moyen, "Voile")
                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n" + tmp
 
             else:
@@ -310,16 +501,16 @@ class Navigation:
                             if moyen_mat < 2:
                                 voile = float(navire_df.iloc[0].get("StructureVoile", 0) or 0)
                                 coque = float(navire_df.iloc[0].get("StructureCoque", 0) or 0)
-                                _, tmp = self.PerteNavire(nom_navire, voile, "Voile")
-                                _, tmp2 = self.PerteNavire(nom_navire, coque, "Coque")
+                                _, tmp = navire.PerteNavire(nom_navire, voile, "Voile")
+                                _, tmp2 = navire.PerteNavire(nom_navire, coque, "Coque")
                                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT ET DE LA COQUE\n" + tmp + tmp2
 
         elif Avarie == 1:
             if de == 1:
                 if nom_equipage:
                     try:
-                        FonctionEquipage.Tues(3, nom_equipage)
-                        FonctionEquipage.Perte(20, nom_equipage)
+                        equipage.Tues(3, nom_equipage)
+                        equipage.Perte(20, nom_equipage)
                     except Exception:
                         pass
                 texte += "VOUS AVEZ PERDU TROIS MEMBRES D'EQUIPAGE DURANT LA TEMPETE ET BLESSE D'AUTRES\n"
@@ -334,20 +525,20 @@ class Navigation:
                     moyen += gain
                     iterations += 1
                 structure = float(navire_df.iloc[0].get("StructureCoque", 0) or 0)
-                _, tmp = self.PerteNavire(nom_navire, structure / 10 * 2, "Coque")
+                _, tmp = navire.PerteNavire(nom_navire, structure / 10 * 2, "Coque")
                 if nom_equipage:
                     try:
-                        FonctionEquipage.Perte(1, nom_equipage)
+                        equipage.Perte(1, nom_equipage)
                     except Exception:
                         pass
                 texte += "VOUS AVEZ BLESSE UN MEMBRE D'EQUIPAGE DURANT LA TEMPETE ET UNE PARTIE DE LA COQUE\n" + tmp
 
             elif de == 3:
                 structure = float(navire_df.iloc[0].get("StructureVoile", 0) or 0)
-                degat, tmp = self.PerteNavire(nom_navire, structure / 10 * 4, "Voile")
+                degat, tmp = navire.PerteNavire(nom_navire, structure / 10 * 4, "Voile")
                 if nom_equipage:
                     try:
-                        FonctionEquipage.Perte(structure / 10 * 4, nom_equipage)
+                        equipage.Perte(structure / 10 * 4, nom_equipage)
                     except Exception:
                         pass
                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n" + tmp
@@ -355,17 +546,17 @@ class Navigation:
             elif de == 4:
                 _, moyen = action_equipage("VirementBord")
                 structure = float(navire_df.iloc[0].get("StructureVoile", 0) or 0)
-                degat, tmp = self.PerteNavire(nom_navire, structure / 10 * 4 * (4 - moyen), "Voile")
+                degat, tmp = navire.PerteNavire(nom_navire, structure / 10 * 4 * (4 - moyen), "Voile")
                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n" + tmp
 
             else:
                 _, moyen = action_equipage("ReparationsFortune")
-                degat, tmp = self.PerteNavire(nom_navire, 5 - moyen, "Coque")
+                degat, tmp = navire.PerteNavire(nom_navire, 5 - moyen, "Coque")
                 texte += "VOUS AVEZ PERDU UNE PARTIE DE LA COQUE\n" + tmp
 
         elif Avarie == 2:
             _, moyen = action_equipage("ReparationsFortune")
-            degat, tmp = self.PerteNavire(nom_navire, 5 - moyen, "Coque")
+            degat, tmp = navire.PerteNavire(nom_navire, 5 - moyen, "Coque")
             texte += "VOUS AVEZ PERDU UNE PARTIE DE LA COQUE\n" + tmp
 
             if moyen == 0:
@@ -379,10 +570,8 @@ class Navigation:
                         distance += VitesseMoyenne * (7 - construction)
 
         # On recharge les données pour vérifier l'état final.
-        navire_final = self._charger_navire(nom_navire)
-        equipage_final = self._charger_equipage(navire_final)
-        self._sauver_navire(nom_navire, navire_final)
-        self._sauver_equipage(navire_final, equipage_final)
+        navire.sauvegarder()
+        equipage.Save(equipage.Name)
 
         if "StructureCoque" in navire_final.columns and navire_final.iloc[0]["StructureCoque"] <= 0:
             distance = -99999999999999999999999
@@ -390,120 +579,82 @@ class Navigation:
 
         return texte, distance
 
-    def PerteNavire(self, Navire: Any, Pertes: float, TypeMunition: str):
-        """Applique des pertes structurelles ou d'équipage au navire."""
-        nom_navire = self._nom_navire(Navire)
-        df = self._charger_navire(Navire if not isinstance(Navire, str) or os.path.exists(Navire) else nom_navire)
-        pertes = max(0, int(Pertes))
-        texte = "\n"
-
-        if TypeMunition == "Voile":
-            if "StructureVoile" in df.columns:
-                avant = float(df.at[0, "StructureVoile"])
-                df.at[0, "StructureVoile"] = max(0, avant - pertes)
-            texte += f"{nom_navire} a perdu {pertes} points de structure en voile.\n"
-
-        elif TypeMunition == "Coque":
-            if "StructureCoque" in df.columns:
-                avant = float(df.at[0, "StructureCoque"])
-                df.at[0, "StructureCoque"] = max(0, avant - pertes)
-            texte += f"{nom_navire} a perdu {pertes} points de structure en coque.\n"
-
-        elif TypeMunition == "Mitraille":
-            equipage_nom = self._nom_equipage(df)
-            if equipage_nom:
-                try:
-                    FonctionEquipage.Tues(pertes, equipage_nom)
-                except Exception:
-                    pass
-            if "Equipage" in df.columns:
-                df.at[0, "Equipage"] = max(0, float(df.at[0, "Equipage"]) - pertes)
-            texte += f"{nom_navire} a perdu {pertes} hommes.\n"
-
-        else:
-            texte += f"Type de munition inconnu : {TypeMunition}.\n"
-
-        if "StructureCoque" in df.columns and df.at[0, "StructureCoque"] <= 0:
-            texte += f"{nom_navire} A COULE, VOUS VOUS ETES ECHOUE.\n"
-            pertes = 999
-
-        if "StructureVoile" in df.columns and df.at[0, "StructureVoile"] <= 0:
-            texte += f"{nom_navire} a dématé.\n"
-
-        self._sauver_navire(nom_navire, df)
-        equipage = self._charger_equipage(df)
-        self._sauver_equipage(df, equipage)
-
-        return pertes, texte
 
     # ------------------------------------------------------------------
     # Hauts-fonds / hydrographie
     # ------------------------------------------------------------------
 
-    def HautsFonds(self, Name1: Any, Recif: bool):
-        """Résout le passage sur un haut-fond ou un récif."""
-        nom_navire = self._nom_navire(Name1)
-        navire = self._charger_navire(Name1)
-        manoeuvre = navire.iloc[0].get("Manoeuvre", 0)
-        reussite = self._resultat_test(self.lancer_de(manoeuvre))
+    @staticmethod
+    def HautsFonds(nom_navire, zone):
+        navire = Navire.charger_depuis_csv(nom_navire)
+        equipage = Equipage.charger_depuis_csv(navire.Equipage)
 
-        bonus = 5 if Recif else 3
-        degat = reussite
-        try:
-            degat += int(utils.ConvertSuccessToAction(reussite)[0])
-        except Exception:
-            pass
-        degat += bonus
+        texte = ""
 
-        _, tmp = self.PerteNavire(nom_navire, degat, "Coque")
-        texte = (
-            tmp
-            + f"LE NAVIRE A TOUCHE UN HAUT FOND ET A PERDU {degat} AU NIVEAU DE LA COQUE\n"
-        )
-        self._message("Info", texte)
+        if zone.lower() in ("port", "près des côtes", "côte"):
+
+            meilleur_test = -999
+
+            # Tous les pilotes tentent le test
+            for marin in equipage.Membres:
+                if "Pilote" not in marin.Trait:
+                    continue
+
+                resultat = utils.Test(marin.Hydrographie, 0)[0]
+                meilleur_test = max(meilleur_test, resultat)
+
+            # Aucun pilote trouvé
+            if meilleur_test == -999:
+                meilleur_test = -1
+
+            # Échec : haut-fond
+            if meilleur_test < 2:
+                perte = random.randint(1, 4)
+                navire.StructureCoque = max(0, navire.StructureCoque - perte)
+                texte += f"⚓ Le navire heurte un haut-fond (-{perte} coque).\n"
+
+            else:
+                texte += "Le pilote évite les hauts-fonds.\n"
+
+        navire.sauvegarder()
+        equipage.sauvegarder()
+
         return texte
 
-    def TestNavigation(self, Name: Any = None):
-        """Calcule l'écart quotidien de navigation."""
-        nom_navire = self._nom_navire(Name)
-        navire = self._charger_navire(Name if Name is not None else self.navire1)
-        equipage = self._charger_equipage(navire)
+    def TestNavigation(self, nom_navire):
+        """
+        Retourne un modificateur de distance en %.
+        100 = vitesse normale
+        120 = +20%
+        80 = -20%
+        """
+        navire = Navire.charger_depuis_csv(nom_navire)
+        equipage = Equipage.charger_depuis_csv(navire.Equipage)
 
-        if equipage is None:
-            return 0.0
+        meilleur_test = -999
 
-        pilotes = equipage[equipage["Type"] == "Pilote"] if "Type" in equipage.columns else pd.DataFrame()
-        if pilotes.empty:
-            detection = -1
-        else:
-            detection = -9999
-            essais = 0
-            while detection == -9999 and essais < 100:
-                for _, row in pilotes.iterrows():
-                    detection = max(
-                        detection,
-                        self._resultat_test(utils.Test(row.get("Navigation", 0), 2)),
-                    )
-                    if detection == 1:
-                        detection = -9999
-                        break
-                essais += 1
-            if detection == -9999:
-                detection = 0
+        # Recherche du meilleur timonier
+        for membre in equipage.Membres:
+            if "Timonier" not in membre.Trait:
+                continue
 
-        if detection > 0:
-            try:
-                theta = utils.MinGauss(7.5, 1.5, detection)
-            except Exception:
-                theta = 0.0
-        else:
-            try:
-                theta = utils.MaxGauss(7.5, 1.5, abs(detection) + 1)
-            except Exception:
-                theta = 0.0
+            resultat = utils.Test(membre.Navigation, 0)[0]
+            meilleur_test = max(meilleur_test, resultat)
 
-        print(f"FIN DE CALCUL DE NAVIGATION ({nom_navire})\n")
-        return float(theta)
+        # Aucun timonier
+        if meilleur_test == -999:
+            return 100
+
+        # Echec
+        if meilleur_test <= 0:
+            return random.randint(50, 100)
+
+        # Réussite : un jet de 50-100 par succès, on garde le meilleur
+        meilleur_bonus = 50
+        for _ in range(meilleur_test):
+            meilleur_bonus = max(meilleur_bonus, random.randint(50, 100))
+
+        return meilleur_bonus
 
     def TestHydrographie(self, Name: Any = None, Zone: str = ""):
         """Teste la présence d'un pilote et détermine le risque de haut-fond."""
@@ -592,7 +743,7 @@ class Navigation:
             if not nom:
                 return 0
             try:
-                valeur = FonctionEquipage.ActionEquipage("Poursuite", "Equipage", 0, nom)[1]
+                valeur = equipage.ActionEquipage("Poursuite", "Equipage", 0, nom)[1]
                 return int(utils.ConvertFloatToInt(valeur))
             except Exception:
                 return 0
@@ -625,109 +776,6 @@ class Navigation:
     # Ecart quotidien
     # ------------------------------------------------------------------
 
-    def CalculEcartJourneeNavigation(self, VitesseJour: float, Name: str):
-        """Calcule les composantes longitudinales et latérales de l'écart."""
-        ecart_moyen = min(0.05 * float(VitesseJour), 15)
-        equipage = pd.read_csv(
-            os.path.join(EQUIPAGE_PATH, Name),
-            sep=SEPARATEUR,
-            decimal=DECIMAL,
-            encoding=ENCODAGE,
-        )
-        pilotes = equipage[equipage["Type"] == "Pilote"] if "Type" in equipage.columns else pd.DataFrame()
-
-        if pilotes.empty:
-            detection = -1
-        else:
-            detection = -9999
-            essais = 0
-            while detection == -9999 and essais < 100:
-                for _, row in pilotes.iterrows():
-                    detection = max(
-                        detection,
-                        self._resultat_test(utils.Test(row.get("Navigation", 0), 2)),
-                    )
-                essais += 1
-
-        if detection < 0:
-            drift = utils.MaxAbsGauss(0, ecart_moyen, 2)
-        elif detection > 0:
-            drift = utils.MinAbsGauss(0, ecart_moyen, detection + 1)
-        else:
-            drift = utils.MinGauss(0, ecart_moyen, 1)
-
-        drift = float(drift)
-        argument = max(0.0, float(VitesseJour) ** 2 - drift ** 2)
-        distx = math.sqrt(argument)
-        return distx, drift
-
-    # ------------------------------------------------------------------
-    # Escale
-    # ------------------------------------------------------------------
-
-    def Escale(
-        self,
-        Zone: str,
-        TaillePort: Any,
-        NavireName: str,
-        Recrute: bool,
-        Commerce: bool,
-        Reparation: bool,
-    ):
-        """Gère les actions nautiques réalisées pendant une escale."""
-        nb_jours = random.randint(5, 10)
-        marchandises = CalculMarchandise.CoursMarchandise(nb_jours, Zone, TaillePort)
-        navire = self._charger_navire(NavireName)
-        equipage = self._charger_equipage(navire)
-        cout = 0.0
-        tmp = 0
-        texte = ""
-
-        if Recrute and equipage is not None:
-            try:
-                maitre = FonctionEquipage.GeneratePJDataframe(1, "MaitreEquipage", "Test", 0, 1, 0).iloc[0]
-                homme_manquant = int(navire.iloc[0].get("EquipMax", 0)) - len(equipage)
-                if homme_manquant > 0:
-                    FonctionEquipage.Recrute(
-                        homme_manquant,
-                        "Matelot",
-                        os.path.basename(NavireName).removesuffix(".csv"),
-                        0,
-                    )
-                    tmp = utils.TestValeurNonNumerique(maitre["MeneurHommes"], 0)[1]
-                nb_jours = max(nb_jours, tmp)
-            except Exception as exc:
-                texte += f"Recrutement impossible : {exc}\n"
-
-        if Commerce:
-            try:
-                texte, capacite_achat, capacite_vente = CalculMarchandise.TrouverMarchand(Zone)
-            except Exception as exc:
-                texte += f"Commerce indisponible : {exc}\n"
-
-        if Reparation:
-            try:
-                charpentier = FonctionEquipage.GeneratePJDataframe(
-                    1, "Charpentier", "Test", 0, 1, 0
-                ).iloc[0]
-                degats_coque = int(navire.iloc[0].get("StructureCoqueMax", 0) - navire.iloc[0].get("StructureCoque", 0))
-                degats_voile = int(navire.iloc[0].get("StructureVoileMax", 0) - navire.iloc[0].get("StructureVoile", 0))
-
-                for _ in range(max(0, degats_coque)):
-                    navire.iloc[0, navire.columns.get_loc("StructureCoque")] += 1
-                    cout += 200
-                    tmp += utils.TestValeurNonNumerique(charpentier["Charpenterie"], 0)[0]
-                for _ in range(max(0, degats_voile)):
-                    navire.iloc[0, navire.columns.get_loc("StructureVoile")] += 1
-                    cout += 200
-                    tmp += utils.TestValeurNonNumerique(charpentier["Charpenterie"], 0)[0]
-
-                nb_jours = max(nb_jours, tmp)
-                self._sauver_navire(os.path.basename(NavireName), navire)
-            except Exception as exc:
-                texte += f"Réparation impossible : {exc}\n"
-
-        return cout, nb_jours, texte
 
 
 # ===========================================================================
@@ -779,16 +827,4 @@ def CoursePoursuite(
     )
 
 
-def CalculEcartJourneeNavigation(VitesseJour, Name):
-    return _navigation_par_defaut.CalculEcartJourneeNavigation(VitesseJour, Name)
 
-
-def Escale(Zone, TaillePort, NavireName, Recrute, Commerce, Reparation):
-    return _navigation_par_defaut.Escale(
-        Zone,
-        TaillePort,
-        NavireName,
-        Recrute,
-        Commerce,
-        Reparation,
-    )
