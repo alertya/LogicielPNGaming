@@ -6,7 +6,7 @@ import utils
 import os
 import csv
 import random
-
+import config
 
 class Equipage:
 
@@ -63,46 +63,29 @@ class Equipage:
             membre.Famine = 0
             membre.PVMax=random.randint(5,8)
             membre.PV=membre.PVMax
+            membre.Traits=[]
             self.Membres.append(membre)
+            self.AjoutTrait()
             Equipage.Save(self)
 
-    def Save(self):
-        """
-        Sauvegarde tous les membres de l'équipage dans un fichier CSV.
-        Chaque colonne correspond à un attribut du membre, chaque ligne à un membre.
-        """
-        # Si l'équipage est vide, inutile de créer un fichier vide sans colonnes
-        if not self.Membres:
-            print("L'équipage est vide, sauvegarde annulée.")
-            return
+    def Save(self, nom=None):
+        nom = nom or self.Name
 
-        # Construction du chemin du fichier
-        dossier_equipage = os.path.join(BASE_PATH, "Equipage")
-        os.makedirs(dossier_equipage, exist_ok=True)  # Crée le dossier s'il n'existe pas
-        chemin_fichier = os.path.join(dossier_equipage, f"{self.Name}.csv")
+        lignes = []
 
-        # 1. Extraction dynamique de tous les attributs possibles du premier membre
-        # (Fonctionne avec vars(pnj) ou pnj.__dict__)
-        entetes = list(vars(self.Membres[0]).keys())
+        for membre in self.Membres:
+            lignes.append(vars(membre).copy())
 
-            # 2. Écriture du fichier CSV
-        with open(chemin_fichier, mode="w", newline="", encoding="cp1252") as f:
-            writer = csv.DictWriter(f, fieldnames=entetes, delimiter=";")
-            writer.writeheader()  # Écrit la ligne des attributs
+        df = pd.DataFrame(lignes)
 
-            for pnj in self.Membres:
-                donnees_membre = vars(pnj)
-                ligne_formatee = {}
+        df.to_csv(
+            os.path.join(BASE_PATH, "Equipage", f"{nom}.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )
 
-                    # Nettoyage et formatage des données (ex: gestion des float avec virgule)
-                for cle, valeur in donnees_membre.items():
-                    if isinstance(valeur, float):
-                        ligne_formatee[cle] = str(valeur).replace(".", ",")
-                    else:
-                        ligne_formatee[cle] = valeur
-
-                writer.writerow(ligne_formatee)
-        print(f"Équipage '{self.Name}' sauvegardé avec succès.")
 
     @classmethod
     def charger_depuis_csv(cls, Name: str) -> 'Equipage':
@@ -224,13 +207,15 @@ class Equipage:
 
             for attribut, valeur in donnees.items():
                 setattr(membre, attribut, valeur)
-
+            # Initialisation des PV
+            membre.PVMax = random.randint(5, 8)
+            membre.PV = membre.PVMax
             # Calculs individuels
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
 
             self.Membres.append(membre)
-
+            self.AjoutTrait()
         self.ValeurCombat = self.CalculCombatEquipage()
 
         return Temp
@@ -844,7 +829,7 @@ class Equipage:
         # Mise à jour des valeurs de combat
         self.ValeurCombat = self.CalculCombatEquipage()
         EquipageRecrute.ValeurCombat = EquipageRecrute.CalculCombatEquipage()
-
+        self.AjoutTrait()
         return personnes_recrutees
 
     def SoinsEquipage(
@@ -1144,3 +1129,47 @@ class Equipage:
             # On fera cette partie plus tard
             return "Fonction non implémentée."
         return "Action inconnue."
+
+    @classmethod
+    def generer(cls, nom, type_equipage, nombre, effectifs):
+
+        equipage = cls(nombre, type_equipage, nom)
+
+        # Génération des membres spéciaux
+        for typologie, quantite in effectifs.items():
+            for _ in range(quantite):
+                equipage.Recrute(1,typologie,0)
+
+        # Compléter avec la typologie de l'equipage
+        deja_crees = sum(effectifs.values())
+
+        for _ in range(nombre - deja_crees):
+            equipage.Recrute(1,type_equipage,0)
+        equipage.AjoutTrait()
+        equipage.Save()
+
+        return equipage
+
+    def AjoutTrait(self):
+        df = pd.read_csv(
+            config.BASE_PATH + "/Competences.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
+
+        for membre in self.Membres:
+
+            # Initialisation de la liste de traits
+            if not hasattr(membre, "Traits"):
+                membre.Traits = []
+
+            for _, ligne in df.iterrows():
+                competence = ligne["Competence"]
+                trait = ligne["Trait"]
+
+                # Vérifie que le membre possède cette compétence
+                if hasattr(membre, competence):
+                    if getattr(membre, competence) > 1:
+                        if trait not in membre.Traits:
+                            membre.Traits.append(trait)

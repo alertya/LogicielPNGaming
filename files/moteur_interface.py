@@ -527,34 +527,18 @@ class MoteurExemple(MoteurBase):
         return self._lire_colonne_csv(chemin, "Type")
 
     def generer_equipage(self, nom, type_equipage, nombre, effectifs):
-        if not nom:
-            return "Merci de saisir un nom d'équipage."
+        print("3 Equipage en génération")
 
-        dossier = os.path.join(BASE_PATH, "Equipage")
-        os.makedirs(dossier, exist_ok=True)
+        equipage = Equipage.generer(
+            nom,
+            type_equipage,
+            nombre,
+            effectifs
+        )
 
-        effectifs = effectifs or {}
-        ligne = {"Nom": nom, "Type": type_equipage, "Nombre": nombre}
-        for typo in TYPOLOGIES_EQUIPAGE:
-            ligne[typo] = int(effectifs.get(typo, 0) or 0)
+        self._equipage = equipage
 
-        # Le reste de l'effectif (non affecté à une typologie précise) est
-        # comptabilisé comme "Matelot" — à adapter si ta génération réelle
-        # répartit l'effectif autrement.
-        affecte = sum(ligne[typo] for typo in TYPOLOGIES_EQUIPAGE)
-        ligne["Matelot"] = max(0, int(nombre or 0) - affecte)
-
-        df = pd.DataFrame([ligne])
-        chemin = os.path.join(dossier, f"{nom}.csv")
-        df.to_csv(chemin, sep=";", decimal=",", encoding="cp1252", index=False)
-
-        # On recharge immédiatement l'équipage généré dans le moteur, avec
-        # la même méthode Equipage.Charger(...) que ChargerEquipages(), pour
-        # qu'il apparaisse tout de suite dans les autres onglets.
-        self._equipage[nom] = Equipage(nombre,type_equipage,nom)
-
-        return f"Équipage « {nom} » ({type_equipage}, {nombre} personnes) généré et enregistré dans {chemin}."
-
+        return f"Équipage {nom} généré."
     # ------------------------------------------------------------------ #
     # Navire -> Générer
     # ------------------------------------------------------------------ #
@@ -602,9 +586,9 @@ class MoteurExemple(MoteurBase):
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_actions() if marchandise else []
 
-        if onglet == "Escale":
-            escale = Escale.charger_depuis_csv(instance)
-            return escale.get_actions() if escale else []
+        #if onglet == "Escale":
+        #    escale = Escale.charger_depuis_csv(instance)
+        #    return escale.get_actions() if escale else []
 
         if onglet == "Infirmerie":
             return self._navires[instance].Equipage.Infirmerie.get_actions()

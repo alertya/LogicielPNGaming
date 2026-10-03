@@ -6,7 +6,7 @@ Droit;Connaissance;1;Droit
 Geographie;Connaissance;;Geographe
 Histoire;Connaissance;;Historien
 Herboristerie;Connaissance;1;Herboriste
-Ingénierie navale;Connaissance;1;Ingénieur naval
+Ingénierie navale;Connaissance;1;IngénieurNaval
 Intendance;Connaissance;1;Intendant
 Lire;Connaissance;1;Lecteur
 Medecine;Connaissance;1;Medecin
@@ -62,8 +62,8 @@ Dague;Combat;;Daguiste
 NerfDeBoeuf;Combat;1;Matraqueur
 Sabre;Combat;;Sabreur
 Hache;Combat;;Hacheur
-Mousquet;Combat;;Tireur
-Pistolet;Combat;;Tireur
+Mousquet;Combat;;TireurMousquet
+Pistolet;Combat;;TireurPistolet
 Grenade;Combat;;Grenadier
 MainsNue;Combat;;Combattant
 Escrime;Combat;1;Escrimeur

@@ -379,7 +379,7 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter"):
+        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer"):
             FormulaireAction(
                 self,
                 action=action,
