@@ -1103,7 +1103,7 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType']
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience']
 
     def executer_action(self, action, instance,valeurs=None):
 
@@ -1120,14 +1120,12 @@ class Equipage:
 
 
         elif action == "Attribuer les rôles":
-            print("instance :", repr(instance))
             equipage = Equipage.charger_depuis_csv(instance)
-            print("equipage.Name :", repr(equipage.Name))
             equipage.AttributeGroupe()
 
             equipage.Save(instance)
-            print(equipage.Name)
-            return f"Les rôles ont été attribués dans {equipage.Name}"
+
+            return f"Les rôles ont été attribués en fonction de leur capacité selon RoleColonie.csv dans {equipage.Name}"
 
 
         elif action == "Distribuer les soldes":
@@ -1159,7 +1157,7 @@ class Equipage:
 
             equipage.SoinsEquipage()
 
-            equipage.sauvegarder()
+            equipage.Save(instance)
 
             return f"Soins effectués pour {equipage.Name}"
 

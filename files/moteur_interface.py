@@ -50,7 +50,7 @@ Sous-onglet "Actions" (présent sur chaque onglet vertical) :
 from __future__ import annotations
 import copy
 import copy
-
+from tkinter import messagebox
 import random
 
 import pandas as pd
@@ -75,7 +75,6 @@ import numpy as np
 #  - une chaîne / liste de chaînes -> affichée comme du texte (ex : journal de bord)
 DonneesAffichables = Union[Dict[str, Any], List[Dict[str, Any]], str, List[str], None]
 
-print("F")
 class MoteurBase:
     """
     Classe abstraite (contrat). Hérite de cette classe pour brancher ton
@@ -607,13 +606,22 @@ class MoteurExemple(MoteurBase):
 
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
-            return equipage.executer_action(action,instance,valeurs)
+            sortie=equipage.executer_action(action,instance,valeurs)
+            if sortie:
+                messagebox.showinfo("Information", str(sortie))
+            return sortie
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
-            return navire.executer_action(action,instance,valeurs)
+            sortie=navire.executer_action(action,instance,valeurs)
+            if sortie:
+                messagebox.showinfo("Information", str(sortie))
+            return sortie
         if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
-            return marchandise.executer_action(action,instance,valeurs)
+            sortie=marchandise.executer_action(action,instance,valeurs)
+            if sortie:
+                messagebox.showinfo("Information", str(sortie))
+            return sortie
 
         return ""
 

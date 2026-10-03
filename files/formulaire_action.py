@@ -546,6 +546,7 @@ class FormulaireAction(tk.Toplevel):
                 text="Valider",
                 command=self.valider
             ).grid(row=4, column=0, columnspan=2, pady=20)
+
     def recuperer_valeurs(self):
         return {
             nom: variable.get()

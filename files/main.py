@@ -13,7 +13,9 @@ Tant que tu n'as pas encore de moteur, ce fichier utilise `MoteurExemple`
 (données factices) pour que tu puisses lancer et tester l'interface
 immédiatement avec : python main.py
 """
+print()
 from app import App
+print("Import moteur")
 from moteur_interface import MoteurExemple
 
 import config
@@ -26,5 +28,7 @@ import config
 
 moteur = MoteurExemple()
 if __name__ == "__main__":
+    print("1")
     app = App(moteur)
+    print("2")
     app.mainloop()
