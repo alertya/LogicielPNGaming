@@ -14,7 +14,6 @@ class Voyage:
         self.EtapeCourante = 0
         self.Avancement = 0
         self.Jour = 1
-
         self.Journal = {
             1: []}
 
@@ -38,6 +37,27 @@ class Voyage:
             "CompetenceVigie": CompetenceVigie
         })
 
+    def Affichage(self):
+
+        lignes = []
+
+        for i, etape in enumerate(self.Etapes, start=1):
+            lignes.append({
+                "Ordre": i,
+                "Région": etape["Region"],
+                "Distance": etape["Distance"],
+                "Zone": etape.get("ZoneMaritime", ""),
+                "Port": etape.get("TaillePortEscale", "")
+            })
+
+        return {
+            "Nom": self.Name,
+            "Navire": self.Navire,
+            "Année": self.Annee,
+            "Jour": self.Jour,
+            "Journal": "\n".join(self.Journal.get(self.Jour, [])),
+            "Étapes": lignes
+        }
     def sauvegarder(self, nom=None):
         nom = nom or self.Name
 
@@ -61,8 +81,7 @@ class Voyage:
             index=False
         )
 
-        print(self.Etapes)
-        print(len(self.Etapes))
+
 
     @classmethod
     def charger_depuis_csv(cls, nom):
@@ -76,7 +95,6 @@ class Voyage:
             decimal=",",
             encoding="cp1252"
         )
-        print(df.head())
         voyage = cls(
             df["NomTrajet"][0],
             df["Navire"][0],
