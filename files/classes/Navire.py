@@ -150,7 +150,8 @@ class Navire:
                 EquipageNavire=Equipage(self.Equipage,"Matelot",self.Name+"_Equipage")
                 self.EquipageNom=self.Name+"_Equipage"
                 self.Marchandise = Marchandise()
-                self.Marchandise =self.Marchandise.GenerateMarchandise(Region)
+                Cargaison =self.Marchandise.GenerateMarchandise(Region)
+                self.Marchandise.AjoutMarchandise(Cargaison["Cargaison"],self.TonnageMarchandise)
                 self.Marchandise.Tonnage=self.TonnageMarchandise
                 self.Marchandise.Name = self.Name + "_Marchandises"
                 self.Marchandise.sauvegarder(self.Name+"_Marchandises")
@@ -450,3 +451,59 @@ class Navire:
             return NavireRencontre
         else:
             return None
+    def Reparer(self):
+        ReparationCoque=self.StructureCoque/self.StructureCoqueMax
+        ReparationVoile=self.StructureVoile/self.StructureVoileMax
+        CoutReparation=self.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
+        self.StructureVoile=self.StructureVoileMax
+        self.StructureCoque=self.StructureCoqueMax
+        CompCharpentier=utils.Compute(1)
+        TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
+        return CoutReparation,TempsEnJourReparation
+    def get_actions(self):        return ["Poursuivre", "Canonner", "Reparer"]
+    def executer_action(self, action,valeurs=None):
+
+        if action == "Vendre":
+            self.SupprimerMarchandise(valeurs["Marchandise"],valeurs['Tonnage'])
+            self.sauvegarder(self.Name)
+
+        elif action == "Acheter":
+            self.AttribuerRole()
+            self.sauvegarder(self.Name)
+        elif action == "Piller":
+
+            navire_pille = Navire.charger_depuis_csv(
+                valeurs["Navire"]
+            )
+
+            return self.Piller(navire_pille)
+        return f"{action} effectué."
+
+    def Piller(self, navire_pille):
+
+        place_restante = self.TonnageMax - self.Tonnage
+
+        while place_restante > 0 and navire_pille.Marchandise.Cargaisons:
+
+            cargaison = navire_pille.Marchandise.Cargaisons[0]
+
+            self.Marchandise.AjoutMarchandise(
+                cargaison,
+                1
+            )
+
+            navire_pille.Marchandise.SupprimerMarchandise(
+                cargaison,
+                1
+            )
+
+            self.Tonnage += 1
+            place_restante -= 1
+
+        self.Marchandise.sauvegarder(self.Marchandise.Name)
+        navire_pille.Marchandise.sauvegarder(navire_pille.Marchandise.Name)
+
+        self.sauvegarder(self.Name)
+        navire_pille.sauvegarder(navire_pille.Name)
+
+        return "Le pillage a été réalisé."

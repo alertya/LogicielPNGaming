@@ -22,24 +22,13 @@ import config
 
 
 
+
 class Marchandise:
 
     def __init__(self):
 
-        self.Cargaison = "Rhum"
-        self.Region = "Europe du nord"
-        self.Volume = 1
-        self.PrixPenurie=150
-        self.PrixNormal=100
-        self.PrixExces=1
-        self.Densite=1
-        self.Tonnage=1
-        self.ModRichesseNormal=1
-        self.ModRichessePort=1
-        self.BonusRichesseNormal=1
-        self.BonusRichessePort=1
-        self.ID=1
-        self.Name='Test.csv'
+        self.Cargaisons = []
+        self.Name = "Test.csv"
 
 
     def ConvertRancon(self,Nombre):
@@ -54,41 +43,26 @@ class Marchandise:
         return Base+Bonus
 
     def CheckButin(self,TonnageNavire,NbCanons,Port,SuccesCommerce):
-        ListButins=['de marque','de monnaie','Esclave','Pèlerin']
-        Valeur=self.CalculMonetaireMarchandise(TonnageNavire,NbCanons,SuccesCommerce,Port)
-        Valeur=Valeur['PieceDeHuit']
-        for k in ListButins:
-            if k in self.Nom:
-                self.__setattr__("PrixNormal",Valeur)
-                self.__setattr__("PrixExces", Valeur)
-                self.__setattr__("PrixPenurie", Valeur)
+        for cargaison in self.Cargaisons:
+            if k in cargaison["Cargaison"]:
+                cargaison["PrixNormal"] = Valeur
+                cargaison["PrixExces"] = Valeur
+                cargaison["PrixPenurie"] = Valeur
 
         return self
 
-    def CalculMonetaireMarchandise(self,TonnageNavire,NbCanonsNavire, ReussiteCommerce,Port):
-        De=random.randint(2,200)
-        TonnageNavire=TonnageNavire/10
-        ReussiteCommerce=ReussiteCommerce*10
+    def CalculMonetaireMarchandise(
+            self,
+            cargaison,
+            tonnage_navire,
+            nb_canons,
+            succes,
+            port):
+        BonusAleaNPort = cargaison["ModRichesseNormal"]
+        BonusNPort = cargaison["BonusRichesseNormal"]
 
-
-        BonusAleaNPort=self.ModRichesseNormal
-        BonusNPort=self.BonusRichesseNormal
-        BonusAleaPort=self.ModRichessePort
-        BonusPort=self.BonusRichessePort
-        if Port == 1:
-            BonusAlea = max(BonusAleaNPort, BonusAleaPort)
-            Bonus = max(BonusPort, BonusNPort)
-        else:
-            BonusAlea = BonusAleaNPort
-            Bonus = BonusNPort
-
-
-        BonusAlea = random.randint(1, int(BonusAlea))
-        Bonus += BonusAlea
-        De=De+Bonus
-        De+=NbCanonsNavire+TonnageNavire+ReussiteCommerce
-        Valeur=self.ConvertRancon(De)
-        return Valeur
+        BonusAleaPort = cargaison["ModRichessePort"]
+        BonusPort = cargaison["BonusRichessePort"]
 
     def CalculTaillePort(self,Ville):
         CompNegatif = ['Maladie', 'Vide', 'IndigeneHostile']
@@ -125,119 +99,46 @@ class Marchandise:
         TaillePort=df[df['Ville']==Ville]
         return TaillePort
 
-    def AjoutMarchandise(self,Name, TonnageMarchandise):
-        # Chargement de toutes les marchandises disponibles
-        MarchandisesDisponibles = pd.read_csv(config.BASE_PATH + "/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
+    def AjoutMarchandise(self, nom, tonnage):
 
-        # Filtrage sur la marchandise choisie
-        ligne_marchandise = MarchandisesDisponibles[MarchandisesDisponibles['Cargaison'] == NameMarchandise].copy()
+        catalogue = pd.read_csv(
+            config.BASE_PATH + "/Marchandises.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
 
-        # Ajout des colonnes nécessaires
-        ligne_marchandise['Tonnage'] = TonnageMarchandise
-        ligne_marchandise['Cours'] = 0
+        ligne = catalogue[catalogue["Cargaison"] == nom]
 
-        # Chemin du fichier de cargaison du navire
-        output_path = os.path.join(config.MARCHANDISE_PATH, Name )
-        os.makedirs(config.MARCHANDISE_PATH, exist_ok=True)
+        if ligne.empty:
+            return
 
-        # Si le fichier existe déjà, on met à jour ou ajoute
-        if os.path.exists(output_path):
-            existing_df = pd.read_csv(output_path, sep=";", decimal=",", encoding="cp1252")
+        ligne = ligne.iloc[0].to_dict()
 
-            # Si la marchandise est déjà présente
-            if NameMarchandise in existing_df['Cargaison'].values:
-                existing_df.loc[existing_df['Cargaison'] == NameMarchandise, 'Tonnage'] += 1
-            else:
-                existing_df = pd.concat([existing_df, ligne_marchandise], ignore_index=True)
+        ligne["Tonnage"] = tonnage
 
-            # Sauvegarde
-            existing_df.to_csv(output_path, sep=";", decimal=",", encoding="cp1252", index=False)
+        for cargaison in self.Cargaisons:
 
-        else:
-            # Fichier inexistant → création avec la marchandise
-            ligne_marchandise.to_csv(output_path, sep=";", decimal=",", encoding="cp1252", index=False)
+            if cargaison["Cargaison"] == nom:
+                cargaison["Tonnage"] += tonnage
+                return
 
-        return ligne_marchandise
-    def SupprimerMarchandise(self, Name, quantite=1):
-        """
-        Retire `quantite` de tonnage à la marchandise `NameMarchandise` dans le fichier `Name.csv`.
-        Si le tonnage devient <= 0, la ligne est supprimée.
-        """
+        self.Cargaisons.append(ligne)
 
-        file_path = os.path.join(config.MARCHANDISE_PATH, Name+".csv")
+    def SupprimerMarchandise(self, nom, tonnage):
 
-        if not os.path.exists(file_path):
-            print(f"Le fichier {file_path} n'existe pas.")
-            return False
+        for cargaison in self.Cargaisons:
 
-        try:
-            df = pd.read_csv(file_path, sep=";", decimal=",", encoding="cp1252")
-        except pd.errors.EmptyDataError:
-            print(f"Le fichier {file_path} est vide.")
-            return False
+            if cargaison["Cargaison"] == nom:
 
-        if 'Cargaison' not in df.columns or 'Tonnage' not in df.columns:
-            print(f"Les colonnes 'Cargaison' ou 'Tonnage' sont absentes dans {file_path}.")
-            return False
+                cargaison["Tonnage"] -= tonnage
 
-        # Trouver les lignes correspondant à la marchandise ciblée
-        mask = df['Cargaison'] == NameMarchandise
+                if cargaison["Tonnage"] <= 0:
+                    self.Cargaisons.remove(cargaison)
 
-        if not mask.any():
-            print(f"Aucune ligne pour la marchandise '{NameMarchandise}' trouvée dans {file_path}.")
-            return False
+                return True
 
-        # Décrémenter le tonnage
-        df.loc[mask, 'Tonnage'] = df.loc[mask, 'Tonnage'] - quantite
-
-        # Supprimer les lignes où tonnage <= 0
-        df = df[df['Tonnage'] > 0]
-
-        # Réécrire le fichier
-        df.to_csv(file_path, sep=";", decimal=",", encoding="cp1252", index=False)
-
-        print(f"Retiré {quantite} de tonnage à '{NameMarchandise}' dans {Name}.csv.")
-        return True
-
-
-
-    def Pillage(self,NomNavirePillant,NomNavirePille):
-        NavirePillant=pd.read_csv(os.path.join(config.BASE_PATH, "Navire", NomNavirePillant), sep=";",
-                                   decimal=",", encoding="cp1252")
-        TonnageMax=NavirePillant['TonnageMax']-NavirePillant['Tonnage']
-        TonnageMax=TonnageMax.iloc[0]
-        MarchandisePille=pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePille ), sep=";",
-                                   decimal=",", encoding="cp1252")
-
-        MarchandisePillant=pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant ), sep=";",decimal=",", encoding="cp1252")
-
-        # Remplacer les NaN (vides ou erreurs) par 0
-        MarchandisePille["PrixNormal"] = MarchandisePille["PrixNormal"].fillna(0)
-        #MarchandisePille = MarchandisePille.sort_values(by="PrixNormal", ascending=False)
-        while (not MarchandisePille.empty and TonnageMax > 0):
-            MarchandisePille = pd.read_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
-                                           sep=";",
-                                           decimal=",", encoding="cp1252")
-            MarchandiseNom=MarchandisePille['Cargaison'].iloc[0]
-            self.AjoutMarchandise(MarchandiseNom,1,"Marchandise_"+NomNavirePillant)
-            self.SupprimerMarchandise(MarchandiseNom, "Marchandise_"+NomNavirePille, 1)
-            NavirePillant['Tonnage']+=1
-            TonnageMax-=1
-        MarchandisePillant.to_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_"+NomNavirePillant), sep=";",
-                                   decimal=",", encoding="cp1252")
-
-        MarchandisePille.to_csv(os.path.join(config.BASE_PATH, "Marchandise", "Marchandise_" + NomNavirePille),
-                                       sep=";",
-                                       decimal=",", encoding="cp1252")
-
-        NavirePillant.to_csv(os.path.join(config.BASE_PATH, "Navire", NomNavirePillant), sep=";",
-                                    decimal=",", encoding="cp1252")
-
-
-
-
-        Text="Le pillage du navire "+NomNavirePille+ " a ete realise"
-        return Text
+        return False
 
     def RetourMarchandise(self,Tonnage,Region):
         Marchandises=pd.read_csv(config.BASE_PATH+"/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
@@ -278,42 +179,38 @@ class Marchandise:
         Chargement= {key: value / divisor*Tonnage for key, value in Chargement.items()}
         return Chargement
 
+    def GenerateMarchandise(self, region):
 
-    def GetMarchandise(self,Nom):
-        Marchandises=pd.read_csv(config.BASE_PATH + "/Marchandises.csv",encoding="cp1252",decimal=",",sep=";")
-        donnees = Marchandises[
-            Marchandises["Cargaison"].str.contains(Nom, na=False)
-        ].iloc[0].to_dict()
-        objet=Marchandise()
-        for attribut, valeur in donnees.items():
-            setattr(objet,attribut, valeur)
-        return objet
-    def GenerateMarchandise(self,Region):
-        de=random.randint(1,100)
-        Marchandises = pd.read_csv(config.BASE_PATH + "/Marchandises.csv", encoding="cp1252", decimal=",",
-                                   sep=";")
+        de = random.randint(1, 100)
 
+        marchandises = pd.read_csv(
+            config.BASE_PATH + "/Marchandises.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
 
-        donnees = Marchandises[Marchandises["Region"] == Region]
-        donnees=donnees[donnees["De"]>=de].iloc[0]
-        objet = Marchandise()
-        for attribut, valeur in donnees.items():
-            setattr(objet, attribut, valeur)
-        return objet
+        ligne = marchandises[
+            (marchandises["Region"] == region)
+            & (marchandises["De"] >= de)
+            ]
 
+        if ligne.empty:
+            ligne = marchandises[
+                marchandises["Region"] == region
+                ]
 
+        return ligne.iloc[0].to_dict()
 
-    def sauvegarder(self,Name):
+    def sauvegarder(self, name=None):
 
-        ligne = {}
+        if name is None:
+            name = self.Name
 
-        for cle, valeur in self.__dict__.items():
-            ligne[cle] = valeur
-
-        df = pd.DataFrame([ligne])
+        df = pd.DataFrame(self.Cargaisons)
 
         df.to_csv(
-            os.path.join(config.BASE_PATH, "Marchandise", f"{Name}.csv"),
+            os.path.join(config.BASE_PATH, "Marchandise", f"{name}.csv"),
             sep=";",
             decimal=",",
             encoding="cp1252",
@@ -321,64 +218,54 @@ class Marchandise:
         )
 
     @classmethod
-    def charger_depuis_csv(cls, nom_fichier: str):
+    def charger_depuis_csv(cls, nom_fichier):
 
-        import os
-        import csv
-
-        chemin_fichier = os.path.join(
+        chemin = os.path.join(
             config.BASE_PATH,
             "Marchandise",
             f"{nom_fichier}.csv"
         )
 
-        if not os.path.exists(chemin_fichier):
-            print(f"Le fichier {chemin_fichier} n'existe pas.")
+        if not os.path.exists(chemin):
             return None
 
-        # Création d'un objet Marchandise vide
-        marchandise = cls()
-
-        import pandas as pd
+        obj = cls()
+        obj.Name = nom_fichier
 
         df = pd.read_csv(
-            chemin_fichier,
+            chemin,
             sep=";",
             decimal=",",
             encoding="cp1252"
         )
 
-        if df.empty:
-            return marchandise
+        obj.Cargaisons = df.to_dict("records")
 
-        # Dernière ligne du fichier
-        donnees = df.iloc[-1]
-
-        for cle, valeur in donnees.items():
-
-            if not hasattr(marchandise, cle):
-                continue
-
-            # Ignore les valeurs manquantes
-            if pd.isna(valeur):
-                continue
-
-            setattr(marchandise, cle, valeur)
-
-        return marchandise
+        return obj
 
     def get_actions(self):        return ["Acheter", "Vendre", "Piller"]
     def executer_action(self, action,valeurs=None):
 
         if action == "Vendre":
-            self.SupprimerMarchandise(valeurs["Marchandise"],valeurs['Tonnage'])
+            self.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
             self.sauvegarder(self.Name)
 
         elif action == "Acheter":
-            self.AttribuerRole()
+            vendeur = Marchandise.charger_depuis_csv(
+                valeurs["Marchandise"]
+            )
+
+            vendeur.SupprimerMarchandise(
+                valeurs["Cargaison"],
+                valeurs["Tonnage"]
+            )
+
+            self.AjoutMarchandise(
+                valeurs["Cargaison"],
+                valeurs["Tonnage"]
+            )
+
+            vendeur.sauvegarder(vendeur.Name)
             self.sauvegarder(self.Name)
-        elif action == "Piller":
-            self.Pillage(NameMarchandisePillant,self.Name)
-            self.sauvegarder(self.Name)
-            self.sauvegarder(NameMarchandisePillant)
+
         return f"{action} effectué."

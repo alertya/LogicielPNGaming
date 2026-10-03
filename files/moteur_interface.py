@@ -641,4 +641,7 @@ class MoteurExemple(MoteurBase):
         return []
 
     def get_formulaire_action(self, onglet: str, action: str):
-        return None
+        return
+
+    def charger_marchandise(self, nom):
+        return Marchandise.charger_depuis_csv(nom)

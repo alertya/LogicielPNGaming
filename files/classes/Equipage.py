@@ -800,60 +800,89 @@ class Equipage:
             EquipageRecrute,
             SuccesRecrutement
     ):
-        Text = ""
 
-        if TypeRecrutant == "Pirate":
+        texte = ""
 
-            # Modification de l'adhésion à la cause pirate
-            for membre in EquipageRecrute.Membres:
-                membre.Pirate *= (1 + SuccesRecrutement / 10)
+        # Coefficient selon le type de recruteur
+        bonus = {
+            "Pirate": "Pirate",
+            "Matelot": "Matelot",
+        }
 
-                # Conversion en entier
-                membre.Pirate = int(round(membre.Pirate))
+        caracteristique = bonus.get(TypeRecrutant, "Pirate")
 
-            # Membres hostiles
-            NbHostiles = sum(
-                1
-                for membre in EquipageRecrute.Membres
-                if membre.Pirate < 0
-            )
+        personnes_recrutees = []
+        nb_hostiles = 0
 
-            Text += (
-                f"{NbHostiles} sont prêts à dénoncer "
-                f"l'équipage pirate\n"
-            )
+        for membre in EquipageRecrute.Membres:
 
-            # Membres qui rejoignent
-            PersonnesRecrutees = [
-                membre
-                for membre in EquipageRecrute.Membres
-                if membre.Pirate > 1
-            ]
+            # Augmente la caractéristique adaptée
+            valeur = getattr(membre, caracteristique)
+            valeur *= (1 + SuccesRecrutement / 10)
+            valeur = int(round(valeur))
+            setattr(membre, caracteristique, valeur)
 
-            Text += (
-                f"{len(PersonnesRecrutees)} sont prêts "
-                f"à rejoindre l'équipage\n"
-            )
+            if valeur < 0:
+                nb_hostiles += 1
 
-            # Transfert des membres
-            self.Membres.extend(PersonnesRecrutees)
+            elif valeur > 1:
+                personnes_recrutees.append(membre)
 
-            # Recalcul de la valeur de combat
-            self.ValeurCombat = self.CalculCombatEquipage()
+        texte += (
+            f"{nb_hostiles} sont prêts à dénoncer le recruteur.\n"
+        )
 
-        return Text
+        texte += (
+            f"{len(personnes_recrutees)} rejoignent l'équipage.\n"
+        )
+
+        # Transfert des membres
+        for membre in personnes_recrutees:
+            EquipageRecrute.Membres.remove(membre)
+            self.Membres.append(membre)
+
+        # Mise à jour des valeurs de combat
+        self.ValeurCombat = self.CalculCombatEquipage()
+        EquipageRecrute.ValeurCombat = EquipageRecrute.CalculCombatEquipage()
+
+        return personnes_recrutees
 
     def SoinsEquipage(
-            self,
-            CompMedecine,
-            CompChirurgie
+            self
     ):
 
-        for membre in self.Membres:
-            membre.PV = membre.PVMax - 1
+        for chirurgien in self.Membres:
+
+            if chirurgien.Role != "Chirurgien":
+                continue
+
+            # Test de chirurgie
+            print(chirurgien.Chirurgie)
+            reussites = utils.Test(
+                chirurgien.Chirurgie,
+            )
+
+            # Si Test renvoie un booléen, adapte cette partie
+            if reussites <= 0:
+                continue
+
+            soins_restants = reussites * 10
+
+            while soins_restants > 0:
+
+                blesses = [
+                    m for m in self.Membres
+                    if m.PV < m.PVMax
+                ]
+
+                if not blesses:
+                    break
+
+                patient = random.choice(blesses)
+                patient.PV += 1
+                soins_restants -= 1
 
         return self
-
     def RepartCompetence(self, Seuil, Lists):
 
         Text = ""
@@ -1029,8 +1058,7 @@ class Equipage:
 
         return sum(
             membre.Salaire
-            for membre in self.Membres
-        )
+            for membre in self.Membres)/29
 
 
     ####Retourne les hommes qui ne sont ni malades, ni blesses
@@ -1083,28 +1111,36 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes"]
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","Bataille","Soins"]
 
     def executer_action(self, action, valeurs=None):
 
         if action == "Recruter":
 
-            self.RecruteEquipage(
+            NbRecrute=self.RecruteEquipage(
                 valeurs["Equipage_source"],
                 valeurs["Equipage_cible"],
                 valeurs["Nombre"]
             )
+            EquipageRecrute=self.charger_depuis_csv(valeurs['Equipage_cible'])
 
-            return "Recrutement effectué."
+            return "Vous avez recrute "+str(NbRecrute)+" marins en plus venant de "+EquipageRecrute.Name+"."
 
         elif action == "Attribuer les rôles":
-
+            self.AttributeGroupe()
             # On fera cette partie plus tard
-            return "Fonction non implémentée."
+            return "Les roles ont été attribués dans "+self.Name
 
         elif action == "Distribuer les soldes":
+            return "Vous payez le salaire du jour de votre equipage, veuillez retirer "+str(self.CalculSalaireJournalier())+" pièces de huit de votre inventaire."
+            # On fera cette partie plus tard
 
+        elif action == "Soins":
+            self.SoinsEquipage(2,2)
             # On fera cette partie plus tard
             return "Fonction non implémentée."
-
+        elif action == "Bataille":
+            self.BatailleTerrestre(2,2)
+            # On fera cette partie plus tard
+            return "Fonction non implémentée."
         return "Action inconnue."

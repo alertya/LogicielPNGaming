@@ -84,7 +84,7 @@ class PanneauGenerationEquipage(tk.Frame):
         typo_cadre.pack(fill="x", pady=(0, 12))
 
         tk.Label(
-            typo_cadre, text="Répartition par typologie", bg=theme.BG_PANEL,
+            typo_cadre, text="Ajout de surnumeraire", bg=theme.BG_PANEL,
             fg=theme.FG_TITLE, font=theme.FONT_SECTION,
         ).grid(row=0, column=0, columnspan=4, sticky="w", pady=(0, 10))
 

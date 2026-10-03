@@ -13,11 +13,12 @@ BG_ROOT = "#14100a"          # fond général de la fenêtre
 BG_SIDEBAR = "#1d160d"       # fond de la colonne des onglets verticaux
 BG_TOPBAR = "#241b10"        # fond de la barre des onglets horizontaux
 BG_PANEL = "#2a2013"         # fond des panneaux de contenu
-BG_INPUT = "#332612"         # fond des champs / listes déroulantes
+BG_INPUT   = "#4b3920"
 
-FG_TEXT = "#f1e6c8"          # texte principal (parchemin clair)
-FG_MUTED = "#b8a97e"         # texte secondaire
-FG_TITLE = "#e8c874"         # titres / accents dorés
+# Texte
+FG_TEXT    = "#f5edd5"
+FG_MUTED   = "#b8a97e"
+FG_TITLE   = "#e8c874"
 
 ACCENT = "#c9a227"           # doré, couleur d'accent principale
 ACCENT_HOVER = "#e6bf3d"
