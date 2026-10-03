@@ -13,13 +13,9 @@ import numpy as np
 import pandas as pd
 from typing import Dict, List
 from .Equipage import Equipage
-print("NavireA2")
 from .Marchandise import Marchandise
-print("NavireA3")
 
-print("NavireA4")
 import config
-print("NavireA5")
 
 ##### Variables & Constantes voyage
 NbJour = 6
@@ -129,7 +125,6 @@ class Navire:
                 df=df[df['Nom']==Type]
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
-                print(ligne_data)
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
                 for colonne, valeur in ligne_data.items():
 
@@ -543,7 +538,6 @@ class Navire:
 
         navire_attaquant=Navire.charger_depuis_csv(navire_attaquant)
         navire_attaque=Navire.charger_depuis_csv(navire_attaque)
-        print(navire_attaque)
         bonus_tir = navire_attaque.CategorieNavire - 3
 
         succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
@@ -697,7 +691,7 @@ class Navire:
             texte += f"{navire2.Name} a été décimé.\n"
         navire1.sauvegarder()
         navire2.sauvegarder()
-        print(f"{navire1.Name} a perdu {perte1} hommes")
-        print(f"{navire2.Name} a perdu {perte2} hommes")
+        texte +=f"{navire1.Name} a perdu {perte1} hommes"
+        texte +=f"{navire2.Name} a perdu {perte2} hommes"
 
         return texte

@@ -50,33 +50,23 @@ Sous-onglet "Actions" (présent sur chaque onglet vertical) :
 from __future__ import annotations
 import copy
 import copy
-print("A")
 
 import random
-print("A1")
 
 import pandas as pd
-print("A2")
 
 import utils
-print("A3")
 from typing import Any, Dict, List, Optional, Union
-print("B")
+
 import config
-print("B1")
-print("B2")
+
 import os
-print("B3")
-print("C")
+
 from classes.Equipage import Equipage
-print("C1")
 from classes.Navire import Navire
-print("C2")
 from classes.Marchandise import Marchandise
-print("C3")
-print("D")
+
 import numpy as np
-print("E")
 
 
 # Type d'une "fiche" de données que l'interface sait afficher automatiquement :
@@ -594,7 +584,6 @@ class MoteurExemple(MoteurBase):
 
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
-            print(navire)
             return navire.get_actions() if navire else []
 
         if onglet == "Equipage":
@@ -790,8 +779,8 @@ class MoteurExemple(MoteurBase):
 
             texte += f"{navire2.Name} a été décimé.\n"
 
-        print(f"{navire1.Name} a perdu {perte1} hommes")
-        print(f"{navire2.Name} a perdu {perte2} hommes")
+        Texte+=f"{navire1.Name} a perdu {perte1} hommes"
+        Texte+=f"{navire2.Name} a perdu {perte2} hommes"
 
         return texte
 
