@@ -152,7 +152,7 @@ class PanneauGenerationTrajet(tk.Frame):
 
     def __init__(
         self, parent, navires: List[str],
-        on_creer: Callable[[str, int, List[Dict]], None],
+        on_creer: Callable[[str, str, int, List[Dict]], None],
     ):
         super().__init__(parent, bg=theme.BG_ROOT)
         self.on_creer = on_creer
@@ -166,23 +166,62 @@ class PanneauGenerationTrajet(tk.Frame):
             entete, text="Nouveau trajet maritime", bg=theme.BG_PANEL,
             fg=theme.FG_TITLE, font=theme.FONT_SECTION,
         ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 10))
+        tk.Label(
+            entete,
+            text="Nom du trajet",
+            bg=theme.BG_PANEL,
+            fg=theme.FG_MUTED,
+            font=theme.FONT_TEXT,
+        ).grid(row=1, column=0, sticky="w")
 
-        tk.Label(entete, text="Navire", bg=theme.BG_PANEL, fg=theme.FG_MUTED, font=theme.FONT_TEXT)\
-            .grid(row=1, column=0, sticky="w")
-        self.var_navire = tk.StringVar(value=navires[0] if navires else "")
-        ttk.Combobox(
-            entete, textvariable=self.var_navire, values=navires, state="readonly",
-            width=28, style="Jeu.TCombobox",
+        self.var_nom_trajet = tk.StringVar()
+
+        tk.Entry(
+            entete,
+            textvariable=self.var_nom_trajet,
+            width=30,
         ).grid(row=2, column=0, sticky="w", padx=(0, 30), pady=(2, 0))
+        tk.Label(
+            entete,
+            text="Navire",
+            bg=theme.BG_PANEL,
+            fg=theme.FG_MUTED,
+            font=theme.FONT_TEXT
+        ).grid(row=3, column=0, sticky="w")
 
-        tk.Label(entete, text="Année historique du voyage", bg=theme.BG_PANEL, fg=theme.FG_MUTED, font=theme.FONT_TEXT)\
-            .grid(row=1, column=1, sticky="w")
+        self.var_navire = tk.StringVar(value=navires[0] if navires else "")
+
+        ttk.Combobox(
+            entete,
+            textvariable=self.var_navire,
+            values=navires,
+            state="readonly",
+            width=28,
+            style="Jeu.TCombobox",
+        ).grid(row=4, column=0, sticky="w", padx=(0, 30), pady=(2, 0))
+
+        tk.Label(
+            entete,
+            text="Année historique du voyage",
+            bg=theme.BG_PANEL,
+            fg=theme.FG_MUTED,
+            font=theme.FONT_TEXT,
+        ).grid(row=3, column=1, sticky="w")
+
         self.var_annee = tk.StringVar(value="1715")
+
         tk.Spinbox(
-            entete, from_=1600, to=1800, textvariable=self.var_annee, width=10,
-            justify="right", bg=theme.BG_INPUT, fg=theme.FG_TEXT,
-            buttonbackground=theme.BG_INPUT, relief="flat",
-        ).grid(row=2, column=1, sticky="w", pady=(2, 0))
+            entete,
+            from_=1600,
+            to=1800,
+            textvariable=self.var_annee,
+            width=10,
+            justify="right",
+            bg=theme.BG_INPUT,
+            fg=theme.FG_TEXT,
+            buttonbackground=theme.BG_INPUT,
+            relief="flat",
+        ).grid(row=4, column=1, sticky="w", pady=(2, 0))
 
         if not navires:
             tk.Label(
@@ -225,9 +264,21 @@ class PanneauGenerationTrajet(tk.Frame):
             l.renumeroter(i)
 
     def _creer(self):
+        nom_trajet = self.var_nom_trajet.get().strip()
         navire = self.var_navire.get()
+
+        if not nom_trajet:
+            return
+
         if not navire:
             return
+
         annee = _vers_nombre(self.var_annee.get())
         etapes = [ligne.valeurs() for ligne in self.lignes]
-        self.on_creer(navire, annee, etapes)
+
+        self.on_creer(
+            nom_trajet,
+            navire,
+            annee,
+            etapes
+        )

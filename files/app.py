@@ -453,10 +453,17 @@ class App(tk.Tk):
         panneau = PanneauGenerationTrajet(self.panneau_contenu, navires, on_creer=self._creer_trajet)
         panneau.pack(fill="both", expand=True)
 
-    def _creer_trajet(self, navire: str, annee: int, etapes: List[Dict]):
-        message = self.moteur.creer_trajet(navire, annee, etapes)
+    def _creer_trajet(self, nom_trajet: str, navire: str, annee: int, etapes: List[Dict]):
+        message = self.moteur.creer_trajet(
+            nom_trajet,
+            navire,
+            annee,
+            etapes
+        )
+
         self.statut_var.set(message or "Trajet créé.")
-        # On bascule sur le journal du navire concerné pour montrer le résultat.
+
+        # On bascule sur le journal du navire concerné
         self.instance_actuelle = navire
         self.selectionner_sous_onglet("Journal")
 

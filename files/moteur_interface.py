@@ -52,7 +52,7 @@ import copy
 import copy
 from tkinter import messagebox
 import random
-
+import csv
 import pandas as pd
 
 import utils
@@ -61,7 +61,7 @@ from typing import Any, Dict, List, Optional, Union
 import config
 
 import os
-
+from classes.Voyage import Voyage
 from classes.Equipage import Equipage
 from classes.Navire import Navire
 from classes.Marchandise import Marchandise
@@ -148,19 +148,15 @@ class MoteurBase:
         """
         raise NotImplementedError
 
-    def creer_trajet(self, navire: str, annee_historique: int, etapes: List[Dict[str, Any]]) -> str:
-        """
-        Crée (ou remplace) le trajet prévu pour `navire`, à partir de la
-        liste ordonnée `etapes` construite par le formulaire "Générer".
-        Chaque étape est un dict avec les clés :
-            Region, ZoneMaritime, TaillePortEscale, Distance,
-            ChanceRencontreAventurier, CompetenceVigie,
-            EscaleRecrutement, EscaleCommerce, EscaleReparation,
-            DeMarchand, DeAventurier
-        Doit réinitialiser le journal de bord du navire au jour 1.
-        Renvoie un message de confirmation affiché dans la barre de statut.
-        """
-        raise NotImplementedError
+    def creer_trajet(self, navire, annee_historique, etapes):
+        voyage = Voyage(nom_trajet, navire, annee_historique)
+
+        for etape in etapes:
+            voyage.AjouterEtape(**etape)
+
+        voyage.sauvegarder()
+
+        return f"Trajet {nom_trajet} créé."
 
     def avancer_jour(self, navire: str) -> str:
         """
@@ -308,7 +304,7 @@ class MoteurExemple(MoteurBase):
     def get_instances(self, onglet, sous_onglet):
 
         if onglet == "Journal de bord":
-            return self._get_instances_dossier("Navire") if sous_onglet == "Journal" else []
+            return self._get_instances_dossier("Voyage") if sous_onglet == "Journal" else []
 
         if onglet == "Navire":
             return self._get_instances_dossier("Navire")
@@ -329,7 +325,20 @@ class MoteurExemple(MoteurBase):
 
     def get_donnees(self, onglet, sous_onglet, instance):
         if onglet == "Journal de bord" and sous_onglet == "Journal":
-            return self._journal_du_jour(instance)
+
+            if not instance:
+                return "Aucun voyage."
+
+            chemin = os.path.join(config.BASE_PATH, "Voyage", f"{instance}.csv")
+
+            if not os.path.exists(chemin):
+                return (
+                    "Aucun voyage enregistré.\n\n"
+                    "Allez dans l'onglet « Générer » pour créer un trajet."
+                )
+
+            voyage = Voyage.charger_depuis_csv(instance)
+            return voyage.Affichage()
         if onglet == "Navire" and sous_onglet == "Afficher":
             return self._navires.charger_depuis_csv(instance)
         if onglet == "Equipage" and sous_onglet == "Afficher":
@@ -368,14 +377,21 @@ class MoteurExemple(MoteurBase):
     def get_navires(self):
         return [self._navires.Name]
 
-    def creer_trajet(self, navire, annee_historique, etapes):
+    import csv
+    import os
+    import config
+
+    def creer_trajet(self, nom_trajet, navire, annee_historique, etapes):
         if not navire:
             return "Aucun navire sélectionné."
         if not etapes:
             return "Le trajet doit contenir au moins une étape."
 
         premiere = etapes[0]
-        self._voyages[navire] = {
+
+        self._voyages[nom_trajet] = {
+            "Nom": nom_trajet,
+            "Navire": navire,
             "annee_historique": annee_historique,
             "etapes": etapes,
             "etape_idx": 0,
@@ -389,7 +405,24 @@ class MoteurExemple(MoteurBase):
                 ]
             },
         }
-        return f"Trajet créé pour « {navire} » : {len(etapes)} étape(s), destination initiale « {premiere['Region']} »."
+
+        # Sauvegarde du voyage
+        voyage = Voyage(
+            Nom=nom_trajet,
+            Navire=navire,
+            Annee=annee_historique,etapes=etapes
+        )
+        voyage.Journal[1].append(
+            f"Départ du voyage (année {annee_historique}). "
+            f"Cap sur « {premiere['Region']} » "
+            f"({premiere['Distance']} milles nautiques à parcourir)."
+        )
+
+        voyage.sauvegarder(nom_trajet)
+
+        self._voyages[nom_trajet] = voyage
+
+
 
     def avancer_jour(self, navire: str) -> str:
         voyage = self._voyages.get(navire)
@@ -817,3 +850,4 @@ class MoteurExemple(MoteurBase):
             raise ValueError(f"Module inconnu : {module}")
 
         return objet.Affichage()
+
