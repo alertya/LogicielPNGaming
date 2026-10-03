@@ -1,234 +1,217 @@
-import os
-import time
-import pandas as pd
-import numpy as np
-import math
-import random
-import matplotlib.pyplot as plt
-from tkinter import messagebox
+from classes.Equipage import Equipage
+class Maladie:
 
+    @staticmethod
+    def test_maladie(equipage_nom, nb_jours=1, endemique=False):
 
+        equipage = Equipage.charger_depuis_csv(equipage_nom)
 
+        texte = ""
 
-# ----------------- FONCTIONS DE BASE ---------------- #
+        texte += Maladie.evolution_maladies(equipage, nb_jours)
 
+        maladie = Maladie.tirer_maladie(endemique)
 
+        for _ in range(nb_jours):
 
-def convert_float_to_int_list(fl):
-    """Convertit une liste de float en int en tenant compte d'une chance aléatoire."""
-    return [int(x + 1 if (x % 1 * 100 <= random.randint(1, 99) and x % 1 != 0) else x) for x in fl]
+            for membre in equipage.Membres:
 
-# ----------------- POINTS DE VIE ---------------- #
+                if membre.Maladie != "":
+                    continue
 
-def calcul_pv(DF):
-    """Assigne les PV max en fonction du type de personnage."""
-    DF['PVMax'] = np.random.normal(5, 0.5, len(DF))
-    mask_soldat = DF['Type'] == 'Soldat'
-    mask_autres = DF['Type'].isin(['Esclave', 'Indien'])
+                chance = 140 if endemique else 600
 
-    DF.loc[mask_soldat, 'PVMax'] = np.random.normal(6, 0.6, mask_soldat.sum())
-    DF.loc[mask_autres, 'PVMax'] = np.random.normal(5.5, 0.55, mask_autres.sum())
+                if random.randint(1, chance) != 1:
+                    continue
 
-    DF['PVMax'] = DF['PVMax'].clip(5, 8)
-    DF['PVMax'] = convert_float_to_int_list(DF['PVMax'])
-    return DF['PVMax']
+                if Maladie.lancer_de(2, maladie.Virulence)[0] < 2:
 
-# ----------------- MALADIES ---------------- #
+                    membre.Maladie = maladie.Nom
+                    membre.EtatMaladie = maladie.EtatCrise
+                    membre.Cycle = maladie.Cycle
 
-def reconnaissance_malade_equipage(name):
-    """Vérifie si un malade est détecté dans l'équipage."""
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    df = Equipage.HommesValides(df)
+                    texte += (
+                        f"{membre.Nom} contracte la {maladie.Nom}.\n"
+                    )
 
-    proba_detection = 0
-    for type_ in ['Medecin', 'Chirurgien', 'Herboriste']:
-        for _, row in df[df['Type'] == type_].iterrows():
-            proba_detection += lancer_de(row['Medecine'], 0)[0] * 20
+        equipage.Save()
 
-    for malade in df['Maladie'].notna():
-        if random.random() > proba_detection / len(df):
-            return 0
-    return 1
+        return texte
 
+    @staticmethod
+    def evolution_maladies(equipage, nb_jours):
 
+        texte = ""
 
+        maladies = pd.read_csv(
+            os.path.join(config.BASE_PATH, "Maladie.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
 
+        for _ in range(nb_jours):
 
-def evolution_maladie(nb_jours, name):
-    """Fait évoluer les maladies existantes dans l'équipage."""
-    text = ''
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    maladies = pd.read_csv(BASE_PATH+"/Maladie.csv", sep=";", decimal=",", encoding="cp1252")
-    df["Maladie"] = df["Maladie"].astype(str)
-    df.loc[df['Famine'] < -29, 'Maladie'] = 'Famine'
+            morts = []
 
-    for _ in range(nb_jours):
-        df['Cycle'] -= 1
-        for idx in df[(df['Maladie'].notna()) & (df['Cycle'] == 0)].index:
-            mal_nom = df.loc[idx, 'Maladie']
-            mal = maladies[maladies['Maladie'] == mal_nom].iloc[0]
-            df.loc[idx, 'Cycle'] = mal['Cycle']
-            if mal['PopulationFragile'] == "Européens":
-                mal['Virulence'] -= 2
-            if mal['PopulationResistante'] == "Européens":
-                mal['Virulence'] += 2
+            for membre in equipage.Membres:
 
-            # Lancer de dés pour savoir si la maladie progresse, régresse ou tue
-            contraction = lancer_de(2, mal['Virulence'])[0]
-            # Si le lancer est < 1, la maladie progresse
-            if contraction <= 0:
-                df.loc[idx, 'EtatMaladie'] += mal['ReductionEtat']
-                # Limiter la gravité au maximum défini
-                df.loc[idx, 'EtatMaladie'] = max(df.loc[idx, 'EtatMaladie'], mal['GraviteMax'])
-                print(df.loc[idx, 'EtatMaladie'])
-                # Vérification si le personnage meurt
-                if df.loc[idx, 'EtatMaladie'] < -5:
-                    print("MORT DE MALADIE \n \n")
-                    text += f"Un homme a succombé de la {mal_nom}\n"
-                    messagebox.showinfo("Info", f"Un homme a succombé de la {mal_nom}")
+                if membre.Maladie == "":
+                    continue
 
-            # Si le lancer est > 1, la maladie régresse
-            elif contraction > 1:
-                df.loc[idx, 'EtatMaladie'] += 1
+                membre.Cycle -= 1
 
-                # Si l'état redevient sain (zéro), guéri
-                if df.loc[idx, 'EtatMaladie'] == 0:
-                    df.loc[idx, 'Maladie'] = ''
-                    text += f"Un homme s'est rétabli de la {mal_nom}\n"
-                    messagebox.showinfo("Info", f"Un homme s'est rétabli de la {mal_nom}")
-        Vivant=len(df[df['EtatMaladie'] > -6])
-        AncienV=len(df)
-        Mor=AncienV-Vivant
-        df = df[df['EtatMaladie'] > -6]
-        if Mor>0:
-            messagebox.showinfo("Info", f"Des hommes ont succombé à des maladies")
-    df.to_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252", index=False)
-    return text
+                if membre.Cycle > 0:
+                    continue
 
+                mal = maladies[
+                    maladies["Maladie"] == membre.Maladie
+                    ].iloc[0]
 
-# ----------------- LANCERS DE DÉS ---------------- #
+                membre.Cycle = mal["Cycle"]
 
-def lancer_de(col, bonus):
-    """Retourne le nombre de réussites en lançant des dés selon une compétence et un bonus."""
-    col=int(col)
-    success = 0
-    if col == 0:
-        test = random.randint(1, 12)
-        if test == 1:
-            success = 2
-        elif test > 9:
-            success = -1
-        elif test <= 5:
-            success = 1
-    else:
-        for _ in range(col):
-            roll = random.randint(1, 10)
-            if roll == 1:
-                success = max(success, 0) + 2
-            elif roll <= 5 + bonus:
-                success = max(success, 0) + 1
-            elif roll > 9 and success < 1:
-                success = -1
-    return success, f"{success} succès obtenus"
+                succes = Maladie.lancer_de(
+                    2,
+                    mal["Virulence"]
+                )[0]
 
-# ----------------- AUTRES ---------------- #
+                if succes <= 0:
 
-def soins_equipage(_, __, equipage):
-    """Soigne tout l'équipage à PVMax - 1."""
-    df = pd.read_csv(EQUIPAGE_PATH+equipage, sep=";", decimal=",", encoding='cp1252')
-    df['PV'] = df['PVMax'] - 1
-    df.to_csv(EQUIPAGE_PATH+equipage, sep=";", decimal=",", encoding='cp1252')
-    return df
+                    membre.EtatMaladie += mal["ReductionEtat"]
 
+                    if membre.EtatMaladie < -5:
+                        morts.append(membre)
+                        texte += (
+                            f"{membre.Nom} succombe à la {membre.Maladie}.\n"
+                        )
 
-def perte(degats, name):
-    """Applique des pertes de PV. Supprime les morts."""
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    morts = 0
-    for _ in range(degats):
-        extract = df.sample()
-        extract['PV'] -= 1
-        idx = extract.index[0]
-        df.loc[idx, 'PV'] = extract['PV'].values[0]
-        if extract['PV'].values[0] < 1:
-            df.drop(idx, inplace=True)
-            morts += 1
-    df.to_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252", index=False)
-    return morts
+                elif succes > 1:
 
+                    membre.EtatMaladie += 1
 
-def select_random(name, nb):
-    """Sélectionne aléatoirement nb individus dans l'équipage."""
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    return df.sample(n=nb).to_string()
+                    if membre.EtatMaladie >= 0:
+                        texte += (
+                            f"{membre.Nom} guérit de la {membre.Maladie}.\n"
+                        )
 
+                        membre.Maladie = ""
+                        membre.EtatMaladie = 0
 
-def preparation_repas_par_jour(name):
-    """Calcule le nombre de repas préparés par les cuisiniers."""
-    """On considère 8h de travail par jour avec un seuil de 5 repas par heure par succès par cuisinier"""
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    df = Equipage.HommesValides(df)
-    repas = 0
-    nb_repas_par_succes = 5
-    for k in range(8):
-        for type_ in ['Coq', 'Cuisinier']:
-            for _, row in df[df['Type'] == type_].iterrows():
-                repas += lancer_de(row['Cuisine'], 0)[0] * nb_repas_par_succes
-    return repas
+            for mort in morts:
+                equipage.Membres.remove(mort)
 
+        equipage.Save()
 
-def ImpactFamine(name):
-    """Calcule le nombre de repas préparés par les cuisiniers."""
-    """On considère 8h de travail par jour avec un seuil de 5 repas par heure par succès par cuisinier"""
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    repas=preparation_repas_par_jour(name)
-    if repas<len(df):
-        Equipage.Attitude(name,-2*(1-repas/len(df)))
+        return texte
 
-    for _ in range(len(df)-repas):
-        # Check if TempDF still has members
-        if len(df)<1:
-           df  = pd.DataFrame()  # Reset TempDF if empty
-           print(f"{name} a été décimé")
-        break
+    @staticmethod
+    def preparation_repas(equipage_nom):
+        """
+        Renvoie le nombre de repas préparés pendant une journée.
+        """
 
-        # Sample a single row
-        Extract = df.sample()
+        equipage = Equipage.charger_depuis_csv(equipage_nom)
 
-        # Reduce PV and reflect back in TempDF
-        new_pv = Extract['Famine'].iloc[0] - 1
-        df.loc[Extract.index, 'Famine'] = new_pv
-    df.to_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
+        repas = 0
+        repas_par_succes = 5
 
-def test_maladie(nb_jours, endemique, name):
-    """Teste la propagation de maladie dans un équipage."""
-    text = evolution_maladie(nb_jours, name)
-    df = pd.read_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252")
-    df["Maladie"] = df["Maladie"].astype(str)
-    maladies = pd.read_csv(BASE_PATH+"/Maladie.csv", sep=";", decimal=",", encoding="cp1252")
-    maladies = maladies[maladies["Maladie"] != "Famine"]
-    maladie = maladies.sample().iloc[0]
-    chance = 140 if endemique else 600
-    for k in df['Maladie'].dropna().unique():
-        maladie=maladies[maladies['Maladie']==k].iloc[0]
-        if(reconnaissance_malade_equipage(name) == 0 and maladie['Contamination']==1):
-            chance=10
-        elif maladie['Contamination']==0 :
-            maladie = maladies.sample().iloc[0]
-    for _ in range(nb_jours):
-        for k in df.index:
-            if random.randint(1, chance) == 1:
-                if maladie['PopulationFragile'] == "Européens":
-                    maladie['Virulence'] -= 2
-                elif maladie['PopulationResistante'] == "Européens":
-                    maladie['Virulence'] += 2
+        for _ in range(8):  # 8 heures de cuisine
 
-                if lancer_de(2, maladie['Virulence'])[0] < 2:
-                    df.loc[k, 'Maladie'] = maladie['Maladie']
-                    df.loc[k, 'EtatMaladie'] = maladie['EtatCrise']
-                    df.loc[k, 'Cycle'] = maladie['Cycle']
-                    print("Un homme a contracté la "+maladie['Maladie']+" \n")
-                    text += "Un homme a contracté la "+maladie['Maladie']+" \n"
-    df=df.loc[:, ~df.columns.str.contains('^Unnamed')]
-    df.to_csv(os.path.join(EQUIPAGE_PATH, name), sep=";", decimal=",", encoding="cp1252", index=False)
-    return text
+            for membre in equipage.Membres:
+
+                if "Cuisinier" not in str(membre.Trait):
+                    continue
+                else:
+                    succes = Maladie.lancer_de(membre.Cuisine, 0)[0]
+                    repas += succes * repas_par_succes
+
+        return max(0, repas)
+
+    @staticmethod
+    def impact_famine(equipage_nom):
+
+        equipage = Equipage.charger_depuis_csv(equipage_nom)
+
+        texte = ""
+
+        repas = Maladie.preparation_repas(equipage_nom)
+
+        nb_hommes = len(equipage.Membres)
+
+        if nb_hommes == 0:
+            return ""
+
+        # Moral
+        if repas < nb_hommes:
+            equipage.Attitude(
+                -2 * (1 - repas / nb_hommes)
+            )
+
+        # Nombre d'hommes n'ayant pas mangé
+        manque = max(0, nb_hommes - repas)
+
+        for _ in range(manque):
+
+            membre = random.choice(equipage.Membres)
+
+            membre.Famine -= 1
+
+            texte += (
+                f"{membre.Nom} souffre de la faim.\n"
+            )
+
+            if membre.Famine <= -30:
+
+                membre.Maladie = "Famine"
+
+                if membre.EtatMaladie == 0:
+                    membre.EtatMaladie = -1
+
+        equipage.Save()
+
+        return texte
+    def JourMaladie(self,NbJour,NomEquipage):
+        Equipage=Equipage.charger_depuis_csv(NomEquipage)
+
+        Text=""
+        Text+=self.evolution_maladies(NomEquipage,NbJour)
+        Text+=self.impact_famine(NomEquipage
+
+        Texte+=self.test_maladie(NomEquipage,NbJour,1)
+        Text+=self.ReconnaissanceMaladie(NomEquipage)
+        return Texte
+    @staticmethod
+    def ReconnaissanceMaladie(nom_equipage):
+        equipage = Equipage.charger_depuis_csv(nom_equipage)
+
+        membres = equipage.Membres
+        if not membres:
+            return False
+
+        personnes_a_inspecter = 0
+
+        # Les médecins examinent l'équipage
+        for membre in membres:
+
+            if "Médecin" not in membre.Trait:
+                continue
+
+            succes, _ = lancer_de(membre.Medecine, 0)
+            if succes > 0:
+                personnes_a_inspecter += succes * 10
+
+        if personnes_a_inspecter <= 0:
+            return "Aucun malade n'est à signaler ou isoler"
+
+        personnes_a_inspecter = min(personnes_a_inspecter, len(membres))
+
+        inspectes = random.sample(membres, personnes_a_inspecter)
+
+        for membre in inspectes:
+            if membre.Maladie not in ("", None):
+                membre.Isole = True          # nouvel attribut booléen
+                equipage.sauvegarder()
+                return "Nous avons repéré un indidividu malade, il est en isolement"
+
+        equipage.sauvegarder()
+        return return "Aucun malade n'est à signaler ou isoler"

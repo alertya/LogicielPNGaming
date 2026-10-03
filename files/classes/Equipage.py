@@ -1261,3 +1261,7 @@ class Equipage:
                     if getattr(membre, competence) > 1:
                         if trait not in membre.Traits:
                             membre.Traits.append(trait)
+
+    def NombreMembres(self):
+        """Retourne le nombre de membres de l'équipage."""
+        return len(self.Membres)
