@@ -487,10 +487,9 @@ class MoteurExemple(MoteurBase):
                     decimal=",",
                     encoding="cp1252"
                 )
-                print(fichier)
+
                 nom = os.path.splitext(fichier)[0]
                 type_equipage = df["Type"].iloc[0]
-                print(nom)
                 self._equipage[nom] = Equipage.Charger(
                     df,
                     Name=nom
@@ -792,3 +791,13 @@ class MoteurExemple(MoteurBase):
         print(f"{navire2.Name} a perdu {perte2} hommes")
 
         return texte
+
+    def Reparer(self):
+        ReparationCoque=self.StructureCoque/self.StructureCoqueMax
+        ReparationVoile=self.StructureVoile/self.StructureVoileMax
+        CoutReparation=self.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
+        self.StructureVoile=self.StructureVoileMax
+        self.StructureCoque=self.StructureCoqueMax
+        CompCharpentier=utils.Compute(1)
+        TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
+        return CoutReparation,TempsEnJourReparation

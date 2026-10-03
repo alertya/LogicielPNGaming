@@ -484,12 +484,13 @@ class Navire:
             return NavireRencontre
         else:
             return None
-    def Reparer(self):
-        ReparationCoque=self.StructureCoque/self.StructureCoqueMax
-        ReparationVoile=self.StructureVoile/self.StructureVoileMax
-        CoutReparation=self.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
-        self.StructureVoile=self.StructureVoileMax
-        self.StructureCoque=self.StructureCoqueMax
+    def Reparer(self,navire):
+        navire=self.charger_depuis_csv(navire)
+        ReparationCoque=navire.StructureCoque/navire.StructureCoqueMax
+        ReparationVoile=navire.StructureVoile/navire.StructureVoileMax
+        CoutReparation=navire.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
+        navire.StructureVoile=navire.StructureVoileMax
+        navire.StructureCoque=navire.StructureCoqueMax
         CompCharpentier=utils.Compute(1)
         TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
         return CoutReparation,TempsEnJourReparation
@@ -506,12 +507,8 @@ class Navire:
             self.sauvegarder(self.Name)
         elif action == "Reparer":
 
-            navire_pille = Navire.charger_depuis_csv(
-                valeurs["Navire"]
-            )
-
-            return self.Piller(navire_pille)
-        return f"{action} effectué."
+            Cout,TempsJour self.Reparer(instance)
+            return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
 
     def Piller(self, navire_pille):
 
