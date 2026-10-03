@@ -615,13 +615,13 @@ class MoteurExemple(MoteurBase):
 
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
-            return equipage.executer_action(action,valeurs)
+            return equipage.executer_action(action,instance,valeurs)
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
-            return navire.executer_action(action,valeurs)
+            return navire.executer_action(action,instance,valeurs)
         if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
-            return marchandise.executer_action(action,valeurs)
+            return marchandise.executer_action(action,instance,valeurs)
 
         return ""
 

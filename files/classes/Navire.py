@@ -378,7 +378,7 @@ class Navire:
                         # En cas de problème de conversion, on laisse la valeur par défaut pour ne pas planter
                         print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
 
-                return True
+                return donnees_navire
 
     def CalculType(self, zone, annee):
         de = random.randint(1, 100)

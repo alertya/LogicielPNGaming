@@ -101,7 +101,10 @@ class Equipage:
             return None
 
             # 1. Instanciation d'un nouvel équipage tout neuf
-        nouvel_equipage = Equipage(10,"Matelot","TestEquipage")
+        nouvel_equipage = cls.__new__(cls)
+        nouvel_equipage.Name = Name
+        nouvel_equipage.Type = ""
+        nouvel_equipage.Membres = []
 
             # 2. Lecture et parcours du fichier CSV
         with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
@@ -135,6 +138,7 @@ class Equipage:
 
                     # Ajout du membre reconstruit dans notre liste d'équipage
                 nouvel_equipage.Membres.append(membre)
+                nouvel_equipage.Name=Name
 
             # 3. Renvoi de la classe Equipage peuplée
         return nouvel_equipage
@@ -1098,9 +1102,9 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","Bataille","Soins"]
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins"]
 
-    def executer_action(self, action, valeurs=None):
+    def executer_action(self, action, instance,valeurs=None):
 
         if action == "Recruter":
 
@@ -1109,21 +1113,54 @@ class Equipage:
                 valeurs["Equipage_cible"],
                 valeurs["Nombre"]
             )
-            EquipageRecrute=self.charger_depuis_csv(valeurs['Equipage_cible'])
+            EquipageRecrute=self.charger_depuis_csv(instance)
 
             return "Vous avez recrute "+str(NbRecrute)+" marins en plus venant de "+EquipageRecrute.Name+"."
 
+
         elif action == "Attribuer les rôles":
-            self.AttributeGroupe()
-            # On fera cette partie plus tard
-            return "Les roles ont été attribués dans "+self.Name
+            print("instance :", repr(instance))
+            equipage = Equipage.charger_depuis_csv(instance)
+            print("equipage.Name :", repr(equipage.Name))
+            equipage.AttributeGroupe()
+
+            equipage.Save(instance)
+            print(equipage.Name)
+            return f"Les rôles ont été attribués dans {equipage.Name}"
+
 
         elif action == "Distribuer les soldes":
-            return "Vous payez le salaire du jour de votre equipage, veuillez retirer "+str(int(self.CalculSalaireJournalier()))+" pièces de huit de votre inventaire."
-            # On fera cette partie plus tard
+            print(instance)
+            equipage = Equipage.charger_depuis_csv(
+
+                instance
+
+            )
+
+            salaire = int(equipage.CalculSalaireJournalier())
+
+            return (
+
+                f"Vous payez le salaire du jour de {equipage.Name}, "
+
+                f"veuillez retirer {salaire} pièces de huit de votre inventaire."
+
+            )
+
 
         elif action == "Soins":
-            return self.SoinsEquipage()
+
+            equipage = Equipage.charger_depuis_csv(
+
+                instance
+
+            )
+
+            equipage.SoinsEquipage()
+
+            equipage.sauvegarder()
+
+            return f"Soins effectués pour {equipage.Name}"
 
         elif action == "BatailleTerrestre":
             return self.BatailleTerrestre(valeurs['Equipage1'],valeurs["Equipage2"],valeurs["Competence1"],valeurs["Competence2"],valeurs["Bonus1"],valeurs['Bonus2'])

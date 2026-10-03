@@ -244,7 +244,7 @@ class Marchandise:
         return obj
 
     def get_actions(self):        return ["Acheter", "Vendre", "Piller"]
-    def executer_action(self, action,valeurs=None):
+    def executer_action(self, action,instance,valeurs=None):
 
         if action == "Vendre":
             self.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
