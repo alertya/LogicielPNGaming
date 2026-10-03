@@ -23,9 +23,12 @@ import config
 #     from mon_moteur import MonMoteur
 #     moteur = MonMoteur()
 # ---------------------------------------------------------------------
+print("Moteur")
 moteur = MoteurExemple()
-
+print("Action")
 if __name__ == "__main__":
+    print("Debut app")
     app = App(moteur)
+    print("Fin app")
     app.mainloop()
     print("Done")

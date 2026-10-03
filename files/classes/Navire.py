@@ -507,7 +507,7 @@ class Navire:
             self.sauvegarder(self.Name)
         elif action == "Reparer":
 
-            Cout,TempsJour self.Reparer(instance)
+            Cout,TempsJour =self.Reparer(instance)
             return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
 
     def Piller(self, navire_pille):
