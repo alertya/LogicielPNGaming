@@ -46,7 +46,7 @@ BASE_PATH = "."  # À adapter selon l'emplacement de vos fichiers CSV
 class Navire:
     from typing import Dict, List
 
-    def __init__(self, Type: str, Name: str,Region:str):
+    def __init__(self, Type="Sloop", Name="Test",Region="Brésil"):
                 # -------------------------
                 # Paramètres requis à la création
                 # -------------------------
@@ -56,18 +56,14 @@ class Navire:
                 # -------------------------
                 # Rencontre & Origine
                 # -------------------------
-                self.de_rencontre: int = 0
-                self.type_rencontre: str = ""
                 self.de_depart: int = 0
                 self.regions_depart: str = Region
-                self.de_compagnie: int = 0
+
                 self.Compagnie: str = ""
 
                 # -------------------------
                 # Identification & Catégorie
                 # -------------------------
-                self.bateau: str = ""
-                self.de_bateau: int = 0
                 self.separation: str = ""
                 self.CategorieNavire: int = 0
                 self.pirate: bool = False  # Géré en booléen (True pour 'O', False pour 'N')
@@ -120,8 +116,6 @@ class Navire:
 
                 self.remplissage: int = 0
                 self.poids_total_marchandise: float = 0.0
-                self.cargaison3: int = 0
-                self.vivre: float = 0.0
                 #Prxi d'achat
                 self.CoutSansCanon:float=0.0
                 self.CoutCommerce:float=0.0
@@ -144,10 +138,9 @@ class Navire:
                         setattr(self, colonne, valeur)
                 self.Tonnage:int=self.CalculTonnage()
                 self.TonnageMarchandise=random.randint(4,10)/10*self.Tonnage
-                self.Equipage: int = self.CalculEquipage()
+                self.NombreEquipage: int = self.CalculEquipage()
                 self.StructureCoqueMax: float = self.StructureCoque
                 self.StructureVoileMax: float = self.StructureVoile
-                EquipageNavire=Equipage(self.Equipage,"Matelot",self.Name+"_Equipage")
                 self.EquipageNom=self.Name+"_Equipage"
                 self.Marchandise = Marchandise()
                 Cargaison =self.Marchandise.GenerateMarchandise(Region)
@@ -155,7 +148,7 @@ class Navire:
                 self.Marchandise.Tonnage=self.TonnageMarchandise
                 self.Marchandise.Name = self.Name + "_Marchandises"
                 self.Marchandise.sauvegarder(self.Name+"_Marchandises")
-
+                self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
                 self.sauvegarder()
 
     def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
@@ -286,8 +279,56 @@ class Navire:
 
     def CalculEquipage(self):
         return random.randint(int(self.EquipMin), int(self.EquipMax))
-    def CheckNavire(self, bateau):
-        return bateau, False
+
+    def CheckNavire(self, navire):
+        garde_cote = False
+
+        types_autorises = {
+            "Brick",
+            "Brigantin",
+            "Corvette",
+            "Cotre",
+            "Deux-ponts trois-mâts barque",
+            "Deux-ponts trois-mâts carré",
+            "Flibot",
+            "Flûte",
+            "Frégate trois-mâts barque",
+            "Frégate trois-mâts carré",
+            "Gabare",
+            "Galiote (Brick PSx1.5)",
+            "Goélette balaou",
+            "Goélette brick",
+            "Goélette franche",
+            "Goélette de guerre",
+            "Schooner",
+            "Houari (Goélette franche avec modif)",
+            "Ketch (Brigantin avec modif)",
+            "Langard (Brigantin)",
+            "Négrier (Brick ou Marchand avec modif)",
+            "Paquebot (Goélette balaou)",
+            "pingre (Flûte)",
+            "patach (Goélette franche)",
+            "pilote (Goélette franche, montre la route à suivre au port)",
+            "pinnasse (Goélette franche)",
+            "plut (Brigantin, Néerlandais)",
+            "prame (Deux-ponts trois-mâts barque avec modif)",
+            "ramberge (Sloop, rivière, anglais)",
+            "Senau (Brick avec modif)",
+            "Sloop",
+            "trois-mâts goélette",
+            "trois-ponts",
+            "yacht (Sloop)"
+        }
+
+        if navire.Type == "Garde côte (relancer jusqu’à trouver sloop, goélette, brigantin, brick, chebec, etc)":
+            while True:
+                navire = Navire.generer_aleatoire()
+
+                if navire.Type in types_autorises:
+                    garde_cote = True
+                    break
+
+        return navire, garde_cote
 
     def GeneEquipage(self):
                 comp = {'combat': 4, 'manoeuvre': 5, 'pointage': 3, 'recharge': 4, 'ruse': 2, 'valeur_combat': 12.5}
@@ -309,76 +350,68 @@ class Navire:
             encoding="cp1252",
             index=False
         )
-    def charger_depuis_csv(self, nom_fichier: str = "SauvegardeNavire"):
-                """
-                Parcourt les attributs de la classe et charge automatiquement leurs valeurs
-                à partir d'un fichier CSV précédemment sauvegardé.
-                """
-                import os
-                import csv
 
-                chemin_fichier = os.path.join(config.BASE_PATH,'Navire', f"{nom_fichier}.csv")
+    @classmethod
+    def charger_depuis_csv(cls, nom_fichier: str):
+        import os
+        import csv
 
-                if not os.path.exists(chemin_fichier):
-                    print(chemin_fichier)
-                    print(f"Le fichier de sauvegarde {nom_fichier} n'existe pas.")
-                    return False
+        chemin_fichier = os.path.join(
+            config.BASE_PATH,
+            "Navire",
+            f"{nom_fichier}.csv"
+        )
 
-                donnees_navire = None
+        if not os.path.exists(chemin_fichier):
+            print(f"Le fichier {chemin_fichier} n'existe pas.")
+            return None
 
-                # 1. Lecture du fichier CSV
-                with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
-                    reader = csv.DictReader(f, delimiter=";")
+        with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
+            reader = csv.DictReader(f, delimiter=";")
+            lignes = list(reader)
 
-                    # Sinon, on récupère par défaut la toute dernière ligne (dernière sauvegarde)
-                    lignes = list(reader)
-                    if lignes:
-                        donnees_navire = lignes[-1]
+        if not lignes:
+            return None
 
-                if not donnees_navire:
-                    print("Aucune donnée correspondante trouvée dans le fichier CSV.")
-                    return False
+        donnees = lignes[-1]
 
-                # 2. Parcours automatique des attributs existants pour modifier l'objet
-                for cle, valeur in donnees_navire.items():
-                    # Si l'attribut n'existe pas dans l'__init__ du Navire actuel, on l'ignore
-                    if not hasattr(self, cle):
-                        continue
+        # Création d'un navire "vide"
+        navire = cls()
 
-                    # Si la case du CSV est complètement vide, on passe
-                    if valeur == "":
-                        continue
+        # Le nom du navire devient le nom du fichier
+        navire.Name = nom_fichier
 
-                    # On détecte le type d'origine de l'attribut dans notre __init__
-                    type_origine = type(getattr(self, cle))
+        # Chargement des attributs
+        for cle, valeur in donnees.items():
 
-                    # 3. Conversion intelligente du texte CSV vers le bon type Python
-                    try:
-                        if type_origine is bool:
-                            # Gestion des booléens ("True", "O", "1" -> True)
-                            setattr(self, cle, valeur.lower() in ["true", "o", "1", "yes"])
+            if not hasattr(navire, cle):
+                continue
 
-                        elif type_origine is float:
-                            # Remplace la virgule française par un point informatique avant conversion
-                            valeur_nettoyee = valeur.replace(",", ".")
-                            setattr(self, cle, float(valeur_nettoyee))
+            if valeur == "":
+                continue
 
-                        elif type_origine is int:
-                            setattr(self, cle, int(valeur))
+            type_origine = type(getattr(navire, cle))
 
-                        elif type_origine in [dict, list]:
-                            # Recrée des structures vides si l'import brut est une chaîne textuelle brute
-                            if valeur in ["{}", "[]"]:
-                                setattr(self, cle, type_origine())
-                        else:
-                            # Par défaut, on l'assigne sous forme de chaîne (str)
-                            setattr(self, cle, valeur)
+            try:
+                if type_origine is bool:
+                    setattr(navire, cle, valeur.lower() in ("true", "1", "o", "yes"))
 
-                    except ValueError:
-                        # En cas de problème de conversion, on laisse la valeur par défaut pour ne pas planter
-                        print(f"Erreur de conversion pour l'attribut '{cle}' avec la valeur '{valeur}'.")
+                elif type_origine is int:
+                    setattr(navire, cle, int(valeur))
 
-                return donnees_navire
+                elif type_origine is float:
+                    setattr(navire, cle, float(valeur.replace(",", ".")))
+
+                elif type_origine in (list, dict):
+                    pass  # à adapter si tu souhaites les restaurer
+
+                else:
+                    setattr(navire, cle, valeur)
+
+            except ValueError:
+                print(f"Erreur de conversion : {cle} = {valeur}")
+
+        return navire
 
     def CalculType(self, zone, annee):
         de = random.randint(1, 100)
@@ -460,17 +493,18 @@ class Navire:
         CompCharpentier=utils.Compute(1)
         TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
         return CoutReparation,TempsEnJourReparation
-    def get_actions(self):        return ["Poursuivre", "Canonner", "Reparer"]
-    def executer_action(self, action,valeurs=None):
+    def get_actions(self):
+        return ["Poursuivre", "CombatNaval", "Reparer"]
+    def executer_action(self, action,instance,valeurs=None):
 
-        if action == "Vendre":
+        if action == "Poursuivre":
             self.SupprimerMarchandise(valeurs["Marchandise"],valeurs['Tonnage'])
             self.sauvegarder(self.Name)
 
-        elif action == "Acheter":
-            self.AttribuerRole()
+        elif action == "CombatNaval":
+            self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
             self.sauvegarder(self.Name)
-        elif action == "Piller":
+        elif action == "Reparer":
 
             navire_pille = Navire.charger_depuis_csv(
                 valeurs["Navire"]
@@ -507,3 +541,166 @@ class Navire:
         navire_pille.sauvegarder(navire_pille.Name)
 
         return "Le pillage a été réalisé."
+
+    def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
+
+        navire_attaquant=Navire.charger_depuis_csv(navire_attaquant)
+        navire_attaque=Navire.charger_depuis_csv(navire_attaque)
+        print(navire_attaque)
+        bonus_tir = navire_attaque.CategorieNavire - 3
+
+        succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
+        succes_tir += succes_tir * bonus_tir / 5
+        succes_tir = utils.ConvertFloatToInt(succes_tir)
+
+        localisation = random.randint(1, 6)
+
+        if type_munition != "Mitraille":
+
+            if navire_attaque.NbMats == 3 or type_munition == "Coque":
+
+                if localisation < 2:
+                    succes_tir += 2
+
+                if localisation > 5:
+                    succes_tir += 1
+
+            elif navire_attaque.NbMats == 2:
+
+                if localisation < 4:
+                    succes_tir += 2
+
+                if localisation > 3:
+                    succes_tir += 1
+
+        succes_recharge = utils.Test(navire_attaquant.navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1])
+        recharge = utils.ConvertFloatToInt(7 - succes_recharge)
+
+        degats = 0.9925 * np.exp(
+            0.2298 * (navire_attaquant.ValeurCanonnade - 3.9721 + 2 * succes_tir)
+        )
+
+        degats = utils.ConvertFloatToInt(degats)
+        navire_attaque.sauvegarder()
+        navire_attaquant.sauvegarder()
+        return degats, recharge
+
+    def PerteNavire(self,navire, pertes, type_munition):
+        navire=Navire.charger_depuis_csv(navire)
+        pertes = int(pertes)
+        texte = ""
+
+        if type_munition == "Voile":
+
+            navire.StructureVoile = max(
+                0,
+                navire.StructureVoile - pertes
+            )
+
+            navire.Equipage.Tues(pertes)
+            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+
+            texte += f"{navire.Name} a perdu {pertes} hommes et des voiles.\n"
+
+        elif type_munition == "Coque":
+
+            navire.StructureCoque = max(
+                0,
+                navire.StructureCoque - pertes
+            )
+
+            navire.Equipage.Tues(pertes)
+            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+
+            texte += f"{navire.Name} a perdu {pertes} hommes et des points de coque.\n"
+
+        elif type_munition == "Mitraille":
+
+            navire.Equipage.Tues(pertes)
+            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+
+            texte += f"{navire.Name} a perdu {pertes} hommes.\n"
+
+        if navire.StructureCoque <= 0:
+            texte += f"{navire.Name} a coulé.\n"
+
+        if navire.StructureVoile <= 0:
+            texte += f"{navire.Name} a dématé.\n"
+
+        navire.sauvegarder()
+
+        return pertes, texte
+
+    def CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
+
+        texte = ""
+        navire1=self.charger_depuis_csv(navire1)
+        navire2=self.charger_depuis_csv(navire2)
+        degat1, recharge1 = self.DegatsNavire(
+            navire1,
+            navire2,
+            munition1,bonus1
+        )
+
+        degat2, recharge2 = self.DegatsNavire(
+            navire2,
+            navire1,
+            munition2,bonus2
+        )
+
+        texte += (
+            f"{navire1.Name} a besoin de {recharge1} tours "
+            "pour recharger sa prochaine batterie.\n"
+        )
+
+        texte += (
+            f"{navire2.Name} a besoin de {recharge2} tours "
+            "pour recharger sa prochaine batterie.\n"
+        )
+
+        print(f"{navire1.Name} a besoin de {recharge1} tours pour recharger.")
+        print(f"{navire2.Name} a besoin de {recharge2} tours pour recharger.")
+
+        # Le navire 1 subit les dégâts du navire 2
+        if navire1.Equipage.Nombre > 0:
+
+            perte1, temp = self.PerteNavire(
+                navire1,
+                degat2,
+                munition2
+            )
+
+            texte += temp + "\n"
+
+            texte += navire1.Equipage.Attitude(
+                -perte1 / navire1.Equipage.Nombre * 50
+            )[1]
+
+        else:
+
+            texte += f"{navire1.Name} a été décimé.\n"
+
+        # Le navire 2 subit les dégâts du navire 1
+        if navire2.Equipage.Nombre > 0:
+
+            perte2, temp = self.PerteNavire(
+                navire2,
+                degat1,
+                munition1
+            )
+
+            texte += temp + "\n"
+
+            texte += navire2.Equipage.Attitude(
+                -perte2 / navire2.Equipage.Nombre * 50
+            )[1]
+
+        else:
+
+            texte += f"{navire2.Name} a été décimé.\n"
+        navire1.sauvegarder()
+        navire2.sauvegarder()
+        print(f"{navire1.Name} a perdu {perte1} hommes")
+        print(f"{navire2.Name} a perdu {perte2} hommes")
+
+        return texte

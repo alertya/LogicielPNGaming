@@ -379,7 +379,7 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType'):
+        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType','CombatNaval','Reparer',"Poursuivre"):
             FormulaireAction(
                 self,
                 action=action,
@@ -536,3 +536,74 @@ class App(tk.Tk):
         self.ValeurCombat = self.CalculCombatEquipage()
 
         return Temp
+    def _CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
+
+        texte = ""
+
+        degat1, recharge1 = self.DegatsNavire(
+            navire1,
+            navire2,
+            munition1,bonus1
+        )
+
+        degat2, recharge2 = self.DegatsNavire(
+            navire2,
+            navire1,
+            munition2,bonus2
+        )
+
+        texte += (
+            f"{navire1.Name} a besoin de {recharge1} tours "
+            "pour recharger sa prochaine batterie.\n"
+        )
+
+        texte += (
+            f"{navire2.Name} a besoin de {recharge2} tours "
+            "pour recharger sa prochaine batterie.\n"
+        )
+
+        print(f"{navire1.Name} a besoin de {recharge1} tours pour recharger.")
+        print(f"{navire2.Name} a besoin de {recharge2} tours pour recharger.")
+
+        # Le navire 1 subit les dégâts du navire 2
+        if navire1.Equipage.Nombre > 0:
+
+            perte1, temp = self.PerteNavire(
+                navire1,
+                degat2,
+                munition2
+            )
+
+            texte += temp + "\n"
+
+            texte += navire1.Equipage.Attitude(
+                -perte1 / navire1.Equipage.Nombre * 50
+            )[1]
+
+        else:
+
+            texte += f"{navire1.Name} a été décimé.\n"
+
+        # Le navire 2 subit les dégâts du navire 1
+        if navire2.Equipage.Nombre > 0:
+
+            perte2, temp = self.PerteNavire(
+                navire2,
+                degat1,
+                munition1
+            )
+
+            texte += temp + "\n"
+
+            texte += navire2.Equipage.Attitude(
+                -perte2 / navire2.Equipage.Nombre * 50
+            )[1]
+
+        else:
+
+            texte += f"{navire2.Name} a été décimé.\n"
+
+        print(f"{navire1.Name} a perdu {perte1} hommes")
+        print(f"{navire2.Name} a perdu {perte2} hommes")
+
+        return texte

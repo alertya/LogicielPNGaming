@@ -459,6 +459,93 @@ class FormulaireAction(tk.Toplevel):
                 text="Valider",
                 command=self.valider
             ).grid(row=3, column=0, columnspan=2, pady=20)
+        if self.action == "CombatNaval":
+            # Titres des colonnes
+            tk.Label(
+                self,
+                text="Navire 1",
+                font=("Arial", 10, "bold")
+            ).grid(row=0, column=0, padx=10, pady=10)
+
+            tk.Label(
+                self,
+                text="Navire 2",
+                font=("Arial", 10, "bold")
+            ).grid(row=0, column=1, padx=10, pady=10)
+
+            # ---------------- Equipage 1 ----------------
+
+            self.variables["Navire1"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Navire1"],
+                values=self.moteur.get_instances("Navire", "Afficher"),
+                state="readonly"
+            ).grid(row=1, column=0, padx=10, pady=5)
+
+            self.variables["Munition1"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Munition1"],
+                values=[
+                    "Mitraille",
+                    "Coque",
+                    "Voile"
+                ],
+                state="readonly"
+            ).grid(row=2, column=0, padx=10, pady=5)
+
+            self.variables["Bonus1"] = tk.IntVar(value=0)
+
+            tk.Spinbox(
+                self,
+                from_=-10,
+                to=10,
+                textvariable=self.variables["Bonus1"]
+            ).grid(row=3, column=0, padx=10, pady=5)
+
+            # ---------------- Equipage 2 ----------------
+
+            self.variables["Navire2"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Navire2"],
+                values=self.moteur.get_instances("Navire", "Afficher"),
+                state="readonly"
+            ).grid(row=1, column=1, padx=10, pady=5)
+
+            self.variables["Munition2"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Munition2"],
+                values=[
+                    "Mitraille",
+                    "Coque",
+                    "Voile"
+                ],
+                state="readonly"
+            ).grid(row=2, column=1, padx=10, pady=5)
+
+            self.variables["Bonus2"] = tk.IntVar(value=0)
+
+            tk.Spinbox(
+                self,
+                from_=-10,
+                to=10,
+                textvariable=self.variables["Bonus2"]
+            ).grid(row=3, column=1, padx=10, pady=5)
+
+            # ---------------- Validation ----------------
+
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(row=4, column=0, columnspan=2, pady=20)
     def recuperer_valeurs(self):
         return {
             nom: variable.get()
