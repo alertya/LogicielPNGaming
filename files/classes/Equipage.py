@@ -838,16 +838,14 @@ class Equipage:
 
         for chirurgien in self.Membres:
 
-            if chirurgien.Role != "Chirurgien":
+            if "Chirurgien" not in chirurgien.Traits:
                 continue
 
             # Test de chirurgie
-            print(chirurgien.Chirurgie)
             reussites = utils.Test(
                 chirurgien.Chirurgie,
             )
 
-            # Si Test renvoie un booléen, adapte cette partie
             if reussites <= 0:
                 continue
 
@@ -856,8 +854,8 @@ class Equipage:
             while soins_restants > 0:
 
                 blesses = [
-                    m for m in self.Membres
-                    if m.PV < m.PVMax
+                    membre for membre in self.Membres
+                    if membre.PV < membre.PVMax
                 ]
 
                 if not blesses:
