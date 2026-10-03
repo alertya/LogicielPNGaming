@@ -422,60 +422,89 @@ class MoteurExemple(MoteurBase):
 
         self._voyages[nom_trajet] = voyage
 
+    def avancer_jour(self, nom_voyage: str) -> str:
 
+        voyage = self._voyages.get(nom_voyage)
+        if voyage is None:
+            return "Aucun voyage actif."
 
-    def avancer_jour(self, navire: str) -> str:
-        voyage = self._voyages.get(navire)
-        if not voyage:
-            return "Aucun trajet actif pour ce navire — utilise l'onglet « Générer » pour en créer un."
+        etape = voyage.Etapes[voyage.EtapeCourante]
 
-        etapes = voyage["etapes"]
-        idx = voyage["etape_idx"]
-        if idx >= len(etapes):
-            return "Le voyage est déjà terminé : toutes les étapes ont été parcourues."
+        voyage.Jour += 1
+        evenements = []
 
-        etape = etapes[idx]
-        voyage["jour"] += 1
-        jour = voyage["jour"]
-        evenements: List[str] = []
+        # -------------------------------------------------
+        # 1. Navigation
+        # -------------------------------------------------
 
-        voyage["avancement_nm"] += DISTANCE_PAR_JOUR_NM
+        voyage.Avancement += DISTANCE_PAR_JOUR_NM
+
         evenements.append(
-            f"Navigation « {etape['ZoneMaritime']} » en direction de « {etape['Region']} » : "
-            f"{DISTANCE_PAR_JOUR_NM} milles nautiques parcourus "
-            f"({min(voyage['avancement_nm'], etape['Distance'])}/{etape['Distance']})."
+            f"Navigation vers {etape['Region']} "
+            f"({voyage.Avancement}/{etape['Distance']} MN)."
         )
 
-        # --- Exemple de tirage de rencontre --------------------------------------
-        # Logique volontairement simple, à remplacer par tes propres règles :
-        # probabilité = ChanceRencontreAventurier / DeAventurier, réduite par
-        # la compétence de vigie.
-        try:
-            de_aventurier = int(etape.get("DeAventurier") or 0)
-        except (TypeError, ValueError):
-            de_aventurier = 0
-        chance = int(etape.get("ChanceRencontreAventurier") or 0)
-        vigie = int(etape.get("CompetenceVigie") or 0)
+        # -------------------------------------------------
+        # 2. Test de maladie
+        # -------------------------------------------------
 
-        if de_aventurier > 0 and chance > 0:
-            tirage = random.randint(1, de_aventurier)
-            seuil = max(0, chance - vigie)
-            if tirage <= seuil:
-                evenements.append("⚠️ Une voile suspecte a été repérée à l'horizon !")
+        resultat = Maladie.test_maladie(voyage.Navire)
 
-        # --- Arrivée à l'étape suivante --------------------------------------------
-        if voyage["avancement_nm"] >= etape["Distance"]:
-            voyage["avancement_nm"] = 0
-            voyage["etape_idx"] += 1
-            if etape["TaillePortEscale"] != "Aucune (pas d'escale)":
-                evenements.append(f"⚓ Arrivée à l'escale : « {etape['Region']} » ({etape['TaillePortEscale']}).")
-            else:
-                evenements.append(f"Cap suivant atteint : « {etape['Region']} » (pas d'escale prévue ici).")
-            if voyage["etape_idx"] >= len(etapes):
-                evenements.append("🏁 Le trajet prévu est terminé.")
+        if resultat:
+            evenements.append(resultat)
 
-        voyage["journal"][jour] = evenements
-        return " ".join(evenements)
+        # -------------------------------------------------
+        # 3. Haut-fond
+        # -------------------------------------------------
+
+        if etape["TaillePortEscale"] != "Aucune (pas d'escale)" \
+                or etape["ZoneMaritime"] in ["Côtes", "Littoral"]:
+
+            resultat = Navigation.test_hautfond(voyage.Navire)
+
+            if resultat:
+                evenements.append(resultat)
+
+        # -------------------------------------------------
+        # 4. Tempête
+        # -------------------------------------------------
+
+        resultat = Navigation.test_tempete(
+            voyage.Navire,
+            etape["ZoneMaritime"]
+        )
+
+        if resultat:
+            evenements.append(resultat)
+
+        # -------------------------------------------------
+        # 5. Rencontre
+        # -------------------------------------------------
+
+        resultat = self.determiner_rencontre(voyage)
+
+        if resultat:
+            evenements.append(resultat)
+
+        # -------------------------------------------------
+        # 6. Arrivée à l'étape suivante
+        # -------------------------------------------------
+
+        if voyage.Avancement >= etape["Distance"]:
+
+            voyage.Avancement = 0
+            voyage.EtapeCourante += 1
+
+            evenements.append(
+                f"Arrivée à {etape['Region']}."
+            )
+
+            if voyage.EtapeCourante >= len(voyage.Etapes):
+                evenements.append("🏁 Voyage terminé.")
+
+        voyage.Journal[voyage.Jour] = evenements
+
+        return "\n".join(evenements)
 
     def _journal_du_jour(self, navire: Optional[str]) -> List[str]:
         voyage = self._voyages.get(navire) if navire else None
