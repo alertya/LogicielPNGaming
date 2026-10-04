@@ -349,14 +349,6 @@ class MoteurExemple(MoteurBase):
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
 
 
-    def executer_action(self, onglet, sous_onglet, instance, action):
-        if onglet == "Journal de bord" and sous_onglet == "Journal" and action == "JourSuivant":
-            return self.avancer_jour(instance)
-        if onglet == "Reset" and sous_onglet == "Actions":
-            return self._reset_toutes_les_donnees()
-        # Les autres actions (Combattre, Réparer navire, Recruter au port...) sont
-        # de simples exemples : implémente ici la vraie logique de ton moteur.
-        return f"(Exemple) Action « {action} » exécutée pour « {instance} » dans l'onglet « {onglet} »."
 
     def _reset_toutes_les_donnees(self) -> str:
         self._voyages = {}
@@ -586,26 +578,44 @@ class MoteurExemple(MoteurBase):
 
         return []
 
-    def executer_action(self, onglet, sous_onglet, instance, action,valeurs=None):
+    def executer_action(self, onglet, sous_onglet, instance, action, valeurs=None):
+
+        if onglet == "Journal de bord":
+
+            voyage = Voyage.charger_depuis_csv(instance)
+
+            sortie = voyage.executer_action(action, valeurs)
+
+            if sortie:
+                messagebox.showinfo("Information", str(sortie))
+
+            return sortie
+
+        if onglet == "Reset" and sous_onglet == "Actions":
+            return self._reset_toutes_les_donnees()
 
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
-            sortie=equipage.executer_action(action,instance,valeurs)
+            sortie = equipage.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
+
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
-            sortie=navire.executer_action(action,instance,valeurs)
+            sortie = navire.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
+
         if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
-            sortie=marchandise.executer_action(action,instance,valeurs)
+            sortie = marchandise.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
+
+        return ""
 
         return ""
 
@@ -875,11 +885,27 @@ class MoteurExemple(MoteurBase):
         # -------------------------------------------------
         # Rencontres
         # -------------------------------------------------
-
-        texte = instance.DeterminerRencontre()
+        texte = instance.determiner_rencontre(
+            instance.Annee,
+            etape["Region"],
+            4,
+            4,
+            instance.Jour,
+            etape["ZoneMaritime"]
+        )
 
         if texte:
-            journal.append(texte)
+            journal.append("Vous avez rencontré un navire.")
+            return {
+                "journal": "\n".join(journal),
+                "rencontre": True
+            }
+
+        return {
+            "journal": "\n".join(journal),
+            "rencontre": False
+        }
+
 
         # -------------------------------------------------
         # Arrivée

@@ -18,12 +18,7 @@ class Equipage:
         self.Type = Type
         self.Membres = []
 
-        Pond = pd.read_csv(
-            config.BASE_PATH+ "/ListeProf.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        Pond = utils.PROFESSIONS
 
         Ponds = Pond[Pond["Type"] == Type]
 
@@ -202,12 +197,7 @@ class Equipage:
 
     def Recrute(self, Nb, Type, Bonus):
 
-        Pond = pd.read_csv(
-            config.BASE_PATH+ "/ListeProf.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        Pond = utils.PROFESSIONS
 
         Ponds = Pond[Pond["Type"] == Type]
 
@@ -360,12 +350,7 @@ class Equipage:
 
     def AttributeGroupeMembre(self, membre):
 
-        Roles = pd.read_csv(
-            config.BASE_PATH+ "/RoleColonie.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        Roles = utils.ROLES
 
         membre.Groupe = membre.Role
 
@@ -937,12 +922,7 @@ class Equipage:
     def ActionEquipage(self, Intitule, SousGroupe, Bonus):
 
         # Lecture de la définition de l'action
-        Actions = pd.read_csv(
-            config.BASE_PATH+ "/ListeActions.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        Actions = utils.LISTE_ACTIONS
 
         Action = Actions[
             Actions["Intitule"] == Intitule
@@ -994,12 +974,7 @@ class Equipage:
     ####Attribue des groupes par défaut en fonction des données du ficgier RoleColonie
     def AttributeGroupe(self):
 
-        Roles = pd.read_csv(
-            config.BASE_PATH+ "/RoleColonie.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        Roles = utils.ROLES
 
         for membre in self.Membres:
 
@@ -1021,12 +996,7 @@ class Equipage:
 
     def AttributionSalaireParRole(self):
 
-        SalairesRole = pd.read_csv(
-            config.BASE_PATH+ "/SalaireRole.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        SalairesRole = utils.SALAIRES_ROLE
 
         for membre in self.Membres:
 
@@ -1053,12 +1023,7 @@ class Equipage:
 
     def CalculSalaireEquipage(self):
 
-        SalairesRole = pd.read_csv(
-            config.BASE_PATH+ "/SalaireRole.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        SalairesRole = utils.SALAIRES_ROLE
 
         for membre in self.Membres:
 
@@ -1239,12 +1204,7 @@ class Equipage:
         return equipage
 
     def AjoutTrait(self):
-        df = pd.read_csv(
-            config.BASE_PATH+ "/Competences.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        df = utils.COMPETENCES
 
         for membre in self.Membres:
 

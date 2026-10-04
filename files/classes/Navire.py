@@ -474,19 +474,19 @@ class Navire:
 
         return navire
 
-    def CalculType(self, zone, annee):
+    @staticmethod
+    def CalculType(zone, annee):
         de = random.randint(1, 100)
 
         df = pd.read_csv(config.BASE_PATH + "/GeneNavire.csv",sep=";",decimal=",",encoding="cp1252")
 
+        df = df[df['DeBateau'] >= de]
         df = df[df['Zone'] == zone]
-        df = df[df['PeriodMax'] > annee]
-        df = df[df['Intervalle'] <= de]
 
         if df.empty:
             return None
 
-        return df['Bateau'].iloc[-1]
+        return df['Bateau'].iloc[0]
 
     def CalculCompagnie(self, zone, annee):
         de = random.randint(1, 100)
@@ -510,7 +510,8 @@ class Navire:
         compagnie = f"{ligne['Acteur']} ({ligne['Nationalite']})"
 
         return compagnie
-    def ConvertZone(self,region):
+    @staticmethod
+    def ConvertZone(region):
         df = pd.read_csv(config.BASE_PATH + "/ListeRegions.csv", sep=";", decimal=",", encoding="cp1252")
         df=df[df['RegionsCommerciale']==region]
         return df['RegionsCommerciale'].iloc[0],df['RegionsCompagnie'].iloc[0],df['RegionsRencontre'].iloc[0]

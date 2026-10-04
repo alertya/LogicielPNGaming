@@ -1,8 +1,9 @@
 import os
 import csv
 import pandas as pd
+import random
 import config
-
+from classes.Navire import Navire
 class Voyage:
 
     def __init__(self, Nom="", Navire="", Annee=1715,etapes=None):
@@ -195,13 +196,14 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
 
-        navire_rencontre = self.determiner_rencontre()
+        navire_rencontre = self.determiner_rencontre(self.annee,etape["Region"],4,4,self.Jour,etape['ZoneMaritime'])
 
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
 
-        if texte:
-            journal.append(texte)
+        if navire_rencontre:
+            journal.append(f"Vous rencontrez le navire {navire_rencontre.Name}.")
+            Texte+=f"Vous rencontrez le navire {navire_rencontre.Name}."
 
         # -------------------------------------------------
         # Arrivée
@@ -232,7 +234,10 @@ class Voyage:
 
         self.sauvegarder()
 
-        return "\n".join(journal)
+        return {
+            "journal": "\n".join(journal),
+            "navire_rencontre": navire_rencontre
+        }
 
     def AfficherVoyage(self):
 
@@ -279,9 +284,58 @@ class Voyage:
                     e["Port"],
                 ),
             )
-    def executer_action(self, action,instance,valeurs=None):
+
+    def executer_action(self, action, valeurs=None):
 
         if action == "JourSuivant":
-            self.JourSuivant(instance)
+            return self.avancer_jour()
+
+        elif action == "Commercer":
+            return self.Commercer()
+
+        elif action == "Poursuivre":
+            return self.Poursuivre()
+
+        elif action == "PavillonNoir":
+            return self.PavillonNoir()
+
+        elif action == "Canonner":
+            return self.Canonner()
+
+        return ""
+
     def get_actions(self):
         return ["JourSuivant"]
+
+    import re
+    import random
+    import pandas as pd
+    import config
+
+    def determiner_rencontre(self, annee,region,SeuilMa,SeuilAv,Jour,zone):
+        df = DE_RENCONTRE
+        ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
+        DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
+        DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
+        navire_rencontre=None
+        DeAventurier=1
+        if "D" not in DeMarchand:
+            DeMarchand=int(DeMarchand)
+            if SeuilMa>=random.randint(1,DeMarchand): ###Alors on rencontre un navire marchand
+                Type = Navire.CalculType(ZoneRencontre, annee)
+                print(type)
+                Compagnie = Navire.CalculType(ZoneCompagnie, annee)
+                navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+                navire_rencontre.Compagnie = Compagnie
+                navire_rencontre.sauvegarder()
+        if SeuilAv >= random.randint(1, DeAventurier):  ###Alors on rencontre un navire aventurier
+            Type=Navire.CalculType(ZoneRencontre,annee)
+            print(Type)
+            print(ZoneCommerce)
+            print(str(Jour))
+            Compagnie=Navire.CalculType(ZoneCompagnie,annee)
+            navire_rencontre=Navire(Type,str(Jour)+"_Aventurier",ZoneCommerce)
+            navire_rencontre.Compagnie = Compagnie
+            navire_rencontre.Compagnie="Pirate"
+            navire_rencontre.sauvegarder()
+        return navire_rencontre

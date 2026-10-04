@@ -50,12 +50,7 @@ class Maladie:
         equipage = Equipage.charger_depuis_csv(equipage_nom)
         texte = ""
 
-        maladies = pd.read_csv(
-            os.path.join(config.BASE_PATH, "Maladie.csv"),
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        maladies = utils.MALADIES
 
         for _ in range(nb_jours):
 
@@ -221,14 +216,9 @@ class Maladie:
 
         equipage.Save(nom_equipage)
         return "Aucun malade n'est à signaler ou isoler"
-
-    def TirerMaladie(self):
-        df = pd.read_csv(
-            config.BASE_PATH + "/Maladie.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+    @staticmethod
+    def TirerMaladie():
+        df = utils.MALADIES
 
         ligne = df.sample(n=1).iloc[0].to_dict()
         return SimpleNamespace(**ligne)

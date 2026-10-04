@@ -643,16 +643,16 @@ class Navigation:
 
         # Aucun timonier
         if meilleur_test == -999:
-            return 100
+            return 75
 
         # Echec
         if meilleur_test <= 0:
-            return random.randint(50, 100)
+            return random.randint(75, 100)
 
         # Réussite : un jet de 50-100 par succès, on garde le meilleur
-        meilleur_bonus = 50
+        meilleur_bonus = 75
         for _ in range(meilleur_test):
-            meilleur_bonus = max(meilleur_bonus, random.randint(50, 100))
+            meilleur_bonus = max(meilleur_bonus, random.randint(75, 100))
 
         return meilleur_bonus
 

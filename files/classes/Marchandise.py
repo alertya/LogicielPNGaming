@@ -40,7 +40,7 @@ class Marchandise:
             }
         }
     def ConvertRancon(self,Nombre):
-        Rancon = pd.read_csv(config.BASE_PATH + "/ValeursRancon.csv", sep=";", decimal=",", encoding="cp1252")
+        Rancon = utils.VALEUR_RANCON
         Rancon = Rancon[Rancon['ValeurDe'] >= Nombre]
         Rancon = Rancon.iloc[0]
         return Rancon
@@ -69,7 +69,7 @@ class Marchandise:
         CompNeutre = ['SympathisantPirate']
 
         # Charger les données
-        Ports = pd.read_csv(config.BASE_PATH+"/CaracterePort.csv", sep=";", decimal=",", encoding="cp1252")
+        Ports = utils.CARACTERE_PORT
 
         # Copie pour éviter de modifier l'original directement
         df = Ports.copy()
@@ -101,12 +101,7 @@ class Marchandise:
 
     def AjoutMarchandise(self, nom, tonnage):
 
-        catalogue = pd.read_csv(
-            config.BASE_PATH + "/Marchandises.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        catalogue = utils.MARCHANDISES
 
         ligne = catalogue[catalogue["Cargaison"] == nom]
 
@@ -141,7 +136,7 @@ class Marchandise:
         return False
 
     def RetourMarchandise(self,Tonnage,Region):
-        Marchandises=pd.read_csv(config.BASE_PATH+"/Marchandises.csv", sep=";", decimal=",", encoding="cp1252")
+        Marchandises=utils.MARCHANDISES
         Volum=-999
         Total = 0
         Cargaison=[]
@@ -183,12 +178,7 @@ class Marchandise:
 
         de = random.randint(1, 100)
 
-        marchandises = pd.read_csv(
-            config.BASE_PATH + "/Marchandises.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        marchandises =utils.MARCHANDISES
 
         ligne = marchandises[
             (marchandises["Region"] == region)

@@ -23,7 +23,7 @@ from __future__ import annotations
 import tkinter as tk
 
 from tkinter import ttk
-
+from classes.FormulaireRencontre import FormulaireRencontre
 from typing import Dict, List, Optional
 
 import theme
@@ -443,7 +443,12 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType','CombatNaval','Reparer',"Poursuivre","JourSuivant"):
+
+        if action in (
+                "Vendre", "Acheter", "Piller", "Recruter",
+                "Generer", "BatailleTerrestre", "RecruterType",
+                "CombatNaval", "Reparer", "Poursuivre"
+        ):
             FormulaireAction(
                 self,
                 action=action,
@@ -452,13 +457,29 @@ class App(tk.Tk):
             )
             return
 
-
-        message = self.moteur.executer_action(
+        resultat = self.moteur.executer_action(
             self.onglet_actuel,
             self.sous_onglet_actuel,
             self.instance_actuelle,
             action
         )
+
+        if action == "JourSuivant" and isinstance(resultat, dict):
+            self.afficher_texte(resultat["journal"])
+
+            if resultat.get("rencontre"):
+                FormulaireRencontre(
+                    self,
+                    moteur=self.moteur,
+                    instance=self.instance_actuelle
+                )
+
+            if resultat["navire_rencontre"] is not None:
+                FormulaireRencontre(
+                    self,
+                    moteur=self.moteur,
+                    navire=resultat["navire_rencontre"].Name
+                )
 
         self.statut_var.set(message)
         self.rafraichir_instances()
@@ -718,3 +739,19 @@ class App(tk.Tk):
         self.statut_var.set(message)
         self.rafraichir_contenu()
 
+    def _ouvrir_rencontre(self):
+        FormulaireRencontre(
+                self,
+                on_choix=self._action_rencontre
+            )
+    def _action_rencontre(self, action):
+
+        message = self.moteur.executer_action(
+            self.onglet_actuel,
+            self.sous_onglet_actuel,
+            self.instance_actuelle,
+            action
+        )
+
+        self.statut_var.set(message)
+        self.rafraichir_contenu()

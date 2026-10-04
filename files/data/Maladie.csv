@@ -1,4 +1,4 @@
-Maladie;PopulationFragile;PopulationResistante;Cycle;Virulence;EtatCrise;Vecteur;Médecine;Herboristerie;GraviteMax;Colonie;Contamination;ReductionEtat
+Nom;PopulationFragile;PopulationResistante;Cycle;Virulence;EtatCrise;Vecteur;Médecine;Herboristerie;GraviteMax;Colonie;Contamination;ReductionEtat
 Coqueluche;Amérindiens;Européens;7;3;-2;Toucher, haleine;O;O;-6;O;1;-1
 Choléra;-;-;2;-1;-2;Eau, saleté;N;O;-6;O;1;-1
 Dengue;Européens;Amérindiens;3;3;-3;Moustqiues;O;O;-4;O;1;-1

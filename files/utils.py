@@ -402,3 +402,96 @@ def PaysToRegion(Pays):
     df=pd.read_csv(BASE_PATH+"/PaysRegion.csv",sep=";",encodinf="cp1252",decimal=",")
     df=df[df['Pays']==Pays]
     return df['Region'].iloc[0]
+
+import pandas as pd
+import config
+
+LISTE_REGIONS = pd.read_csv(
+    config.BASE_PATH + "/ListeRegions.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+
+LISTE_PROF = pd.read_csv(
+    config.BASE_PATH + "/ListeProf.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+
+RENCONTRE_NAVIRE = pd.read_csv(
+    config.BASE_PATH + "/RencontreNavire.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+
+MALADIES = pd.read_csv(
+    config.BASE_PATH + "/Maladie.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+
+COMPAGNIE_COMMERCIALE = pd.read_csv(
+    config.BASE_PATH + "/CompagnieCommerciale.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+
+ROLES = pd.read_csv(
+    config.BASE_PATH + "/RoleColonie.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+LISTE_ACTIONS = pd.read_csv(
+    config.BASE_PATH + "/ListeActions.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+SALAIRES_ROLE = pd.read_csv(
+    config.BASE_PATH + "/SalaireRole.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+COMPETENCES = pd.read_csv(
+    config.BASE_PATH + "/Competences.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+PROFESSIONS = pd.read_csv(
+    config.BASE_PATH + "/ListeProf.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+DE_RENCONTRE = pd.read_csv(
+    config.BASE_PATH + "/DeRencontre.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+VALEUR_RANCON = pd.read_csv(
+    config.BASE_PATH + "/ValeursRancon.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+CARACTERE_PORT = pd.read_csv(
+    config.BASE_PATH + "/CaracterePort.csv",
+    sep=";",
+    decimal=",",
+    encoding="cp1252"
+)
+MARCHANDISES= = pd.read_csv(
+            config.BASE_PATH + "/Marchandises.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
