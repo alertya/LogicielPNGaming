@@ -607,13 +607,11 @@ class FormulaireAction(tk.Toplevel):
     def changer_cargaison(self, event=None):
 
         nom = self.variables["Cargaison"].get()
-        print("Nom sélectionné :", repr(nom))
 
         ligne = utils.MARCHANDISES[
             utils.MARCHANDISES["Cargaison"] == nom
             ]
 
-        print(ligne)
 
         if ligne.empty:
             print("Aucune ligne trouvée")
@@ -621,7 +619,6 @@ class FormulaireAction(tk.Toplevel):
 
         ligne = ligne.iloc[0]
 
-        print(ligne["PrixExces"], ligne["PrixNormal"], ligne["PrixPenurie"])
 
         self.prix_exces.set(f"Excès : {ligne['PrixExces']}")
         self.prix_normal.set(f"Normal : {ligne['PrixNormal']}")

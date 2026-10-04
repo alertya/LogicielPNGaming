@@ -317,7 +317,6 @@ class Voyage:
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
         DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
         navire_rencontre=None
-        DeAventurier=1
         if "D" not in DeMarchand:
             DeMarchand=int(DeMarchand)
             if SeuilMa>=random.randint(1,DeMarchand): ###Alors on rencontre un navire marchand
