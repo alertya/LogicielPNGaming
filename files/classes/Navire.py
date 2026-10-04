@@ -682,7 +682,7 @@ class Navire:
 
     def Commercer(self,autre_navire):
         if "Interlope" in autre_navire.Compagnie:
-            return (f"Le capitaine semble enclin à commercer avec vous \n Il est pret à vous acheter de la marchandise à son CoursExces +10% par réussite de Commerce sous Expression\n Vous pouvez également acheter sa marchandise à son cours normal -10% par test de Commerce sous expression réussie \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n"
+            return (f"Le capitaine semble enclin à commercer avec vous \n Il est pret à vous acheter de la marchandise à son CoursExces +10% par réussite de Commerce sous Expression\n Vous pouvez également acheter sa marchandise à son cours pénurie -10% par test de Commerce sous expression réussie \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n"
                     f"Vous pourrez alors procéder à l'achat et vente de marchandise pour {self.Marchandise.Name} et {autre_navire.Marchandise.Name}")
         else:
             return f"Le capitaine ne souhaite pas commercer avec vous et vous demande si vous avez des papiers en règle \n Si vous n'avez pas de papier en règle veuillez assurer un combat naval entre {self.Name} et {autre_navire.Name} \n Sinon vous continuez votre route"
