@@ -676,10 +676,10 @@ class Navire:
         MembreMotive=len(autre_navire.Equipage)
         Test=len(autre_navire.Equipage.Reddition(Bonus))
         if Test<MembreMotive/2:
-            return (f"Le capitaine hisse le drapeau blanc \n Il est pret à vous céder sa marchandise sans combat \n  \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n"
-                    f"Vous pourrez alors procéder au pillage de {self.Marchandise.Name} pour {self.Marchandise.Name} \n")
-        return (f"Le capitaine ne cède pas, vous devez alors le poursuivre avant d'entrer au combat, si vous parvenez à le suivre \n Veuillez vous rendre dans Navire/Actions et \n"
-                f" et choisir CombatNaval entre {self.Name} et {autre_navire.Name}"
+            return (f"Le capitaine hisse le drapeau blanc \n Il est pret à vous céder sa marchandise sans combat \n  \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n")
+            (f"Vous pourrez alors procéder au pillage de {self.Marchandise.Name} pour {self.Marchandise.Name} \n")
+        return (f"Le capitaine ne cède pas, vous devez alors le poursuivre avant d'entrer au combat, si vous parvenez à le suivre \n Veuillez vous rendre dans Navire/Actions et \n")
+        (f" (et choisir CombatNaval entre {self.Name} et {autre_navire.Name}")
 
     def Commercer(self,autre_navire):
         if "Interlope" in autre_navire.Compagnie:
@@ -688,4 +688,3 @@ class Navire:
         else:
             return f"Le capitaine ne souhaite pas commercer avec vous et vous demande si vous avez des papiers en règle \n Si vous n'avez pas de papier en règle veuillez assurer un combat naval entre {self.Name} et {autre_navire.Name} \n Sinon vous continuez votre route"
 
-    def Canonner(self,autre_navire):

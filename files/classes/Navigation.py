@@ -776,98 +776,24 @@ class Navigation:
     # Ecart quotidien
     # ------------------------------------------------------------------
 
-
     def CoursePoursuite(
             self,
             HeureAvantNuit,
-            Distance,
-            AllurePoursuivant,
-            AllurePoursuive,
+            Dx,
+            Dy,
             NavirePoursuivant_file,
-            NavirePoursuive_file,
-            VoilurePoursuivant,
-            VoilurePoursuive,
-    ):
-        """
-        Simule une course-poursuite entre deux navires.
-        Les allures et la voilure sont choisies automatiquement.
-        """
+            NavirePoursuive_file):
 
         poursuivant = Navire.charger_depuis_csv(NavirePoursuivant_file)
         poursuivi = Navire.charger_depuis_csv(NavirePoursuive_file)
 
-        texte = ""
-
-        allures = ["Pres", "Largue", "GrandLargue", "VentArriere"]
-
-        # -------------------------
-        # Choix automatique de l'allure
-        # -------------------------
-
-        AllurePoursuivant = max(
-            allures,
-            key=lambda a: getattr(poursuivant, a)
+        FenetreCourse(
+            poursuivant,
+            poursuivi,
+            Dx,
+            Dy,
+            HeureAvantNuit
         )
-
-        AllurePoursuive = max(
-            allures,
-            key=lambda a: getattr(poursuivi, a)
-        )
-
-        # -------------------------
-        # Choix automatique de la voilure
-        # -------------------------
-
-        VoilurePoursuivant = "SurToile"
-        VoilurePoursuive = "SurToile"
-
-        vitesse_poursuivant = getattr(poursuivant, AllurePoursuivant)
-        vitesse_poursuivi = getattr(poursuivi, AllurePoursuive)
-
-        texte += (
-            f"{poursuivant.Name} règle sa voilure sur {VoilurePoursuivant} "
-            f"et adopte l'allure {AllurePoursuivant} ({vitesse_poursuivant} nds).\n"
-        )
-
-        texte += (
-            f"{poursuivi.Name} règle sa voilure sur {VoilurePoursuive} "
-            f"et adopte l'allure {AllurePoursuive} ({vitesse_poursuivi} nds).\n\n"
-        )
-
-        heure = 0.0
-
-        while heure < HeureAvantNuit and Distance > 0:
-            bonus_poursuivant = self.TestNavigation(poursuivant.Equipage)
-            bonus_poursuivi = self.TestNavigation(poursuivi.Equipage)
-
-            vitesse1 = vitesse_poursuivant * bonus_poursuivant
-            vitesse2 = vitesse_poursuivi * bonus_poursuivi
-
-            gain = (vitesse1 - vitesse2) / 2.0  # demi-heure
-
-            Distance -= gain
-            heure += 0.5
-
-            texte += (
-                f"{heure:.1f} h : "
-                f"{vitesse1:.1f} nds contre {vitesse2:.1f} nds "
-                f"(écart {gain:.1f}) - "
-                f"Distance restante : {max(Distance, 0):.1f} mn\n"
-            )
-
-        if Distance <= 0:
-            texte += (
-                "\n⚔ Le poursuivant rejoint son adversaire et peut engager le combat."
-            )
-            Distance = 0
-
-        else:
-            texte += (
-                "\n🌙 La nuit interrompt la poursuite."
-            )
-
-        poursuivant.sauvegarder()
-        poursuivi.sauvegarder()
 
         return texte, Distance
 

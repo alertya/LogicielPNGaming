@@ -133,9 +133,20 @@ class Voyage:
             df["Annee"][0]
         )
 
-        voyage.Jour = int(df["Jour"][0])
-        voyage.EtapeCourante = int(df["EtapeCourante"][0])
-        voyage.Avancement = float(df["Avancement"][0])
+        if "Jour" in df.columns:
+            voyage.Jour = int(df["Jour"][0])
+        else:
+            voyage.Jour = 1
+
+        if "EtapeCourante" in df.columns:
+            voyage.EtapeCourante = int(df["EtapeCourante"][0])
+        else:
+            voyage.EtapeCourante = 0
+
+        if "Avancement" in df.columns:
+            voyage.Avancement = float(df["Avancement"][0])
+        else:
+            voyage.Avancement = 0
 
         for _, ligne in df.iterrows():
             voyage.AjouterEtape(
