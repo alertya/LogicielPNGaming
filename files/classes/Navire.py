@@ -14,7 +14,7 @@ import pandas as pd
 from typing import Dict, List
 from .Equipage import Equipage
 from .Marchandise import Marchandise
-
+import utils
 import config
 
 ##### Variables & Constantes voyage
@@ -772,9 +772,11 @@ class Navire:
             "Fuir"
         ]
 
+    def ReconnaissanceNavire(self, NavireRencontre, CompVigie):
 
-    def ReconnaissanceNavire(self,NavireRencontre,CompVigie):
-        df=pd.DataFrame()
+        ligne = {
+            "Name": NavireRencontre.Name
+        }
 
         caracteristiques = {
             "CategorieNavire": NavireRencontre.CategorieNavire,
@@ -783,9 +785,23 @@ class Navire:
             "Tonnage": NavireRencontre.Tonnage,
             "NbCanons": NavireRencontre.NbCanons,
         }
+
         for nom, valeur in caracteristiques.items():
-                Succes=utils.Test(CompVigie,0)
-                df[nom]=utils.MoyenneGauss(valeur,valeur/2,Succes)
+            succes = utils.Test(CompVigie, 0)
+            ligne[nom] = utils.MoyenneGauss(valeur, valeur / 2, succes)
 
+        df = pd.DataFrame([ligne])
 
-        df.to_csv(NavireRencontre.Name+"Reconnu.csv",sep=";",decimal=",",encoding="cp1252")
+        fichier = os.path.join(
+            config.BASE_PATH,
+            "Navire",
+            f"{NavireRencontre.Name}_Reconnu.csv"
+        )
+
+        df.to_csv(
+            fichier,
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )

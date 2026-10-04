@@ -338,9 +338,10 @@ class Voyage:
         return navire_rencontre
 
     def Commercer(self):
-
+        return "Fonction pas encore implemente"
     def Canonner(self):
-
+        return "Fonction pas encore implemente"
     def Poursuivre(self):
-
+        return "Fonction pas encore implemente"
     def PavillonNoir(self):
+        return "Fonction pas encore implemente"

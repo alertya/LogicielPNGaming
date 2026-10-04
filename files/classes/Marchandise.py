@@ -240,7 +240,7 @@ class Marchandise:
             self.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
             self.sauvegarder(self.Name)
 
-        elif action == "Acheter":
+        if action == "Acheter":
             vendeur = Marchandise.charger_depuis_csv(
                 valeurs["Marchandise"]
             )
@@ -257,5 +257,17 @@ class Marchandise:
 
             vendeur.sauvegarder(vendeur.Name)
             self.sauvegarder(self.Name)
+        if action == "Piller":
+            vendeur = Marchandise.charger_depuis_csv(
+                valeurs["Marchandise"]
+            )
 
+            # Copie de toutes les marchandises
+            for cargaison, tonnage in vendeur.Cargaison.copy().items():
+                if tonnage > 0:
+                    self.AjoutMarchandise(cargaison, tonnage)
+                    vendeur.SupprimerMarchandise(cargaison, tonnage)
+
+            vendeur.sauvegarder(vendeur.Name)
+            self.sauvegarder(self.Name)
         return f"{action} effectué."

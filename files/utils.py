@@ -507,7 +507,7 @@ MARCHANDISES= pd.read_csv(
             encoding="cp1252"
         )
 
-LISTE_METIER_PROF== pd.read_csv(
+LISTE_METIER_PROF= pd.read_csv(
             config.BASE_PATH + "/ListeMetierProf.csv",
             sep=";",
             decimal=",",

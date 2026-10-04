@@ -143,11 +143,29 @@ class FormulaireAction(tk.Toplevel):
                 state="readonly"
             )
             self.combo_acheteur.grid(row=2, column=1, padx=10, pady=10)
+            self.prix_exces = tk.StringVar(value="Excès : -")
+            self.prix_normal = tk.StringVar(value="Normal : -")
+            self.prix_penurie = tk.StringVar(value="Pénurie : -")
+
+            tk.Label(
+                self,
+                textvariable=self.prix_exces
+            ).grid(row=4, column=2, padx=10, pady=2, sticky="w")
+
+            tk.Label(
+                self,
+                textvariable=self.prix_normal
+            ).grid(row=5, column=2, padx=10, pady=2, sticky="w")
+
+            tk.Label(
+                self,
+                textvariable=self.prix_penurie
+            ).grid(row=6, column=2, padx=10, pady=2, sticky="w")
                     # ---------------- Tonnage ----------------
             tk.Label(
                         self,
                         text="Tonnage à acheter"
-                    ).grid(row=3, column=0, padx=10, pady=10)
+                    ).grid(row=7, column=0, padx=10, pady=10)
 
             self.variables["Tonnage"] = tk.IntVar(value=0)
 
@@ -156,13 +174,13 @@ class FormulaireAction(tk.Toplevel):
                         from_=0,
                         to=10000,
                         textvariable=self.variables["Tonnage"]
-                    ).grid(row=3, column=1, padx=10, pady=10)
+                    ).grid(row=7, column=1, padx=10, pady=10)
 
             # ---------------- Succès ----------------
             tk.Label(
                         self,
                         text="Succès de commerce"
-                    ).grid(row=4, column=0, padx=10, pady=10)
+                    ).grid(row=8, column=0, padx=10, pady=10)
 
             self.variables["Succes"] = tk.IntVar(value=0)
 
@@ -171,14 +189,14 @@ class FormulaireAction(tk.Toplevel):
                         from_=0,
                         to=10,
                         textvariable=self.variables["Succes"]
-                    ).grid(row=4, column=1, padx=10, pady=10)
+                    ).grid(row=8, column=1, padx=10, pady=10)
 
                     # ---------------- Validation ----------------
             tk.Button(
                         self,
                         text="Valider",
                         command=self.valider
-                    ).grid(row=5, column=0, columnspan=2, pady=20)
+                    ).grid(row=9, column=0, columnspan=2, pady=20)
         if self.action == "Piller":
             # ---------------- Marchandise ----------------
             tk.Label(
@@ -231,41 +249,14 @@ class FormulaireAction(tk.Toplevel):
             )
             self.combo_acheteur.grid(row=2, column=1, padx=10, pady=10)
                     # ---------------- Tonnage ----------------
-            tk.Label(
-                        self,
-                        text="Tonnage à acheter"
-                    ).grid(row=3, column=0, padx=10, pady=10)
 
-            self.variables["Tonnage"] = tk.IntVar(value=0)
-
-            tk.Spinbox(
-                        self,
-                        from_=0,
-                        to=10000,
-                        textvariable=self.variables["Tonnage"]
-                    ).grid(row=3, column=1, padx=10, pady=10)
-
-            # ---------------- Succès ----------------
-            tk.Label(
-                        self,
-                        text="Succès de commerce"
-                    ).grid(row=4, column=0, padx=10, pady=10)
-
-            self.variables["Succes"] = tk.IntVar(value=0)
-
-            tk.Spinbox(
-                        self,
-                        from_=0,
-                        to=10,
-                        textvariable=self.variables["Succes"]
-                    ).grid(row=4, column=1, padx=10, pady=10)
 
                     # ---------------- Validation ----------------
             tk.Button(
                         self,
                         text="Valider",
                         command=self.valider
-                    ).grid(row=5, column=0, columnspan=2, pady=20)
+                    ).grid(row=3, column=0, columnspan=2, pady=20)
         if self.action == "Recruter":
             tk.Label(
                 self,
@@ -546,7 +537,7 @@ class FormulaireAction(tk.Toplevel):
                 text="Valider",
                 command=self.valider
             ).grid(row=4, column=0, columnspan=2, pady=20)
-        if action == "JourSuivant":
+        if self.action == "JourSuivant":
             message = self.moteur.JourSuivant(self.instance_actuelle)
             self.statut_var.set(message)
             self.rafraichir_instances()
