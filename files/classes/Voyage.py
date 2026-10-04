@@ -3,6 +3,7 @@ import csv
 import pandas as pd
 import random
 import config
+import utils
 from classes.Navire import Navire
 class Voyage:
 
