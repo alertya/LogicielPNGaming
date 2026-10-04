@@ -138,12 +138,12 @@ class Voyage:
         # -------------------------------------------------
 
         navire = Navire.charger_depuis_csv(self.Navire)
-        equipage=Equipage.charger_depuis_csv(navire.EquipageNom)
+        navigation = Navigation(navire,False)
         # -------------------------------------------------
         # Navigation test de navigation, bonus/malus de la distance en fonction des résultats
         # -------------------------------------------------
 
-        bonus_navigation = Navigation.TestNavigation(navire.Name)
+        bonus_navigation = navigation.TestNavigation(navire.Name)
 
         distance_jour = navire.VitesseMoyenne * bonus_navigation / 100
 
@@ -158,8 +158,7 @@ class Voyage:
         # Maladies
         # -------------------------------------------------
 
-        texte = Maladie.JourMaladie(1,equipage)
-        equipage.Save(navire.EquipageNom)
+        texte = Maladie.JourMaladie(1,navire.EquipageNom)
         if texte:
             journal.append(texte)
 
@@ -184,7 +183,7 @@ class Voyage:
         # Tempêtes
         # -------------------------------------------------
 
-        texte = Navigation.Tempest(navire.Name)
+        texte = navigation.Tempest(navire.Name)
 
         if texte:
             if isinstance(texte, tuple):
@@ -196,7 +195,10 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
 
-        texte = self.DeterminerRencontre()
+        navire_rencontre = self.determiner_rencontre()
+
+        if navire_rencontre:
+            actions = navire_rencontre.actions_rencontre()
 
         if texte:
             journal.append(texte)

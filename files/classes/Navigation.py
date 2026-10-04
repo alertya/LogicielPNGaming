@@ -217,7 +217,7 @@ class Navigation:
         meilleur_test = -99
 
         for membre in equipage.Membres:
-            if "Hydrographe" not in membre.Trait:
+            if "Hydrographe" not in membre.Traits:
                 continue
 
             test = utils.Test(membre.Hydrographie, 0)[0]
@@ -597,7 +597,7 @@ class Navigation:
 
             # Tous les pilotes tentent le test
             for marin in equipage.Membres:
-                if "Pilote" not in marin.Trait:
+                if "Pilote" not in marin.Traits:
                     continue
 
                 resultat = utils.Test(marin.Hydrographie, 0)[0]
@@ -629,16 +629,16 @@ class Navigation:
         80 = -20%
         """
         navire = Navire.charger_depuis_csv(nom_navire)
-        equipage = Equipage.charger_depuis_csv(navire.Equipage)
+        equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         meilleur_test = -999
 
         # Recherche du meilleur timonier
         for membre in equipage.Membres:
-            if "Timonier" not in membre.Trait:
+            if "Timonier" not in membre.Traits:
                 continue
 
-            resultat = utils.Test(membre.Navigation, 0)[0]
+            resultat = utils.Test(membre.Navigation, 0)
             meilleur_test = max(meilleur_test, resultat)
 
         # Aucun timonier
@@ -877,3 +877,12 @@ class Navigation:
         Text+=self.Tempest(NomNavire)
         Pourcentage=self.TestNavigation(NomNavire)
         return Pourcentage
+
+    def determiner_rencontre(self):
+
+        if random.randint(1, 100) > 20:
+            return None
+
+        navire = Navire.generer_aleatoire(self.RegionCourante)
+
+        return navire

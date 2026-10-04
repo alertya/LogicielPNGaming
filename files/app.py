@@ -293,7 +293,6 @@ class App(tk.Tk):
                 self.sous_onglet_actuel,
                 self.instance_actuelle
             )
-
         self._afficher_donnees(donnees)
         self._construire_barre_actions()
 
@@ -364,12 +363,24 @@ class App(tk.Tk):
                 ligne, text=str(valeur), bg=theme.BG_PANEL, fg=theme.FG_TEXT,
                 font=theme.FONT_TEXT, anchor="w",
             ).pack(side="left")
+        if (self.onglet_actuel == "Journal de bord"
+                and self.sous_onglet_actuel == "Journal"):
+            tk.Button(
+                cadre,
+                text="Jour suivant",
+                command=self._jour_suivant,
+                bg=theme.ACCENT,
+                fg="black"
+            ).pack(pady=10)
 
     def _afficher_tableau(self, parent, lignes, colonnes=None):
-
+        print("AFFICHER TABLEAU",
+              self.onglet_actuel,
+              self.sous_onglet_actuel)
         if not lignes:
             return
-
+        print(self.onglet_actuel)
+        print(self.sous_onglet_actuel)
         if colonnes is None:
             colonnes = list(lignes[0].keys())
 
@@ -397,6 +408,16 @@ class App(tk.Tk):
             table.insert("", "end", values=valeurs)
 
         table.pack(fill="both", expand=True)
+        # Bouton spécifique au Journal de bord
+        if (self.onglet_actuel == "Journal de bord"
+                and self.sous_onglet_actuel == "Journal"):
+            tk.Button(
+                cadre,
+                text="Jour suivant",
+                command=self._jour_suivant,
+                bg=theme.ACCENT,
+                fg="black"
+            ).pack(pady=10)
 
     def _construire_barre_actions(self):
         for w in self.action_bar.winfo_children():
@@ -690,18 +711,10 @@ class App(tk.Tk):
                     cadre,
                     bloc["donnees"]
                 )
-    def _JourSuivant(self):
-        nom_voyage = self.comboVoyage.get()
 
-        if nom_voyage not in self.Voyages:
-            return
+    def _jour_suivant(self):
 
-        voyage = self.Voyages[nom_voyage]
-
-        texte = voyage.avancer_jour()
-
-        # Rafraîchissement complet
-        self.AfficherVoyage()
-
-        messagebox.showinfo("Jour suivant", texte)
+        message = self.moteur.JourSuivant(self.instance_actuelle)
+        self.statut_var.set(message)
+        self.rafraichir_contenu()
 

@@ -761,3 +761,12 @@ class Navire:
         texte +=f"{navire2.Name} a perdu {perte2} hommes"
 
         return texte
+
+    def actions_rencontre(self):
+        return [
+            "Commercer",
+            "Poursuivre",
+            "Hisser le pavillon noir",
+            "Canonner",
+            "Fuir"
+        ]

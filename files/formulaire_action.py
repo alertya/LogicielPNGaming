@@ -546,6 +546,10 @@ class FormulaireAction(tk.Toplevel):
                 text="Valider",
                 command=self.valider
             ).grid(row=4, column=0, columnspan=2, pady=20)
+        if action == "JourSuivant":
+            message = self.moteur.JourSuivant(self.instance_actuelle)
+            self.statut_var.set(message)
+            self.rafraichir_instances()
 
 
     def recuperer_valeurs(self):

@@ -436,7 +436,7 @@ class Equipage:
 
                 MembresCorrespondants.append(membre)
 
-        self.Save()
+        self.Save(self.Name)
 
         return MembresCorrespondants
 
@@ -1234,7 +1234,7 @@ class Equipage:
         for _ in range(nombre - deja_crees):
             equipage.Recrute(1,type_equipage,0)
         equipage.AjoutTrait()
-        equipage.Save()
+        equipage.Save(nom)
 
         return equipage
 

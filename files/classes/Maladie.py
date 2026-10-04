@@ -1,16 +1,23 @@
 from classes.Equipage import Equipage
+import pandas as pd
+import numpy as np
+import random
+import os
+import config
+import utils
+from types import SimpleNamespace
 class Maladie:
 
     @staticmethod
     def test_maladie(equipage_nom, nb_jours=1, endemique=False):
 
-        equipage = Equipage.charger_depuis_csv(equipage_nom)
+
 
         texte = ""
 
-        texte += Maladie.evolution_maladies(equipage, nb_jours)
+        texte += Maladie.evolution_maladies(equipage_nom, nb_jours)
+        equipage = Equipage.charger_depuis_csv(equipage_nom)
 
-        maladie = Maladie.tirer_maladie(endemique)
 
         for _ in range(nb_jours):
 
@@ -23,8 +30,8 @@ class Maladie:
 
                 if random.randint(1, chance) != 1:
                     continue
-
-                if Maladie.lancer_de(2, maladie.Virulence)[0] < 2:
+                maladie = Maladie.TirerMaladie()
+                if utils.Test(2, maladie.Virulence) < 2:
 
                     membre.Maladie = maladie.Nom
                     membre.EtatMaladie = maladie.EtatCrise
@@ -34,13 +41,13 @@ class Maladie:
                         f"{membre.Nom} contracte la {maladie.Nom}.\n"
                     )
 
-        equipage.Save()
+        equipage.Save(equipage_nom)
 
         return texte
 
     @staticmethod
-    def evolution_maladies(equipage, nb_jours):
-
+    def evolution_maladies(equipage_nom, nb_jours):
+        equipage = Equipage.charger_depuis_csv(equipage_nom)
         texte = ""
 
         maladies = pd.read_csv(
@@ -70,10 +77,10 @@ class Maladie:
 
                 membre.Cycle = mal["Cycle"]
 
-                succes = Maladie.lancer_de(
+                succes = utils.Test(
                     2,
                     mal["Virulence"]
-                )[0]
+                )
 
                 if succes <= 0:
 
@@ -100,7 +107,7 @@ class Maladie:
             for mort in morts:
                 equipage.Membres.remove(mort)
 
-        equipage.Save()
+        equipage.Save(equipage_nom)
 
         return texte
 
@@ -119,12 +126,12 @@ class Maladie:
 
             for membre in equipage.Membres:
 
-                if "Cuisinier" not in str(membre.Trait):
+                if "Cuisinier" not in str(membre.Traits):
                     continue
                 else:
-                    succes = Maladie.lancer_de(membre.Cuisine, 0)[0]
+                    succes = utils.Test(membre.Cuisine, 0)
                     repas += succes * repas_par_succes
-
+        equipage.Save(equipage_nom)
         return max(0, repas)
 
     @staticmethod
@@ -167,19 +174,18 @@ class Maladie:
                 if membre.EtatMaladie == 0:
                     membre.EtatMaladie = -1
 
-        equipage.Save()
+        equipage.Save(equipage_nom)
 
         return texte
     def JourMaladie(self,NbJour,NomEquipage):
-        Equipage=Equipage.charger_depuis_csv(NomEquipage)
 
         Text=""
         Text+=self.evolution_maladies(NomEquipage,NbJour)
-        Text+=self.impact_famine(NomEquipage
+        Text+=self.impact_famine(NomEquipage)
 
-        Texte+=self.test_maladie(NomEquipage,NbJour,1)
+        Text+=self.test_maladie(NomEquipage,NbJour,1)
         Text+=self.ReconnaissanceMaladie(NomEquipage)
-        return Texte
+        return Text
     @staticmethod
     def ReconnaissanceMaladie(nom_equipage):
         equipage = Equipage.charger_depuis_csv(nom_equipage)
@@ -193,10 +199,10 @@ class Maladie:
         # Les médecins examinent l'équipage
         for membre in membres:
 
-            if "Médecin" not in membre.Trait:
+            if "Médecin" not in membre.Traits:
                 continue
 
-            succes, _ = lancer_de(membre.Medecine, 0)
+            succes = utils.Test(membre.Medecine, 0)
             if succes > 0:
                 personnes_a_inspecter += succes * 10
 
@@ -210,8 +216,19 @@ class Maladie:
         for membre in inspectes:
             if membre.Maladie not in ("", None):
                 membre.Isole = True          # nouvel attribut booléen
-                equipage.sauvegarder()
+                equipage.Save(nom_equipage)
                 return "Nous avons repéré un indidividu malade, il est en isolement"
 
-        equipage.sauvegarder()
-        return return "Aucun malade n'est à signaler ou isoler"
+        equipage.Save(nom_equipage)
+        return "Aucun malade n'est à signaler ou isoler"
+
+    def TirerMaladie(self):
+        df = pd.read_csv(
+            config.BASE_PATH + "/Maladie.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
+
+        ligne = df.sample(n=1).iloc[0].to_dict()
+        return SimpleNamespace(**ligne)

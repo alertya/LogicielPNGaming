@@ -65,7 +65,8 @@ from classes.Voyage import Voyage
 from classes.Equipage import Equipage
 from classes.Navire import Navire
 from classes.Marchandise import Marchandise
-
+from classes.Navigation import Navigation
+from classes.Maladie import Maladie
 import numpy as np
 
 
@@ -347,14 +348,6 @@ class MoteurExemple(MoteurBase):
             return self._marchandise.charger_depuis_csv(instance)
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
 
-    def get_actions(self, onglet, sous_onglet, instance):
-        if onglet == "Journal de bord" and sous_onglet == "Journal":
-            return ["JourSuivant"]
-        if sous_onglet == "Actions":
-            return ACTIONS_PAR_ONGLET.get(onglet, [])
-        if sous_onglet in ("Générer", "Recruter", "Vendre/Acheter"):
-            return [sous_onglet]
-        return []
 
     def executer_action(self, onglet, sous_onglet, instance, action):
         if onglet == "Journal de bord" and sous_onglet == "Journal" and action == "JourSuivant":
@@ -573,7 +566,9 @@ class MoteurExemple(MoteurBase):
         if onglet == "Navire":
             navire = Navire.charger_depuis_csv(instance)
             return navire.get_actions() if navire else []
-
+        if onglet == "Journal de bord":
+            voyage = Voyage.charger_depuis_csv(instance)
+            return voyage.get_actions() if voyage else []
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
             return equipage.get_actions() if equipage else []
@@ -806,4 +801,113 @@ class MoteurExemple(MoteurBase):
             raise ValueError(f"Module inconnu : {module}")
 
         return objet.Affichage()
+    def JourSuivant(self,instance):
+        """Fait progresser le voyage d'une journée."""
+        instance=Voyage.charger_depuis_csv(instance)
+        # Voyage terminé
+        if instance.EtapeCourante >= len(instance.Etapes):
+            return "Le voyage est déjà terminé."
 
+        etape = instance.Etapes[instance.EtapeCourante]
+
+        instance.Jour += 1
+        journal = []
+
+        # -------------------------------------------------
+        # Chargement du navire
+        # -------------------------------------------------
+
+        navire = Navire.charger_depuis_csv(instance.Navire)
+        navigation = Navigation(navire,False)
+        maladie=Maladie()
+        # -------------------------------------------------
+        # Navigation test de navigation, bonus/malus de la distance en fonction des résultats
+        # -------------------------------------------------
+
+        bonus_navigation = navigation.TestNavigation(navire.Name)
+
+        distance_jour = navire.VitesseMoyenne * bonus_navigation / 100
+
+        instance.Avancement += distance_jour
+        ########
+        journal.append(
+            f"Le navire parcourt {distance_jour:.1f} MN "
+            f"({instance.Avancement:.1f}/{etape['Distance']} MN)."
+        )
+
+        # -------------------------------------------------
+        # Maladies
+        # -------------------------------------------------
+
+        texte = maladie.JourMaladie(1,navire.EquipageNom)
+        print("GENERATION EPIDEMIE EFFECTUE SUR LE JOUR DE TRAVERSEE")
+        if texte:
+            journal.append(texte)
+
+        # -------------------------------------------------
+        # Hauts-fonds
+        # -------------------------------------------------
+
+        if (
+                etape["TaillePortEscale"] != "Aucune (pas d'escale)"
+                or etape["ZoneMaritime"] in ("Côtes", "Littoral")
+        ):
+
+            texte = Navigation.HautsFonds(
+                navire.Name,
+                etape["ZoneMaritime"]
+            )
+
+            if texte:
+                journal.append(texte)
+
+        # -------------------------------------------------
+        # Tempêtes
+        # ----------------------------------------  ---------
+        texte = navigation.Tempest(navire.Name)
+
+        if texte:
+            if isinstance(texte, tuple):
+                journal.append(texte[0])
+            else:
+                journal.append(texte)
+        print("GENERATION NAVIGATION EFFECTUE SUR LA JOURNEE DE TRAVERSEE")
+        # -------------------------------------------------
+        # Rencontres
+        # -------------------------------------------------
+
+        texte = instance.DeterminerRencontre()
+
+        if texte:
+            journal.append(texte)
+
+        # -------------------------------------------------
+        # Arrivée
+        # -------------------------------------------------
+
+        if instance.Avancement >= etape["Distance"]:
+
+            instance.Avancement -= etape["Distance"]
+
+            journal.append(
+                f"Arrivée dans la région {etape['Region']}."
+            )
+
+            instance.EtapeCourante += 1
+
+            if instance.EtapeCourante >= len(instance.Etapes):
+                journal.append("🏁 Le voyage est terminé.")
+
+        # -------------------------------------------------
+        # Journal
+        # -------------------------------------------------
+
+        instance.Journal[instance.Jour] = journal
+
+        # -------------------------------------------------
+        # Sauvegarde
+        # -------------------------------------------------
+
+        instance.sauvegarder()
+
+        return "\n".join(journal)
