@@ -1,0 +1,194 @@
+Ville;Region;Abri;Proies;Dissimuler;Eau;EsclavesMarrons;Fortification;NvaireGuerre;RecrutementHomme;IndigeneAllie;IndigeneHostile;Maladie;TraiteNegreiere;ProtectionNavire;Radouber;Receleurs;SympathisantPirate;Vide
+BaieHudson;BaieHudson;1;0;1;1;0;0;0;1;1;0;0;0;0;0;0;0;0
+Acadie;Acadie;1;1;1;1;1;1;1;1;1;0;0;0;0;1;0;0;0
+NouvelleEcosse;Acadie;0;1;1;1;0;0;0;0;0;0;0;0;1;1;0;0;0
+Jemsec;Acadie;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0
+Louisbourg;Acadie;0;0;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0
+BaiePenobscott;Acadie;1;0;1;2;0;0;0;0;0;0;0;0;1;2;0;0;1
+Penagouet;Acadie;0;0;0;1;0;1;0;0;0;0;0;0;0;1;0;0;0
+SaintLaurent;Acadie;0;1;1;1;0;0;0;0;1;1;0;0;1;1;0;0;0
+Groenland;Acadie;1;0;1;1;0;0;0;0;1;0;0;0;0;0;0;0;0
+TerreNeuve;Acadie;1;1;1;1;0;0;0;3;0;0;0;0;0;0;0;3;0
+Bermudes;Côte est d'amérique du nord;1;1;1;1;0;1;0;0;0;0;0;0;0;1;0;0;0
+Maine;Côte est d'amérique du nord;1;1;1;1;0;0;1;1;0;0;0;0;1;1;0;0;0
+Massachusstes;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;1;0;0;0;0;1;0;0;0
+Connecticut;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;1;0;0;0;0;1;0;0;0
+NewHampshire;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;1;0;0;0;0;1;0;0;0
+Boston;Côte est d'amérique du nord;1;0;1;1;0;1;1;1;1;0;0;0;0;1;0;1;0
+RhodeIsland;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;1;0;0;0;0;1;0;-1;0
+BlockIsland;Côte est d'amérique du nord;1;0;1;1;0;0;0;1;0;0;-1;0;1;1;2;2;0
+NewYork;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;1;0;-1;0;0;1;1;1;0
+NewJersey;Côte est d'amérique du nord;1;1;0;1;0;0;0;1;1;0;-1;0;0;1;1;1;0
+Pennsylvanie;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;0;1;-1;0;0;1;2;2;0
+Delaware;Côte est d'amérique du nord;1;1;0;1;0;0;0;1;0;1;-1;0;0;1;0;1;0
+Virginie;Côte est d'amérique du nord;1;1;0;1;0;0;1;1;0;1;1;0;0;1;1;2;0
+BaieChesepeake;Côte est d'amérique du nord;1;1;0;1;0;0;0;1;0;1;1;0;0;1;0;1;0
+CarolineNord;Côte est d'amérique du nord;1;1;0;1;0;0;0;1;0;1;2;0;0;1;2;2;0
+CarolineSud;Côte est d'amérique du nord;1;1;0;1;0;0;0;1;0;1;2;0;0;1;1;2;0
+CharlestTown;Côte est d'amérique du nord;1;1;0;1;0;0;0;0;0;0;2;0;0;1;1;2;0
+NorthEdistoInlet;Côte est d'amérique du nord;1;1;1;1;-1;0;0;0;0;1;2;0;1;1;0;0;1
+Floride;Nouvelle-Espagne;1;2;1;1;1;0;0;-1;0;1;1;0;1;1;0;-1;0
+Floride espagnole;Nouvelle-Espagne;0;1;0;1;0;1;0;0;0;0;1;0;0;1;0;-1;0
+Keys;Nouvelle-Espagne;1;0;1;1;0;0;0;0;0;1;1;0;1;1;0;0;1
+Keys biscaye;Nouvelle-Espagne;1;0;1;0;0;0;0;0;0;1;1;0;1;1;0;0;1
+Everglades;Nouvelle-Espagne;1;0;1;1;1;0;0;-1;0;1;2;0;1;0;0;0;0
+Keys west;Nouvelle-Espagne;1;0;1;1;1;0;0;-1;0;1;2;0;1;1;0;-1;0
+Baia Honda (floride);Nouvelle-Espagne;1;0;1;0;0;0;0;0;0;0;1;0;1;1;0;0;1
+Louisiane;Nouvelle-Espagne;1;0;1;1;1;1;0;1;1;1;2;0;0;1;1;2;0
+Cheniere Caminada (Louisiane);Nouvelle-Espagne;1;0;1;0;1;0;0;1;0;0;2;0;1;1;0;2;0
+IlesLouisiane;Nouvelle-Espagne;1;0;1;0;1;0;0;1;0;0;2;0;1;1;0;2;0
+NouvelleOrleans;Nouvelle-Espagne;1;0;1;1;1;1;0;1;0;1;2;0;1;1;1;2;0
+FortPlaquemine;Nouvelle-Espagne;1;0;1;0;1;0;0;1;0;0;2;0;1;1;0;0;0
+Temple;Nouvelle-Espagne;1;0;1;0;1;0;0;1;0;0;2;0;1;1;0;2;0
+Bahamas;Nouvelle-Espagne;1;2;2;2;0;0;0;1;0;0;-1;0;1;1;1;2;0
+Iles abaco (Bahamas);Nouvelle-Espagne;1;1;1;1;1;0;0;1;0;0;-1;0;0;1;0;1;0
+Iles Berry (Bahamas);Nouvelle-Espagne;1;1;1;1;1;0;0;1;0;0;-1;0;0;1;0;1;0
+Catt island (Bahamas);Nouvelle-Espagne;1;1;1;1;0;0;0;1;0;1;1;1;1;1;0;-1;0
+Cayes (Bahamas);Nouvelle-Espagne;1;1;1;1;0;0;0;1;0;0;0;0;0;1;0;0;1
+Crooked island (Bahamas);Nouvelle-Espagne;1;1;1;1;0;0;0;1;1;0;0;0;0;0;0;-1;0
+Eleuthrea (Bahamas);Nouvelle-Espagne;1;1;1;1;1;0;0;1;0;0;-1;0;0;1;0;1;0
+Harbour island;Nouvelle-Espagne;1;1;1;1;1;0;0;0;0;0;0;0;0;1;1;2;0
+Long island;Nouvelle-Espagne;1;1;1;1;0;0;0;1;0;0;0;0;0;1;0;0;1
+New Providence;Nouvelle-Espagne;1;1;0;1;1;1;1;2;0;0;1;0;2;0;0;3;0
+Grandes Antilles;Grandes Antilles;1;1;1;1;1;0;1;1;0;1;1;0;0;1;1;0;0
+Cuba;Grandes Antilles;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;2;0
+La Havane;Grandes Antilles;1;1;0;1;1;0;1;1;0;0;1;0;0;1;1;-1;0
+Coxhon's hole(Honduras;Grandes Antilles;1;0;0;0;0;0;0;0;0;0;0;0;3;1;0;0;0
+Hispaniola;Grandes Antilles;1;1;1;1;1;1;1;1;0;0;1;0;1;1;1;1;0
+Hispaniola (Côte nord);Grandes Antilles;1;2;1;1;1;1;0;1;0;0;1;0;1;1;0;0;1
+Léogane (Hispaniola);Grandes Antilles;1;1;1;1;1;0;1;1;0;0;1;0;1;1;1;1;0
+Petit-Goave (Hispaniola);Grandes Antilles;1;1;1;1;1;0;1;1;1;0;1;0;1;1;1;1;0
+Puerto rico;Grandes Antilles;1;1;1;1;0;1;0;1;0;0;1;0;0;1;-1;1;0
+Jamaïque;Grandes Antilles;1;1;1;1;2;0;1;1;0;0;2;0;1;1;1;2;0
+Nanny town (Jamaïque);Grandes Antilles;0;0;0;0;1;0;0;2;0;0;0;0;1;0;0;0;0
+Port-royal (Jamaïque);Grandes Antilles;1;1;0;1;0;1;1;1;0;0;2;0;0;1;2;2;0
+Iles Caïmans;Grandes Antilles;1;1;1;1;1;0;1;1;0;0;2;0;1;1;0;2;1
+Petites Antilles;Petites Antilles;1;1;1;1;1;0;1;1;0;1;1;0;0;1;1;0;0
+Iles vierges;Petites Antilles;1;1;2;1;0;0;1;0;0;0;1;0;1;1;0;1;1
+Anguilla;Petites Antilles;-1;1;-1;-1;0;0;0;1;0;0;1;0;-1;-1;0;0;0
+Saba;Petites Antilles;1;1;-1;1;-1;2;0;1;0;0;1;0;0;1;1;2;0
+Saint-Berthelemy;Petites Antilles;1;1;1;1;-1;2;0;1;0;0;1;0;0;1;1;2;0
+Saint christophe et nevis;Petites Antilles;1;1;1;1;-1;2;0;1;0;0;1;0;1;1;1;1;0
+Montserrat;Petites Antilles;1;1;1;1;1;-1;0;1;1;1;1;1;2;1;1;2;0
+Barbuda;Petites Antilles;0;0;1;0;0;0;0;0;0;0;0;0;1;0;0;0;0
+Antigua;Petites Antilles;1;-1;1;1;1;-1;1;-1;0;0;2;0;2;1;-1;2;1
+Guadeloupe;Petites Antilles;0;0;0;0;-1;1;0;1;1;0;2;0;2;1;1;2;0
+La désirade;Petites Antilles;0;0;0;1;0;0;0;0;0;0;0;0;0;0;0;0;0
+Dominique;Petites Antilles;1;1;1;1;-1;1;0;1;0;1;2;0;2;1;1;1;0
+Martinique;Petites Antilles;1;1;1;1;-1;2;1;1;0;0;2;0;2;1;1;2;0
+Sainte-Lucie;Petites Antilles;1;1;1;1;-1;0;0;1;0;1;2;0;2;1;1;2;0
+Saint vincent;Petites Antilles;1;-1;2;1;1;0;0;0;0;3;2;0;1;-1;0;0;0
+Grenadines;Petites Antilles;1;1;1;0;2;0;0;0;0;1;-1;0;1;1;0;0;1
+Grenade;Petites Antilles;1;1;0;1;-1;2;-1;1;1;0;2;0;-1;1;1;2;0
+Barbade;Petites Antilles;1;1;0;1;-1;2;1;1;0;0;2;0;2;1;0;-1;0
+Tobago;Petites Antilles;1;0;1;1;1;-1;1;0;0;1;-1;0;1;1;0;0;0
+Trinidad;Petites Antilles;1;0;1;1;0;-1;0;0;0;0;-1;0;0;1;0;0;0
+Vera cruz (Mexique);Nouvelle-Espagne;1;3;0;1;0;2;1;1;1;0;3;0;0;1;1;-1;0
+Lagune de terminos (Mexique);Nouvelle-Espagne;1;0;1;1;0;0;0;2;1;1;-1;0;1;0;0;0;1
+Californie ;Mexique;1;0;1;1;0;0;0;0;1;1;2;0;1;1;0;0;1
+Mexique (Pacifique);Mexique;1;1;1;1;0;0;1;0;1;1;1;1;1;1;0;0;1
+Yucatan (Pacifique);Nouvelle-Espagne;1;1;1;0;0;0;0;0;1;0;2;0;0;0;0;0;0
+San Francisco de Campeche;Nouvelle-Espagne;1;2;0;1;0;0;1;1;1;0;0;0;0;1;0;0;0
+Honduras;Nouvelle-Espagne;1;1;1;1;1;0;0;0;1;1;2;0;1;1;0;0;1
+Ile (Honduras);Nouvelle-Espagne;1;0;1;1;0;0;0;0;0;0;0;0;0;1;0;0;1
+Ile Barnacko (Honduras);Nouvelle-Espagne;0;1;0;1;0;0;0;0;0;0;0;0;0;1;0;0;0
+Honduras (Pacifique);Guatemala, Costa Rica Panama;1;1;1;1;0;0;0;0;1;1;2;0;1;1;0;0;1
+Nicaragua (Pacifique);Guatemala, Costa Rica Panama;1;1;1;1;0;0;0;0;1;1;2;0;1;1;0;0;1
+Côte Moustique (Nicaragua pacifique);Nouvelle-Grenade et Venezuela;1;1;1;1;1;0;1;1;1;1;1;1;1;1;1;1;1
+Costa Rica (pacifique);Guatemala, Costa Rica Panama;1;1;1;1;0;0;0;0;1;1;2;0;1;1;0;1;0
+Panama (Caraïbes);Nouvelle-Espagne;1;1;1;1;2;0;0;-1;1;1;3;0;0;1;-1;-1;0
+Nombre de dios;Nouvelle-Espagne;1;3;0;0;1;1;0;0;0;1;3;0;0;1;0;0;0
+Puerto Bello;Nouvelle-Espagne;1;3;0;0;2;1;0;1;0;1;3;0;0;1;0;0;0
+Iles san blas;Nouvelle-Espagne;1;1;1;1;2;0;0;-1;2;0;2;0;0;1;0;0;0
+Panama (Pacifique);Guatemala, Costa Rica Panama;1;2;1;1;2;0;1;0;1;0;2;0;0;1;0;-1;0
+Nouvelle-Grenade;Nouvelle-Grenade et Venezuela;1;1;1;1;0;1;2;0;1;0;2;0;0;1;0;0;0
+Iles (Venezuela);Nouvelle-Grenade et Venezuela;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0
+Blanquilla;Nouvelle-Grenade et Venezuela;1;1;0;1;0;0;0;0;0;0;0;0;1;2;0;0;1
+Bonaire;Nouvelle-Grenade et Venezuela;1;1;1;1;0;0;0;-;0;0;-1;0;1;0;0;0;0
+Curacao;Nouvelle-Grenade et Venezuela;1;2;0;1;0;1;0;0;0;0;0;0;0;0;1;0;0
+Venezuela;Nouvelle-Grenade et Venezuela;1;1;1;1;0;1;2;0;1;0;2;0;0;1;0;0;0
+Guyana et Suriname;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;1;1;1;1;0;0;1;0;0;1;2;0;0;1;0;0;0
+Guyane francaise;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;1;1;1;1;0;0;1;0;0;1;2;0;0;1;0;0;0
+Brésil;Brésil;1;1;1;1;0;1;1;0;1;0;2;0;0;1;0;0;0
+Ile de fernandino;Brésil;1;0;1;1;0;0;0;0;0;0;-1;0;0;1;0;0;1
+Ilhabela;Brésil;1;1;1;1;0;0;0;0;0;0;-1;0;0;1;0;0;0
+Pernambuco;Brésil;1;1;0;1;0;0;0;1;1;0;2;0;0;1;0;0;0
+Sao salvador de Bahoa;Brésil;1;3;0;1;0;2;1;1;1;0;2;0;0;1;0;0;0
+Rio de Janeiro;Brésil;1;2;0;1;0;2;1;1;1;0;2;0;0;1;0;0;0
+Recife (Bresil);Brésil;1;1;0;1;0;0;0;1;0;1;0;0;0;1;0;0;0
+Santos (Brésil);Brésil;1;1;0;1;0;0;0;0;1;0;2;0;0;1;0;0;0
+Sao Vicente;Brésil;1;1;0;1;0;0;0;0;1;0;2;0;0;1;0;0;0
+Patagonie;Argentine;1;1;1;1;0;0;0;0;0;1;1;0;1;0;0;0;1
+Iles fakland;Argentine;1;0;1;1;0;0;0;0;0;0;0;0;0;1;0;0;1
+Terre de feu;Argentine;1;0;1;1;0;0;0;0;0;1;0;0;0;1;0;0;0
+Nouvelle-Grenade;Pérou;1;2;1;1;0;0;1;0;0;0;2;0;0;1;0;-1;0
+Pérou;Pérou;1;2;1;1;0;0;1;0;1;0;2;0;0;1;0;-1;0
+Chili;Chili;1;1;1;1;0;0;0;0;1;0;1;0;0;1;0;-1;0
+Suède;Europe du nord;1;1;1;1;0;1;0;1;0;0;0;0;1;1;0;0;0
+Ile de gotland;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;1;1;0;0;0
+Norvège;Europe du nord;1;1;1;1;0;1;0;1;0;0;0;0;1;1;0;0;0
+Bergen (Norvège);Europe du nord;1;0;0;1;0;0;1;1;0;0;0;0;0;1;0;0;0
+Fjörd;Europe du nord;1;0;1;1;0;0;0;0;0;0;0;0;1;0;0;0;0
+Danemark;Europe du nord;1;1;1;1;0;1;0;1;0;0;0;0;0;1;0;0;0
+Copenhague;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;0;0;0
+Hambourg;Europe du nord;1;1;1;1;0;0;1;1;0;0;0;0;0;1;0;0;0
+Mecklebourg;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;1;1;0;0;0
+Rostock;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;1;1;0;0;0
+Wismar;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;1;1;0;0;0
+Ile de Rügen;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;1;1;0;0;0
+Mer du nord;Europe du nord;1;1;1;1;0;0;0;0;0;0;0;0;1;1;0;0;0
+Pays-bas;Europe du nord;1;2;1;0;0;0;0;1;0;0;0;0;0;0;0;0;0
+Frise;Europe du nord;1;1;1;1;0;1;0;0;0;0;0;0;1;1;0;0;0
+Anvers;Europe du nord;1;1;0;1;0;1;1;1;0;0;0;0;0;1;1;0;0
+Ecosse;Europe du nord;1;1;1;1;1;1;1;0;0;0;0;0;0;1;0;0;0
+Edimbourg;Europe du nord;1;0;0;0;0;1;1;1;0;0;0;0;0;1;0;0;0
+Ile de Barra (Ecosse);Europe du nord;1;1;1;1;0;0;1;1;0;0;0;0;1;1;0;0;0
+Ile de Lewis (Ecosse);Europe du nord;1;1;1;1;0;0;1;1;0;0;0;0;1;1;0;0;0
+Angleterre;Europe du nord;1;2;1;1;0;1;3;1;0;0;0;0;0;1;0;0;0
+Ligue des cind ports (Angleterre);Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Bristol;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;0;0;0
+Cornouailles;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Falmouth;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Fowey;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Penzance;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Devonshire;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Dorset;Europe du nord;1;1;0;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Poole;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Weymouth;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Essex;Europe du nord;1;1;0;1;0;1;1;0;0;0;0;0;0;1;0;0;0
+Pays de galles;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Hampshire;Europe du nord;1;1;1;1;0;1;1;1;0;0;0;0;0;1;1;1;0
+Kent;Europe du nord;1;1;0;1;0;1;1;0;0;0;0;0;0;1;0;0;0
+Newcastle;Europe du nord;1;1;0;1;0;1;1;0;0;0;0;0;0;1;0;0;0
+Suffolk;Europe du nord;1;1;0;1;0;1;1;0;0;0;0;0;0;1;0;0;0
+Sussex;Europe du nord;1;1;0;1;0;1;1;0;0;0;0;0;0;1;0;0;0
+Londres;Europe du nord;1;1;0;1;0;1;1;1;0;0;0;0;0;1;1;-1;0
+Ile de wight;Europe du nord;1;1;1;1;0;0;1;0;0;0;0;0;1;1;1;1;0
+Irlande;Europe du nord;1;1;1;1;0;1;0;1;0;0;0;0;0;1;0;0;0
+Achil's island;Europe du nord;1;0;1;0;0;0;0;1;0;0;0;0;1;1;0;0;0
+Cork;Europe du nord;1;1;0;1;0;0;1;1;0;0;0;0;0;1;0;0;0
+Dublin;Europe du nord;1;1;0;1;0;0;1;1;0;0;0;0;0;1;0;0;0
+Westport;Europe du nord;1;1;0;1;0;0;0;1;0;0;0;0;0;1;0;0;0
+Pays bas ;Europe du nord;1;1;1;1;1;0;1;1;0;0;0;0;1;1;0;0;0
+Iles anglo-normands;Europe du nord;1;1;1;1;0;1;0;1;0;0;0;0;0;1;0;0;0
+France;Europe du nord;1;1;1;1;0;1;2;1;0;0;0;0;0;1;0;0;0
+Normandie;Europe du nord;1;2;1;1;0;1;2;1;0;0;0;0;0;1;0;0;0
+La Rochelle;Europe du sud;1;1;0;1;0;1;1;1;0;0;0;0;0;1;1;0;0
+Espagne;Europe du sud;1;2;1;1;0;1;3;1;0;0;0;0;0;1;0;-1;0
+Portugal;Europe du sud;1;2;1;1;0;1;2;1;0;0;0;0;0;1;0;-1;0
+Cap-Vert;Nord ouest de l'Afrique;1;1;0;1;0;1;0;1;1;0;-1;0;0;1;1;0;0
+Sénégal;Nord ouest de l'Afrique;1;1;0;1;0;0;1;0;0;0;0;0;0;1;0;0;0
+Guinée;Golfe de guinée;1;2;0;1;0;0;2;1;1;0;2;1;0;1;1;0;0
+Lagune de Lagos;Golfe de guinée;1;0;1;0;0;0;0;0;0;0;0;0;0;1;0;0;0
+Saldanah bay;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);1;1;0;2;0;0;0;0;1;0;0;0;0;0;0;0;0
+Canal du Mozambique;Afrique orientale (Mozambique à Kenya);1;1;1;1;0;0;0;1;0;0;0;0;1;1;0;0;0
+Madagascar;Madagascar;1;0;1;1;0;1;0;0;0;0;0;0;0;0;0;0;0
+Sainte-Marie (Afrique);Madagascar;1;0;1;1;0;1;0;1;1;1;1;1;1;1;0;0;0
+Maritan;Madagascar;1;0;1;2;0;0;0;1;1;1;1;1;1;1;1;1;1
+Royaume de Bataw;;0;0;0;0;0;0;0;0;3;0;0;0;0;0;0;0;0
+Grande Comore;;1;2;1;0;0;0;1;1;1;1;1;1;1;1;1;1;1
+Juanna;;1;2;1;1;0;0;0;0;1;0;0;0;1;1;0;0;0
+Mayotte;;0;2;0;2;0;0;0;0;1;0;0;0;0;0;0;0;0
+Ile maurice;;0;2;0;2;0;0;0;0;0;0;1;0;0;1;0;2;0
+Côte de Malabar;Côte de Malabar;1;3;1;1;0;0;1;0;1;0;2;1;1;1;1;0;0
+Goa;;0;3;0;0;0;1;1;0;0;0;0;0;0;0;0;0;0
