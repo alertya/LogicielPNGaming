@@ -334,3 +334,11 @@ class Voyage:
             navire_rencontre.Compagnie="Pirate"
             navire_rencontre.sauvegarder()
         return navire_rencontre
+
+    def Commercer(self):
+
+    def Canonner(self):
+
+    def Poursuivre(self):
+
+    def PavillonNoir(self):

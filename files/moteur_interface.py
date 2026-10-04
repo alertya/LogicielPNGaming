@@ -583,7 +583,7 @@ class MoteurExemple(MoteurBase):
         if onglet == "Journal de bord":
             print(instance)
             voyage = Voyage.charger_depuis_csv(instance)
-
+            print("voyage chargé :", voyage)
             return voyage.executer_action(action, valeurs)
 
 

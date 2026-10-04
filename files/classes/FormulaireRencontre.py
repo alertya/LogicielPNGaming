@@ -3,15 +3,15 @@ from tkinter import messagebox
 
 class FormulaireRencontre(tk.Toplevel):
 
-    def __init__(self, parent, moteur, instance, on_fin=None):
+    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None):
         super().__init__(parent)
 
         self.title("Rencontre en mer")
-
+        self.instance=instance
         self.moteur = moteur
-        self.instance = instance
         self.on_fin = on_fin
-
+        self.voyage=voyage
+        self.navire=navire
         tk.Label(
             self,
             text="Vous rencontrez un navire. Que souhaitez-vous faire ?"
@@ -42,10 +42,11 @@ class FormulaireRencontre(tk.Toplevel):
         ).pack(fill="x", padx=20, pady=5)
 
     def _executer(self, action):
+        print(self.voyage)
         self.moteur.executer_action(
             "Journal de bord",
             "Journal",
-            self.instance,
+            self.voyage,
             action
         )
 
@@ -58,22 +59,7 @@ class FormulaireRencontre(tk.Toplevel):
         self.on_choix(action)
         self.destroy()
 
-    def _executer(self, action):
 
-        message = self.moteur.executer_action(
-            "Journal de bord",
-            "Journal",
-            self.instance,
-            action
-        )
-
-        if message:
-            messagebox.showinfo("Information", message)
-
-        if self.on_fin:
-            self.on_fin()
-
-        self.destroy()
 
     def get_actions(self):
         return [

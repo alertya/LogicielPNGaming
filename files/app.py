@@ -757,13 +757,16 @@ class App(tk.Tk):
             FormulaireRencontre(
                 self,
                 moteur=self.moteur,
-                instance=resultat["navire_rencontre"].Name
+                voyage=self.instance_actuelle,
+                navire=resultat["navire_rencontre"]
             )
     def _ouvrir_rencontre(self):
         FormulaireRencontre(
-                self,
-                on_choix=self._action_rencontre
-            )
+            self,
+            moteur=self.moteur,
+            voyage=self.instance_actuelle,
+            navire=resultat["navire_rencontre"]
+        )
     def _action_rencontre(self, action):
 
         message = self.moteur.executer_action(
