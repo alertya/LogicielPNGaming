@@ -189,14 +189,14 @@ class FormulaireAction(tk.Toplevel):
                         from_=0,
                         to=10,
                         textvariable=self.variables["Succes"]
-                    ).grid(row=8, column=1, padx=10, pady=10)
+                    ).grid(row=7, column=1, padx=10, pady=10)
 
                     # ---------------- Validation ----------------
             tk.Button(
                         self,
                         text="Valider",
                         command=self.valider
-                    ).grid(row=9, column=0, columnspan=2, pady=20)
+                    ).grid(row=8, column=0, columnspan=2, pady=20)
         if self.action == "Piller":
             # ---------------- Marchandise ----------------
             tk.Label(
@@ -204,11 +204,11 @@ class FormulaireAction(tk.Toplevel):
                         text="Stockage pillé"
                     ).grid(row=0, column=0, padx=10, pady=10)
 
-            self.variables["Marchandise"] = tk.StringVar()
+            self.variables["Vendeur"] = tk.StringVar()
 
             self.combo_marchandise = ttk.Combobox(
                 self,
-                textvariable=self.variables["Marchandise"],
+                textvariable=self.variables["Vendeur"],
                 values=self.moteur.get_instances("Marchandises", "Afficher"),
                 state="readonly"
             )
@@ -561,7 +561,7 @@ class FormulaireAction(tk.Toplevel):
 
     def changer_marchandise(self, event=None):
 
-        nom = self.variables["Marchandise"].get()
+        nom = self.variables["Vendeur"].get()
 
         marchandise = self.moteur.charger_marchandise(nom)
 

@@ -138,8 +138,10 @@ class Navire:
                 self.StructureVoileMax: float = self.StructureVoile
                 self.EquipageNom=self.Name+"_Equipage"
                 self.Marchandise = Marchandise()
+                print(self.Marchandise.Name)
                 Cargaison =self.Marchandise.GenerateMarchandise(Region)
-                self.Marchandise.AjoutMarchandise(Cargaison["Cargaison"],self.TonnageMarchandise)
+                print(Cargaison)
+                self.Marchandise.AjoutMarchandise(self.Marchandise.Name,Cargaison["Cargaison"],self.TonnageMarchandise)
                 self.Marchandise.Tonnage=self.TonnageMarchandise
                 self.Marchandise.Name = self.Name + "_Marchandises"
                 self.Marchandise.sauvegarder(self.Name+"_Marchandises")
@@ -212,124 +214,7 @@ class Navire:
             }
         }
 
-    def RencontreNavire(self, Jour=None, Region=None, SaveBateau=False, CompagnieCommerciale="Defaut") -> 'Navire':
-                """Génère une rencontre navale et retourne un objet Navire configuré."""
 
-                # Gestion des variables d'environnement de la méthode
-                if Jour is None:
-                    Jour = getattr(self, "Jour", None) or getattr(self, "Name", None) or "Rencontre"
-
-                # Chargement des données de rencontre depuis le CSV
-                DFTemp = pd.read_csv(os.path.join(BASE_PATH, "RencontreNavire.csv"), sep=";", decimal=",", encoding="cp1252")
-
-                # Test du type d'événement
-                if "_AVENTURIER" in str(Jour):
-                    Aventurier = 1
-                    Allegence = "Pirate"
-                else:
-                    Aventurier = 0
-                    Allegence = CompagnieCommerciale
-
-                Garde_Cote = False
-
-                # Détermination du type de rencontre
-                de = random.randint(1, 100)
-                Rencontre = DFTemp[DFTemp["DeRencontre"] >= de]["TypeRencontre"].iloc[0]
-
-                # Détermination de l'origine, compagnie, et type de bateau
-                Depart, Compagnie, Rencontre = self.OrigineNavire(Region)
-
-                de = random.randint(1, 100)
-                Bateau = DFTemp[DFTemp["DeBateau"] >= de]["Bateau"].iloc[0]
-
-                # Sélection des informations du navire de base
-                Bateau, Garde_Cote = self.CheckNavire(Bateau) if hasattr(self, 'CheckNavire') else (Bateau, False)
-
-                row_navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
-                if Aventurier == 1:
-                    while row_navire["Pirate"] == "N":
-                        de = random.randint(1, 100)
-                        Bateau = DFTemp[DFTemp["DeBateau"] >= de]["Bateau"].iloc[0]
-                        row_navire = DFTemp[DFTemp["Nom"] == Bateau].iloc[0]
-
-                # Détermination de l'allure du navire rencontrant
-                Vent = [
-                    'PresBabord', 'PresTribord', 'LargueBabord', 'LargueTribord',
-                    'GrandLargueBabord', 'GrandLargueTribord', 'Vent arriere babord', 'Vent arriere tribord'
-                ]
-                Allure = random.choice(Vent)
-
-                # ---- INSTANCIATION DE LA CLASSE NAVIRE POUR LE NAVIRE RENCONTRÉ ----
-                # On extrait un identifiant unique temporaire ou générique (ex: 999)
-                nouveau_navire = Navire(Nb=999, Type=str(row_navire['Nom']), Name=f"Navire_{Jour}")
-
-                # Assignation des variables descriptives et d'allégeance
-                nouveau_navire.allure = Allure
-                nouveau_navire.compagnie = Compagnie
-                nouveau_navire.allegence = Allegence
-                nouveau_navire.regions_depart = Depart
-                nouveau_navire.pirate = True if row_navire.get("Pirate", "N") == "Y" else False
-                nouveau_navire.reputation = int(10 * random.random() ** 3)
-                nouveau_navire.equipage_fichier = f"{Jour}_EQUIPAGE.csv"
-
-                # Compilation du log text de rencontre
-                text_log = f"Vous avez aperçu un {nouveau_navire.type} avec l'allure {nouveau_navire.allure} \n"
-                if Garde_Cote:
-                    text_log += "  en tant que GARDE COTE\n"
-
-                # Calcul des capacités et des caractéristiques d'armement de la ligne CSV
-                TonnageMax = float(row_navire["TonnageMax"])
-                TonnageMin = float(row_navire["TonnageMin"])
-                Tonnages = float(random.randint(int(TonnageMin), int(TonnageMax)))
-
-                # Remplissage de la cargaison
-                de_cargaison = random.randint(40, 100) if Aventurier == 0 else random.randint(1, 100)
-                # Utilisation sécurisée de utils
-                if hasattr(utils, 'utils') and hasattr(utils.utils, 'ConvertFloatToInt'):
-                    Tonnage = utils.utils.ConvertFloatToInt(Tonnages * de_cargaison / 100)
-                else:
-                    Tonnage = int(Tonnages * de_cargaison / 100)
-
-                nouveau_navire.tonnage_max = Tonnages
-                nouveau_navire.tonnage = Tonnage
-
-                # Caractéristiques d'armement / équipage
-                nouveau_navire.canons = int(row_navire.get('NbCanons', 0))
-                Equip = random.randint(int(row_navire["EquipMin"]), int(row_navire["EquipMax"]))
-                nouveau_navire.equipage = Equip
-                nouveau_navire.equipage_min = int(row_navire["EquipMin"])
-
-                # Calcul modificateur richesse & bonus combat (mémoire/logs si besoin)
-                BonusDe1 = random.randint(1, 100)
-                BonusCanon = nouveau_navire.canons
-                BonusTonnage = min(Tonnage / 10, 100)
-                BonusDe2 = random.randint(1, 100)
-                ModificateurRichess = BonusTonnage + BonusCanon + BonusDe2 + BonusDe1
-
-                # Intégration du système de marchandises externe
-                NiveauMarchandise = Marchandise.RetourMarchandise(Tonnage, Depart)
-                for key, value in NiveauMarchandise.items():
-                    if "vide" in key or "pillé" in key:
-                        nouveau_navire.tonnage = 0
-                    Marchandise.AjoutMarchandise(key, value, f"Marchandise_{Jour}.csv")
-
-                # Génération des compétences de l'équipage
-                Temp, CompEquipage = self.GeneEquipage() if hasattr(self, 'GeneEquipage') else ("", {})
-                text_log += "\n" + Temp + "\n"
-
-                # Assignation des compétences d'équipage reçues au nouvel objet
-                nouveau_navire.combat = CompEquipage.get('combat', 0)
-                nouveau_navire.manoeuvre = CompEquipage.get('manoeuvre', 0)
-                nouveau_navire.pointage = CompEquipage.get('pointage', 0)
-                nouveau_navire.recharge = CompEquipage.get('recharge', 0)
-                nouveau_navire.ruse = CompEquipage.get('ruse', 0)
-                nouveau_navire.valeur_combat = float(CompEquipage.get('valeur_combat', 0.0))
-                nouveau_navire.valeur_canonnade = float(CompEquipage.get('valeur_canonnade', 0.0))
-
-                # Enregistrement du log final
-                nouveau_navire.text_rencontre = text_log
-
-                return nouveau_navire
 
             # Bouchons pour éviter les plantages si ces méthodes sont déclarées plus bas dans votre fichier
     def OrigineNavire(self, region):
@@ -572,34 +457,6 @@ class Navire:
             Cout,TempsJour =self.Reparer(instance)
             return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
 
-    def Piller(self, navire_pille):
-
-        place_restante = self.TonnageMax - self.Tonnage
-
-        while place_restante > 0 and navire_pille.Marchandise.Cargaisons:
-
-            cargaison = navire_pille.Marchandise.Cargaisons[0]
-
-            self.Marchandise.AjoutMarchandise(
-                cargaison,
-                1
-            )
-
-            navire_pille.Marchandise.SupprimerMarchandise(
-                cargaison,
-                1
-            )
-
-            self.Tonnage += 1
-            place_restante -= 1
-
-        self.Marchandise.sauvegarder(self.Marchandise.Name)
-        navire_pille.Marchandise.sauvegarder(navire_pille.Marchandise.Name)
-
-        self.sauvegarder(self.Name)
-        navire_pille.sauvegarder(navire_pille.Name)
-
-        return "Le pillage a été réalisé."
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
 

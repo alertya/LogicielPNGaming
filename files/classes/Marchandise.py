@@ -14,7 +14,7 @@ import pandas as pd
 import config
 
 import utils
-
+from pandas.errors import EmptyDataError
 
 
 class Marchandise:
@@ -22,7 +22,7 @@ class Marchandise:
     def __init__(self):
 
         self.Cargaisons = []
-        self.Name = "Test.csv"
+        self.Name = "TestMarchandise.csv"
 
     def Affichage(self):
         return {
@@ -98,12 +98,12 @@ class Marchandise:
         df['Score'] = df.apply(score_ligne, axis=1)
         TaillePort=df[df['Ville']==Ville]
         return TaillePort
-
-    def AjoutMarchandise(self, nom, tonnage):
-
+    @staticmethod
+    def AjoutMarchandise(NomInventaire, NomMarchandise, tonnage):
+        Acheteur= Marchandise.charger_depuis_csv(NomInventaire)
         catalogue = utils.MARCHANDISES
 
-        ligne = catalogue[catalogue["Cargaison"] == nom]
+        ligne = catalogue[catalogue["Cargaison"] == NomMarchandise]
 
         if ligne.empty:
             return
@@ -112,27 +112,28 @@ class Marchandise:
 
         ligne["Tonnage"] = tonnage
 
-        for cargaison in self.Cargaisons:
+        for cargaison in Acheteur.Cargaisons:
 
-            if cargaison["Cargaison"] == nom:
+            if cargaison["Cargaison"] == NomMarchandise:
                 cargaison["Tonnage"] += tonnage
+                Acheteur.sauvegarder(NomInventaire)
                 return
 
-        self.Cargaisons.append(ligne)
-
+        Acheteur.Cargaisons.append(ligne)
+        Acheteur.sauvegarder(NomInventaire)
     def SupprimerMarchandise(self, nom, tonnage):
-
-        for cargaison in self.Cargaisons:
+        Vendeur=Marchandise.charger_depuis_csv(nom)
+        for cargaison in Vendeur.Cargaisons:
 
             if cargaison["Cargaison"] == nom:
 
                 cargaison["Tonnage"] -= tonnage
 
                 if cargaison["Tonnage"] <= 0:
-                    self.Cargaisons.remove(cargaison)
+                    Vendeur.Cargaisons.remove(cargaison)
 
                 return True
-
+        Vendeur.sauvegarder(nom)
         return False
 
     def RetourMarchandise(self,Tonnage,Region):
@@ -175,11 +176,10 @@ class Marchandise:
         return Chargement
 
     def GenerateMarchandise(self, region):
-
         de = random.randint(1, 100)
 
         marchandises =utils.MARCHANDISES
-
+        print(utils.MARCHANDISES)
         ligne = marchandises[
             (marchandises["Region"] == region)
             & (marchandises["De"] >= de)
@@ -189,7 +189,7 @@ class Marchandise:
             ligne = marchandises[
                 marchandises["Region"] == region
                 ]
-
+        self.sauvegarder(self.Name)
         return ligne.iloc[0].to_dict()
 
     def sauvegarder(self, name=None):
@@ -216,20 +216,24 @@ class Marchandise:
             f"{nom_fichier}.csv"
         )
 
-        if not os.path.exists(chemin):
-            return None
-
         obj = cls()
         obj.Name = nom_fichier
 
-        df = pd.read_csv(
-            chemin,
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
+        if not os.path.exists(chemin):
+            obj.Cargaisons = []
+            return obj
 
-        obj.Cargaisons = df.to_dict("records")
+        try:
+            df = pd.read_csv(
+                chemin,
+                sep=";",
+                decimal=",",
+                encoding="cp1252"
+            )
+            obj.Cargaisons = df.to_dict("records")
+
+        except EmptyDataError:
+            obj.Cargaisons = []
 
         return obj
 
@@ -242,32 +246,44 @@ class Marchandise:
 
         if action == "Acheter":
             vendeur = Marchandise.charger_depuis_csv(
-                valeurs["Marchandise"]
+                valeurs["Vendeur"]
             )
-
+            acheteur= Marchandise.charger_depuis_csv(
+                valeurs["Acheteur"]
+            )
             vendeur.SupprimerMarchandise(
                 valeurs["Cargaison"],
                 valeurs["Tonnage"]
             )
 
-            self.AjoutMarchandise(
+            acheteur.AjoutMarchandise(valeurs['Acheteur'],
                 valeurs["Cargaison"],
                 valeurs["Tonnage"]
             )
 
             vendeur.sauvegarder(vendeur.Name)
-            self.sauvegarder(self.Name)
+            acheteur.sauvegarder(acheteur.Name)
         if action == "Piller":
             vendeur = Marchandise.charger_depuis_csv(
-                valeurs["Marchandise"]
+                valeurs["Vendeur"]
             )
-
+            print(vendeur.Name)
+            acheteur = Marchandise.charger_depuis_csv(
+                valeurs["Acheteur"]
+            )
+            print(acheteur.Name)
             # Copie de toutes les marchandises
-            for cargaison, tonnage in vendeur.Cargaison.copy().items():
-                if tonnage > 0:
-                    self.AjoutMarchandise(cargaison, tonnage)
-                    vendeur.SupprimerMarchandise(cargaison, tonnage)
+            for cargaison in vendeur.Cargaisons.copy():
+                if cargaison["Tonnage"] > 0:
+                    acheteur.AjoutMarchandise(valeurs['Acheteur'],
+                        cargaison["Nom"],
+                        cargaison["Tonnage"]
+                    )
+                    vendeur.SupprimerMarchandise(
+                        cargaison["Nom"],
+                        cargaison["Tonnage"]
+                    )
 
             vendeur.sauvegarder(vendeur.Name)
-            self.sauvegarder(self.Name)
+            acheteur.sauvegarder(acheteur.Name)
         return f"{action} effectué."
