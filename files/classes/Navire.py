@@ -448,8 +448,7 @@ class Navire:
     def executer_action(self, action,instance,valeurs=None):
 
         if action == "Poursuivre":
-            self.SupprimerMarchandise(valeurs["Marchandise"],valeurs['Tonnage'])
-            self.sauvegarder(self.Name)
+            return f"Fonction pas encore implemente"
 
         elif action == "CombatNaval":
             self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
@@ -677,8 +676,10 @@ class Navire:
         MembreMotive=len(autre_navire.Equipage)
         Test=len(autre_navire.Equipage.Reddition(Bonus))
         if Test<MembreMotive/2:
-            return True
-        return False
+            return (f"Le capitaine hisse le drapeau blanc \n Il est pret à vous céder sa marchandise sans combat \n  \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n"
+                    f"Vous pourrez alors procéder au pillage de {self.Marchandise.Name} pour {self.Marchandise.Name} \n")
+        return (f"Le capitaine ne cède pas, vous devez alors le poursuivre avant d'entrer au combat, si vous parvenez à le suivre \n Veuillez vous rendre dans Navire/Actions et \n"
+                f" et choisir CombatNaval entre {self.Name} et {autre_navire.Name}"
 
     def Commercer(self,autre_navire):
         if "Interlope" in autre_navire.Compagnie:
