@@ -80,12 +80,33 @@ class Voyage:
             ligne["Navire"] = self.Navire
             ligne["Annee"] = self.Annee
             ligne["Ordre"] = i
+            ligne["Jour"] = self.Jour
+            ligne["EtapeCourante"] = self.EtapeCourante
+            ligne["Avancement"] = self.Avancement
             lignes.append(ligne)
 
         df = pd.DataFrame(lignes)
 
         df.to_csv(
             os.path.join(config.BASE_PATH, "Voyage", f"{nom}.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )
+        journal_lignes = []
+
+        for jour, evenements in self.Journal.items():
+            for evenement in evenements:
+                journal_lignes.append({
+                    "Jour": jour,
+                    "Evenement": evenement
+                })
+
+        df_journal = pd.DataFrame(journal_lignes)
+
+        df_journal.to_csv(
+            os.path.join(config.BASE_PATH, "Voyage", f"{nom}_journal.csv"),
             sep=";",
             decimal=",",
             encoding="cp1252",
@@ -111,6 +132,10 @@ class Voyage:
             df["Navire"][0],
             df["Annee"][0]
         )
+
+        voyage.Jour = int(df["Jour"][0])
+        voyage.EtapeCourante = int(df["EtapeCourante"][0])
+        voyage.Avancement = float(df["Avancement"][0])
 
         for _, ligne in df.iterrows():
             voyage.AjouterEtape(
@@ -182,12 +207,12 @@ class Voyage:
 
             if texte:
                 journal.append(texte)
-        print(texte)
         # -------------------------------------------------
         # Tempêtes
         # -------------------------------------------------
 
-        navigation.Tempest(navire.Name)
+        texte = navigation.Tempest(navire.Name)
+
         if texte:
             if isinstance(texte, tuple):
                 journal.append(texte[0])
@@ -202,7 +227,7 @@ class Voyage:
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {navire_rencontre.Name}.")
-            texte+=f"Vous rencontrez le navire"+ navire_rencontre.Name+".\n"
+
 
         # -------------------------------------------------
         # Arrivée
@@ -235,6 +260,7 @@ class Voyage:
 
         return {
             "journal": "\n".join(journal),
+            "rencontre": navire_rencontre is not None,
             "navire_rencontre": navire_rencontre
         }
 
@@ -259,7 +285,9 @@ class Voyage:
             )
 
             # étapes suivantes
-            for e in voyage.Etapes[voyage.EtapeCourante + 1:]:
+            for e in self.Etapes[
+                     self.EtapeCourante + 1:
+                     ]:
                 distance_restante += e["Distance"]
 
         self.lblDistance.config(text=f"{distance_restante:.0f} mn")
@@ -290,16 +318,16 @@ class Voyage:
             return self.avancer_jour()
 
         elif action == "Commercer":
-            return self.Commercer()
+            return self.Commercer(valeurs['navire_rencontre'])
 
         elif action == "Poursuivre":
-            return self.Poursuivre()
+            return self.Poursuivre(valeurs['navire_rencontre'])
 
         elif action == "PavillonNoir":
-            return self.PavillonNoir()
+            return self.PavillonNoir(valeurs['navire_rencontre'])
 
         elif action == "Canonner":
-            return self.Canonner()
+            return self.Canonner(valeurs['navire_rencontre'])
 
         return ""
 

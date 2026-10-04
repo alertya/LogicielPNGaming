@@ -146,6 +146,7 @@ class Navire:
                 self.Marchandise.Name = self.Name + "_Marchandises"
                 self.Marchandise.sauvegarder(self.Name+"_Marchandises")
                 self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
+                self.ValeurCombat=self.CalculScoreCombat()
                 self.sauvegarder()
 
     def Affichage(self):
@@ -286,7 +287,7 @@ class Navire:
 
         for cle, valeur in self.__dict__.items():
             ligne[cle] = valeur
-
+        self.ValeurCombat = self.CalculScoreCombat()
         df = pd.DataFrame([ligne])
 
         df.to_csv(
@@ -296,6 +297,7 @@ class Navire:
             encoding="cp1252",
             index=False
         )
+
 
     @classmethod
     def charger_depuis_csv(cls, nom_fichier: str):
@@ -662,3 +664,5 @@ class Navire:
             encoding="cp1252",
             index=False
         )
+    def CalculScoreCombat(self):
+        return self.NombreEquipage*self.StructureCoque*self.ValeurCanonnade

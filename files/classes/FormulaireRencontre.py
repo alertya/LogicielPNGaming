@@ -42,7 +42,6 @@ class FormulaireRencontre(tk.Toplevel):
         ).pack(fill="x", padx=20, pady=5)
 
     def _executer(self, action):
-        print(self.voyage)
         self.moteur.executer_action(
             "Journal de bord",
             "Journal",
