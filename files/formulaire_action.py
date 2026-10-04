@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-
+from classes.Marchandise import Marchandise
+import utils
 class FormulaireAction(tk.Toplevel):
 
     def __init__(self, parent, action, moteur, on_valider):
@@ -56,6 +57,10 @@ class FormulaireAction(tk.Toplevel):
             )
 
             self.combo_cargaison.grid(row=1, column=1, padx=10, pady=10)
+            self.combo_cargaison.bind(
+                "<<ComboboxSelected>>",
+                self.changer_cargaison
+            )
                     # ---------------- Tonnage ----------------
             tk.Label(
                         self,
@@ -70,12 +75,30 @@ class FormulaireAction(tk.Toplevel):
                         to=10000,
                         textvariable=self.variables["Tonnage"]
                     ).grid(row=2, column=1, padx=10, pady=10)
+            self.prix_exces = tk.StringVar(value="Excès : -")
+            self.prix_normal = tk.StringVar(value="Normal : -")
+            self.prix_penurie = tk.StringVar(value="Pénurie : -")
+
+            tk.Label(
+                self,
+                textvariable=self.prix_exces
+            ).grid(row=4, column=0, columnspan=2, sticky="w", padx=10)
+
+            tk.Label(
+                self,
+                textvariable=self.prix_normal
+            ).grid(row=5, column=0, columnspan=2, sticky="w", padx=10)
+
+            tk.Label(
+                self,
+                textvariable=self.prix_penurie
+            ).grid(row=6, column=0, columnspan=2, sticky="w", padx=10)
 
             # ---------------- Succès ----------------
             tk.Label(
                         self,
                         text="Succès de commerce"
-                    ).grid(row=3, column=0, padx=10, pady=10)
+                    ).grid(row=7, column=0, padx=10, pady=10)
 
             self.variables["Succes"] = tk.IntVar(value=0)
 
@@ -84,14 +107,15 @@ class FormulaireAction(tk.Toplevel):
                         from_=0,
                         to=10,
                         textvariable=self.variables["Succes"]
-                    ).grid(row=3, column=1, padx=10, pady=10)
+                    ).grid(row=7, column=1, padx=10, pady=10)
+
 
                     # ---------------- Validation ----------------
             tk.Button(
                         self,
                         text="Valider",
                         command=self.valider
-                    ).grid(row=4, column=0, columnspan=2, pady=20)
+                    ).grid(row=8, column=0, columnspan=2, pady=20)
         if self.action == "Acheter":
             # ---------------- Marchandise ----------------
             tk.Label(
@@ -128,6 +152,10 @@ class FormulaireAction(tk.Toplevel):
             )
 
             self.combo_cargaison.grid(row=1, column=1, padx=10, pady=10)
+            self.combo_cargaison.bind(
+                "<<ComboboxSelected>>",
+                self.changer_cargaison
+            )
             # ---------------- Marchandise ----------------
             tk.Label(
                         self,
@@ -150,17 +178,17 @@ class FormulaireAction(tk.Toplevel):
             tk.Label(
                 self,
                 textvariable=self.prix_exces
-            ).grid(row=4, column=2, padx=10, pady=2, sticky="w")
+            ).grid(row=4, column=0, columnspan=2, sticky="w", padx=10)
 
             tk.Label(
                 self,
                 textvariable=self.prix_normal
-            ).grid(row=5, column=2, padx=10, pady=2, sticky="w")
+            ).grid(row=5, column=0, columnspan=2, sticky="w", padx=10)
 
             tk.Label(
                 self,
                 textvariable=self.prix_penurie
-            ).grid(row=6, column=2, padx=10, pady=2, sticky="w")
+            ).grid(row=6, column=0, columnspan=2, sticky="w", padx=10)
                     # ---------------- Tonnage ----------------
             tk.Label(
                         self,
@@ -563,7 +591,7 @@ class FormulaireAction(tk.Toplevel):
 
         nom = self.variables["Vendeur"].get()
 
-        marchandise = self.moteur.charger_marchandise(nom)
+        marchandise = Marchandise.charger_depuis_csv(nom)
 
         valeurs = [
             c["Cargaison"]
@@ -573,4 +601,28 @@ class FormulaireAction(tk.Toplevel):
         self.combo_cargaison["values"] = valeurs
 
         if valeurs:
-            self.combo_cargaison.current(0)
+            self.variables["Cargaison"].set(valeurs[0])
+            self.changer_cargaison()
+
+    def changer_cargaison(self, event=None):
+
+        nom = self.variables["Cargaison"].get()
+        print("Nom sélectionné :", repr(nom))
+
+        ligne = utils.MARCHANDISES[
+            utils.MARCHANDISES["Cargaison"] == nom
+            ]
+
+        print(ligne)
+
+        if ligne.empty:
+            print("Aucune ligne trouvée")
+            return
+
+        ligne = ligne.iloc[0]
+
+        print(ligne["PrixExces"], ligne["PrixNormal"], ligne["PrixPenurie"])
+
+        self.prix_exces.set(f"Excès : {ligne['PrixExces']}")
+        self.prix_normal.set(f"Normal : {ligne['PrixNormal']}")
+        self.prix_penurie.set(f"Pénurie : {ligne['PrixPenurie']}")

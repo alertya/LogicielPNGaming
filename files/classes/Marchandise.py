@@ -180,7 +180,6 @@ class Marchandise:
         de = random.randint(1, 100)
 
         marchandises =utils.MARCHANDISES
-        print(utils.MARCHANDISES)
         ligne = marchandises[
             (marchandises["Region"] == region)
             & (marchandises["De"] >= de)
@@ -275,6 +274,17 @@ class Marchandise:
                 )
 
             vendeur.sauvegarder()
-            acheteur.sauvegarder(
+            acheteur.sauvegarder()
             return f"Le pillage de {vendeur.Name} a ete effectué.\n Les marchandises supplémentaires ont été ajoutées à {acheteur.Name} \n"
         return f"{action} effectué."
+
+    def changer_cargaison(self, event=None):
+        nom = self.variables["Cargaison"].get()
+
+        ligne = utils.MARCHANDISES[
+            utils.MARCHANDISES["Cargaison"] == nom
+            ].iloc[0]
+
+        self.var_prix_exces.set(ligne["PrixExces"])
+        self.var_prix_normal.set(ligne["PrixNormal"])
+        self.var_prix_penurie.set(ligne["PrixPenurie"])
