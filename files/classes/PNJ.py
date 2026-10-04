@@ -10,21 +10,17 @@ import random
 class PNJ:
 
 
-    def __init__(self, Nb, Type, Name):
+    def __init__(self, Nb, Name,Profession=None,Type=None):
 
         self.Name = Name
         self.Type = Type
         self.Membres = []
-
-        Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
-
+        self.Profession=Profession
+        Pond = utils.PROFESSIONS
+        Pond2=utils.LISTE_METIER_PROF
         Ponds = Pond[Pond["Type"] == Type]
-
+        if Ponds.empty:
+            Ponds=Pond2[Pond2["TypeProfession"] == Type]
         for _ in range(Nb):
 
             donnees = Ponds.iloc[0].to_dict()

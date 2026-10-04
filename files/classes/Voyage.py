@@ -326,6 +326,7 @@ class Voyage:
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
                 navire_rencontre.Compagnie = Compagnie
                 navire_rencontre.sauvegarder()
+                navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
         if SeuilAv >= random.randint(1, DeAventurier):  ###Alors on rencontre un navire aventurier
             Type=Navire.CalculType(ZoneRencontre,annee)
             Compagnie=Navire.CalculType(ZoneCompagnie,annee)
@@ -333,6 +334,7 @@ class Voyage:
             navire_rencontre.Compagnie = Compagnie
             navire_rencontre.Compagnie="Pirate"
             navire_rencontre.sauvegarder()
+            navire_rencontre.ReconnaissanceNavire(navire_rencontre,3)
         return navire_rencontre
 
     def Commercer(self):

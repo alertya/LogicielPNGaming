@@ -771,3 +771,21 @@ class Navire:
             "Canonner",
             "Fuir"
         ]
+
+
+    def ReconnaissanceNavire(self,NavireRencontre,CompVigie):
+        df=pd.DataFrame()
+
+        caracteristiques = {
+            "CategorieNavire": NavireRencontre.CategorieNavire,
+            "Longueur": NavireRencontre.Longueur,
+            "NbMats": NavireRencontre.NbMats,
+            "Tonnage": NavireRencontre.Tonnage,
+            "NbCanons": NavireRencontre.NbCanons,
+        }
+        for nom, valeur in caracteristiques.items():
+                Succes=utils.Test(CompVigie,0)
+                df[nom]=utils.MoyenneGauss(valeur,valeur/2,Succes)
+
+
+        df.to_csv(NavireRencontre.Name+"Reconnu.csv",sep=";",decimal=",",encoding="cp1252")

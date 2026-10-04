@@ -199,7 +199,18 @@ def Test(Nb,Bonus):
                 elif Test>9 and Success<1:
                     Success=-1
     return Success
+def MoyenneGauss(Mean, Std, Recur):
+    resultat = None
+    if Recur<1:
+        temp = np.random.normal(Mean, Std)
+        resultat=temp
+    for i in range(Recur):
+        temp = np.random.normal(Mean, Std)
 
+        if i == 0 or abs(temp - Mean) < abs(resultat - Mean):
+            resultat = temp
+
+    return resultat
 def MaxGauss(Mean,Std,Recur):
     Result=-np.inf
     if Recur >0:
@@ -491,6 +502,13 @@ CARACTERE_PORT = pd.read_csv(
 )
 MARCHANDISES= pd.read_csv(
             config.BASE_PATH + "/Marchandises.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
+
+LISTE_METIER_PROF== pd.read_csv(
+            config.BASE_PATH + "/ListeMetierProf.csv",
             sep=";",
             decimal=",",
             encoding="cp1252"
