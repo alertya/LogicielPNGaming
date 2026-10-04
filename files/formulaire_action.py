@@ -27,11 +27,11 @@ class FormulaireAction(tk.Toplevel):
                         text="Stock à vendre"
                     ).grid(row=0, column=0, padx=10, pady=10)
 
-            self.variables["Marchandise"] = tk.StringVar()
+            self.variables["Vendeur"] = tk.StringVar()
 
             self.combo_marchandise = ttk.Combobox(
                 self,
-                textvariable=self.variables["Marchandise"],
+                textvariable=self.variables["Vendeur"],
                 values=self.moteur.get_instances("Marchandises", "Afficher"),
                 state="readonly"
             )
@@ -99,11 +99,11 @@ class FormulaireAction(tk.Toplevel):
                         text="Stockage où acheter"
                     ).grid(row=0, column=0, padx=10, pady=10)
 
-            self.variables["Marchandise"] = tk.StringVar()
+            self.variables["Vendeur"] = tk.StringVar()
 
             self.combo_marchandise = ttk.Combobox(
                 self,
-                textvariable=self.variables["Marchandise"],
+                textvariable=self.variables["Vendeur"],
                 values=self.moteur.get_instances("Marchandises", "Afficher"),
                 state="readonly"
             )

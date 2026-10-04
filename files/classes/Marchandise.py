@@ -99,8 +99,7 @@ class Marchandise:
         TaillePort=df[df['Ville']==Ville]
         return TaillePort
     @staticmethod
-    def AjoutMarchandise(NomInventaire, NomMarchandise, tonnage):
-        Acheteur= Marchandise.charger_depuis_csv(NomInventaire)
+    def AjoutMarchandise(Acheteur, NomMarchandise, tonnage):
         catalogue = utils.MARCHANDISES
 
         ligne = catalogue[catalogue["Cargaison"] == NomMarchandise]
@@ -116,24 +115,26 @@ class Marchandise:
 
             if cargaison["Cargaison"] == NomMarchandise:
                 cargaison["Tonnage"] += tonnage
-                Acheteur.sauvegarder(NomInventaire)
+                Acheteur.sauvegarder(Acheteur.Name)
                 return
 
         Acheteur.Cargaisons.append(ligne)
-        Acheteur.sauvegarder(NomInventaire)
-    def SupprimerMarchandise(self, nom, tonnage):
-        Vendeur=Marchandise.charger_depuis_csv(nom)
-        for cargaison in Vendeur.Cargaisons:
+        Acheteur.sauvegarder(Acheteur.Name)
 
-            if cargaison["Cargaison"] == nom:
+
+    def SupprimerMarchandise(self, nom_marchandise, tonnage):
+
+        for cargaison in self.Cargaisons:
+
+            if cargaison["Cargaison"] == nom_marchandise:
 
                 cargaison["Tonnage"] -= tonnage
 
                 if cargaison["Tonnage"] <= 0:
-                    Vendeur.Cargaisons.remove(cargaison)
+                    self.Cargaisons.remove(cargaison)
 
                 return True
-        Vendeur.sauvegarder(nom)
+
         return False
 
     def RetourMarchandise(self,Tonnage,Region):
@@ -239,51 +240,41 @@ class Marchandise:
 
     def get_actions(self):        return ["Acheter", "Vendre", "Piller"]
     def executer_action(self, action,instance,valeurs=None):
+        vendeur = Marchandise.charger_depuis_csv(valeurs['Vendeur'])
 
         if action == "Vendre":
-            self.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
-            self.sauvegarder(self.Name)
-
+            vendeur.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
+            vendeur.sauvegarder(vendeur.Name)
+            f"La vente de {valeurs["Tonnage"]} de {valeurs["Cargaison"]} a ete effectué. \n"
         if action == "Acheter":
-            vendeur = Marchandise.charger_depuis_csv(
-                valeurs["Vendeur"]
-            )
-            acheteur= Marchandise.charger_depuis_csv(
-                valeurs["Acheteur"]
-            )
+            acheteur = Marchandise.charger_depuis_csv(valeurs['Acheteur'])
             vendeur.SupprimerMarchandise(
                 valeurs["Cargaison"],
                 valeurs["Tonnage"]
             )
 
-            acheteur.AjoutMarchandise(valeurs['Acheteur'],
+            acheteur.AjoutMarchandise(acheteur,
                 valeurs["Cargaison"],
                 valeurs["Tonnage"]
             )
 
             vendeur.sauvegarder(vendeur.Name)
             acheteur.sauvegarder(acheteur.Name)
+            return f"L'achat de {valeurs["Tonnage"]} de {valeurs["Cargaison"]} auprès de {vendeur.Name} a ete effectué.\n Les marchandises supplémentaires ont été ajoutées à {acheteur.Name} \n"
         if action == "Piller":
-            vendeur = Marchandise.charger_depuis_csv(
-                valeurs["Vendeur"]
-            )
-            print(vendeur.Name)
-            acheteur = Marchandise.charger_depuis_csv(
-                valeurs["Acheteur"]
-            )
-            print(acheteur.Name)
-            # Copie de toutes les marchandises
-            for cargaison in vendeur.Cargaisons.copy():
-                if cargaison["Tonnage"] > 0:
-                    acheteur.AjoutMarchandise(valeurs['Acheteur'],
-                        cargaison["Nom"],
-                        cargaison["Tonnage"]
-                    )
-                    vendeur.SupprimerMarchandise(
-                        cargaison["Nom"],
-                        cargaison["Tonnage"]
-                    )
 
-            vendeur.sauvegarder(vendeur.Name)
-            acheteur.sauvegarder(acheteur.Name)
+
+            for cargaison in vendeur.Cargaisons.copy():
+                acheteur.AjoutMarchandise(acheteur,
+                    cargaison["Cargaison"],
+                    cargaison["Tonnage"]
+                )
+                vendeur.SupprimerMarchandise(
+                    cargaison["Cargaison"],
+                    cargaison["Tonnage"]
+                )
+
+            vendeur.sauvegarder()
+            acheteur.sauvegarder(
+            return f"Le pillage de {vendeur.Name} a ete effectué.\n Les marchandises supplémentaires ont été ajoutées à {acheteur.Name} \n"
         return f"{action} effectué."
