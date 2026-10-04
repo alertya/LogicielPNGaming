@@ -489,7 +489,7 @@ CARACTERE_PORT = pd.read_csv(
     decimal=",",
     encoding="cp1252"
 )
-MARCHANDISES= = pd.read_csv(
+MARCHANDISES= pd.read_csv(
             config.BASE_PATH + "/Marchandises.csv",
             sep=";",
             decimal=",",
