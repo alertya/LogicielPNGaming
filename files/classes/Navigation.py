@@ -30,7 +30,7 @@ from classes.Equipage import Equipage
 import numpy as np
 import pandas as pd
 from tkinter import messagebox
-
+import utils
 # ---------------------------------------------------------------------------
 # Constantes
 # ---------------------------------------------------------------------------
@@ -777,54 +777,103 @@ class Navigation:
     # ------------------------------------------------------------------
 
 
+    def CoursePoursuite(
+            self,
+            HeureAvantNuit,
+            Distance,
+            AllurePoursuivant,
+            AllurePoursuive,
+            NavirePoursuivant_file,
+            NavirePoursuive_file,
+            VoilurePoursuivant,
+            VoilurePoursuive,
+    ):
+        """
+        Simule une course-poursuite entre deux navires.
+        Les allures et la voilure sont choisies automatiquement.
+        """
 
-# ===========================================================================
-# COMPATIBILITE AVEC L'ANCIEN CODE PROCEDURAL
-# ===========================================================================
+        poursuivant = Navire.charger_depuis_csv(NavirePoursuivant_file)
+        poursuivi = Navire.charger_depuis_csv(NavirePoursuive_file)
 
-_navigation_par_defaut = Navigation()
+        texte = ""
 
+        allures = ["Pres", "Largue", "GrandLargue", "VentArriere"]
 
-def Tempest(Name1, Proba, NbJour):
-    return _navigation_par_defaut.Tempest(Name1, Proba, NbJour)
+        # -------------------------
+        # Choix automatique de l'allure
+        # -------------------------
 
+        AllurePoursuivant = max(
+            allures,
+            key=lambda a: getattr(poursuivant, a)
+        )
 
-def AvarieResultat(Avarie, Name1, VitesseMoyenne):
-    return _navigation_par_defaut.AvarieResultat(Avarie, Name1, VitesseMoyenne)
+        AllurePoursuive = max(
+            allures,
+            key=lambda a: getattr(poursuivi, a)
+        )
 
+        # -------------------------
+        # Choix automatique de la voilure
+        # -------------------------
 
-def HautsFonds(Name1, Recif):
-    return _navigation_par_defaut.HautsFonds(Name1, Recif)
+        VoilurePoursuivant = "SurToile"
+        VoilurePoursuive = "SurToile"
 
+        vitesse_poursuivant = getattr(poursuivant, AllurePoursuivant)
+        vitesse_poursuivi = getattr(poursuivi, AllurePoursuive)
 
-def TestNavigation(Name):
-    return _navigation_par_defaut.TestNavigation(Name)
+        texte += (
+            f"{poursuivant.Name} règle sa voilure sur {VoilurePoursuivant} "
+            f"et adopte l'allure {AllurePoursuivant} ({vitesse_poursuivant} nds).\n"
+        )
 
+        texte += (
+            f"{poursuivi.Name} règle sa voilure sur {VoilurePoursuive} "
+            f"et adopte l'allure {AllurePoursuive} ({vitesse_poursuivi} nds).\n\n"
+        )
 
-def TestHydrographie(Name, Zone):
-    return _navigation_par_defaut.TestHydrographie(Name, Zone)
+        heure = 0.0
 
+        while heure < HeureAvantNuit and Distance > 0:
+            bonus_poursuivant = self.TestNavigation(poursuivant.Equipage)
+            bonus_poursuivi = self.TestNavigation(poursuivi.Equipage)
 
-def CoursePoursuite(
-    HeureAvantNuit,
-    Distance,
-    AllurePoursuivant,
-    AllurePoursuive,
-    NavirePoursuivant_file,
-    NavirePoursuive_file,
-    VoilurePoursuivant,
-    VoilurePoursuive,
-):
-    return _navigation_par_defaut.CoursePoursuite(
-        HeureAvantNuit,
-        Distance,
-        AllurePoursuivant,
-        AllurePoursuive,
-        NavirePoursuivant_file,
-        NavirePoursuive_file,
-        VoilurePoursuivant,
-        VoilurePoursuive,
-    )
+            vitesse1 = vitesse_poursuivant * bonus_poursuivant
+            vitesse2 = vitesse_poursuivi * bonus_poursuivi
 
+            gain = (vitesse1 - vitesse2) / 2.0  # demi-heure
 
+            Distance -= gain
+            heure += 0.5
 
+            texte += (
+                f"{heure:.1f} h : "
+                f"{vitesse1:.1f} nds contre {vitesse2:.1f} nds "
+                f"(écart {gain:.1f}) - "
+                f"Distance restante : {max(Distance, 0):.1f} mn\n"
+            )
+
+        if Distance <= 0:
+            texte += (
+                "\n⚔ Le poursuivant rejoint son adversaire et peut engager le combat."
+            )
+            Distance = 0
+
+        else:
+            texte += (
+                "\n🌙 La nuit interrompt la poursuite."
+            )
+
+        poursuivant.sauvegarder()
+        poursuivi.sauvegarder()
+
+        return texte, Distance
+
+    def JourNavigation(self,NomNavire,NomEquipage,Zone):
+        Text=""
+        Text+=self.HautsFonds(NomNavire,Zone)
+        Text+=self.Tempest(NomNavire)
+        Pourcentage=self.TestNavigation(NomNavire)
+        return Pourcentage

@@ -422,7 +422,7 @@ class App(tk.Tk):
             ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
-        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType','CombatNaval','Reparer',"Poursuivre"):
+        if action in ("Vendre", "Acheter", "Piller", "Recruter","Generer","BatailleTerrestre",'RecruterType','CombatNaval','Reparer',"Poursuivre","JourSuivant"):
             FormulaireAction(
                 self,
                 action=action,
@@ -690,4 +690,18 @@ class App(tk.Tk):
                     cadre,
                     bloc["donnees"]
                 )
+    def _JourSuivant(self):
+        nom_voyage = self.comboVoyage.get()
+
+        if nom_voyage not in self.Voyages:
+            return
+
+        voyage = self.Voyages[nom_voyage]
+
+        texte = voyage.avancer_jour()
+
+        # Rafraîchissement complet
+        self.AfficherVoyage()
+
+        messagebox.showinfo("Jour suivant", texte)
 

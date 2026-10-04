@@ -50,12 +50,19 @@ class Voyage:
                 "Port": etape.get("TaillePortEscale", "")
             })
 
+        journal = ""
+        for jour in sorted(self.Journal):
+            journal += f"Jour {jour}\n"
+            for ligne in self.Journal[jour]:
+                journal += f"  • {ligne}\n"
+            journal += "\n"
+
         return {
             "Nom": self.Name,
             "Navire": self.Navire,
             "Année": self.Annee,
             "Jour": self.Jour,
-            "Journal": "\n".join(self.Journal.get(self.Jour, [])),
+            "Journal": journal,
             "Étapes": lignes
         }
     def sauvegarder(self, nom=None):
@@ -114,32 +121,165 @@ class Voyage:
 
         return voyage
 
-    def Affichage(self):
+    def avancer_jour(self):
+        """Fait progresser le voyage d'une journée."""
 
-        return {
-            "Informations": {
-                "Nom": self.Name,
-                "Navire": self.Navire,
-                "Année": self.Annee,
-                "Jour": self.Jour
-            },
+        # Voyage terminé
+        if self.EtapeCourante >= len(self.Etapes):
+            return "Le voyage est déjà terminé."
 
-            "Etapes": {
-                "type": "tableau",
-                "colonnes": [
-                    "Ordre",
-                    "Région",
-                    "Distance"
-                ],
-                "donnees": [
-                    (
-                        i + 1,
-                        e["Region"],
-                        e["Distance"]
-                    )
-                    for i, e in enumerate(self.Etapes)
-                ]
-            },
+        etape = self.Etapes[self.EtapeCourante]
 
-            "Journal": self.Journal.get(self.Jour, [])
-        }
+        self.Jour += 1
+        journal = []
+
+        # -------------------------------------------------
+        # Chargement du navire
+        # -------------------------------------------------
+
+        navire = Navire.charger_depuis_csv(self.Navire)
+        equipage=Equipage.charger_depuis_csv(navire.EquipageNom)
+        # -------------------------------------------------
+        # Navigation test de navigation, bonus/malus de la distance en fonction des résultats
+        # -------------------------------------------------
+
+        bonus_navigation = Navigation.TestNavigation(navire.Name)
+
+        distance_jour = navire.VitesseMoyenne * bonus_navigation / 100
+
+        self.Avancement += distance_jour
+        ########
+        journal.append(
+            f"Le navire parcourt {distance_jour:.1f} MN "
+            f"({self.Avancement:.1f}/{etape['Distance']} MN)."
+        )
+
+        # -------------------------------------------------
+        # Maladies
+        # -------------------------------------------------
+
+        texte = Maladie.JourMaladie(1,equipage)
+        equipage.Save(navire.EquipageNom)
+        if texte:
+            journal.append(texte)
+
+        # -------------------------------------------------
+        # Hauts-fonds
+        # -------------------------------------------------
+
+        if (
+                etape["TaillePortEscale"] != "Aucune (pas d'escale)"
+                or etape["ZoneMaritime"] in ("Côtes", "Littoral")
+        ):
+
+            texte = Navigation.HautsFonds(
+                navire.Name,
+                etape["ZoneMaritime"]
+            )
+
+            if texte:
+                journal.append(texte)
+
+        # -------------------------------------------------
+        # Tempêtes
+        # -------------------------------------------------
+
+        texte = Navigation.Tempest(navire.Name)
+
+        if texte:
+            if isinstance(texte, tuple):
+                journal.append(texte[0])
+            else:
+                journal.append(texte)
+
+        # -------------------------------------------------
+        # Rencontres
+        # -------------------------------------------------
+
+        texte = self.DeterminerRencontre()
+
+        if texte:
+            journal.append(texte)
+
+        # -------------------------------------------------
+        # Arrivée
+        # -------------------------------------------------
+
+        if self.Avancement >= etape["Distance"]:
+
+            self.Avancement -= etape["Distance"]
+
+            journal.append(
+                f"Arrivée dans la région {etape['Region']}."
+            )
+
+            self.EtapeCourante += 1
+
+            if self.EtapeCourante >= len(self.Etapes):
+                journal.append("🏁 Le voyage est terminé.")
+
+        # -------------------------------------------------
+        # Journal
+        # -------------------------------------------------
+
+        self.Journal[self.Jour] = journal
+
+        # -------------------------------------------------
+        # Sauvegarde
+        # -------------------------------------------------
+
+        self.sauvegarder()
+
+        return "\n".join(journal)
+
+    def AfficherVoyage(self):
+
+        nom_voyage = self.comboVoyage.get()
+
+        if nom_voyage not in self.Voyages:
+            return
+
+        infos = self.Voyages[nom_voyage].Affichage()
+
+        self.lblNom.config(text=infos["Nom"])
+        self.lblNavire.config(text=infos["Navire"])
+        self.lblJour.config(text=str(infos["Jour"]))
+
+        distance_restante = 0
+
+        if self.EtapeCourante < len(self.Etapes):
+            distance_restante += (
+                    self.Etapes[self.EtapeCourante]["Distance"] - self.Avancement
+            )
+
+            # étapes suivantes
+            for e in voyage.Etapes[voyage.EtapeCourante + 1:]:
+                distance_restante += e["Distance"]
+
+        self.lblDistance.config(text=f"{distance_restante:.0f} mn")
+
+        # Journal
+        self.txtJournal.delete("1.0", tk.END)
+        self.txtJournal.insert("1.0", infos["Journal"])
+
+        # Tableau des étapes
+        self.tree.delete(*self.tree.get_children())
+
+        for e in infos["Étapes"]:
+            self.tree.insert(
+                "",
+                "end",
+                values=(
+                    e["Ordre"],
+                    e["Région"],
+                    e["Distance"],
+                    e["Zone"],
+                    e["Port"],
+                ),
+            )
+    def executer_action(self, action,instance,valeurs=None):
+
+        if action == "JourSuivant":
+            self.JourSuivant(instance)
+    def get_actions(self):
+        return ["JourSuivant"]

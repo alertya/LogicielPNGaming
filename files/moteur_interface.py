@@ -349,7 +349,7 @@ class MoteurExemple(MoteurBase):
 
     def get_actions(self, onglet, sous_onglet, instance):
         if onglet == "Journal de bord" and sous_onglet == "Journal":
-            return ["Passer au jour de navigation suivant"]
+            return ["JourSuivant"]
         if sous_onglet == "Actions":
             return ACTIONS_PAR_ONGLET.get(onglet, [])
         if sous_onglet in ("Générer", "Recruter", "Vendre/Acheter"):
@@ -357,7 +357,7 @@ class MoteurExemple(MoteurBase):
         return []
 
     def executer_action(self, onglet, sous_onglet, instance, action):
-        if onglet == "Journal de bord" and sous_onglet == "Journal" and action == "Passer au jour de navigation suivant":
+        if onglet == "Journal de bord" and sous_onglet == "Journal" and action == "JourSuivant":
             return self.avancer_jour(instance)
         if onglet == "Reset" and sous_onglet == "Actions":
             return self._reset_toutes_les_donnees()
@@ -422,89 +422,16 @@ class MoteurExemple(MoteurBase):
 
         self._voyages[nom_trajet] = voyage
 
-    def avancer_jour(self, nom_voyage: str) -> str:
+    def JourSuivant(self):
+        nom = self.comboVoyage.get()
 
-        voyage = self._voyages.get(nom_voyage)
-        if voyage is None:
-            return "Aucun voyage actif."
+        voyage = self.Voyages[nom]
 
-        etape = voyage.Etapes[voyage.EtapeCourante]
+        texte = voyage.avancer_jour()
 
-        voyage.Jour += 1
-        evenements = []
+        self.AfficherVoyage()
 
-        # -------------------------------------------------
-        # 1. Navigation
-        # -------------------------------------------------
-
-        voyage.Avancement += DISTANCE_PAR_JOUR_NM
-
-        evenements.append(
-            f"Navigation vers {etape['Region']} "
-            f"({voyage.Avancement}/{etape['Distance']} MN)."
-        )
-
-        # -------------------------------------------------
-        # 2. Test de maladie
-        # -------------------------------------------------
-
-        resultat = Maladie.test_maladie(voyage.Navire)
-
-        if resultat:
-            evenements.append(resultat)
-
-        # -------------------------------------------------
-        # 3. Haut-fond
-        # -------------------------------------------------
-
-        if etape["TaillePortEscale"] != "Aucune (pas d'escale)" \
-                or etape["ZoneMaritime"] in ["Côtes", "Littoral"]:
-
-            resultat = Navigation.test_hautfond(voyage.Navire)
-
-            if resultat:
-                evenements.append(resultat)
-
-        # -------------------------------------------------
-        # 4. Tempête
-        # -------------------------------------------------
-
-        resultat = Navigation.test_tempete(
-            voyage.Navire,
-            etape["ZoneMaritime"]
-        )
-
-        if resultat:
-            evenements.append(resultat)
-
-        # -------------------------------------------------
-        # 5. Rencontre
-        # -------------------------------------------------
-
-        resultat = self.determiner_rencontre(voyage)
-
-        if resultat:
-            evenements.append(resultat)
-
-        # -------------------------------------------------
-        # 6. Arrivée à l'étape suivante
-        # -------------------------------------------------
-
-        if voyage.Avancement >= etape["Distance"]:
-
-            voyage.Avancement = 0
-            voyage.EtapeCourante += 1
-
-            evenements.append(
-                f"Arrivée à {etape['Region']}."
-            )
-
-            if voyage.EtapeCourante >= len(voyage.Etapes):
-                evenements.append("🏁 Voyage terminé.")
-
-        voyage.Journal[voyage.Jour] = evenements
-
-        return "\n".join(evenements)
+        messagebox.showinfo("Jour suivant", texte)
 
     def _journal_du_jour(self, navire: Optional[str]) -> List[str]:
         voyage = self._voyages.get(navire) if navire else None
