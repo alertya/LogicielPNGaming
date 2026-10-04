@@ -5,6 +5,8 @@ import random
 import config
 import utils
 from classes.Navire import Navire
+from classes.Navigation import Navigation
+from classes.Maladie import Maladie
 class Voyage:
 
     def __init__(self, Nom="", Navire="", Annee=1715,etapes=None):
@@ -159,8 +161,8 @@ class Voyage:
         # -------------------------------------------------
         # Maladies
         # -------------------------------------------------
-
-        texte = Maladie.JourMaladie(1,navire.EquipageNom)
+        malade=Maladie()
+        texte = malade.JourMaladie(1,navire.EquipageNom)
         if texte:
             journal.append(texte)
 
@@ -170,7 +172,7 @@ class Voyage:
 
         if (
                 etape["TaillePortEscale"] != "Aucune (pas d'escale)"
-                or etape["ZoneMaritime"] in ("Côtes", "Littoral")
+                or etape["ZoneMaritime"] in ("côtes", "Littoral",'port',"mouillage","comptoir")
         ):
 
             texte = Navigation.HautsFonds(
@@ -180,13 +182,12 @@ class Voyage:
 
             if texte:
                 journal.append(texte)
-
+        print(texte)
         # -------------------------------------------------
         # Tempêtes
         # -------------------------------------------------
 
-        texte = navigation.Tempest(navire.Name)
-
+        navigation.Tempest(navire.Name)
         if texte:
             if isinstance(texte, tuple):
                 journal.append(texte[0])
@@ -197,14 +198,11 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
 
-        navire_rencontre = self.determiner_rencontre(self.annee,etape["Region"],4,4,self.Jour,etape['ZoneMaritime'])
-
+        navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],4,4,self.Jour,etape['ZoneMaritime'])
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
-
-        if navire_rencontre:
             journal.append(f"Vous rencontrez le navire {navire_rencontre.Name}.")
-            Texte+=f"Vous rencontrez le navire {navire_rencontre.Name}."
+            texte+=f"Vous rencontrez le navire"+ navire_rencontre.Name+".\n"
 
         # -------------------------------------------------
         # Arrivée
@@ -324,16 +322,12 @@ class Voyage:
             DeMarchand=int(DeMarchand)
             if SeuilMa>=random.randint(1,DeMarchand): ###Alors on rencontre un navire marchand
                 Type = Navire.CalculType(ZoneRencontre, annee)
-                print(type)
                 Compagnie = Navire.CalculType(ZoneCompagnie, annee)
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
                 navire_rencontre.Compagnie = Compagnie
                 navire_rencontre.sauvegarder()
         if SeuilAv >= random.randint(1, DeAventurier):  ###Alors on rencontre un navire aventurier
             Type=Navire.CalculType(ZoneRencontre,annee)
-            print(Type)
-            print(ZoneCommerce)
-            print(str(Jour))
             Compagnie=Navire.CalculType(ZoneCompagnie,annee)
             navire_rencontre=Navire(Type,str(Jour)+"_Aventurier",ZoneCommerce)
             navire_rencontre.Compagnie = Compagnie

@@ -202,7 +202,7 @@ class Navigation:
 
     def Tempest(self, nom_navire):
         navire = Navire.charger_depuis_csv(nom_navire)
-        equipage = Equipage.charger_depuis_csv(navire.Equipage)
+        equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         texte = ""
         variation_distance = 0
@@ -220,7 +220,7 @@ class Navigation:
             if "Hydrographe" not in membre.Traits:
                 continue
 
-            test = utils.Test(membre.Hydrographie, 0)[0]
+            test = utils.Test(membre.Hydrographie, 0)
             meilleur_test = max(meilleur_test, test)
 
         # Aucun hydrographe
@@ -248,9 +248,9 @@ class Navigation:
             texte += "Les hydrographes anticipent la tempête et le navire l'évite.\n"
 
         navire.sauvegarder()
-        equipage.sauvegarder()
+        equipage.Save(navire.EquipageNom)
 
-        return texte, variation_distance
+        return texte
 
     def AvarieResultat(
             self,

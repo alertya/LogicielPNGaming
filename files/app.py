@@ -447,7 +447,7 @@ class App(tk.Tk):
         if action in (
                 "Vendre", "Acheter", "Piller", "Recruter",
                 "Generer", "BatailleTerrestre", "RecruterType",
-                "CombatNaval", "Reparer", "Poursuivre"
+                "CombatNaval", "Reparer", "Poursuivre","Commercer","Fuir","Poursuivre","Canonner","PavillonNoir"
         ):
             FormulaireAction(
                 self,
@@ -463,11 +463,14 @@ class App(tk.Tk):
             self.instance_actuelle,
             action
         )
-
+        print(action)
+        print(type(resultat))
+        print(resultat)
         if action == "JourSuivant" and isinstance(resultat, dict):
             self.afficher_texte(resultat["journal"])
-
+            print("Action:JourSuivant")
             if resultat.get("rencontre"):
+                print("Execution")
                 FormulaireRencontre(
                     self,
                     moteur=self.moteur,
@@ -475,13 +478,17 @@ class App(tk.Tk):
                 )
 
             if resultat["navire_rencontre"] is not None:
+                print("ExecutionResultat")
                 FormulaireRencontre(
                     self,
                     moteur=self.moteur,
                     navire=resultat["navire_rencontre"].Name
                 )
 
-        self.statut_var.set(message)
+        if isinstance(resultat, dict):
+            self.statut_var.set(resultat["journal"])
+        else:
+            self.statut_var.set(resultat)
         self.rafraichir_instances()
 
     # ------------------------------------------------------------------ #
@@ -735,10 +742,23 @@ class App(tk.Tk):
 
     def _jour_suivant(self):
 
-        message = self.moteur.JourSuivant(self.instance_actuelle)
-        self.statut_var.set(message)
-        self.rafraichir_contenu()
 
+        resultat = self.moteur.executer_action(
+                "Journal de bord",
+                "Journal",
+                self.instance_actuelle,
+                "JourSuivant"
+            )
+
+        print(resultat)
+        print(type(resultat))
+
+        if resultat.get("navire_rencontre"):
+            FormulaireRencontre(
+                self,
+                moteur=self.moteur,
+                instance=resultat["navire_rencontre"].Name
+            )
     def _ouvrir_rencontre(self):
         FormulaireRencontre(
                 self,
