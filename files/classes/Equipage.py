@@ -1077,14 +1077,14 @@ class Equipage:
 
             # Les membres qui ont déjà Moral = -1
             # ne font pas de nouveau test
-            if membre.Moral != -1:
+            if membre.Moral > 0:
                 membre.Moral = utils.lancer_de(2, Bonus)[0]
 
         # Membres qui restent dans l'équipage
         self.Membres = [
             membre
             for membre in self.Membres
-            if membre.Moral != -1
+            if membre.Moral >0
         ]
 
         # Mise à jour de la valeur de combat
