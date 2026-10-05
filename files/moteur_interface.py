@@ -529,9 +529,7 @@ class MoteurExemple(MoteurBase):
             nombre,
             effectifs
         )
-
         self._equipage = equipage
-
         return f"Équipage {nom} généré."
 
 

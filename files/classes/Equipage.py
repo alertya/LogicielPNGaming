@@ -1133,7 +1133,6 @@ class Equipage:
 
 
         elif action == "Distribuer les soldes":
-            print(instance)
             equipage = Equipage.charger_depuis_csv(
 
                 instance
@@ -1185,17 +1184,13 @@ class Equipage:
 
     @classmethod
     def generer(cls, nom, type_equipage, nombre, effectifs):
-
-        equipage = cls(nombre, type_equipage, nom)
-
+        equipage = cls(0, type_equipage, nom)
         # Génération des membres spéciaux
         for typologie, quantite in effectifs.items():
             for _ in range(quantite):
                 equipage.Recrute(1,typologie,0)
-
         # Compléter avec la typologie de l'equipage
         deja_crees = sum(effectifs.values())
-
         for _ in range(nombre - deja_crees):
             equipage.Recrute(1,type_equipage,0)
         equipage.AjoutTrait()
