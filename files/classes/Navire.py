@@ -488,7 +488,7 @@ class Navire:
                 if localisation > 3:
                     succes_tir += 1
 
-        succes_recharge = utils.Test(navire_attaquant.navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1])
+        succes_recharge = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1])
         recharge = utils.ConvertFloatToInt(7 - succes_recharge)
 
         degats = 0.9925 * np.exp(

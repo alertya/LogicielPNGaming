@@ -174,6 +174,7 @@ def ConvertFloatToInt(x):
 
 def Test(Nb,Bonus):
     Success=0
+    Nb=int(Nb)
     for k in range(Nb):
         Success=0
         if Nb==0:
