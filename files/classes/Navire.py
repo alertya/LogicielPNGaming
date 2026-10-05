@@ -449,7 +449,7 @@ class Navire:
             return f"Fonction pas encore implemente"
 
         elif action == "CombatNaval":
-            self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
+            return self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
             self.sauvegarder()
         elif action == "Reparer":
 
