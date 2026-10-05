@@ -85,6 +85,7 @@ class PNJ:
         self.PV = self.PVMax
 
         self.Traits = []
+        self.Save()
 
 
 
@@ -122,8 +123,8 @@ class PNJ:
     # ================================================================
 
     @classmethod
-    def charger_depuis_csv(cls, fichier):
-
+    def charger_depuis_csv(cls, Name):
+        fichier = os.path.join(config.BASE_PATH, "PNJ", f"{Name}.csv")
         TempDF = pd.read_csv(
             fichier,
             sep=";",

@@ -329,6 +329,8 @@ class MoteurExemple(MoteurBase):
 
         if onglet in ("Escale", "Infirmerie"):
             return self._get_instances_dossier("PNJ")
+        if onglet == "PNJ":
+            return self._get_instances_dossier("PNJ")
 
         if onglet == "Reset":
             return []
@@ -357,6 +359,8 @@ class MoteurExemple(MoteurBase):
             return self._equipage.charger_depuis_csv(instance)
         if onglet == "Marchandises":
             return self._marchandise.charger_depuis_csv(instance)
+        if onglet == "PNJ":
+            return self._PNJ.charger_depuis_csv(instance)
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
 
 
@@ -579,7 +583,9 @@ class MoteurExemple(MoteurBase):
         if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_actions() if marchandise else []
-
+        if onglet == "PNJ":
+            PNJ = PNJ.charger_depuis_csv(instance)
+            return PNJ.get_actions() if PNJ else []
         #if onglet == "Escale":
         #    escale = Escale.charger_depuis_csv(instance)
         #    return escale.get_actions() if escale else []
@@ -622,6 +628,12 @@ class MoteurExemple(MoteurBase):
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
+        if onglet == "PNJ":
+            PNJ = PNJ.charger_depuis_csv(instance)
+            sortie = PNJ.executer_action(action, instance, valeurs)
+            if sortie:
+                messagebox.showinfo("Information", str(sortie))
+            return sortie
 
         return ""
 
@@ -639,6 +651,9 @@ class MoteurExemple(MoteurBase):
         if onglet == "Marchandises":
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_boutons(action) if marchandise else []
+        if onglet == "PNJ":
+            PNJ = PNJ.charger_depuis_csv(instance)
+            return PNJ.get_boutons(action) if PNJ else []
 
         return []
 
