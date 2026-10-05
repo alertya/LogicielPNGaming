@@ -106,7 +106,7 @@ class Voyage:
         df_journal = pd.DataFrame(journal_lignes)
 
         df_journal.to_csv(
-            os.path.join(config.BASE_PATH, "Voyage", f"{nom}_journal.csv"),
+            os.path.join(config.BASE_PATH, "Journal", f"{nom}_journal.csv"),
             sep=";",
             decimal=",",
             encoding="cp1252",
@@ -118,36 +118,41 @@ class Voyage:
     @classmethod
     def charger_depuis_csv(cls, nom):
 
-        fichier = os.path.join(config.BASE_PATH, "Voyage", nom + ".csv")
+        fichier = os.path.join(
+            config.BASE_PATH,
+            "Voyage",
+            nom + ".csv"
+        )
+
         if not os.path.exists(fichier):
             return None
+
         df = pd.read_csv(
             fichier,
             sep=";",
             decimal=",",
             encoding="cp1252"
         )
+
+        if df.empty:
+            return None
+
+        print("Chargement :", fichier)
+        print("Colonnes :", df.columns.tolist())
+
+        # Création du voyage
         voyage = cls(
-            df["NomTrajet"][0],
-            df["Navire"][0],
-            df["Annee"][0]
+            df["NomTrajet"].iloc[0],
+            df["Navire"].iloc[0],
+            df["Annee"].iloc[0]
         )
 
-        if "Jour" in df.columns:
-            voyage.Jour = int(df["Jour"][0])
-        else:
-            voyage.Jour = 1
+        # Données générales
+        voyage.Jour = int(df["Jour"].iloc[0])
+        voyage.EtapeCourante = int(df["EtapeCourante"].iloc[0])
+        voyage.Avancement = float(df["Avancement"].iloc[0])
 
-        if "EtapeCourante" in df.columns:
-            voyage.EtapeCourante = int(df["EtapeCourante"][0])
-        else:
-            voyage.EtapeCourante = 0
-
-        if "Avancement" in df.columns:
-            voyage.Avancement = float(df["Avancement"][0])
-        else:
-            voyage.Avancement = 0
-
+        # Reconstruction des étapes
         for _, ligne in df.iterrows():
             voyage.AjouterEtape(
                 Region=ligne["Region"],
@@ -158,6 +163,37 @@ class Voyage:
                 DeAventurier=ligne["DeAventurier"],
                 CompetenceVigie=ligne["CompetenceVigie"]
             )
+
+        # ============================================================
+        # Chargement du journal
+        # ============================================================
+
+        fichier_journal = os.path.join(
+            config.BASE_PATH,
+            "Journal",
+            nom + "_journal.csv"
+        )
+
+        if os.path.exists(fichier_journal):
+
+            df_journal = pd.read_csv(
+                fichier_journal,
+                sep=";",
+                decimal=",",
+                encoding="cp1252"
+            )
+
+            voyage.Journal = {}
+
+            for _, ligne in df_journal.iterrows():
+
+                jour = int(ligne["Jour"])
+                evenement = ligne["Evenement"]
+
+                if jour not in voyage.Journal:
+                    voyage.Journal[jour] = []
+
+                voyage.Journal[jour].append(evenement)
 
         return voyage
 

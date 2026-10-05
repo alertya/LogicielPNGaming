@@ -590,6 +590,7 @@ class FormulaireAction(tk.Toplevel):
                 command=self.valider
             ).grid(row=4, column=0, columnspan=2, pady=20)
         if self.action == "JourSuivant":
+            print("Voyage utilisé :", self.instance_actuelle)
             message = self.moteur.JourSuivant(self.instance_actuelle)
             self.statut_var.set(message)
             self.rafraichir_instances()
