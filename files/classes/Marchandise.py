@@ -244,7 +244,7 @@ class Marchandise:
         if action == "Vendre":
             vendeur.SupprimerMarchandise(valeurs["Cargaison"],valeurs['Tonnage'])
             vendeur.sauvegarder(vendeur.Name)
-            f"La vente de {valeurs["Tonnage"]} de {valeurs["Cargaison"]} a ete effectué. \n"
+            return f"La vente de {valeurs["Tonnage"]} de {valeurs["Cargaison"]} a ete effectué. \n"
         if action == "Acheter":
             acheteur = Marchandise.charger_depuis_csv(valeurs['Acheteur'])
             vendeur.SupprimerMarchandise(
