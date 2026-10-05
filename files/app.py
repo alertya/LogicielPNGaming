@@ -538,8 +538,6 @@ class App(tk.Tk):
         self.instance_actuelle = nom
         self.selectionner_sous_onglet("Afficher")
 
-    ```python
-
     # ------------------------------------------------------------------ #
     # Panneau spécial : PNJ -> Générer
     # ------------------------------------------------------------------ #

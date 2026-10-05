@@ -804,8 +804,9 @@ class MoteurExemple(MoteurBase):
         elif module == "Marchandises":
             objet = Marchandise.charger_depuis_csv(instance)
 
-        else:
-            raise ValueError(f"Module inconnu : {module}")
+        elif module == "Marchandises":
+
+            objet = PNJ.charger_depuis_csv(instance)
 
         return objet.Affichage()
 

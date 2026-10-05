@@ -315,21 +315,4 @@ class PanneauGenerationPNJ(tk.Frame):
             metier,
             type_pnj,
         )
-Appel depuis app.py
 
-Ton callback pourra donc recevoir directement :
-
-def generer_pnj(self, nom, zone, metier, type_pnj):
-    print(nom)
-    print(zone)
-    print(metier)
-    print(type_pnj)
-
-
-PanneauGenerationPNJ(
-    parent,
-    zones_commerciales=utils.LISTE_REGIONS['RegionsCommerciale'],
-    metiers=utils.LISTE_METIER_PROF['TypeProfession'],
-    types_pnj=utils.PROFESSIONS['Type'],
-    on_generer=self.generer_pnj,
-)
