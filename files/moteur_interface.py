@@ -65,6 +65,7 @@ from classes.Voyage import Voyage
 from classes.Equipage import Equipage
 from classes.Navire import Navire
 from classes.Marchandise import Marchandise
+from classes.PNJ import PNJ
 from classes.Navigation import Navigation
 from classes.Maladie import Maladie
 import numpy as np
@@ -234,6 +235,7 @@ ACTIONS_PAR_ONGLET: Dict[str, List[str]] = {
     "Equipage": ["Bataille terrestre", "Test compétence"],
     "Marchandises": ["Vendre","Acheter"],
     "Escale": ["Recruter au port", "Réparer navire", "Trouver marchand", "Enquêter"],
+    "PNJ":['LanceCompetence','VoirRelation'],
     "Infirmerie": ["Voir blessé/malade", "Sacrifier blessé"],
     "Reset": ["Supprimer toutes les données (Navire, Equipage, Escale, Voyage)"],
 }
@@ -273,7 +275,15 @@ class MoteurExemple(MoteurBase):
             {"Nom": "Tom Belair", "Rôle": "Second", "Santé": "Bonne"},
         ],
     }
-
+    _PNJ_INITIAL = {
+        "Le Vengeur": [
+            {"Nom": "Jack Renard", "Rôle": "Capitaine", "Santé": "Bonne"},
+            {"Nom": "Anne Cros", "Rôle": "Canonnier", "Santé": "Blessée"},
+        ],
+        "L'Aurore": [
+            {"Nom": "Tom Belair", "Rôle": "Second", "Santé": "Bonne"},
+        ],
+    }
     def __init__(self):
         # self._voyages[navire] = {
         #     "annee_historique": int,
@@ -286,6 +296,7 @@ class MoteurExemple(MoteurBase):
         self._voyages: Dict[str, Dict[str, Any]] = {}
         self._navires = Navire("Sloop","NavireTest","Brésil")
         self._equipage= Equipage(10,"Matelot","EquipageTest")
+        self._PNJ=PNJ("Martin",None,"Matelot")
         self._marchandise=Marchandise()
         # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
@@ -804,7 +815,7 @@ class MoteurExemple(MoteurBase):
         elif module == "Marchandises":
             objet = Marchandise.charger_depuis_csv(instance)
 
-        elif module == "Marchandises":
+        elif module == "PNJ":
 
             objet = PNJ.charger_depuis_csv(instance)
 

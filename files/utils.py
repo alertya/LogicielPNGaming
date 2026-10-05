@@ -513,7 +513,8 @@ LISTE_METIER_PROF= pd.read_csv(
             decimal=",",
             encoding="cp1252"
         )
-
+print(LISTE_METIER_PROF)
+print(LISTE_PROF)
 NOMS_NAVIRE= pd.read_csv(
             config.BASE_PATH + "/NomNavire.csv",
             sep=";",

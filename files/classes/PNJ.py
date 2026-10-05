@@ -8,19 +8,20 @@ import config
 
 class PNJ:
 
-    def __init__(self, Nb, Name, Profession=None, Type=None):
+    def __init__(self, Name, Profession=None, Type=None):
 
         self.Name = Name
         self.Type = Type
         self.Profession = Profession
-
+        self.Localisation="Europe du Nord"
         # ------------------------------------------------------------
         # Recherche du profil professionnel
         # ------------------------------------------------------------
 
         Pond = utils.PROFESSIONS['Type']
         Pond2 = utils.LISTE_METIER_PROF['TypeProfession']
-
+        print(Pond)
+        print(Pond2)
         Ponds = Pond[Pond["Type"] == Type]
 
         if Ponds.empty:
@@ -123,7 +124,7 @@ class PNJ:
     # ================================================================
 
     @classmethod
-    def sauvegarder_depuis_csv(cls, fichier):
+    def charger_depuis_csv(cls, fichier):
 
         TempDF = pd.read_csv(
             fichier,
@@ -171,4 +172,18 @@ class PNJ:
                 pnj.Traits = []
 
         return pnj
+
+
+    def Affichage(self):
+
+        return {
+            "Nom": self.Name,
+            "Profession": self.Profession,
+            "Type": self.Type,
+            "Localisation": self.Localisation,
+            "Traits": self.Traits,
+        }
+
+
+
 
