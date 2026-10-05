@@ -8,12 +8,12 @@ import config
 
 class PNJ:
 
-    def __init__(self, Name, Profession=None, Type=None):
+    def __init__(self, Name, Zone,Profession=None, Type=None):
 
         self.Name = Name
         self.Type = Type
         self.Profession = Profession
-        self.Localisation="Europe du Nord"
+        self.Localisation=Zone
         # ------------------------------------------------------------
         # Recherche du profil professionnel
         # ------------------------------------------------------------
@@ -84,7 +84,7 @@ class PNJ:
         self.PVMax = random.randint(5, 8)
         self.PV = self.PVMax
 
-        self.Traits = []
+        self.Traits = self.AjoutTrait()
         self.Save()
 
 
@@ -186,4 +186,22 @@ class PNJ:
 
     def get_actions(self):
         return ['LanceCompetence']
+
+    def AjoutTrait(self):
+        df = utils.COMPETENCES
+
+
+            # Initialisation de la liste de traits
+        if not hasattr(self, "Traits"):
+                self.Traits = []
+
+        for _, ligne in df.iterrows():
+            competence = ligne["Competence"]
+            trait = ligne["Trait"]
+
+                # Vérifie que le membre possède cette compétence
+            if hasattr(self, competence):
+                if getattr(self, competence) > 1:
+                    if trait not in self.Traits:
+                            self.Traits.append(trait)
 

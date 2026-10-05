@@ -296,7 +296,7 @@ class MoteurExemple(MoteurBase):
         self._voyages: Dict[str, Dict[str, Any]] = {}
         self._navires = Navire("Sloop","NavireTest","Brésil")
         self._equipage= Equipage(10,"Matelot","EquipageTest")
-        self._PNJ=PNJ("Martin",None,"Matelot")
+        self._PNJ=PNJ("Martin","Europe du Nord",None,"Matelot")
         self._marchandise=Marchandise()
         # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
@@ -852,8 +852,8 @@ class MoteurExemple(MoteurBase):
     def generer_pnj_type(self, nom, zone, metier, type_pnj):
 
         pnj = PNJ(
-            1,
             nom,
+            zone,
             Profession=metier,
             Type=type_pnj
         )
@@ -867,8 +867,8 @@ class MoteurExemple(MoteurBase):
     def generer_pnj_profession(self, nom, zone, metier, type_pnj):
 
         pnj = PNJ(
-            1,
             nom,
+            zone,
             Profession=metier,
             Type=type_pnj
         )
