@@ -464,7 +464,7 @@ class Navire:
         print(navire_attaquant.Equipage)
         print(type(navire_attaquant.Equipage))
         print(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
-        succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
+        succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1],bonus)
         succes_tir += succes_tir * bonus_tir / 5
         succes_tir = utils.ConvertFloatToInt(succes_tir)
 
