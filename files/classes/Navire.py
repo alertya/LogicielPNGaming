@@ -488,7 +488,7 @@ class Navire:
                 if localisation > 3:
                     succes_tir += 1
 
-        succes_recharge = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1])
+        succes_recharge = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1],bonus)
         recharge = utils.ConvertFloatToInt(7 - succes_recharge)
 
         degats = 0.9925 * np.exp(
@@ -578,7 +578,7 @@ class Navire:
         print(f"{navire2.Name} a besoin de {recharge2} tours pour recharger.")
 
         # Le navire 1 subit les dégâts du navire 2
-        if navire1.Equipage.Nombre > 0:
+        if navire1.Equipage.NombreMembres()> 0:
 
             perte1, temp = self.PerteNavire(
                 navire1,
