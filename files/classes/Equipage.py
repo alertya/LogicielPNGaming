@@ -829,7 +829,7 @@ class Equipage:
 
         personnes_recrutees = []
         nb_hostiles = 0
-
+        EquipageRecrute=Equipage.charger_depuis_csv(EquipageRecrute)
         for membre in EquipageRecrute.Membres:
 
             # Augmente la caractéristique adaptée

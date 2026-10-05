@@ -262,8 +262,9 @@ class Marchandise:
             return f"L'achat de {valeurs["Tonnage"]} de {valeurs["Cargaison"]} auprès de {vendeur.Name} a ete effectué.\n Les marchandises supplémentaires ont été ajoutées à {acheteur.Name} \n"
         if action == "Piller":
 
-
+            acheteur = Marchandise.charger_depuis_csv(valeurs['Acheteur'])
             for cargaison in vendeur.Cargaisons.copy():
+                print(cargaison['Tonnage'])
                 acheteur.AjoutMarchandise(acheteur,
                     cargaison["Cargaison"],
                     cargaison["Tonnage"]
