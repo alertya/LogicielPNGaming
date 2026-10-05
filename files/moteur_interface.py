@@ -878,3 +878,13 @@ class MoteurExemple(MoteurBase):
         pnj.Save()
 
         return pnj
+
+    def lancer_competence_pnj(self, nom_pnj, competence):
+
+        pnj = self._PNJ.charger_depuis_csv(nom_pnj)
+
+        resultat = pnj.LanceCompetence(competence)
+
+        pnj.Save()
+
+        return resultat

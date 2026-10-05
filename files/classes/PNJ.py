@@ -205,3 +205,18 @@ class PNJ:
                     if trait not in self.Traits:
                             self.Traits.append(trait)
 
+    def executer_action(self, action, instance,valeurs=None):
+
+
+        if action == "LanceCompetence":
+            PNJ = PNJ.charger_depuis_csv(instance)
+            Result=PNJ.LanceCompetence(instance,valeurs['Competence'])
+
+            equipage.Save(instance)
+
+            return f"{PNJ.Name} a effectue un test de {valeurs['Competence']} et a obtenu {Result} succes"
+
+        return "Action inconnue."
+
+    def get_actions(self):
+        return ["LanceCompetence"]

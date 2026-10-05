@@ -340,6 +340,7 @@ class PanneauGenerationPNJ(tk.Frame):
             metier,
             type_pnj
         )
-
+    def LanceCompetence(self,Competence):
+        return utils.Test(self.Competence,0)
 ### Dans `app.py`
 

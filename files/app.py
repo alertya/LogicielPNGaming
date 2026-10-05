@@ -886,3 +886,5 @@ class App(tk.Tk):
         self.statut_var.set(
             f"PNJ {nom} généré."
         )
+    def _LanceCompetence(self,Competence):
+        return self.moteur.LanceCompetence(self,Competence)

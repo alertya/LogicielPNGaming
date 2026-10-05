@@ -569,6 +569,10 @@ class FormulaireAction(tk.Toplevel):
             message = self.moteur.JourSuivant(self.instance_actuelle)
             self.statut_var.set(message)
             self.rafraichir_instances()
+        if self.action == "LanceCompetence":
+            message = self.moteur.LanceCompetence(self.instance_actuelle,Competence)
+            self.statut_var.set(message)
+            self.rafraichir_instances()
 
 
     def recuperer_valeurs(self):
