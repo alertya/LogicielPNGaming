@@ -99,13 +99,13 @@ class PanneauGenerationPNJ(tk.Frame):
         )
 
         self.var_zone = tk.StringVar(
-            value=zones_commerciales[0] if zones_commerciales else ""
+            value=zones_commerciales.iloc[0] if not zones_commerciales.empty else ""
         )
 
         ttk.Combobox(
             entete,
             textvariable=self.var_zone,
-            values=zones_commerciales,
+            values=zones_commerciales.tolist(),
             state="readonly",
             width=24,
             style="Jeu.TCombobox",

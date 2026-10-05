@@ -18,10 +18,9 @@ class PNJ:
         # Recherche du profil professionnel
         # ------------------------------------------------------------
 
-        Pond = utils.PROFESSIONS['Type']
-        Pond2 = utils.LISTE_METIER_PROF['TypeProfession']
-        print(Pond)
-        print(Pond2)
+        Pond = utils.PROFESSIONS
+        Pond2 = utils.LISTE_METIER_PROF
+
         Ponds = Pond[Pond["Type"] == Type]
 
         if Ponds.empty:
@@ -87,8 +86,7 @@ class PNJ:
 
         self.Traits = []
 
-        # Nombre éventuellement utilisé lors de la génération
-        self.Nb = Nb
+
 
     # ================================================================
     # SAUVEGARDE
