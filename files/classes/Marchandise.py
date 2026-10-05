@@ -209,7 +209,7 @@ class Marchandise:
 
     @classmethod
     def charger_depuis_csv(cls, nom_fichier):
-
+        print("CHARGEMENT MARCHANDISE :", nom_fichier)
         chemin = os.path.join(
             config.BASE_PATH,
             "Marchandise",
@@ -264,7 +264,6 @@ class Marchandise:
 
             acheteur = Marchandise.charger_depuis_csv(valeurs['Acheteur'])
             for cargaison in vendeur.Cargaisons.copy():
-                print(cargaison['Tonnage'])
                 acheteur.AjoutMarchandise(acheteur,
                     cargaison["Cargaison"],
                     cargaison["Tonnage"]

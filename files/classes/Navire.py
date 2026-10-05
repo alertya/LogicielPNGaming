@@ -42,7 +42,7 @@ BASE_PATH = "."  # À adapter selon l'emplacement de vos fichiers CSV
 class Navire:
     from typing import Dict, List
 
-    def __init__(self, Type="Sloop", Name="Test",Region="Brésil"):
+    def __init__(self, Type="Sloop", Name="Test",Region="Brésil",charger=False):
                 # -------------------------
                 # Paramètres requis à la création
                 # -------------------------
@@ -137,16 +137,15 @@ class Navire:
                 self.NombreEquipage: int = self.CalculEquipage()
                 self.StructureCoqueMax: float = self.StructureCoque
                 self.StructureVoileMax: float = self.StructureVoile
-                self.EquipageNom=self.Name+"_Equipage"
-                self.Marchandise = Marchandise()
-                print(self.Marchandise.Name)
-                Cargaison =self.Marchandise.GenerateMarchandise(Region)
-                print(Cargaison)
-                self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
-                self.Marchandise.Tonnage=self.TonnageMarchandise
-                self.Marchandise.Name = self.Name + "_Marchandises"
-                self.Marchandise.sauvegarder(self.Name+"_Marchandises")
-                self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
+                if charger==False:
+                    self.EquipageNom=self.Name+"_Equipage"
+                    self.Marchandise = Marchandise()
+                    Cargaison =self.Marchandise.GenerateMarchandise(Region)
+                    self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
+                    self.Marchandise.Tonnage=self.TonnageMarchandise
+                    self.Marchandise.Name = self.Name + "_Marchandises"
+                    self.Marchandise.sauvegarder(self.Name+"_Marchandises")
+                    self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
                 self.ValeurCombat=self.CalculScoreCombat()
                 self.sauvegarder()
 
@@ -302,8 +301,7 @@ class Navire:
 
     @classmethod
     def charger_depuis_csv(cls, nom_fichier: str):
-        import os
-        import csv
+        print("CHARGEMENT NAVIRE :", nom_fichier)
 
         chemin_fichier = os.path.join(
             config.BASE_PATH,
@@ -325,45 +323,44 @@ class Navire:
         donnees = lignes[-1]
 
         # Création d'un navire "vide"
-        navire = cls()
+        navire = cls(charger=True)
 
         # Le nom du navire devient le nom du fichier
         navire.Name = nom_fichier
 
         # Chargement des attributs
+
         for cle, valeur in donnees.items():
 
-            for cle, valeur in donnees.items():
+            if cle in ("Equipage", "Marchandise"):
+                continue
 
-                if cle in ("Equipage", "Marchandise"):
-                    continue
+            if not hasattr(navire, cle):
+                continue
 
-                if not hasattr(navire, cle):
-                    continue
+            if valeur == "":
+                 continue
 
-                if valeur == "":
-                    continue
+            type_origine = type(getattr(navire, cle))
 
-                type_origine = type(getattr(navire, cle))
-
-                try:
-                    if type_origine is bool:
+            try:
+                if type_origine is bool:
                         setattr(navire, cle, valeur.lower() in ("true", "1", "o", "yes"))
 
-                    elif type_origine is int:
+                elif type_origine is int:
                         setattr(navire, cle, int(valeur))
 
-                    elif type_origine is float:
+                elif type_origine is float:
                         setattr(navire, cle, float(valeur.replace(",", ".")))
 
-                    elif type_origine in (list, dict):
-                        pass
+                elif type_origine in (list, dict):
+                    pass
 
-                    else:
-                        setattr(navire, cle, valeur)
+                else:
+                    setattr(navire, cle, valeur)
 
-                except ValueError:
-                    print(f"Erreur de conversion : {cle} = {valeur}")
+            except ValueError:
+                print(f"Erreur de conversion : {cle} = {valeur}")
 
         return navire
 
