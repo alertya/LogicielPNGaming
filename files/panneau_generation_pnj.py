@@ -217,20 +217,7 @@ class PanneauGenerationPNJ(tk.Frame):
             anchor="w"
         )
 
-        # =========================================================
-        # BOUTON GENERATION PNJ
-        # =========================================================
 
-        cadre_bouton = tk.Frame(self)
-
-        cadre_bouton.pack(
-            fill="x",
-            padx=20,
-            pady=20
-        )
-
-
-        self.bouton_generer.pack()
 
     # =============================================================
     # TEXTE AFFICHÉ DANS LES COMBOBOX

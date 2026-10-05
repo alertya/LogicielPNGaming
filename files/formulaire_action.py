@@ -570,7 +570,39 @@ class FormulaireAction(tk.Toplevel):
             self.statut_var.set(message)
             self.rafraichir_instances()
         if self.action == "LanceCompetence":
-            message = self.moteur.LanceCompetence(self.instance_actuelle,Competence)
+
+            tk.Label(
+                self,
+                text="Compétence"
+            ).pack(anchor="w", padx=20, pady=(20, 5))
+
+            self.competence_var = tk.StringVar()
+
+            self.combo_competence = ttk.Combobox(
+                self,
+                textvariable=self.competence_var,
+                values=self.competences,
+                state="readonly",
+                width=30
+            )
+
+            self.combo_competence.pack(
+                anchor="w",
+                padx=20,
+                pady=5
+            )
+
+            if self.competences:
+                self.combo_competence.current(0)
+
+            # Récupération de la compétence sélectionnée
+            Competence = self.competence_var.get()
+
+            message = self.moteur.LanceCompetence(
+                self.instance_actuelle,
+                Competence
+            )
+
             self.statut_var.set(message)
             self.rafraichir_instances()
 
