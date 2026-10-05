@@ -584,8 +584,8 @@ class MoteurExemple(MoteurBase):
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_actions() if marchandise else []
         if onglet == "PNJ":
-            PNJ = PNJ.charger_depuis_csv(instance)
-            return PNJ.get_actions() if PNJ else []
+            pnj= PNJ.charger_depuis_csv(instance)
+            return pnj.get_actions() if PNJ else []
         #if onglet == "Escale":
         #    escale = Escale.charger_depuis_csv(instance)
         #    return escale.get_actions() if escale else []
@@ -848,3 +848,33 @@ class MoteurExemple(MoteurBase):
 
     def get_zones_commerciales(self):
         return utils.LISTE_REGIONS['RegionsCommerciale']
+
+    def generer_pnj_type(self, nom, zone, metier, type_pnj):
+
+        pnj = PNJ(
+            1,
+            nom,
+            Profession=metier,
+            Type=type_pnj
+        )
+
+        pnj.Localisation = zone
+
+        pnj.Save()
+
+        return pnj
+
+    def generer_pnj_profession(self, nom, zone, metier, type_pnj):
+
+        pnj = PNJ(
+            1,
+            nom,
+            Profession=metier,
+            Type=type_pnj
+        )
+
+        pnj.Localisation = zone
+
+        pnj.Save()
+
+        return pnj

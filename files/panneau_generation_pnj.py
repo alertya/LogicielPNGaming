@@ -1,11 +1,6 @@
-from __future__ import annotations
 
 import tkinter as tk
 from tkinter import ttk
-from typing import Callable, List
-import utils
-import config
-import theme
 
 
 class PanneauGenerationPNJ(tk.Frame):
@@ -13,306 +8,343 @@ class PanneauGenerationPNJ(tk.Frame):
     def __init__(
         self,
         parent,
-        zones_commerciales: List[str],
-        metiers: List[str],
-        types_pnj: List[str],
-        on_generer: Callable[[str, str, str, str], None],
+        zones_commerciales,
+        metiers,
+        types_pnj,
+        on_generer,
+        on_generer_metier=None,
+        on_generer_type=None
     ):
-        super().__init__(parent, bg=theme.BG_ROOT)
+        super().__init__(parent)
 
         self.on_generer = on_generer
+        self.on_generer_metier = on_generer_metier
+        self.on_generer_type = on_generer_type
 
-        # ============================================================
-        # EN-TÊTE
-        # ============================================================
+        # On conserve les objets originaux
+        self.zones_commerciales = list(zones_commerciales)
+        self.metiers = list(metiers)
+        self.types_pnj = list(types_pnj)
 
-        entete = tk.Frame(
-            self,
-            bg=theme.BG_PANEL,
-            padx=16,
-            pady=14
-        )
-        entete.pack(fill="x", pady=(0, 12))
-
-        tk.Label(
-            entete,
-            text="Nouveau PNJ",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_TITLE,
-            font=theme.FONT_SECTION,
-        ).grid(
-            row=0,
-            column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(0, 10)
-        )
-
-        # ------------------------------------------------------------
+        # =========================================================
         # NOM
-        # ------------------------------------------------------------
+        # =========================================================
 
-        tk.Label(
-            entete,
-            text="Nom du PNJ",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_MUTED,
-            font=theme.FONT_TEXT,
-        ).grid(
-            row=1,
-            column=0,
-            sticky="w"
-        )
-
-        self.var_nom = tk.StringVar()
-
-        tk.Entry(
-            entete,
-            textvariable=self.var_nom,
-            width=30,
-            bg=theme.BG_INPUT,
-            fg=theme.FG_TEXT,
-            relief="flat",
-            insertbackground=theme.FG_TEXT,
-        ).grid(
-            row=2,
-            column=0,
-            sticky="w",
-            padx=(0, 24),
-            pady=(2, 0)
-        )
-
-        # ------------------------------------------------------------
-        # ZONE COMMERCIALE
-        # ------------------------------------------------------------
-
-        tk.Label(
-            entete,
-            text="Zone commerciale",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_MUTED,
-            font=theme.FONT_TEXT,
-        ).grid(
-            row=1,
-            column=1,
-            sticky="w"
-        )
-
-        self.var_zone = tk.StringVar(
-            value=zones_commerciales.iloc[0] if not zones_commerciales.empty else ""
-        )
-
-        ttk.Combobox(
-            entete,
-            textvariable=self.var_zone,
-            values=zones_commerciales.tolist(),
-            state="readonly",
-            width=24,
-            style="Jeu.TCombobox",
-        ).grid(
-            row=2,
-            column=1,
-            sticky="w",
-            pady=(2, 0)
-        )
-
-        if not zones_commerciales:
-            tk.Label(
-                entete,
-                text="⚠ Aucune zone commerciale trouvée.",
-                bg=theme.BG_PANEL,
-                fg=theme.ERROR,
-                font=theme.FONT_TEXT,
-            ).grid(
-                row=3,
-                column=0,
-                columnspan=2,
-                sticky="w",
-                pady=(10, 0)
-            )
-
-        # ============================================================
-        # CARACTÉRISTIQUES DU PNJ
-        # ============================================================
-
-        caracteristiques = tk.Frame(
-            self,
-            bg=theme.BG_PANEL,
-            padx=16,
-            pady=14
-        )
-        caracteristiques.pack(
+        cadre_nom = tk.Frame(self)
+        cadre_nom.pack(
             fill="x",
-            pady=(0, 12)
+            padx=20,
+            pady=10
         )
 
         tk.Label(
-            caracteristiques,
-            text="Caractéristiques professionnelles",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_TITLE,
-            font=theme.FONT_SECTION,
-        ).grid(
+            cadre_nom,
+            text="Nom du PNJ :"
+        ).pack(
+            side="left",
+            padx=(0, 10)
+        )
+
+        self.nom_var = tk.StringVar()
+
+        self.entry_nom = tk.Entry(
+            cadre_nom,
+            textvariable=self.nom_var
+        )
+
+        self.entry_nom.pack(
+            side="left",
+            fill="x",
+            expand=True
+        )
+
+        # =========================================================
+        # ZONE COMMERCIALE
+        # =========================================================
+
+        cadre_zone = tk.Frame(self)
+        cadre_zone.pack(
+            fill="x",
+            padx=20,
+            pady=10
+        )
+
+        tk.Label(
+            cadre_zone,
+            text="Zone commerciale :"
+        ).pack(
+            side="left",
+            padx=(0, 10)
+        )
+
+        self.zone_var = tk.StringVar()
+
+        self.combo_zone = ttk.Combobox(
+            cadre_zone,
+            textvariable=self.zone_var,
+            values=[
+                self._texte_objet(zone)
+                for zone in self.zones_commerciales
+            ],
+            state="readonly",
+            width=30
+        )
+
+        self.combo_zone.pack(
+            side="left",
+            fill="x",
+            expand=True
+        )
+
+        if self.zones_commerciales:
+            self.combo_zone.current(0)
+
+        # =========================================================
+        # CADRE METIER / TYPE
+        # =========================================================
+
+        cadre_profession = tk.Frame(self)
+
+        cadre_profession.pack(
+            fill="x",
+            padx=20,
+            pady=10
+        )
+
+        # Deux colonnes de même largeur
+        cadre_profession.columnconfigure(0, weight=1)
+        cadre_profession.columnconfigure(1, weight=1)
+
+        # =========================================================
+        # COLONNE GAUCHE : METIER
+        # =========================================================
+
+        cadre_metier = tk.Frame(cadre_profession)
+
+        cadre_metier.grid(
             row=0,
             column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(0, 10)
-        )
-
-        # ============================================================
-        # PARTIE GAUCHE : MÉTIER
-        # ============================================================
-
-        gauche = tk.Frame(
-            caracteristiques,
-            bg=theme.BG_PANEL
-        )
-
-        gauche.grid(
-            row=1,
-            column=0,
-            sticky="nw",
-            padx=(0, 40)
+            sticky="nsew",
+            padx=(0, 10)
         )
 
         tk.Label(
-            gauche,
-            text="Métier",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_MUTED,
-            font=theme.FONT_TEXT,
+            cadre_metier,
+            text="Métier"
         ).pack(
             anchor="w"
         )
 
-        self.var_metier = tk.StringVar(
-            value=metiers[0] if metiers else ""
-        )
+        self.metier_var = tk.StringVar()
 
-        ttk.Combobox(
-            gauche,
-            textvariable=self.var_metier,
-            values=metiers,
+        self.combo_metier = ttk.Combobox(
+            cadre_metier,
+            textvariable=self.metier_var,
+            values=[
+                self._texte_objet(metier)
+                for metier in self.metiers
+            ],
             state="readonly",
-            width=30,
-            style="Jeu.TCombobox",
-        ).pack(
-            anchor="w",
-            pady=(2, 0)
+            width=30
         )
 
-        if not metiers:
-            tk.Label(
-                gauche,
-                text="⚠ Aucun métier trouvé.",
-                bg=theme.BG_PANEL,
-                fg=theme.ERROR,
-                font=theme.FONT_TEXT,
-            ).pack(
-                anchor="w",
-                pady=(5, 0)
-            )
-
-        # ============================================================
-        # PARTIE DROITE : TYPE
-        # ============================================================
-
-        droite = tk.Frame(
-            caracteristiques,
-            bg=theme.BG_PANEL
+        self.combo_metier.pack(
+            fill="x",
+            pady=(5, 8)
         )
 
-        droite.grid(
-            row=1,
+        if self.metiers:
+            self.combo_metier.current(0)
+
+        self.bouton_generer_metier = tk.Button(
+            cadre_metier,
+            text="Générer profession",
+            command=self._generer_metier
+        )
+
+        self.bouton_generer_metier.pack(
+            anchor="w"
+        )
+
+        # =========================================================
+        # COLONNE DROITE : TYPE
+        # =========================================================
+
+        cadre_type = tk.Frame(cadre_profession)
+
+        cadre_type.grid(
+            row=0,
             column=1,
-            sticky="nw"
+            sticky="nsew",
+            padx=(10, 0)
         )
 
         tk.Label(
-            droite,
-            text="Type",
-            bg=theme.BG_PANEL,
-            fg=theme.FG_MUTED,
-            font=theme.FONT_TEXT,
+            cadre_type,
+            text="Type"
         ).pack(
             anchor="w"
         )
 
-        self.var_type = tk.StringVar(
-            value=types_pnj[0] if types_pnj else ""
-        )
+        self.type_var = tk.StringVar()
 
-        ttk.Combobox(
-            droite,
-            textvariable=self.var_type,
-            values=types_pnj,
+        self.combo_type = ttk.Combobox(
+            cadre_type,
+            textvariable=self.type_var,
+            values=[
+                self._texte_objet(type_pnj)
+                for type_pnj in self.types_pnj
+            ],
             state="readonly",
-            width=30,
-            style="Jeu.TCombobox",
-        ).pack(
-            anchor="w",
-            pady=(2, 0)
+            width=30
         )
 
-        if not types_pnj:
-            tk.Label(
-                droite,
-                text="⚠ Aucun type trouvé.",
-                bg=theme.BG_PANEL,
-                fg=theme.ERROR,
-                font=theme.FONT_TEXT,
-            ).pack(
-                anchor="w",
-                pady=(5, 0)
+        self.combo_type.pack(
+            fill="x",
+            pady=(5, 8)
+        )
+
+        if self.types_pnj:
+            self.combo_type.current(0)
+
+        self.bouton_generer_type = tk.Button(
+            cadre_type,
+            text="Générer type",
+            command=self._generer_type
+        )
+
+        self.bouton_generer_type.pack(
+            anchor="w"
+        )
+
+        # =========================================================
+        # BOUTON GENERATION PNJ
+        # =========================================================
+
+        cadre_bouton = tk.Frame(self)
+
+        cadre_bouton.pack(
+            fill="x",
+            padx=20,
+            pady=20
+        )
+
+        self.bouton_generer = tk.Button(
+            cadre_bouton,
+            text="Générer le PNJ",
+            command=self._generer
+        )
+
+        self.bouton_generer.pack()
+
+    # =============================================================
+    # TEXTE AFFICHÉ DANS LES COMBOBOX
+    # =============================================================
+
+    @staticmethod
+    def _texte_objet(objet):
+
+        if isinstance(objet, str):
+            return objet
+
+        if hasattr(objet, "Name"):
+            return str(objet.Name)
+
+        if hasattr(objet, "Nom"):
+            return str(objet.Nom)
+
+        if hasattr(objet, "nom"):
+            return str(objet.nom)
+
+        return str(objet)
+
+    # =============================================================
+    # RECUPERATION DE L'OBJET SELECTIONNE
+    # =============================================================
+
+    def _objet_selectionne(self, combobox, objets):
+
+        index = combobox.current()
+
+        if index < 0:
+            return None
+
+        if index >= len(objets):
+            return None
+
+        return objets[index]
+
+    # =============================================================
+    # GENERER UNE PROFESSION
+    # =============================================================
+
+    def _generer_metier(self):
+
+        if self.on_generer_metier is not None:
+            self.on_generer_metier(
+                self._objet_selectionne(
+                    self.combo_metier,
+                    self.metiers
+                )
             )
 
-        # ============================================================
-        # BOUTON DE GÉNÉRATION
-        # ============================================================
+    # =============================================================
+    # GENERER UN TYPE
+    # =============================================================
 
-        bas = tk.Frame(
-            self,
-            bg=theme.BG_ROOT,
-            pady=4
-        )
-        bas.pack(fill="x")
+    def _generer_type(self):
 
-        tk.Button(
-            bas,
-            text="Générer le PNJ",
-            font=theme.FONT_TEXT_BOLD,
-            bg=theme.ACCENT,
-            fg="#231a08",
-            relief="flat",
-            cursor="hand2",
-            padx=20,
-            pady=7,
-            activebackground=theme.ACCENT_HOVER,
-            command=self._generer,
-        ).pack(
-            side="left"
-        )
+        if self.on_generer_type is not None:
+            self.on_generer_type(
+                self._objet_selectionne(
+                    self.combo_type,
+                    self.types_pnj
+                )
+            )
 
-    # ================================================================
-    # GÉNÉRATION
-    # ================================================================
+    # =============================================================
+    # GENERATION DU PNJ
+    # =============================================================
 
     def _generer(self):
 
-        nom = self.var_nom.get().strip()
+        nom = self.nom_var.get().strip()
 
+        zone = self._objet_selectionne(
+            self.combo_zone,
+            self.zones_commerciales
+        )
+
+        metier = self._objet_selectionne(
+            self.combo_metier,
+            self.metiers
+        )
+
+        type_pnj = self._objet_selectionne(
+            self.combo_type,
+            self.types_pnj
+        )
+
+        # Vérification
         if not nom:
             return
 
-        zone = self.var_zone.get()
-        metier = self.var_metier.get()
-        type_pnj = self.var_type.get()
+        if zone is None:
+            return
 
+        if metier is None:
+            return
+
+        if type_pnj is None:
+            return
+
+        # Transmission des OBJETS originaux
         self.on_generer(
             nom,
             zone,
             metier,
-            type_pnj,
+            type_pnj
         )
+
+### Dans `app.py`
 

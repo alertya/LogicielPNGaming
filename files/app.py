@@ -542,23 +542,25 @@ class App(tk.Tk):
     # Panneau spécial : PNJ -> Générer
     # ------------------------------------------------------------------ #
     def _construire_panneau_generation_PNJ(self):
+
         for w in self.panneau_contenu.winfo_children():
             w.destroy()
 
-        # Récupération des données depuis le moteur
         zones_commerciales = self.moteur.get_zones_commerciales()
         metiers = self.moteur.get_metiers()
         types_pnj = self.moteur.get_types_pnj()
 
-        panneau = PanneauGenerationPNJ(
+        self.panneau_pnj = PanneauGenerationPNJ(
             self.panneau_contenu,
-            zones_commerciales=zones_commerciales,
-            metiers=metiers,
-            types_pnj=types_pnj,
-            on_generer=self._generer_pnj
+            zones_commerciales,
+            metiers,
+            types_pnj,
+            on_generer=self._generer_pnj,
+            on_generer_metier=self._generer_metier_pnj,
+            on_generer_type=self._generer_type_pnj
         )
 
-        panneau.pack(
+        self.panneau_pnj.pack(
             fill="both",
             expand=True
         )
@@ -825,3 +827,62 @@ class App(tk.Tk):
 
         self.statut_var.set(message)
         self.rafraichir_contenu()
+
+    def _generer_metier_pnj(self, metier):
+        print("Métier sélectionné :", metier)
+
+    def _generer_type_pnj(self, type_pnj):
+
+        nom = self.panneau_pnj.nom_var.get().strip()
+
+        zone = self.panneau_pnj._objet_selectionne(
+            self.panneau_pnj.combo_zone,
+            self.panneau_pnj.zones_commerciales
+        )
+
+        metier = self.panneau_pnj._objet_selectionne(
+            self.panneau_pnj.combo_metier,
+            self.panneau_pnj.metiers
+        )
+
+        if not nom or zone is None:
+            return
+
+        pnj = self.moteur.generer_pnj_type(
+            nom,
+            zone,
+            metier,
+            type_pnj
+        )
+
+        self.statut_var.set(
+            f"PNJ {nom} généré."
+        )
+
+    def _generer_metier_pnj(self, metier):
+
+        nom = self.panneau_pnj.nom_var.get().strip()
+
+        zone = self.panneau_pnj._objet_selectionne(
+            self.panneau_pnj.combo_zone,
+            self.panneau_pnj.zones_commerciales
+        )
+
+        type_pnj = self.panneau_pnj._objet_selectionne(
+            self.panneau_pnj.combo_type,
+            self.panneau_pnj.types_pnj
+        )
+
+        if not nom or zone is None:
+            return
+
+        pnj = self.moteur.generer_pnj_profession(
+            nom,
+            zone,
+            metier,
+            type_pnj
+        )
+
+        self.statut_var.set(
+            f"PNJ {nom} généré."
+        )

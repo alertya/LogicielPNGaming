@@ -184,5 +184,6 @@ class PNJ:
         }
 
 
-
+    def get_actions(self):
+        return ['LanceCompetence']
 
