@@ -229,11 +229,6 @@ class PanneauGenerationPNJ(tk.Frame):
             pady=20
         )
 
-        self.bouton_generer = tk.Button(
-            cadre_bouton,
-            text="Générer le PNJ",
-            command=self._generer
-        )
 
         self.bouton_generer.pack()
 
