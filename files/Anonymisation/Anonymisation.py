@@ -1,8 +1,10 @@
+
 import re
 from pathlib import Path
 from collections import Counter, defaultdict
 
-from docx import Document
+import fitz  # PyMuPDF
+
 from openpyxl import Workbook
 from openpyxl.styles import Font
 
@@ -11,37 +13,35 @@ from openpyxl.styles import Font
 # CONFIGURATION
 # ============================================================
 
-# Dossier contenant les contrats Word
-DOSSIER_ENTREE = Path("documents")
+# Dossier contenant les PDF
+DOSSIER_ENTREE = 'C:\Users\aleti\OneDrive\Documents\AnonymisationDocument\documents'
+
 print(DOSSIER_ENTREE)
+
 # Fichier Excel de sortie
 FICHIER_SORTIE = Path("noms_propres.xlsx")
 
 
 # ============================================================
-# EXTRACTION DU TEXTE WORD
+# EXTRACTION DU TEXTE PDF
 # ============================================================
 
-def extraire_texte_document(docx_path):
+def extraire_texte_document(pdf_path):
     """
-    Extrait le texte des paragraphes et des tableaux d'un fichier DOCX.
+    Extrait le texte de toutes les pages d'un fichier PDF.
     """
-
-    document = Document(docx_path)
 
     textes = []
 
-    # Paragraphes
-    for paragraphe in document.paragraphs:
-        if paragraphe.text.strip():
-            textes.append(paragraphe.text)
+    document = fitz.open(pdf_path)
 
-    # Tableaux
-    for tableau in document.tables:
-        for ligne in tableau.rows:
-            for cellule in ligne.cells:
-                if cellule.text.strip():
-                    textes.append(cellule.text)
+    for page in document:
+        texte = page.get_text()
+
+        if texte.strip():
+            textes.append(texte)
+
+    document.close()
 
     return "\n".join(textes)
 
@@ -73,7 +73,13 @@ def trouver_noms_propres(texte):
     # la position de chaque mot.
     pattern_mots = r"\b[\wÀ-ÖØ-öø-ÿ'-]+\b"
 
-    mots = list(re.finditer(pattern_mots, texte, flags=re.UNICODE))
+    mots = list(
+        re.finditer(
+            pattern_mots,
+            texte,
+            flags=re.UNICODE
+        )
+    )
 
     for match in mots:
 
@@ -143,17 +149,17 @@ def trouver_noms_propres(texte):
 
 def analyser_documents(dossier):
     """
-    Analyse tous les fichiers DOCX du dossier.
+    Analyse tous les fichiers PDF du dossier.
     """
 
     compteur = Counter()
 
     fichiers_par_nom = defaultdict(set)
 
-    fichiers = list(dossier.glob("*.docx"))
+    fichiers = list(dossier.glob("*.pdf"))
 
     if not fichiers:
-        print("Aucun fichier .docx trouvé dans :", dossier)
+        print("Aucun fichier .pdf trouvé dans :", dossier)
         return compteur, fichiers_par_nom
 
     print(f"{len(fichiers)} document(s) trouvé(s).\n")
@@ -163,6 +169,7 @@ def analyser_documents(dossier):
         print(f"Analyse : {fichier.name}")
 
         try:
+
             texte = extraire_texte_document(fichier)
 
             noms = trouver_noms_propres(texte)
@@ -172,9 +179,12 @@ def analyser_documents(dossier):
             for nom in set(noms):
                 fichiers_par_nom[nom].add(fichier.name)
 
-            print(f"  -> {len(noms)} occurrence(s) détectée(s)")
+            print(
+                f"  -> {len(noms)} occurrence(s) détectée(s)"
+            )
 
         except Exception as e:
+
             print(f"  ERREUR : {e}")
 
     return compteur, fichiers_par_nom
@@ -198,81 +208,4 @@ def creer_excel(compteur, fichiers_par_nom, fichier_sortie):
     ws.title = "Noms propres"
 
     # En-têtes
-    ws["A1"] = "Nom propre"
-    ws["B1"] = "Occurrences"
-    ws["C1"] = "Fichiers concernés"
-
-    # Mise en forme des en-têtes
-    for cellule in ws[1]:
-        cellule.font = Font(bold=True)
-
-    # Tri par nombre d'occurrences décroissant
-    noms_tries = sorted(
-        compteur.items(),
-        key=lambda x: (-x[1], x[0].lower())
-    )
-
-    ligne = 2
-
-    for nom, occurrences in noms_tries:
-
-        ws.cell(ligne, 1, nom)
-        ws.cell(ligne, 2, occurrences)
-
-        fichiers = sorted(fichiers_par_nom[nom])
-
-        ws.cell(
-            ligne,
-            3,
-            "; ".join(fichiers)
-        )
-
-        ligne += 1
-
-    # Largeur des colonnes
-    ws.column_dimensions["A"].width = 35
-    ws.column_dimensions["B"].width = 15
-    ws.column_dimensions["C"].width = 60
-
-    # Filtre automatique
-    ws.auto_filter.ref = f"A1:C{ligne - 1}"
-
-    # Figer la première ligne
-    ws.freeze_panes = "A2"
-
-    wb.save(fichier_sortie)
-
-    print("\n======================================")
-    print("Analyse terminée")
-    print("======================================")
-    print(f"Noms uniques : {len(compteur)}")
-    print(f"Excel créé : {fichier_sortie.absolute()}")
-
-
-# ============================================================
-# PROGRAMME PRINCIPAL
-# ============================================================
-
-if __name__ == "__main__":
-
-    # Vérification du dossier
-    if not DOSSIER_ENTREE.exists():
-        DOSSIER_ENTREE.mkdir(parents=True)
-
-        print()
-        print("Le dossier 'documents' vient d'être créé.")
-        print("Place tes fichiers Word .docx dedans,")
-        print("puis relance le programme.")
-        print()
-
-    else:
-
-        compteur, fichiers_par_nom = analyser_documents(
-            DOSSIER_ENTREE
-        )
-
-        creer_excel(
-            compteur,
-            fichiers_par_nom,
-            FICHIER_SORTIE
-        )
+```

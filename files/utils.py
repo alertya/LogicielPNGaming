@@ -513,3 +513,12 @@ LISTE_METIER_PROF= pd.read_csv(
             decimal=",",
             encoding="cp1252"
         )
+
+NOMS_NAVIRE= pd.read_csv(
+            config.BASE_PATH + "/NomNavire.csv",
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
+
+GENE_NAVIRE=pd.read_csv(config.BASE_PATH + "/GeneNavire.csv",sep=";",decimal=",",encoding="cp1252")

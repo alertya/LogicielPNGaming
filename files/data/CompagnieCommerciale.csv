@@ -2,13 +2,13 @@ Zone;Acteur;Nationalite;Proba;Intervalle;PeriodMin;PeriodMax
 Proche-Orient;Marchand;Ar;1;20;1300;1601
 Proche-Orient;Marchand;EM;1;35;1300;1601
 Proche-Orient;Marchand;EO;1;61;1300;1601
-Proche-Orient;Marchand;P;1;100;1300;1601
+Proche-Orient;Marchand;Po;1;100;1300;1601
 Proche-Orient;Marchand;Ar;2;31;1602;1621
 Proche-Orient;Marchand;EM;2;36;1602;1621
 Proche-Orient;Marchand;EO;2;37;1602;1621
 Proche-Orient;Marchand;GB;2;55;1602;1621
 Proche-Orient;Marchand;D;2;62;1602;1621
-Proche-Orient;Marchand;P;2;79;1602;1621
+Proche-Orient;Marchand;Po;2;79;1602;1621
 Proche-Orient;Interlope;PU;2;82;1602;1621
 Proche-Orient;Compagnie néerlandaise des indes orientales;PU;2;100;1602;1621
 Proche-Orient;Marchand;Ar;2;12;1622;1641
@@ -24,7 +24,7 @@ Proche-Orient;Marchand;EO;2;41;1642;1657
 Proche-Orient;Marchand;GB;2;60;1642;1657
 Proche-Orient;Marchand;D;2;67;1642;1657
 Proche-Orient;Compagnie d'orient;F;2;71;1642;1657
-Proche-Orient;Marchand;P;2;77;1642;1657
+Proche-Orient;Marchand;Po;2;77;1642;1657
 Proche-Orient;Interlope;PU;2;81;1642;1657
 Proche-Orient;Compagnie néerlandaise des indes orientales;PU;2;100;1642;1657
 Proche-Orient;Marchand;Ar;2;92;1658;1659
@@ -92,16 +92,16 @@ OcÃ©an Indien;Compagnie de Chine;F;2;100;1800;3000
 OcÃ©an Indien;Marchand;Ar;1;14;1300;1596
 OcÃ©an Indien;Marchand;EM;1;28;1300;1596
 OcÃ©an Indien;Marchand;EO;1;52;1300;1596
-OcÃ©an Indien;Marchand;P;1;100;1300;1596
+OcÃ©an Indien;Marchand;Po;1;100;1300;1596
 OcÃ©an Indien;Marchand;Ar;1;13;1597;1598
 OcÃ©an Indien;Marchand;EM;1;27;1597;1598
 OcÃ©an Indien;Marchand;EO;1;50;1597;1598
-OcÃ©an Indien;Marchand;P;1;95;1597;1598
+OcÃ©an Indien;Marchand;Po;1;95;1597;1598
 OcÃ©an Indien;Compagnie de Moucheron;PU;1;100;1597;1598
 OcÃ©an Indien;Marchand;Ar;2;13;1599;1599
 OcÃ©an Indien;Marchand;EM;2;26;1599;1599
 OcÃ©an Indien;Marchand;EO;2;47;1599;1599
-OcÃ©an Indien;Marchand;P;2;91;1599;1599
+OcÃ©an Indien;Marchand;Po;2;91;1599;1599
 OcÃ©an Indien;Compagnie de Moucheron;PU;2;95;1599;1599
 OcÃ©an Indien;Compagnie du Brabant;PU;2;100;1599;1599
 OcÃ©an Indien;Marchand;Ar;2;10;1600;1601
@@ -109,7 +109,7 @@ OcÃ©an Indien;Marchand;EM;2;20;1600;1601
 OcÃ©an Indien;Marchand;EO;2;37;1600;1601
 OcÃ©an Indien;Interlope;GB;2;41;1600;1601
 OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;2;58;1600;1601
-OcÃ©an Indien;Marchand;P;2;93;1600;1601
+OcÃ©an Indien;Marchand;Po;2;93;1600;1601
 OcÃ©an Indien;Compagnie de Moucheron;PU;2;96;1600;1601
 OcÃ©an Indien;Compagnie du Brabant;PU;2;100;1600;1601
 OcÃ©an Indien;Marchand;Ar;3;8;1602;1602
@@ -117,7 +117,7 @@ OcÃ©an Indien;Marchand;EM;3;17;1602;1602
 OcÃ©an Indien;Marchand;EO;3;31;1602;1602
 OcÃ©an Indien;Interlope;GB;3;34;1602;1602
 OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;3;48;1602;1602
-OcÃ©an Indien;Marchand;P;3;77;1602;1602
+OcÃ©an Indien;Marchand;Po;3;77;1602;1602
 OcÃ©an Indien;Compagnie de Moucheron;PU;3;80;1602;1602
 OcÃ©an Indien;Compagnie du Brabant;PU;3;82;1602;1602
 OcÃ©an Indien;Interlope;PU;3;85;1602;1602
@@ -127,7 +127,7 @@ OcÃ©an Indien;Marchand;EM;2;18;1603;1603
 OcÃ©an Indien;Marchand;EO;2;33;1603;1603
 OcÃ©an Indien;Interlope;GB;2;36;1603;1603
 OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;2;51;1603;1603
-OcÃ©an Indien;Marchand;P;2;81;1603;1603
+OcÃ©an Indien;Marchand;Po;2;81;1603;1603
 OcÃ©an Indien;Interlope;PU;2;84;1603;1603
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;2;100;1603;1603
 OcÃ©an Indien;Marchand;Ar;3;8;1604;1610
@@ -137,7 +137,7 @@ OcÃ©an Indien;Interlope;GB;3;32;1604;1610
 OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;3;45;1604;1610
 OcÃ©an Indien;Marchand;F;3;54;1604;1610
 OcÃ©an Indien;Compagnie Le Roy et Godefroy;F;3;56;1604;1610
-OcÃ©an Indien;Marchand;P;3;83;1604;1610
+OcÃ©an Indien;Marchand;Po;3;83;1604;1610
 OcÃ©an Indien;Interlope;PU;3;86;1604;1610
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1604;1610
 OcÃ©an Indien;Marchand;Ar;3;7;1611;1614
@@ -148,7 +148,7 @@ OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;3;44;1611;1614
 OcÃ©an Indien;Marchand;F;3;52;1611;1614
 OcÃ©an Indien;Compagnie Le Roy et Godefroy;F;3;55;1611;1614
 OcÃ©an Indien;Compagnie de Montmorency pour les Indes Orientales;F;3;57;1611;1614
-OcÃ©an Indien;Marchand;P;3;84;1611;1614
+OcÃ©an Indien;Marchand;Po;3;84;1611;1614
 OcÃ©an Indien;Interlope;PU;3;86;1611;1614
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1611;1614
 OcÃ©an Indien;Marchand;Ar;3;7;1615;1615
@@ -159,7 +159,7 @@ OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;3;44;1615;1615
 OcÃ©an Indien;Marchand;F;3;52;1615;1615
 OcÃ©an Indien;Compagnie des Moluques;F;3;55;1615;1615
 OcÃ©an Indien;Compagnie de Montmorency pour les Indes Orientales;F;3;57;1615;1615
-OcÃ©an Indien;Marchand;P;3;84;1615;1615
+OcÃ©an Indien;Marchand;Po;3;84;1615;1615
 OcÃ©an Indien;Interlope;PU;3;86;1615;1615
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1615;1615
 OcÃ©an Indien;Marchand;Ar;3;7;1616;1620
@@ -172,7 +172,7 @@ OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;50;1616;1620
 OcÃ©an Indien;Marchand;F;3;57;1616;1620
 OcÃ©an Indien;Compagnie des Moluques;F;3;59;1616;1620
 OcÃ©an Indien;Compagnie de Montmorency pour les Indes Orientales;F;3;61;1616;1620
-OcÃ©an Indien;Marchand;P;3;85;1616;1620
+OcÃ©an Indien;Marchand;Po;3;85;1616;1620
 OcÃ©an Indien;Interlope;PU;3;88;1616;1620
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1616;1620
 OcÃ©an Indien;Marchand;Ar;3;7;1621;1641
@@ -184,7 +184,7 @@ OcÃ©an Indien;Interlope;D;3;43;1621;1641
 OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;51;1621;1641
 OcÃ©an Indien;Marchand;F;3;58;1621;1641
 OcÃ©an Indien;Compagnie des Moluques;F;3;60;1621;1641
-OcÃ©an Indien;Marchand;P;3;85;1621;1641
+OcÃ©an Indien;Marchand;Po;3;85;1621;1641
 OcÃ©an Indien;Interlope;PU;3;87;1621;1641
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1621;1641
 OcÃ©an Indien;Marchand;Ar;3;5;1642;1657
@@ -198,7 +198,7 @@ OcÃ©an Indien;Marchand;F;3;45;1642;1657
 OcÃ©an Indien;Interlope;F;3;47;1642;1657
 OcÃ©an Indien;Compagnie anglaise des Indes Orientales;F;3;66;1642;1657
 OcÃ©an Indien;Compagnie des Moluques;F;3;69;1642;1657
-OcÃ©an Indien;Marchand;P;3;88;1642;1657
+OcÃ©an Indien;Marchand;Po;3;88;1642;1657
 OcÃ©an Indien;Interlope;PU;3;90;1642;1657
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1642;1657
 OcÃ©an Indien;Marchand;Ar;3;7;1658;1659
@@ -209,7 +209,7 @@ OcÃ©an Indien;Compagnie anglaise des Indes Orientales;GB;3;42;1658;1659
 OcÃ©an Indien;Interlope;D;3;45;1658;1659
 OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;52;1658;1659
 OcÃ©an Indien;Marchand;F;3;60;1658;1659
-OcÃ©an Indien;Marchand;P;3;85;1658;1659
+OcÃ©an Indien;Marchand;Po;3;85;1658;1659
 OcÃ©an Indien;Interlope;PU;3;87;1658;1659
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1658;1659
 OcÃ©an Indien;Marchand;Ar;3;6;1661;1663
@@ -222,7 +222,7 @@ OcÃ©an Indien;Interlope;D;3;50;1661;1663
 OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;56;1661;1663
 OcÃ©an Indien;Marchand;F;3;62;1661;1663
 OcÃ©an Indien;Compagnie de Chine;F;3;66;1661;1663
-OcÃ©an Indien;Marchand;P;3;87;1661;1663
+OcÃ©an Indien;Marchand;Po;3;87;1661;1663
 OcÃ©an Indien;Interlope;PU;3;89;1661;1663
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1661;1663
 OcÃ©an Indien;Marchand;Ar;4;5;1664;1700
@@ -237,7 +237,7 @@ OcÃ©an Indien;Marchand;F;4;54;1664;1700
 OcÃ©an Indien;Interlope;F;4;56;1664;1700
 OcÃ©an Indien;Compagnie de Chine;F;4;60;1664;1700
 OcÃ©an Indien;Compagnie des indes;F;4;70;1664;1700
-OcÃ©an Indien;Marchand;P;4;89;1664;1700
+OcÃ©an Indien;Marchand;Po;4;89;1664;1700
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;100;1664;1700
 OcÃ©an Indien;Marchand;Ar;3;6;1701;1701
 OcÃ©an Indien;Marchand;EM;3;12;1701;1701
@@ -249,7 +249,7 @@ OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;54;1701;1701
 OcÃ©an Indien;Marchand;F;3;61;1701;1701
 OcÃ©an Indien;Compagnie de Chine;F;3;66;1701;1701
 OcÃ©an Indien;Compagnie française des indes orientales;F;3;79;1701;1701
-OcÃ©an Indien;Marchand;P;3;87;1701;1701
+OcÃ©an Indien;Marchand;Po;3;87;1701;1701
 OcÃ©an Indien;Interlope;PU;3;89;1701;1701
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1701;1701
 OcÃ©an Indien;Marchand;Ar;3;6;1702;1718
@@ -262,7 +262,7 @@ OcÃ©an Indien;Compagnie danoise des indes orientales;D;3;55;1702;1718
 OcÃ©an Indien;Marchand;F;3;61;1702;1718
 OcÃ©an Indien;Compagnie de Chine;F;3;65;1702;1718
 OcÃ©an Indien;Compagnie française des indes orientales;F;3;78;1702;1718
-OcÃ©an Indien;Marchand;P;3;87;1702;1718
+OcÃ©an Indien;Marchand;Po;3;87;1702;1718
 OcÃ©an Indien;Interlope;PU;3;89;1702;1718
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1702;1718
 OcÃ©an Indien;Marchand;Ar;4;5;1719;1722
@@ -277,7 +277,7 @@ OcÃ©an Indien;Interlope;F;4;58;1719;1722
 OcÃ©an Indien;Compagnie de Chine;F;4;62;1719;1722
 OcÃ©an Indien;Compagnie des indes;F;4;73;1719;1722
 OcÃ©an Indien;Compagnie des indes;F;4;84;1719;1722
-OcÃ©an Indien;Marchand;P;4;88;1719;1722
+OcÃ©an Indien;Marchand;Po;4;88;1719;1722
 OcÃ©an Indien;Interlope;PU;4;90;1719;1722
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;100;1719;1722
 OcÃ©an Indien;Marchand;Ar;4;5;1723;1729
@@ -293,7 +293,7 @@ OcÃ©an Indien;Interlope;F;4;59;1723;1729
 OcÃ©an Indien;Compagnie de Chine;F;4;62;1723;1729
 OcÃ©an Indien;Compagnie française des indes orientales;F;4;74;1723;1729
 OcÃ©an Indien;Compagnie des indes;F;4;85;1723;1729
-OcÃ©an Indien;Marchand;P;4;88;1723;1729
+OcÃ©an Indien;Marchand;Po;4;88;1723;1729
 OcÃ©an Indien;Interlope;PU;4;90;1723;1729
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;100;1723;1729
 OcÃ©an Indien;Marchand;Ar;3;6;1730;1731
@@ -307,7 +307,7 @@ OcÃ©an Indien;Interlope;F;3;56;1730;1731
 OcÃ©an Indien;Compagnie de Chine;F;3;60;1730;1731
 OcÃ©an Indien;Compagnie française des indes orientales;F;3;72;1730;1731
 OcÃ©an Indien;Compagnie des indes;F;3;84;1730;1731
-OcÃ©an Indien;Marchand;P;3;88;1730;1731
+OcÃ©an Indien;Marchand;Po;3;88;1730;1731
 OcÃ©an Indien;Interlope;PU;3;90;1730;1731
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;3;100;1730;1731
 OcÃ©an Indien;Marchand;Ar;4;5;1732;1733
@@ -323,7 +323,7 @@ OcÃ©an Indien;Interlope;F;4;58;1732;1733
 OcÃ©an Indien;Compagnie de Chine;F;4;62;1732;1733
 OcÃ©an Indien;Compagnie française des indes orientales;F;4;73;1732;1733
 OcÃ©an Indien;Compagnie des indes;F;4;84;1732;1733
-OcÃ©an Indien;Marchand;P;4;89;1732;1733
+OcÃ©an Indien;Marchand;Po;4;89;1732;1733
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;100;1732;1733
 OcÃ©an Indien;Marchand;Ar;4;5;1734;1763
 OcÃ©an Indien;Marchand;EM;4;11;1734;1763
@@ -337,7 +337,7 @@ OcÃ©an Indien;Interlope;F;4;57;1734;1763
 OcÃ©an Indien;Compagnie de Chine;F;4;61;1734;1763
 OcÃ©an Indien;Compagnie des indes;F;4;73;1734;1763
 OcÃ©an Indien;Compagnie des indes;F;4;73;1734;1763
-OcÃ©an Indien;Marchand;P;4;84;1734;1763
+OcÃ©an Indien;Marchand;Po;4;84;1734;1763
 OcÃ©an Indien;Interlope;PU;4;88;1734;1763
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;100;1734;1763
 OcÃ©an Indien;Marchand;Ar;4;5;1764;1672
@@ -352,7 +352,7 @@ OcÃ©an Indien;Interlope;F;4;57;1764;1672
 OcÃ©an Indien;Compagnie de Chine;F;4;61;1764;1672
 OcÃ©an Indien;Compagnie française des indes orientales;F;4;61;1764;1672
 OcÃ©an Indien;Compagnie des indes;F;4;71;1764;1672
-OcÃ©an Indien;Marchand;P;4;80;1764;1672
+OcÃ©an Indien;Marchand;Po;4;80;1764;1672
 OcÃ©an Indien;Interlope;PU;4;82;1764;1672
 OcÃ©an Indien;Compagnie néerlandaise des indes orientales;PU;4;93;1764;1672
 OcÃ©an Indien;Marchand;S;4;95;1764;1672
@@ -444,25 +444,25 @@ Empire Moghol;Compagnie suÃ©doise des Indes Orientales;S;2;100;1809;3000
 Empire Moghol;Marchand;Ar;1;20;1300;1584
 Empire Moghol;Marchand;EM;1;35;1300;1584
 Empire Moghol;Marchand;EO;1;61;1300;1584
-Empire Moghol;Marchand;P;1;100;1300;1584
+Empire Moghol;Marchand;Po;1;100;1300;1584
 Empire Moghol;Marchand;Ar;1;18;1599;1599
 Empire Moghol;Marchand;EM;1;36;1599;1599
 Empire Moghol;Marchand;EO;1;66;1599;1599
-Empire Moghol;Marchand;P;1;96;1599;1599
+Empire Moghol;Marchand;Po;1;96;1599;1599
 Empire Moghol;Compagnie du Brabant;PU;1;100;1599;1599
 Empire Moghol;Marchand;Ar;2;13;1600;1601
 Empire Moghol;Marchand;EM;2;26;1600;1601
 Empire Moghol;Marchand;EO;2;48;1600;1601
 Empire Moghol;Interlope;GB;2;53;1600;1601
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;2;75;1600;1601
-Empire Moghol;Marchand;P;2;97;1600;1601
+Empire Moghol;Marchand;Po;2;97;1600;1601
 Empire Moghol;Compagnie du Brabant;PU;2;100;1600;1601
 Empire Moghol;Marchand;Ar;2;10;1602;1602
 Empire Moghol;Marchand;EM;2;21;1602;1602
 Empire Moghol;Marchand;EO;2;38;1602;1602
 Empire Moghol;Interlope;GB;2;42;1602;1602
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;2;59;1602;1602
-Empire Moghol;Marchand;P;2;77;1602;1602
+Empire Moghol;Marchand;Po;2;77;1602;1602
 Empire Moghol;Interlope;PU;2;82;1602;1602
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;2;100;1602;1602
 Empire Moghol;Marchand;Ar;2;10;1603;1603
@@ -470,7 +470,7 @@ Empire Moghol;Marchand;EM;2;21;1603;1603
 Empire Moghol;Marchand;EO;2;39;1603;1603
 Empire Moghol;Interlope;GB;2;42;1603;1603
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;2;60;1603;1603
-Empire Moghol;Marchand;P;2;78;1603;1603
+Empire Moghol;Marchand;Po;2;78;1603;1603
 Empire Moghol;Interlope;PU;2;82;1603;1603
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;2;100;1603;1603
 Empire Moghol;Marchand;Ar;3;10;1604;1610
@@ -480,7 +480,7 @@ Empire Moghol;Interlope;GB;3;40;1604;1610
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;56;1604;1610
 Empire Moghol;Marchand;F;3;60;1604;1610
 Empire Moghol;Compagnie Le Roy et Godefroy;F;3;63;1604;1610
-Empire Moghol;Marchand;P;3;80;1604;1610
+Empire Moghol;Marchand;Po;3;80;1604;1610
 Empire Moghol;Interlope;PU;3;83;1604;1610
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1604;1610
 Empire Moghol;Marchand;Ar;3;9;1611;1614
@@ -490,7 +490,7 @@ Empire Moghol;Interlope;GB;3;39;1611;1614
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;55;1611;1614
 Empire Moghol;Marchand;F;3;60;1611;1614
 Empire Moghol;Compagnie Le Roy et Godefroy;F;3;62;1611;1614
-Empire Moghol;Marchand;P;3;80;1611;1614
+Empire Moghol;Marchand;Po;3;80;1611;1614
 Empire Moghol;Interlope;PU;3;83;1611;1614
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1611;1614
 Empire Moghol;Marchand;Ar;3;9;1615;1615
@@ -500,7 +500,7 @@ Empire Moghol;Interlope;GB;3;39;1615;1615
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;55;1615;1615
 Empire Moghol;Marchand;F;3;60;1615;1615
 Empire Moghol;Compagnie des Moluques;F;3;62;1615;1615
-Empire Moghol;Marchand;P;3;80;1615;1615
+Empire Moghol;Marchand;Po;3;80;1615;1615
 Empire Moghol;Interlope;PU;3;83;1615;1615
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1615;1615
 Empire Moghol;Marchand;Ar;4;8;1616;1620
@@ -512,7 +512,7 @@ Empire Moghol;Interlope;GB;4;46;1616;1620
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;4;60;1616;1620
 Empire Moghol;Marchand;F;4;65;1616;1620
 Empire Moghol;Compagnie de Montmorency pour les Indes Orientales;F;4;68;1616;1620
-Empire Moghol;Marchand;P;4;82;1616;1620
+Empire Moghol;Marchand;Po;4;82;1616;1620
 Empire Moghol;Interlope;PU;4;85;1616;1620
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1616;1620
 Empire Moghol;Marchand;Ar;3;8;1621;1625
@@ -523,7 +523,7 @@ Empire Moghol;Compagnie danoise des indes orientales;D;3;44;1621;1625
 Empire Moghol;Interlope;GB;3;47;1621;1625
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;61;1621;1625
 Empire Moghol;Marchand;F;3;66;1621;1625
-Empire Moghol;Marchand;P;3;82;1621;1625
+Empire Moghol;Marchand;Po;3;82;1621;1625
 Empire Moghol;Interlope;PU;3;85;1621;1625
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1621;1625
 Empire Moghol;Marchand;Ar;3;8;1626;1659
@@ -534,7 +534,7 @@ Empire Moghol;Compagnie danoise des indes orientales;D;3;44;1626;1659
 Empire Moghol;Interlope;GB;3;47;1626;1659
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;62;1626;1659
 Empire Moghol;Marchand;F;3;67;1626;1659
-Empire Moghol;Marchand;P;3;82;1626;1659
+Empire Moghol;Marchand;Po;3;82;1626;1659
 Empire Moghol;Interlope;PU;3;85;1626;1659
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1626;1659
 Empire Moghol;Marchand;Ar;3;8;1660;1663
@@ -546,7 +546,7 @@ Empire Moghol;Interlope;GB;3;44;1660;1663
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;58;1660;1663
 Empire Moghol;Marchand;F;3;66;1660;1663
 Empire Moghol;Compagnie de Chine;F;3;69;1660;1663
-Empire Moghol;Marchand;P;3;83;1660;1663
+Empire Moghol;Marchand;Po;3;83;1660;1663
 Empire Moghol;Interlope;PU;3;86;1660;1663
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1660;1663
 Empire Moghol;Marchand;Ar;4;7;1664;1683
@@ -560,7 +560,7 @@ Empire Moghol;Marchand;F;4;60;1664;1683
 Empire Moghol;Interlope;F;4;62;1664;1683
 Empire Moghol;Compagnie de Chine;F;4;65;1664;1683
 Empire Moghol;Compagnie des indes;F;4;72;1664;1683
-Empire Moghol;Marchand;P;4;85;1664;1683
+Empire Moghol;Marchand;Po;4;85;1664;1683
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1664;1683
 Empire Moghol;Marchand;Ar;3;7;1684;1700
 Empire Moghol;Marchand;EM;3;15;1684;1700
@@ -572,7 +572,7 @@ Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;53;1684;1700
 Empire Moghol;Marchand;F;3;61;1684;1700
 Empire Moghol;Compagnie de Chine;F;3;64;1684;1700
 Empire Moghol;Compagnie française des indes orientales;F;3;71;1684;1700
-Empire Moghol;Marchand;P;3;84;1684;1700
+Empire Moghol;Marchand;Po;3;84;1684;1700
 Empire Moghol;Interlope;PU;3;87;1684;1700
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1684;1700
 Empire Moghol;Marchand;Ar;3;6;1701;1718
@@ -585,7 +585,7 @@ Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;58;1701;1718
 Empire Moghol;Marchand;F;3;65;1701;1718
 Empire Moghol;Compagnie de Chine;F;3;67;1701;1718
 Empire Moghol;Compagnie française des indes orientales;F;3;74;1701;1718
-Empire Moghol;Marchand;P;3;86;1701;1718
+Empire Moghol;Marchand;Po;3;86;1701;1718
 Empire Moghol;Interlope;PU;3;88;1701;1718
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1701;1718
 Empire Moghol;Marchand;Ar;4;6;1719;1719
@@ -600,7 +600,7 @@ Empire Moghol;Interlope;F;4;61;1719;1719
 Empire Moghol;Compagnie de Chine;F;4;63;1719;1719
 Empire Moghol;Compagnie française des indes orientales;F;4;69;1719;1719
 Empire Moghol;Compagnie des indes;F;4;76;1719;1719
-Empire Moghol;Marchand;P;4;86;1719;1719
+Empire Moghol;Marchand;Po;4;86;1719;1719
 Empire Moghol;Interlope;PU;4;89;1719;1719
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1719;1719
 Empire Moghol;Marchand;Ar;3;6;1720;1720
@@ -613,7 +613,7 @@ Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;58;1720;1720
 Empire Moghol;Interlope;F;3;60;1720;1720
 Empire Moghol;Compagnie française des indes orientales;F;3;67;1720;1720
 Empire Moghol;Compagnie des indes;F;3;74;1720;1720
-Empire Moghol;Marchand;P;3;86;1720;1720
+Empire Moghol;Marchand;Po;3;86;1720;1720
 Empire Moghol;Interlope;PU;3;88;1720;1720
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;90;1720;1720
 Empire Moghol;Marchand;Ar;3;7;1721;1722
@@ -625,7 +625,7 @@ Empire Moghol;Marchand;GB;3;50;1721;1722
 Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;62;1721;1722
 Empire Moghol;Interlope;F;3;65;1721;1722
 Empire Moghol;Compagnie française des indes orientales;F;3;72;1721;1722
-Empire Moghol;Marchand;P;3;85;1721;1722
+Empire Moghol;Marchand;Po;3;85;1721;1722
 Empire Moghol;Interlope;PU;3;87;1721;1722
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1721;1722
 Empire Moghol;Marchand;Ar;4;6;1723;1729
@@ -641,7 +641,7 @@ Empire Moghol;Interlope;F;4;62;1723;1729
 Empire Moghol;Compagnie de Chine;F;4;63;1723;1729
 Empire Moghol;Compagnie française des indes orientales;F;4;69;1723;1729
 Empire Moghol;Compagnie des indes;F;4;76;1723;1729
-Empire Moghol;Marchand;P;4;87;1723;1729
+Empire Moghol;Marchand;Po;4;87;1723;1729
 Empire Moghol;Interlope;PU;4;89;1723;1729
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1723;1729
 Empire Moghol;Marchand;Ar;4;6;1730;1731
@@ -656,7 +656,7 @@ Empire Moghol;Interlope;F;4;59;1730;1731
 Empire Moghol;Compagnie de Chine;F;4;61;1730;1731
 Empire Moghol;Compagnie française des indes orientales;F;4;68;1730;1731
 Empire Moghol;Compagnie des indes;F;4;75;1730;1731
-Empire Moghol;Marchand;P;4;86;1730;1731
+Empire Moghol;Marchand;Po;4;86;1730;1731
 Empire Moghol;Interlope;PU;4;88;1730;1731
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1730;1731
 Empire Moghol;Marchand;Ar;4;6;1732;1733
@@ -672,7 +672,7 @@ Empire Moghol;Interlope;F;4;60;1732;1733
 Empire Moghol;Compagnie de Chine;F;4;62;1732;1733
 Empire Moghol;Compagnie française des indes orientales;F;4;69;1732;1733
 Empire Moghol;Compagnie des indes;F;4;75;1732;1733
-Empire Moghol;Marchand;P;4;86;1732;1733
+Empire Moghol;Marchand;Po;4;86;1732;1733
 Empire Moghol;Interlope;PU;4;89;1732;1733
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1732;1733
 Empire Moghol;Marchand;Ar;4;6;1734;1772
@@ -687,7 +687,7 @@ Empire Moghol;Interlope;F;4;59;1734;1772
 Empire Moghol;Compagnie de Chine;F;4;61;1734;1772
 Empire Moghol;Compagnie française des indes orientales;F;4;68;1734;1772
 Empire Moghol;Compagnie des indes;F;4;75;1734;1772
-Empire Moghol;Marchand;P;4;86;1734;1772
+Empire Moghol;Marchand;Po;4;86;1734;1772
 Empire Moghol;Interlope;PU;4;88;1734;1772
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1734;1772
 Empire Moghol;Marchand;Ar;3;7;1773;1784
@@ -701,7 +701,7 @@ Empire Moghol;Interlope;F;3;54;1773;1784
 Empire Moghol;Compagnie de Chine;F;3;56;1773;1784
 Empire Moghol;Compagnie française des indes orientales;F;3;64;1773;1784
 Empire Moghol;Compagnie des indes;F;3;72;1773;1784
-Empire Moghol;Marchand;P;3;84;1773;1784
+Empire Moghol;Marchand;Po;3;84;1773;1784
 Empire Moghol;Interlope;PU;3;87;1773;1784
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1773;1784
 Empire Moghol;Marchand;Ar;4;8;1785;1790
@@ -716,7 +716,7 @@ Empire Moghol;Compagnie de Chine;F;4;55;1785;1790
 Empire Moghol;Compagnie française des indes orientales;F;4;63;1785;1790
 Empire Moghol;Compagnie des indes;F;4;71;1785;1790
 Empire Moghol;Compagnie des Indes Orientales et de la Chine;F;4;75;1785;1790
-Empire Moghol;Marchand;P;4;83;1785;1790
+Empire Moghol;Marchand;Po;4;83;1785;1790
 Empire Moghol;Interlope;PU;4;86;1785;1790
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1785;1790
 Empire Moghol;Marchand;Ar;4;8;1791;1793
@@ -730,7 +730,7 @@ Empire Moghol;Interlope;F;4;57;1791;1793
 Empire Moghol;Compagnie de Chine;F;4;60;1791;1793
 Empire Moghol;Compagnie française des indes orientales;F;4;69;1791;1793
 Empire Moghol;Compagnie des indes;F;4;73;1791;1793
-Empire Moghol;Marchand;P;4;82;1791;1793
+Empire Moghol;Marchand;Po;4;82;1791;1793
 Empire Moghol;Interlope;PU;4;85;1791;1793
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;4;100;1791;1793
 Empire Moghol;Marchand;Ar;3;9;1794;1795
@@ -743,7 +743,7 @@ Empire Moghol;Marchand;F;3;56;1794;1795
 Empire Moghol;Interlope;F;3;60;1794;1795
 Empire Moghol;Compagnie de Chine;F;3;63;1794;1795
 Empire Moghol;Compagnie des Indes Orientales et de la Chine;F;3;72;1794;1795
-Empire Moghol;Marchand;P;3;81;1794;1795
+Empire Moghol;Marchand;Po;3;81;1794;1795
 Empire Moghol;Interlope;PU;3;84;1794;1795
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1794;1795
 Empire Moghol;Marchand;Ar;3;8;1796;1799
@@ -755,7 +755,7 @@ Empire Moghol;Compagnie anglaise des Indes Orientales;GB;3;57;1796;1799
 Empire Moghol;Marchand;F;3;62;1796;1799
 Empire Moghol;Interlope;F;3;66;1796;1799
 Empire Moghol;Compagnie de Chine;F;3;69;1796;1799
-Empire Moghol;Marchand;P;3;79;1796;1799
+Empire Moghol;Marchand;Po;3;79;1796;1799
 Empire Moghol;Interlope;PU;3;83;1796;1799
 Empire Moghol;Compagnie néerlandaise des indes orientales;PU;3;100;1796;1799
 Ceylan;Marchand;Ar;2;12;1800;3000
@@ -767,20 +767,20 @@ Empire Moghol;Compagnie anglaise des Indes Orientales;GB;2;72;1800;3000
 Ceylan;Marchand;F;2;78;1800;3000
 Ceylan;Interlope;F;2;82;1800;3000
 Ceylan;Compagnie de Chine;F;2;87;1800;3000
-Ceylan;Marchand;P;2;100;1800;3000
-Ceylan;Marchand;P;1;100;1300;1599
+Ceylan;Marchand;Po;2;100;1800;3000
+Ceylan;Marchand;Po;1;100;1300;1599
 Ceylan;Interlope;GB;1;6;1600;1601
 Ceylan;Compagnie anglaise des Indes Orientales;GB;1;37;1600;1601
-Ceylan;Marchand;P;1;100;1600;1601
+Ceylan;Marchand;Po;1;100;1600;1601
 Ceylan;Interlope;GB;2;2;1602;1603
 Ceylan;Compagnie anglaise des Indes Orientales;GB;2;15;1602;1603
-Ceylan;Marchand;P;2;68;1602;1603
+Ceylan;Marchand;Po;2;68;1602;1603
 Ceylan;Interlope;PU;2;73;1602;1603
 Ceylan;Compagnie néerlandaise des indes orientales;PU;2;100;1602;1603
 Ceylan;Interlope;GB;2;2;1604;1610
 Ceylan;Compagnie anglaise des Indes Orientales;GB;2;15;1604;1610
 Ceylan;Compagnie Le Roy et Godefroy;F;2;17;1604;1610
-Ceylan;Marchand;P;2;69;1604;1610
+Ceylan;Marchand;Po;2;69;1604;1610
 Ceylan;Interlope;PU;2;74;1604;1610
 Ceylan;Compagnie néerlandaise des indes orientales;PU;2;100;1604;1610
 Ceylan;Interlope;GB;3;2;1611;1614
@@ -788,7 +788,7 @@ Ceylan;Compagnie anglaise des Indes Orientales;GB;3;13;1611;1614
 Ceylan;Marchand;F;3;20;1611;1614
 Ceylan;Compagnie Le Roy et Godefroy;F;3;23;1611;1614
 Ceylan;Compagnie de Montmorency pour les Indes Orientales;F;3;25;1611;1614
-Ceylan;Marchand;P;3;72;1611;1614
+Ceylan;Marchand;Po;3;72;1611;1614
 Ceylan;Interlope;PU;3;76;1611;1614
 Ceylan;Compagnie néerlandaise des indes orientales;PU;3;100;1611;1614
 Ceylan;Interlope;GB;3;2;1615;1620
@@ -796,7 +796,7 @@ Ceylan;Compagnie anglaise des Indes Orientales;GB;3;13;1615;1620
 Ceylan;Marchand;F;3;20;1615;1620
 Ceylan;Compagnie des Moluques;F;3;23;1615;1620
 Ceylan;Compagnie de Montmorency pour les Indes Orientales;F;3;25;1615;1620
-Ceylan;Marchand;P;3;72;1615;1620
+Ceylan;Marchand;Po;3;72;1615;1620
 Ceylan;Interlope;PU;3;76;1615;1620
 Ceylan;Compagnie néerlandaise des indes orientales;PU;3;100;1615;1620
 Ceylan;Marchand;D;2;4;1621;1625
@@ -804,14 +804,14 @@ Ceylan;Interlope;GB;2;6;1621;1625
 Ceylan;Compagnie anglaise des Indes Orientales;GB;2;18;1621;1625
 Ceylan;Marchand;F;2;25;1621;1625
 Ceylan;Compagnie des Moluques;F;2;27;1621;1625
-Ceylan;Marchand;P;2;72;1621;1625
+Ceylan;Marchand;Po;2;72;1621;1625
 Ceylan;Interlope;PU;2;77;1621;1625
 Ceylan;Compagnie néerlandaise des indes orientales;PU;2;100;1621;1625
 Ceylan;Marchand;D;2;6;1626;1657
 Ceylan;Interlope;GB;2;9;1626;1657
 Ceylan;Compagnie anglaise des Indes Orientales;GB;2;24;1626;1657
 Ceylan;Marchand;F;2;33;1626;1657
-Ceylan;Marchand;P;2;63;1626;1657
+Ceylan;Marchand;Po;2;63;1626;1657
 Ceylan;Interlope;PU;2;65;1626;1657
 Ceylan;Compagnie néerlandaise des indes orientales;PU;2;100;1626;1657
 Ceylan;Compagnie néerlandaise des indes orientales;D;2;9;1658;1659
@@ -950,32 +950,32 @@ IndonÃ©sie;Interlope;GB;2;23;1800;3000
 IndonÃ©sie;Compagnie anglaise des Indes Orientales;GB;2;61;1800;3000
 IndonÃ©sie;Marchand;F;2;84;1800;3000
 IndonÃ©sie;Compagnie de Chine;F;2;100;1800;3000
-IndonÃ©sie;Marchand;P;1;100;1300;1601
-IndonÃ©sie;Marchand;P;1;80;1602;1603
+IndonÃ©sie;Marchand;Po;1;100;1300;1601
+IndonÃ©sie;Marchand;Po;1;80;1602;1603
 IndonÃ©sie;Interlope;PU;1;88;1602;1603
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;1;100;1602;1603
 IndonÃ©sie;Marchand;F;2;6;1604;1614
 IndonÃ©sie;Compagnie Le Roy et Godefroy;F;2;13;1604;1614
-IndonÃ©sie;Marchand;P;2;80;1604;1614
+IndonÃ©sie;Marchand;Po;2;80;1604;1614
 IndonÃ©sie;Interlope;PU;2;86;1604;1614
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;2;100;1604;1614
 IndonÃ©sie;Marchand;F;2;6;1615;1615
 IndonÃ©sie;Compagnie des Moluques;F;2;13;1615;1615
-IndonÃ©sie;Marchand;P;2;80;1615;1615
+IndonÃ©sie;Marchand;Po;2;80;1615;1615
 IndonÃ©sie;Interlope;PU;2;86;1615;1615
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;2;100;1615;1615
 IndonÃ©sie;Marchand;F;2;8;1616;1616
 IndonÃ©sie;Compagnie des Moluques;F;2;17;1616;1616
-IndonÃ©sie;Marchand;P;2;60;1616;1616
+IndonÃ©sie;Marchand;Po;2;60;1616;1616
 IndonÃ©sie;Interlope;PU;2;69;1616;1616
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;2;95;1616;1616
 IndonÃ©sie;Compagnie australienne;PU;2;100;1616;1616
 IndonÃ©sie;Marchand;F;2;8;1617;1625
 IndonÃ©sie;Compagnie des Moluques;F;2;17;1617;1625
-IndonÃ©sie;Marchand;P;2;60;1617;1625
+IndonÃ©sie;Marchand;Po;2;60;1617;1625
 IndonÃ©sie;Interlope;PU;2;69;1617;1625
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;2;100;1617;1625
-IndonÃ©sie;Marchand;P;1;26;1626;1700
+IndonÃ©sie;Marchand;Po;1;26;1626;1700
 IndonÃ©sie;Interlope;PU;1;33;1626;1700
 IndonÃ©sie;Compagnie néerlandaise des indes orientales;PU;1;100;1626;1700
 IndonÃ©sie;Interlope;PU;1;16;1701;1785
@@ -991,22 +991,22 @@ Mer de Chine;Compagnie de Chine;GB;1;84;1813;3000
 Mer de Chine;Compagnie de Chine;F;1;100;1813;3000
 Mer de Chine;Marchand;E;1;45;1300;1596
 Mer de Chine;Galion de Manille;E;1;54;1300;1596
-Mer de Chine;Marchand;P;1;100;1300;1596
+Mer de Chine;Marchand;Po;1;100;1300;1596
 Mer de Chine;Marchand;E;1;41;1597;1599
 Mer de Chine;Galion de Manille;E;1;50;1597;1599
-Mer de Chine;Marchand;P;1;91;1597;1599
+Mer de Chine;Marchand;Po;1;91;1597;1599
 Mer de Chine;Compagnie de Moucheron;PU;1;100;1597;1599
 Mer de Chine;Marchand;E;2;33;1600;1601
 Mer de Chine;Galion de Manille;E;2;40;1600;1601
 Mer de Chine;Interlope;GB;2;53;1600;1601
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;60;1600;1601
-Mer de Chine;Marchand;P;2;93;1600;1601
+Mer de Chine;Marchand;Po;2;93;1600;1601
 Mer de Chine;Compagnie de Moucheron;PU;2;100;1600;1601
 Mer de Chine;Marchand;E;2;25;1602;1602
 Mer de Chine;Galion de Manille;E;2;30;1602;1602
 Mer de Chine;Interlope;GB;2;45;1602;1602
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;65;1602;1602
-Mer de Chine;Marchand;P;2;75;1602;1602
+Mer de Chine;Marchand;Po;2;75;1602;1602
 Mer de Chine;Interlope;PU;2;80;1602;1602
 Mer de Chine;Compagnie de Moucheron;PU;2;85;1602;1602
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1602;1602
@@ -1014,7 +1014,7 @@ Mer de Chine;Marchand;E;2;21;1603;1659
 Mer de Chine;Galion de Manille;E;2;26;1603;1659
 Mer de Chine;Interlope;GB;2;30;1603;1659
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;52;1603;1659
-Mer de Chine;Marchand;P;2;73;1603;1659
+Mer de Chine;Marchand;Po;2;73;1603;1659
 Mer de Chine;Interlope;PU;2;78;1603;1659
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1603;1659
 Mer de Chine;Marchand;E;2;18;1660;1694
@@ -1023,7 +1023,7 @@ Mer de Chine;Interlope;GB;2;26;1660;1694
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;45;1660;1694
 Mer de Chine;Marchand;F;2;50;1660;1694
 Mer de Chine;Compagnie de Chine;F;2;58;1660;1694
-Mer de Chine;Marchand;P;2;77;1660;1694
+Mer de Chine;Marchand;Po;2;77;1660;1694
 Mer de Chine;Interlope;PU;2;81;1660;1694
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1660;1694
 Mer de Chine;Marchand;E;2;18;1695;1719
@@ -1032,7 +1032,7 @@ Mer de Chine;Marchand;GB;2;28;1695;1719
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;45;1695;1719
 Mer de Chine;Marchand;F;2;50;1695;1719
 Mer de Chine;Compagnie de Chine;F;2;58;1695;1719
-Mer de Chine;Marchand;P;2;77;1695;1719
+Mer de Chine;Marchand;Po;2;77;1695;1719
 Mer de Chine;Interlope;PU;2;81;1695;1719
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1695;1719
 Mer de Chine;Marchand;E;2;14;1720;1722
@@ -1040,7 +1040,7 @@ Mer de Chine;Galion de Manille;E;2;17;1720;1722
 Mer de Chine;Marchand;GB;2;32;1720;1722
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;47;1720;1722
 Mer de Chine;Marchand;F;2;52;1720;1722
-Mer de Chine;Marchand;P;2;67;1720;1722
+Mer de Chine;Marchand;Po;2;67;1720;1722
 Mer de Chine;Interlope;PU;2;70;1720;1722
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1720;1722
 Mer de Chine;Marchand;E;2;14;1723;1730
@@ -1049,7 +1049,7 @@ Mer de Chine;Marchand;GB;2;30;1723;1730
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;45;1723;1730
 Mer de Chine;Marchand;F;2;49;1723;1730
 Mer de Chine;Compagnie de Chine;F;2;54;1723;1730
-Mer de Chine;Marchand;P;2;69;1723;1730
+Mer de Chine;Marchand;Po;2;69;1723;1730
 Mer de Chine;Interlope;PU;2;71;1723;1730
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;2;100;1723;1730
 Mer de Chine;Marchand;E;3;12;1731;1741
@@ -1058,7 +1058,7 @@ Mer de Chine;Marchand;GB;3;27;1731;1741
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;3;39;1731;1741
 Mer de Chine;Marchand;F;3;43;1731;1741
 Mer de Chine;Compagnie de Chine;F;3;48;1731;1741
-Mer de Chine;Marchand;P;3;60;1731;1741
+Mer de Chine;Marchand;Po;3;60;1731;1741
 Mer de Chine;Interlope;PU;3;62;1731;1741
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;3;87;1731;1741
 Mer de Chine;Marchand;S;3;92;1731;1741
@@ -1069,7 +1069,7 @@ Mer de Chine;Interlope;GB;3;13;1742;1784
 Mer de Chine;Compagnie anglaise des indes orientales;GB;3;30;1742;1784
 Mer de Chine;Marchand;F;3;35;1742;1784
 Mer de Chine;Compagnie de Chine;F;3;42;1742;1784
-Mer de Chine;Marchand;P;3;52;1742;1784
+Mer de Chine;Marchand;Po;3;52;1742;1784
 Mer de Chine;Interlope;PU;3;66;1742;1784
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;3;83;1742;1784
 Mer de Chine;Marchand;S;3;89;1742;1784
@@ -1081,7 +1081,7 @@ Mer de Chine;Compagnie anglaise des indes orientales;GB;3;29;1785;1793
 Mer de Chine;Marchand;F;3;34;1785;1793
 Mer de Chine;Interlope;F;3;37;1785;1793
 Mer de Chine;Compagnie de Chine;F;3;44;1785;1793
-Mer de Chine;Marchand;P;3;63;1785;1793
+Mer de Chine;Marchand;Po;3;63;1785;1793
 Mer de Chine;Interlope;PU;3;67;1785;1793
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;3;83;1785;1793
 Mer de Chine;Marchand;S;3;90;1785;1793
@@ -1092,7 +1092,7 @@ Mer de Chine;Interlope;GB;3;15;1794;1799
 Mer de Chine;Compagnie anglaise des indes orientales;GB;3;35;1794;1799
 Mer de Chine;Marchand;F;3;41;1794;1799
 Mer de Chine;Compagnie de Chine;F;3;49;1794;1799
-Mer de Chine;Marchand;P;3;56;1794;1799
+Mer de Chine;Marchand;Po;3;56;1794;1799
 Mer de Chine;Interlope;PU;3;60;1794;1799
 Mer de Chine;Compagnie néerlandaise des indes orientales;PU;3;80;1794;1799
 Mer de Chine;Marchand;S;3;88;1794;1799
@@ -1103,14 +1103,14 @@ Mer de Chine;Interlope;GB;2;27;1800;1802
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;62;1800;1802
 Mer de Chine;Marchand;F;2;72;1800;1802
 Mer de Chine;Compagnie de Chine;F;2;86;1800;1802
-Mer de Chine;Marchand;P;2;100;1800;1802
+Mer de Chine;Marchand;Po;2;100;1800;1802
 Mer de Chine;Marchand;E;2;10;1803;1813
 Mer de Chine;Galion de Manille;E;2;15;1803;1813
 Mer de Chine;Interlope;GB;2;20;1803;1813
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;46;1803;1813
 Mer de Chine;Marchand;F;2;53;1803;1813
 Mer de Chine;Compagnie de Chine;F;2;64;1803;1813
-Mer de Chine;Marchand;P;2;74;1803;1813
+Mer de Chine;Marchand;Po;2;74;1803;1813
 Mer de Chine;Marchand;S;2;84;1803;1813
 Mer de Chine;Compagnie suÃ©doise des Indes Orientales;S;2;100;1803;1813
 Mer de Chine;Marchand;E;2;13;1813;3000
@@ -1119,7 +1119,7 @@ Mer de Chine;Interlope;GB;2;27;1813;3000
 Mer de Chine;Compagnie anglaise des Indes Orientales;GB;2;62;1813;3000
 Mer de Chine;Marchand;F;2;72;1813;3000
 Mer de Chine;Compagnie de Chine;F;2;86;1813;3000
-Mer de Chine;Marchand;P;2;100;1813;3000
+Mer de Chine;Marchand;Po;2;100;1813;3000
 Pacifique;Marchand;E;1;83;1565;1614
 Pacifique;Galion de Manille;E;1;100;1565;1614
 Pacifique;Marchand;E;1;71;1615;1616
@@ -1888,54 +1888,54 @@ Atlantique Nord;Compagnie des Mers du Sud;GB;2;67;1806;3000
 Atlantique Nord;Marchand;D;2;76;1806;3000
 Atlantique Nord;Marchand;F;2;90;1806;3000
 Atlantique Nord;Marchand;PU;2;100;1806;3000
-Atlantique Sud;Marchand;P;1;100;1800;1615
-Atlantique Sud;Marchand;P;1;66;1800;1616
+Atlantique Sud;Marchand;Po;1;100;1800;1615
+Atlantique Sud;Marchand;Po;1;66;1800;1616
 Atlantique Sud;Marchand;PU;1;93;1800;1616
 Atlantique Sud;Compagnie australienne;PU;1;100;1800;1616
-Atlantique Sud;Marchand;P;1;50;1793;1617
+Atlantique Sud;Marchand;Po;1;50;1793;1617
 Atlantique Sud;Marchand;PU;1;70;1793;1617
 Atlantique Sud;Compagnie danoise des Indes Orientales;D;1;100;1793;1617
-Atlantique Sud;Marchand;P;1;62;1764;1656
+Atlantique Sud;Marchand;Po;1;62;1764;1656
 Atlantique Sud;Marchand;PU;1;100;1764;1656
 Atlantique Sud;Marchand;GB;1;38;1657;1660
-Atlantique Sud;Marchand;P;1;76;1657;1660
+Atlantique Sud;Marchand;Po;1;76;1657;1660
 Atlantique Sud;Marchand;PU;1;100;1657;1660
 Atlantique Sud;Marchand;GB;1;34;1661;1672
 Atlantique Sud;Compagnie des aventuriers d’Afrique;GB;1;44;1661;1672
-Atlantique Sud;Marchand;P;1;79;1661;1672
+Atlantique Sud;Marchand;Po;1;79;1661;1672
 Atlantique Sud;Marchand;PU;1;100;1661;1672
 Atlantique Sud;Marchand;GB;1;50;1673;1683
-Atlantique Sud;Marchand;P;1;100;1796;1683
+Atlantique Sud;Marchand;Po;1;100;1796;1683
 Atlantique Sud;Marchand;GB;1;33;1796;1697
 Atlantique Sud;Marchand;F;1;46;1796;1697
 Atlantique Sud;Mississipi Company;F;1;66;1796;1697
-Atlantique Sud;Marchand;P;1;100;1796;1697
+Atlantique Sud;Marchand;Po;1;100;1796;1697
 Atlantique Sud;Marchand;GB;1;37;1796;1708
 Atlantique Sud;Marchand;F;1;51;1794;1708
 Atlantique Sud;Compagnie royale de la Mer du Sud;F;1;62;1794;1708
-Atlantique Sud;Marchand;P;1;100;1794;1708
+Atlantique Sud;Marchand;Po;1;100;1794;1708
 Atlantique Sud;Marchand;GB;1;41;1794;1710
 Atlantique Sud;Marchand;F;1;68;1709;1710
-Atlantique Sud;Marchand;P;1;100;1709;1710
+Atlantique Sud;Marchand;Po;1;100;1709;1710
 Atlantique Sud;Marchand;GB;1;37;1711;1747
 Atlantique Sud;Compagnie des Mers du Sud;GB;1;48;1711;1747
 Atlantique Sud;Marchand;F;1;62;1711;1747
-Atlantique Sud;Marchand;P;1;100;1711;1747
+Atlantique Sud;Marchand;Po;1;100;1711;1747
 Atlantique Sud;Marchand;GB;2;32;1748;1763
 Atlantique Sud;Compagnie des Mers du Sud;GB;2;41;1748;1763
 Atlantique Sud;Marchand;F;2;54;1748;1763
 Atlantique Sud;Société d’Angola;F;2;67;1796;1763
-Atlantique Sud;Marchand;P;2;100;1796;1763
+Atlantique Sud;Marchand;Po;2;100;1796;1763
 Atlantique Sud;Marchand;GB;2;29;1796;1793
 Atlantique Sud;Compagnie des Mers du Sud;GB;2;38;1796;1793
 Atlantique Sud;Marchand;F;2;50;1796;1793
 Atlantique Sud;Société d’Angola;F;2;61;1796;1793
-Atlantique Sud;Marchand;P;2;91;1800;1793
+Atlantique Sud;Marchand;Po;2;91;1800;1793
 Atlantique Sud;Marchand;S;2;100;1800;1793
 Atlantique Sud;Marchand;GB;1;37;1800;3000
 Atlantique Sud;Compagnie des Mers du Sud;GB;1;48;1800;3000
 Atlantique Sud;Marchand;F;1;62;1800;3000
-Atlantique Sud;Marchand;P;1;100;1800;3000
+Atlantique Sud;Marchand;Po;1;100;1800;3000
 Amérique du Nord (Nouvelle France/Canada);Pêcheur de Terre Neuve;GB;1;100;1800;1620
 Amérique du Nord (Nouvelle France/Canada);Pêcheur de Terre Neuve;GB;1;71;1621;1626
 Amérique du Nord (Nouvelle France/Canada);Compagnie de Montmorency;F;1;100;1621;1626
@@ -2252,7 +2252,7 @@ Méditerranée;Marchand (E);E;2;50;1796;1663
 Méditerranée;Marchand (F);F;2;65;1796;1663
 Méditerranée;Compagnie Royale d’Afrique (F);F;2;75;1796;1663
 Méditerranée;Marchand (I);I;2;90;1796;1663
-Méditerranée;Marchand (P);P;2;100;1794;1663
+Méditerranée;Marchand (P);Po;2;100;1794;1663
 Méditerranée;Marchand (Au);Au;2;9;1794;1669
 Méditerranée;Marchand (EO);EO;2;33;1794;1669
 Méditerranée;Marchand (E);E;2;47;1794;1669
@@ -2375,7 +2375,7 @@ Afrique du Nord;Marchand (E);E;1;43;1794;1663
 Afrique du Nord;Marchand (F);F;1;59;1794;1663
 Afrique du Nord;Compagnie Royale d’Afrique (F);F;1;67;1794;1663
 Afrique du Nord;Marchand (I);I;1;83;1560;1663
-Afrique du Nord;Marchand (P);P;1;100;1560;1663
+Afrique du Nord;Marchand (P);Po;1;100;1560;1663
 Afrique du Nord;Marchand (EO);EO;1;32;1664;1669
 Afrique du Nord;Marchand (E);E;1;51;1664;1669
 Afrique du Nord;Marchand (F);F;1;70;1664;1669
@@ -2426,20 +2426,20 @@ Afrique du Nord;Marchand (E);E;1;67;1794;3000
 Afrique du Nord;Marchand (F);F;1;78;1794;3000
 Afrique du Nord;Marchand (I);I;1;100;1794;3000
 Amerique du sud (Côte Atlantique);Marchand (E);E;1;30;1566;1596
-Amerique du sud (Côte Atlantique);Marchand (P);P;1;100;1566;1596
+Amerique du sud (Côte Atlantique);Marchand (P);Po;1;100;1566;1596
 Amerique du sud (Côte Pacifique);Marchand (E);E;1;76;1566;1596
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;1;100;1566;1596
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;30;1597;1602
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;100;1597;1602
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;100;1597;1602
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;71;1597;1602
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;92;1597;1602
 Amerique du sud (Côte Pacifique);Compagnie de Moucheron (PU);PU;2;100;1597;1602
 Amerique du sud (Côte Atlantique);Marchand (E);E;1;30;1796;1620
-Amerique du sud (Côte Atlantique);Marchand (P);P;1;100;1796;1620
+Amerique du sud (Côte Atlantique);Marchand (P);Po;1;100;1796;1620
 Amerique du sud (Côte Pacifique);Marchand (E);E;1;76;1796;1620
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;1;100;1796;1620
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;30;1796;1632
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;60;1796;1632
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;60;1796;1632
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;62;1800;1632
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1800;1632
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1800;1632
@@ -2447,7 +2447,7 @@ Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1800;1632
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;9;1800;1650
 Amerique du sud (Côte Atlantique);Compagnie de Rouen (F);F;2;16;1800;1650
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;24;1800;1650
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;60;1633;1650
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;60;1633;1650
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;67;1633;1650
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1633;1650
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1633;1650
@@ -2456,7 +2456,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;3;8;1651;1652
 Amerique du sud (Côte Atlantique);Compagnie de Rouen (F);F;3;14;1651;1652
 Amerique du sud (Côte Atlantique);1ère Compagnie de la France Equinoxale (F);F;3;33;1651;1652
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;42;1651;1652
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;62;1651;1652
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;62;1651;1652
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;3;65;1651;1652
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;3;100;1651;1652
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;76;1651;1652
@@ -2464,13 +2464,13 @@ Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;3;100;1651;1652
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;9;1653;1654
 Amerique du sud (Côte Atlantique);1ère Compagnie de la France Equinoxale (F);F;2;16;1653;1654
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;27;1653;1654
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;60;1653;1654
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;60;1653;1654
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;62;1653;1654
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1653;1654
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1653;1654
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1653;1654
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;58;1655;1663
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;76;1655;1663
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;76;1655;1663
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;84;1655;1663
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1655;1663
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1655;1663
@@ -2480,7 +2480,7 @@ Amerique du sud (Côte Atlantique);Interlope (F);F;3;13;1664;1667
 Amerique du sud (Côte Atlantique);2nde Compagnie de la France Equinoxale (F);F;3;21;1664;1667
 Amerique du sud (Côte Atlantique);Compagnie française des Indes Occidentales (F);F;3;31;1664;1667
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;45;1664;1667
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;74;1664;1667
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;74;1664;1667
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;3;79;1664;1667
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;3;100;1664;1667
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;76;1664;1667
@@ -2488,7 +2488,7 @@ Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;3;100;1664;1667
 Amerique du sud (Côte Atlantique);Interlope (F);F;2;6;1668;1672
 Amerique du sud (Côte Atlantique);Compagnie française des Indes Occidentales (F);F;2;18;1668;1672
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;39;1668;1672
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;81;1668;1672
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;81;1668;1672
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;87;1668;1672
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1668;1672
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1668;1672
@@ -2496,7 +2496,7 @@ Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1668;1672
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;9;1673;1680
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;16;1673;1680
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;37;1673;1680
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;80;1673;1680
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;80;1673;1680
 Amerique du sud (Côte Atlantique);Interlope (PU);PU;2;87;1673;1680
 Amerique du sud (Côte Atlantique);Compagnie néerlandaise des Indes Occidentales (PU);PU;2;100;1673;1680
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1673;1680
@@ -2504,7 +2504,7 @@ Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1673;1680
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;9;1681;1683
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;21;1681;1683
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;42;1681;1683
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;81;1681;1683
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;81;1681;1683
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1681;1683
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1681;1683
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1681;1683
@@ -2512,7 +2512,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;2;8;1684;1697
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;18;1684;1697
 Amerique du sud (Côte Atlantique);Compagnie de Guinée (F);F;2;29;1684;1697
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;46;1684;1697
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;83;1684;1697
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;83;1684;1697
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1684;1697
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1684;1697
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1684;1697
@@ -2520,7 +2520,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;2;8;1698;1700
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;19;1698;1700
 Amerique du sud (Côte Atlantique);Compagnie royale de la Mer du Sud (F);F;2;27;1698;1700
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;44;1698;1700
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;83;1698;1700
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;83;1698;1700
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1698;1700
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1698;1700
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1698;1700
@@ -2529,7 +2529,7 @@ Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;17;1701;1708
 Amerique du sud (Côte Atlantique);Compagnie de l’Asiento (F);F;2;27;1701;1708
 Amerique du sud (Côte Atlantique);Compagnie royale de la Mer du Sud (F);F;2;35;1701;1708
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;42;1701;1708
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;85;1701;1708
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;85;1701;1708
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1701;1708
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1701;1708
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1701;1708
@@ -2537,7 +2537,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;2;8;1709;1710
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;18;1709;1710
 Amerique du sud (Côte Atlantique);Compagnie de l’Asiento (F);F;2;29;1709;1710
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;46;1709;1710
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;83;1709;1710
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;83;1709;1710
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1709;1710
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;76;1709;1710
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1709;1710
@@ -2547,7 +2547,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;3;20;1711;1716
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;30;1711;1716
 Amerique du sud (Côte Atlantique);Compagnie de l’Asiento (F);F;3;39;1711;1716
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;55;1711;1716
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;86;1711;1716
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;86;1711;1716
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1711;1716
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;8;1711;1716
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1711;1716
@@ -2559,7 +2559,7 @@ Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;26;1717;1718
 Amerique du sud (Côte Atlantique);Compagnie du Mississipi (F);F;3;38;1717;1718
 Amerique du sud (Côte Atlantique);Compagnie de l’Asiento (F);F;3;46;1717;1718
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;62;1717;1718
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;87;1717;1718
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;87;1717;1718
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1717;1718
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1717;1718
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1717;1718
@@ -2571,7 +2571,7 @@ Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;26;1719;1720
 Amerique du sud (Côte Atlantique);Compagnie des Indes (F);F;3;38;1719;1720
 Amerique du sud (Côte Atlantique);Compagnie de l’Asiento (F);F;3;46;1719;1720
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;62;1719;1720
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;87;1719;1720
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;87;1719;1720
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1719;1720
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1719;1720
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1719;1720
@@ -2581,7 +2581,7 @@ Amerique du sud (Côte Atlantique);Compagnie des Mers du Sud (GB);GB;3;15;1721;17
 Amerique du sud (Côte Atlantique);Marchand (F);F;3;23;1721;1722
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;33;1721;1722
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;50;1721;1722
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;84;1721;1722
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;84;1721;1722
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1721;1722
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1721;1722
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1721;1722
@@ -2593,7 +2593,7 @@ Amerique du sud (Côte Atlantique);Interlope (F);F;3;24;1723;1747
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;33;1723;1747
 Amerique du sud (Côte Atlantique);Compagnie des Indes (F);F;3;42;1723;1747
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;58;1723;1747
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;86;1723;1747
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;86;1723;1747
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1723;1747
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1723;1747
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1723;1747
@@ -2607,7 +2607,7 @@ Amerique du sud (Côte Atlantique);Compagnie des Indes (F);F;3;38;1748;1763
 Amerique du sud (Côte Atlantique);Société d’Angola (F);F;3;44;1748;1763
 Amerique du sud (Côte Atlantique);Société Grou et Michel (F);F;3;48;1748;1763
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;64;1748;1763
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;88;1748;1763
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;88;1748;1763
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1748;1763
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1748;1763
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1748;1763
@@ -2620,7 +2620,7 @@ Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;31;1764;1790
 Amerique du sud (Côte Atlantique);Compagnie des Indes (F);F;3;39;1764;1790
 Amerique du sud (Côte Atlantique);Société d’Angola (F);F;3;45;1764;1790
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;61;1764;1790
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;87;1764;1790
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;87;1764;1790
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1764;1790
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1764;1790
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1764;1790
@@ -2631,7 +2631,7 @@ Amerique du sud (Côte Atlantique);Marchand (F);F;3;21;1791;1793
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;3;30;1791;1793
 Amerique du sud (Côte Atlantique);Société d’Angola (F);F;3;38;1791;1793
 Amerique du sud (Côte Atlantique);Marchand (E);E;3;55;1791;1793
-Amerique du sud (Côte Atlantique);Marchand (P);P;3;85;1791;1793
+Amerique du sud (Côte Atlantique);Marchand (P);Po;3;85;1791;1793
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;3;100;1791;1793
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;3;10;1791;1793
 Amerique du sud (Côte Pacifique);Marchand (E);E;3;79;1791;1793
@@ -2641,7 +2641,7 @@ Amerique du sud (Côte Atlantique);Compagnie des Mers du Sud (GB);GB;2;12;1794;18
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;18;1794;1802
 Amerique du sud (Côte Atlantique);Compagnie du Sénégal (F);F;2;26;1794;1802
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;46;1794;1802
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;87;1794;1802
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;87;1794;1802
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1794;1802
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;2;10;1794;1802
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;79;1794;1802
@@ -2650,39 +2650,39 @@ Amerique du sud (Côte Atlantique);Marchand (GB);GB;2;6;1803;3000
 Amerique du sud (Côte Atlantique);Compagnie des Mers du Sud (GB);GB;2;13;1803;3000
 Amerique du sud (Côte Atlantique);Marchand (F);F;2;20;1803;3000
 Amerique du sud (Côte Atlantique);Marchand (E);E;2;42;1803;3000
-Amerique du sud (Côte Atlantique);Marchand (P);P;2;86;1803;3000
+Amerique du sud (Côte Atlantique);Marchand (P);Po;2;86;1803;3000
 Amerique du sud (Côte Atlantique);Marchand (PU);PU;2;100;1803;3000
 Amerique du sud (Côte Pacifique);Compagnie des Mers du Sud (GB);GB;2;10;1803;3000
 Amerique du sud (Côte Pacifique);Marchand (E);E;2;79;1803;3000
 Amerique du sud (Côte Pacifique);Flotte de l’argent (E);E;2;100;1803;3000
-Afrique occidentale;Marchand;P;1;100;1796;1596
-Afrique occidentale;Marchand;P;1;95;1796;1598
+Afrique occidentale;Marchand;Po;1;100;1796;1596
+Afrique occidentale;Marchand;Po;1;95;1796;1598
 Afrique occidentale;Compagnie de Moucheron;PU;1;100;1796;1598
-Afrique occidentale;Marchand;P;1;93;1796;1599
+Afrique occidentale;Marchand;Po;1;93;1796;1599
 Afrique occidentale;Compagnie de Moucheron;PU;1;97;1796;1599
 Afrique occidentale;Compagnie du Brabant;PU;1;100;1796;1599
 Afrique occidentale;Interlope;GB;2;3;1800;1601
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;2;21;1800;1601
-Afrique occidentale;Marchand;P;2;94;1800;1601
+Afrique occidentale;Marchand;Po;2;94;1800;1601
 Afrique occidentale;Compagnie de Moucheron;PU;2;98;1800;1601
 Afrique occidentale;Compagnie du Brabant;PU;2;100;1800;1601
 Afrique occidentale;Interlope;GB;2;2;1800;1602
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;2;17;1800;1602
-Afrique occidentale;Marchand;P;2;77;1602;1602
+Afrique occidentale;Marchand;Po;2;77;1602;1602
 Afrique occidentale;Compagnie de Moucheron;PU;2;80;1602;1602
 Afrique occidentale;Compagnie du Brabant;PU;2;82;1602;1602
 Afrique occidentale;Interlope;PU;2;85;1602;1602
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1602;1602
 Afrique occidentale;Interlope;GB;2;3;1603;1603
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;2;18;1603;1603
-Afrique occidentale;Marchand;P;2;81;1603;1603
+Afrique occidentale;Marchand;Po;2;81;1603;1603
 Afrique occidentale;Interlope;PU;2;84;1603;1603
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1603;1603
 Afrique occidentale;Interlope;GB;2;2;1604;1610
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;2;16;1604;1610
 Afrique occidentale;Marchand;F;2;25;1604;1610
 Afrique occidentale;Compagnie Le Roy et Godefroy;F;2;27;1604;1610
-Afrique occidentale;Marchand;P;2;83;1604;1610
+Afrique occidentale;Marchand;Po;2;83;1604;1610
 Afrique occidentale;Interlope;PU;2;86;1604;1610
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1604;1610
 Afrique occidentale;Interlope;GB;3;2;1611;1614
@@ -2690,7 +2690,7 @@ Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;3;16;1611;161
 Afrique occidentale;Marchand;F;3;24;1611;1614
 Afrique occidentale;Compagnie Le Roy et Godefroy;F;3;27;1611;1614
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;3;29;1611;1614
-Afrique occidentale;Marchand;P;3;83;1611;1614
+Afrique occidentale;Marchand;Po;3;83;1611;1614
 Afrique occidentale;Interlope;PU;3;86;1611;1614
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1611;1614
 Afrique occidentale;Interlope;GB;3;2;1615;1615
@@ -2698,7 +2698,7 @@ Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;3;16;1615;161
 Afrique occidentale;Marchand;F;3;24;1615;1615
 Afrique occidentale;Compagnie des Moluques;F;3;27;1615;1615
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;3;29;1615;1615
-Afrique occidentale;Marchand;P;3;83;1615;1615
+Afrique occidentale;Marchand;Po;3;83;1615;1615
 Afrique occidentale;Interlope;PU;3;86;1615;1615
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1615;1615
 Afrique occidentale;Interlope;D;3;2;1616;1617
@@ -2708,7 +2708,7 @@ Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;3;24;1616;161
 Afrique occidentale;Marchand;F;3;31;1616;1617
 Afrique occidentale;Compagnie des Moluques;F;3;34;1616;1617
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;3;36;1616;1617
-Afrique occidentale;Marchand;P;3;85;1616;1617
+Afrique occidentale;Marchand;Po;3;85;1616;1617
 Afrique occidentale;Interlope;PU;3;87;1616;1617
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1616;1617
 Afrique occidentale;Interlope;D;4;1;1618;1620
@@ -2721,7 +2721,7 @@ Afrique occidentale;Biemba Company;GB;4;42;1618;1620
 Afrique occidentale;Marchand;F;4;48;1618;1620
 Afrique occidentale;Compagnie des Moluques;F;4;50;1618;1620
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;4;51;1618;1620
-Afrique occidentale;Marchand;P;4;88;1618;1620
+Afrique occidentale;Marchand;Po;4;88;1618;1620
 Afrique occidentale;Interlope;PU;4;90;1618;1620
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;100;1618;1620
 Afrique occidentale;Interlope;D;3;1;1621;1625
@@ -2733,7 +2733,7 @@ Afrique occidentale;Guinea Company;GB;3;33;1621;1625
 Afrique occidentale;Biemba Company;GB;3;38;1621;1625
 Afrique occidentale;Marchand;F;3;43;1621;1625
 Afrique occidentale;Compagnie des Moluques;F;3;45;1621;1625
-Afrique occidentale;Marchand;P;3;78;1621;1625
+Afrique occidentale;Marchand;Po;3;78;1621;1625
 Afrique occidentale;Interlope;PU;3;81;1621;1625
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;90;1621;1625
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;3;100;1621;1625
@@ -2746,7 +2746,7 @@ Afrique occidentale;Guinea Company;GB;4;32;1626;1631
 Afrique occidentale;Biemba Company;GB;4;37;1626;1631
 Afrique occidentale;Interlope;F;4;40;1626;1631
 Afrique occidentale;Compagnie normande$^m$;F;4;46;1626;1631
-Afrique occidentale;Marchand;P;4;79;1626;1631
+Afrique occidentale;Marchand;Po;4;79;1626;1631
 Afrique occidentale;Interlope;PU;4;82;1626;1631
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;90;1626;1631
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1626;1631
@@ -2759,7 +2759,7 @@ Afrique occidentale;Biemba Company;GB;4;31;1631;1641
 Afrique occidentale;Company of Merchants Trading to Guinea;GB;4;36;1631;1641
 Afrique occidentale;Interlope;F;4;39;1631;1641
 Afrique occidentale;Compagnie normande$^m$;F;4;45;1631;1641
-Afrique occidentale;Marchand;P;4;78;1631;1641
+Afrique occidentale;Marchand;Po;4;78;1631;1641
 Afrique occidentale;Interlope;PU;4;81;1631;1641
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;91;1631;1641
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1631;1641
@@ -2773,7 +2773,7 @@ Afrique occidentale;Company of Merchants Trading to Guinea;GB;4;48;1642;1646
 Afrique occidentale;Interlope;F;4;52;1642;1646
 Afrique occidentale;Compagnie normande$^m$;F;4;61;1642;1646
 Afrique occidentale;Compagnie d’Orient$^m$;F;4;64;1642;1646
-Afrique occidentale;Marchand;P;4;71;1642;1646
+Afrique occidentale;Marchand;Po;4;71;1642;1646
 Afrique occidentale;Interlope;PU;4;75;1642;1646
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;86;1642;1646
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1642;1646
@@ -2805,7 +2805,7 @@ Afrique occidentale;Marchand;F;5;45;1650;1656
 Afrique occidentale;Interlope;F;5;48;1650;1656
 Afrique occidentale;Compagnie normande$^m$;F;5;55;1650;1656
 Afrique occidentale;Compagnie d’Orient$^m$;F;5;57;1650;1656
-Afrique occidentale;Marchand;P;5;66;1650;1656
+Afrique occidentale;Marchand;Po;5;66;1650;1656
 Afrique occidentale;Interlope;PU;5;69;1650;1656
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;78;1650;1656
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;88;1650;1656
@@ -2824,7 +2824,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;4
 Afrique occidentale;Interlope;F;5;52;1657;1658
 Afrique occidentale;Compagnie normande$^m$;F;5;58;1657;1658
 Afrique occidentale;Compagnie d’Orient$^m$;F;5;61;1657;1658
-Afrique occidentale;Marchand;P;5;68;1657;1658
+Afrique occidentale;Marchand;Po;5;68;1657;1658
 Afrique occidentale;Interlope;PU;5;72;1657;1658
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;79;1657;1658
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1657;1658
@@ -2842,7 +2842,7 @@ Afrique occidentale;Marchand;D;5;42;1659;1659
 Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;48;1659;1659
 Afrique occidentale;Marchand;F;5;57;1659;1659
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;5;62;1659;1659
-Afrique occidentale;Marchand;P;5;69;1659;1659
+Afrique occidentale;Marchand;Po;5;69;1659;1659
 Afrique occidentale;Interlope;PU;5;72;1659;1659
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;80;1659;1659
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1659;1659
@@ -2861,7 +2861,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;4
 Afrique occidentale;Marchand;F;5;55;1660;1661
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;5;60;1660;1661
 Afrique occidentale;Compagnie de Chine;F;5;63;1660;1661
-Afrique occidentale;Marchand;P;5;70;1660;1661
+Afrique occidentale;Marchand;Po;5;70;1660;1661
 Afrique occidentale;Interlope;PU;5;73;1660;1661
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;80;1660;1661
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1660;1661
@@ -2877,7 +2877,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;4;4
 Afrique occidentale;Marchand;F;4;50;1662;1663
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;4;55;1662;1663
 Afrique occidentale;Compagnie de Chine;F;4;58;1662;1663
-Afrique occidentale;Marchand;P;4;66;1662;1663
+Afrique occidentale;Marchand;Po;4;66;1662;1663
 Afrique occidentale;Interlope;PU;4;70;1662;1663
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;78;1662;1663
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;88;1662;1663
@@ -2895,7 +2895,7 @@ Afrique occidentale;Compagnie française des Indes Orientales$^m$;F;5;47;1734;174
 Afrique occidentale;Compagnie de Chine;F;5;53;1734;1740
 Afrique occidentale;Compagnie du Sénégal;F;5;56;1734;1740
 Afrique occidentale;Compagnie des Indes$^m$;F;5;65;1734;1740
-Afrique occidentale;Marchand;P;5;74;1734;1740
+Afrique occidentale;Marchand;Po;5;74;1734;1740
 Afrique occidentale;Interlope;PU;5;76;1734;1740
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;83;1734;1740
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1734;1740
@@ -2913,7 +2913,7 @@ Afrique occidentale;Compagnie française des Indes Orientales;F;5;50;1741;1741
 Afrique occidentale;Compagnie de Chine;F;5;56;1741;1741
 Afrique occidentale;Compagnie du Sénégal;F;5;59;1741;1741
 Afrique occidentale;Compagnie des Indes$^m$;F;5;67;1741;1741
-Afrique occidentale;Marchand;P;5;76;1741;1741
+Afrique occidentale;Marchand;Po;5;76;1741;1741
 Afrique occidentale;Interlope;PU;5;77;1741;1741
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;84;1741;1741
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1741;1741
@@ -2932,7 +2932,7 @@ Afrique occidentale;Compagnie française des Indes Orientales;F;5;50;1742;1747
 Afrique occidentale;Compagnie de Chine;F;5;56;1742;1747
 Afrique occidentale;Compagnie du Sénégal;F;5;59;1742;1747
 Afrique occidentale;Compagnie des Indes$^m$;F;5;67;1742;1747
-Afrique occidentale;Marchand;P;5;76;1742;1747
+Afrique occidentale;Marchand;Po;5;76;1742;1747
 Afrique occidentale;Interlope;PU;5;77;1742;1747
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;84;1742;1747
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1742;1747
@@ -2955,7 +2955,7 @@ Afrique occidentale;Compagnie des Indes$^m$;F;5;58;1748;1752
 Afrique occidentale;Compagnie de Guinée$^m$;F;5;65;1748;1752
 Afrique occidentale;Société d’Angola;F;5;69;1748;1752
 Afrique occidentale;Société Grou et Michel;F;5;73;1748;1752
-Afrique occidentale;Marchand;P;5;80;1748;1752
+Afrique occidentale;Marchand;Po;5;80;1748;1752
 Afrique occidentale;Interlope;PU;5;81;1748;1752
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;87;1748;1752
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;94;1748;1752
@@ -2977,7 +2977,7 @@ Afrique occidentale;Compagnie des Indes$^m$;F;5;56;1753;1754
 Afrique occidentale;Compagnie de Guinée$^m$;F;5;63;1753;1754
 Afrique occidentale;Société d’Angola;F;5;68;1753;1754
 Afrique occidentale;Société Grou et Michel;F;5;71;1753;1754
-Afrique occidentale;Marchand;P;5;79;1753;1754
+Afrique occidentale;Marchand;Po;5;79;1753;1754
 Afrique occidentale;Interlope;PU;5;80;1753;1754
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;86;1753;1754
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;93;1753;1754
@@ -2998,7 +2998,7 @@ Afrique occidentale;Compagnie des Indes$^m$;F;5;52;1755;1763
 Afrique occidentale;Compagnie de Guinée$^m$;F;5;60;1755;1763
 Afrique occidentale;Société d’Angola;F;5;65;1755;1763
 Afrique occidentale;Société Grou et Michel;F;5;69;1755;1763
-Afrique occidentale;Marchand;P;5;77;1755;1763
+Afrique occidentale;Marchand;Po;5;77;1755;1763
 Afrique occidentale;Interlope;PU;5;78;1755;1763
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;85;1755;1763
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;93;1755;1763
@@ -3017,7 +3017,7 @@ Afrique occidentale;Compagnie de Chine;F;5;44;1764;1764
 Afrique occidentale;Compagnie du Sénégal;F;5;50;1764;1764
 Afrique occidentale;Compagnie des Indes$^m$;F;5;59;1764;1764
 Afrique occidentale;Société d’Angola;F;5;65;1764;1764
-Afrique occidentale;Marchand;P;5;74;1764;1764
+Afrique occidentale;Marchand;Po;5;74;1764;1764
 Afrique occidentale;Interlope;PU;5;75;1764;1764
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;83;1764;1764
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1764;1764
@@ -3037,7 +3037,7 @@ Afrique occidentale;Compagnie de Chine;F;5;47;1765;1772
 Afrique occidentale;Compagnie du Sénégal;F;5;53;1765;1772
 Afrique occidentale;Compagnie des Indes$^m$;F;5;61;1765;1772
 Afrique occidentale;Société d’Angola;F;5;67;1765;1772
-Afrique occidentale;Marchand;P;5;76;1765;1772
+Afrique occidentale;Marchand;Po;5;76;1765;1772
 Afrique occidentale;Interlope;PU;5;77;1765;1772
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;84;1765;1772
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1765;1772
@@ -3055,7 +3055,7 @@ Afrique occidentale;Compagnie de Chine;F;5;45;1773;1777
 Afrique occidentale;Compagnie du Sénégal;F;5;51;1773;1777
 Afrique occidentale;Compagnie des Indes$^m$;F;5;60;1773;1777
 Afrique occidentale;Société d’Angola;F;5;66;1773;1777
-Afrique occidentale;Marchand;P;5;75;1773;1777
+Afrique occidentale;Marchand;Po;5;75;1773;1777
 Afrique occidentale;Interlope;PU;5;76;1773;1777
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;83;1773;1777
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;92;1773;1777
@@ -3075,7 +3075,7 @@ Afrique occidentale;Compagnie de Chine;F;5;49;1778;1780
 Afrique occidentale;Compagnie du Sénégal;F;5;54;1778;1780
 Afrique occidentale;Compagnie des Indes$^m$;F;5;63;1778;1780
 Afrique occidentale;Société d’Angola;F;5;68;1778;1780
-Afrique occidentale;Marchand;P;5;76;1778;1780
+Afrique occidentale;Marchand;Po;5;76;1778;1780
 Afrique occidentale;Interlope;PU;5;78;1778;1780
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;84;1778;1780
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;93;1778;1780
@@ -3095,7 +3095,7 @@ Afrique occidentale;Compagnie de Chine;F;5;49;1781;1785
 Afrique occidentale;Compagnie du Sénégal;F;5;54;1781;1785
 Afrique occidentale;Compagnie des Indes$^m$;F;5;63;1781;1785
 Afrique occidentale;Société d’Angola;F;5;68;1781;1785
-Afrique occidentale;Marchand;P;5;76;1781;1785
+Afrique occidentale;Marchand;Po;5;76;1781;1785
 Afrique occidentale;Interlope;PU;5;79;1781;1785
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;93;1781;1785
 Afrique occidentale;Marchand;S;5;95;1781;1785
@@ -3114,7 +3114,7 @@ Afrique occidentale;Compagnie du Sénégal;F;5;51;1786;1790
 Afrique occidentale;Compagnie des Indes$^m$;F;5;59;1786;1790
 Afrique occidentale;Société d’Angola;F;5;64;1786;1790
 Afrique occidentale;Compagnie des Indes Orientales et de la Chine$^m$;F;5;69;1786;1790
-Afrique occidentale;Marchand;P;5;77;1786;1790
+Afrique occidentale;Marchand;Po;5;77;1786;1790
 Afrique occidentale;Interlope;PU;5;79;1786;1790
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;93;1786;1790
 Afrique occidentale;Marchand;S;5;95;1786;1790
@@ -3131,7 +3131,7 @@ Afrique occidentale;Compagnie de Chine;F;4;46;1791;1793
 Afrique occidentale;Compagnie du Sénégal;F;4;53;1791;1793
 Afrique occidentale;Société d’Angola;F;4;59;1791;1793
 Afrique occidentale;Compagnie des Indes Orientales et de la Chine;F;4;64;1791;1793
-Afrique occidentale;Marchand;P;4;73;1791;1793
+Afrique occidentale;Marchand;Po;4;73;1791;1793
 Afrique occidentale;Interlope;PU;4;76;1791;1793
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;92;1791;1793
 Afrique occidentale;Marchand;S;4;95;1791;1793
@@ -3145,7 +3145,7 @@ Afrique occidentale;Interlope;F;3;39;1794;1795
 Afrique occidentale;Compagnie française des Indes Orientales$^m$;F;3;45;1794;1795
 Afrique occidentale;Compagnie de Chine;F;3;49;1794;1795
 Afrique occidentale;Compagnie du Sénégal;F;3;56;1794;1795
-Afrique occidentale;Marchand;P;3;67;1794;1795
+Afrique occidentale;Marchand;Po;3;67;1794;1795
 Afrique occidentale;Interlope;PU;3;71;1794;1795
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;90;1794;1795
 Afrique occidentale;Marchand;S;3;94;1794;1795
@@ -3158,7 +3158,7 @@ Afrique occidentale;Marchand;F;3;38;1796;1799
 Afrique occidentale;Interlope;F;3;42;1796;1799
 Afrique occidentale;Compagnie de Chine;F;3;46;1796;1799
 Afrique occidentale;Compagnie du Sénégal;F;3;54;1796;1799
-Afrique occidentale;Marchand;P;3;66;1796;1799
+Afrique occidentale;Marchand;Po;3;66;1796;1799
 Afrique occidentale;Interlope;PU;3;70;1796;1799
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;90;1796;1799
 Afrique occidentale;Marchand;S;3;94;1796;1799
@@ -3171,7 +3171,7 @@ Afrique occidentale;Marchand;F;2;61;1800;1802
 Afrique occidentale;Interlope;F;2;67;1800;1802
 Afrique occidentale;Compagnie de Chine;F;2;74;1800;1802
 Afrique occidentale;Compagnie du Sénégal;F;2;87;1800;1802
-Afrique occidentale;Marchand;P;2;100;1800;1802
+Afrique occidentale;Marchand;Po;2;100;1800;1802
 Afrique occidentale;Marchand;D;2;12;1803;1813
 Afrique occidentale;Interlope;GB;2;15;1803;1813
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;2;31;1803;1813
@@ -3179,36 +3179,36 @@ Afrique occidentale;Marchand;E;2;40;1803;1813
 Afrique occidentale;Marchand;F;2;59;1803;1813
 Afrique occidentale;Interlope;F;2;65;1803;1813
 Afrique occidentale;Compagnie de Chine;F;2;71;1803;1813
-Afrique occidentale;Marchand;P;2;84;1803;1813
+Afrique occidentale;Marchand;Po;2;84;1803;1813
 Afrique occidentale;Marchand;S;2;90;1803;1813
 Afrique du sud;Compagnie suédoise des Indes Orientales;S;2;100;1803;1813
-Afrique du sud;Marchand;P;1;90;1597;1598
+Afrique du sud;Marchand;Po;1;90;1597;1598
 Afrique du sud;Compagnie de Moucheron;PU;1;100;1597;1598
-Afrique du sud;Marchand;P;1;86;1599;1599
+Afrique du sud;Marchand;Po;1;86;1599;1599
 Afrique du sud;Compagnie de Moucheron;PU;1;95;1599;1599
 Afrique du sud;Compagnie du Brabant;PU;1;100;1599;1599
 Afrique du sud;Interlope;GB;2;5;1601;1601
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;24;1601;1601
-Afrique du sud;Marchand;P;2;91;1601;1601
+Afrique du sud;Marchand;Po;2;91;1601;1601
 Afrique du sud;Compagnie de Moucheron;PU;2;97;1601;1601
 Afrique du sud;Compagnie du Brabant;PU;2;100;1601;1601
 Afrique du sud;Interlope;GB;2;4;1602;1602
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;25;1602;1602
-Afrique du sud;Marchand;P;2;68;1602;1602
+Afrique du sud;Marchand;Po;2;68;1602;1602
 Afrique du sud;Compagnie de Moucheron;PU;2;72;1602;1602
 Afrique du sud;Compagnie du Brabant;PU;2;74;1602;1602
 Afrique du sud;Interlope;PU;2;78;1602;1602
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1602;1602
 Afrique du sud;Interlope;GB;2;4;1603;1603
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;27;1603;1603
-Afrique du sud;Marchand;P;2;72;1603;1603
+Afrique du sud;Marchand;Po;2;72;1603;1603
 Afrique du sud;Interlope;PU;2;77;1603;1603
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1603;1603
 Afrique du sud;Interlope;GB;2;4;1604;1610
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;25;1604;1610
 Afrique du sud;Marchand;F;2;29;1604;1610
 Afrique du sud;Compagnie Le Roy et Godefroy;F;2;33;1604;1610
-Afrique du sud;Marchand;P;2;75;1604;1610
+Afrique du sud;Marchand;Po;2;75;1604;1610
 Afrique du sud;Interlope;PU;2;79;1604;1610
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1604;1610
 Afrique du sud;Interlope;GB;3;4;1611;1614
@@ -3216,7 +3216,7 @@ Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;24;1611;1614
 Afrique du sud;Marchand;F;3;28;1611;1614
 Afrique du sud;Compagnie Le Roy et Godefroy;F;3;32;1611;1614
 Afrique du sud;C. de Montmorency pour les Indes Orientales;F;3;36;1611;1614
-Afrique du sud;Marchand;P;3;76;1611;1614
+Afrique du sud;Marchand;Po;3;76;1611;1614
 Afrique du sud;Interlope;PU;3;80;1611;1614
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1611;1614
 Afrique du sud;Interlope;GB;3;4;1615;1615
@@ -3224,7 +3224,7 @@ Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;24;1615;1615
 Afrique du sud;Marchand;F;3;28;1615;1615
 Afrique du sud;Compagnie des Moluques;F;3;32;1615;1615
 Afrique du sud;C. de Montmorency pour les Indes Orientales;F;3;36;1615;1615
-Afrique du sud;Marchand;P;3;76;1615;1615
+Afrique du sud;Marchand;Po;3;76;1615;1615
 Afrique du sud;Interlope;PU;3;80;1615;1615
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1615;1615
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;3;10;1616;1620
@@ -3233,7 +3233,7 @@ Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;32;1616;1620
 Afrique du sud;Marchand;F;3;35;1616;1620
 Afrique du sud;Compagnie des Moluques;F;3;39;1616;1620
 Afrique du sud;C. de Montmorency pour les Indes Orientales;F;3;42;1616;1620
-Afrique du sud;Marchand;P;3;78;1616;1620
+Afrique du sud;Marchand;Po;3;78;1616;1620
 Afrique du sud;Interlope;PU;3;82;1616;1620
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1616;1620
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;3;11;1621;1625
@@ -3241,14 +3241,14 @@ Afrique du sud;Interlope;GB;3;14;1621;1625
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;33;1621;1625
 Afrique du sud;Marchand;F;3;37;1621;1625
 Afrique du sud;Compagnie des Moluques;F;3;40;1621;1625
-Afrique du sud;Marchand;P;3;77;1621;1625
+Afrique du sud;Marchand;Po;3;77;1621;1625
 Afrique du sud;Interlope;PU;3;81;1621;1625
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1621;1625
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;2;11;1626;1641
 Afrique du sud;Interlope;GB;2;15;1626;1641
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;34;1626;1641
 Afrique du sud;Marchand;F;2;38;1626;1641
-Afrique du sud;Marchand;P;2;76;1626;1641
+Afrique du sud;Marchand;Po;2;76;1626;1641
 Afrique du sud;Interlope;PU;2;80;1626;1641
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1626;1641
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;3;10;1642;1657
@@ -3256,14 +3256,14 @@ Afrique du sud;Interlope;GB;3;14;1642;1657
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;32;1642;1657
 Afrique du sud;Marchand;F;3;36;1642;1657
 Afrique du sud;Compagnie d’Orient$^m$;F;3;41;1642;1657
-Afrique du sud;Marchand;P;3;68;1642;1657
+Afrique du sud;Marchand;Po;3;68;1642;1657
 Afrique du sud;Interlope;PU;3;71;1642;1657
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1642;1657
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;2;11;1658;1659
 Afrique du sud;Interlope;GB;2;15;1658;1659
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;34;1658;1659
 Afrique du sud;Marchand;F;2;38;1658;1659
-Afrique du sud;Marchand;P;2;76;1658;1659
+Afrique du sud;Marchand;Po;2;76;1658;1659
 Afrique du sud;Interlope;PU;2;80;1658;1659
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;2;100;1658;1659
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;3;10;1660;1663
@@ -3271,7 +3271,7 @@ Afrique du sud;Interlope;GB;3;14;1660;1663
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;32;1660;1663
 Afrique du sud;Marchand;F;3;35;1660;1663
 Afrique du sud;Compagnie de Chine;F;3;42;1660;1663
-Afrique du sud;Marchand;P;3;78;1660;1663
+Afrique du sud;Marchand;Po;3;78;1660;1663
 Afrique du sud;Interlope;PU;3;82;1660;1663
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1660;1663
 Afrique du sud;Compagnie danoise des Indes Orientales$^m$;D;3;12;1664;1683
@@ -3281,27 +3281,27 @@ Afrique du sud;Marchand;F;3;40;1664;1683
 Afrique Orientale;Marchand;Ar;1;20;1400;1641
 Afrique Orientale;Marchand;EM;1;35;1400;1641
 Afrique Orientale;Marchand;EO;1;61;1400;1641
-Afrique Orientale;Marchand;P;1;100;1400;1641
+Afrique Orientale;Marchand;Po;1;100;1400;1641
 Afrique Orientale;Marchand;Ar;1;19;1642;1657
 Afrique Orientale;Marchand;EO;1;30;1642;1657
 Afrique Orientale;Marchand;EO;1;58;1642;1657
 Afrique Orientale;Compagnie d’Orient$^m$;F;1;63;1642;1657
-Afrique Orientale;Marchand;P;1;100;1642;1657
+Afrique Orientale;Marchand;Po;1;100;1642;1657
 Afrique Orientale;Marchand;Ar;1;20;1658;1659
 Afrique Orientale;Marchand;EM;1;35;1658;1659
 Afrique Orientale;Marchand;EO;1;61;1658;1659
-Afrique Orientale;Marchand;P;1;100;1658;1659
+Afrique Orientale;Marchand;Po;1;100;1658;1659
 Afrique Orientale;Marchand;Ar;1;19;1660;1663
 Afrique Orientale;Marchand;EM;1;32;1660;1663
 Afrique Orientale;Marchand;EO;1;57;1660;1663
 Afrique Orientale;Compagnie de Chine;F;1;64;1660;1663
-Afrique Orientale;Marchand;P;1;100;1660;1663
+Afrique Orientale;Marchand;Po;1;100;1660;1663
 Afrique Orientale;Marchand;Ar;2;12;1664;1683
 Afrique Orientale;Marchand;EM;2;22;1664;1683
 Afrique Orientale;Marchand;EO;2;47;1664;1683
 Afrique Orientale;Compagnie de Chine;F;2;62;1664;1683
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;70;1664;1683
-Afrique Orientale;Marchand;P;2;100;1664;1683
+Afrique Orientale;Marchand;Po;2;100;1664;1683
 Afrique Orientale;Marchand;Ar;2;9;1684;1700
 Afrique Orientale;Marchand;EM;2;22;1684;1700
 Afrique Orientale;Marchand;EO;2;37;1684;1700
@@ -3309,13 +3309,13 @@ Afrique Orientale;Marchand;F;2;51;1684;1700
 Afrique Orientale;Compagnie de Chine;F;2;55;1684;1700
 Afrique Orientale;Compagnie française des Indes Orientales;F;2;69;1684;1700
 Afrique Orientale;Mississipi Company;F;2;76;1684;1700
-Afrique Orientale;Marchand;P;2;100;1684;1700
+Afrique Orientale;Marchand;Po;2;100;1684;1700
 Afrique Orientale;Marchand;Ar;2;12;1701;1717
 Afrique Orientale;Marchand;EM;2;22;1701;1717
 Afrique Orientale;Marchand;EO;2;47;1701;1717
 Afrique Orientale;Compagnie de Chine;F;2;62;1701;1717
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;70;1701;1717
-Afrique Orientale;Marchand;P;2;100;1701;1717
+Afrique Orientale;Marchand;Po;2;100;1701;1717
 Afrique Orientale;Marchand;Ar;2;92;1718;1718
 Afrique Orientale;Marchand;EM;2;32;1718;1718
 Afrique Orientale;Marchand;EO;2;53;1718;1718
@@ -3323,7 +3323,7 @@ Afrique Orientale;Marchand;F;2;59;1718;1718
 Afrique Orientale;Interlope;F;2;63;1718;1718
 Afrique Orientale;Compagnie de Chine;F;2;67;1718;1718
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;79;1718;1718
-Afrique Orientale;Marchand;P;2;100;1718;1718
+Afrique Orientale;Marchand;Po;2;100;1718;1718
 Afrique Orientale;Marchand;Ar;2;11;1719;1719
 Afrique Orientale;Marchand;EM;2;30;1719;1719
 Afrique Orientale;Marchand;EO;2;50;1719;1719
@@ -3332,20 +3332,20 @@ Afrique Orientale;Interlope;F;2;63;1719;1719
 Afrique Orientale;Compagnie de Chine;F;2;75;1719;1719
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;75;1719;1719
 Afrique Orientale;Compagnie des Indes$^m$;F;2;80;1719;1719
-Afrique Orientale;Marchand;P;2;100;1719;1719
+Afrique Orientale;Marchand;Po;2;100;1719;1719
 Afrique Orientale;Marchand;Ar;2;12;1720;1720
 Afrique Orientale;Marchand;EM;2;34;1720;1720
 Afrique Orientale;Marchand;EO;2;55;1720;1720
 Afrique Orientale;Interlope;F;2;59;1720;1720
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;72;1720;1720
 Afrique Orientale;Compagnie des Indes$^m$;F;2;78;1720;1720
-Afrique Orientale;Marchand;P;2;100;1720;1720
+Afrique Orientale;Marchand;Po;2;100;1720;1720
 Afrique Orientale;Marchand;Ar;2;13;1721;1722
 Afrique Orientale;Marchand;EM;2;36;1721;1722
 Afrique Orientale;Marchand;EO;2;59;1721;1722
 Afrique Orientale;Interlope;F;2;63;1721;1722
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;77;1721;1722
-Afrique Orientale;Marchand;P;2;100;1721;1722
+Afrique Orientale;Marchand;Po;2;100;1721;1722
 Afrique Orientale;Marchand;Ar;2;12;1723;1747
 Afrique Orientale;Marchand;EM;2;19;1723;1747
 Afrique Orientale;Marchand;EO;2;37;1723;1747
@@ -3353,7 +3353,7 @@ Afrique Orientale;Marchand;F;2;51;1723;1747
 Afrique Orientale;Compagnie de Chine;F;2;55;1723;1747
 Afrique Orientale;Compagnie française des Indes Orientales;F;2;69;1723;1747
 Afrique Orientale;Compagnie des Indes;F;2;76;1723;1747
-Afrique Orientale;Marchand;P;2;100;1723;1747
+Afrique Orientale;Marchand;Po;2;100;1723;1747
 Afrique Orientale;Marchand;Ar;2;12;1748;1790
 Afrique Orientale;Marchand;EM;2;19;1748;1790
 Afrique Orientale;Marchand;EO;2;37;1748;1790
@@ -3361,7 +3361,7 @@ Afrique Orientale;Marchand;F;2;51;1748;1790
 Afrique Orientale;Compagnie de Chine;F;2;55;1748;1790
 Afrique Orientale;Compagnie française des Indes Orientales;F;2;69;1748;1790
 Afrique Orientale;Compagnie des Indes;F;2;76;1748;1790
-Afrique Orientale;Marchand;P;2;100;1748;1790
+Afrique Orientale;Marchand;Po;2;100;1748;1790
 Afrique Orientale;Marchand;Ar;2;13;1791;1795
 Afrique Orientale;Marchand;EM;2;26;1791;1795
 Afrique Orientale;Marchand;EO;2;48;1791;1795
@@ -3369,15 +3369,15 @@ Afrique Orientale;Marchand;F;2;55;1791;1795
 Afrique Orientale;Interlope;F;2;60;1791;1795
 Afrique Orientale;Compagnie de Chine;F;2;64;1791;1795
 Afrique Orientale;Compagnie française des Indes Orientales$^m$;F;2;77;1791;1795
-Afrique Orientale;Marchand;P;2;100;1791;1795
+Afrique Orientale;Marchand;Po;2;100;1791;1795
 Afrique Orientale;Marchand;Ar;1;16;1796;3000
 Afrique Orientale;Marchand;EM;1;32;1796;3000
 Afrique Orientale;Marchand;EO;1;59;1796;3000
 Afrique Orientale;Marchand;F;1;67;1796;3000
 Afrique Orientale;Compagnie de Chine;F;1;72;1796;3000
-Afrique Orientale;Marchand;P;1;100;1796;3000
+Afrique Orientale;Marchand;Po;1;100;1796;3000
 Afrique du nord;Compagnie des Indes$^m$;F;4;53;1800;1747
-Afrique du nord;Marchand;P;4;60;1800;1747
+Afrique du nord;Marchand;Po;4;60;1800;1747
 Afrique du nord;Interlope;PU;4;65;1800;1747
 Afrique du nord;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1800;1747
 Afrique du nord;Marchand;S;4;93;1800;1747
@@ -3392,7 +3392,7 @@ Afrique du nord;Compagnie française des Indes Orientales$^m$;F;4;37;1748;1772
 Afrique du nord;Compagnie de Chine;F;4;41;1748;1772
 Afrique du nord;Compagnie des Indes$^m$;F;4;48;1748;1772
 Afrique du nord;Société d’Angola;F;4;53;1748;1772
-Afrique du nord;Marchand;P;4;60;1748;1772
+Afrique du nord;Marchand;Po;4;60;1748;1772
 Afrique du nord;Interlope;PU;4;65;1748;1772
 Afrique du nord;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1748;1772
 Afrique du nord;Marchand;S;4;93;1748;1772
@@ -3406,7 +3406,7 @@ Afrique du nord;Compagnie française des Indes Orientales$^m$;F;4;35;1773;1778
 Afrique du nord;Compagnie de Chine;F;4;40;1773;1778
 Afrique du nord;Compagnie des Indes$^m$;F;4;47;1773;1778
 Afrique du nord;Société d’Angola;F;4;52;1773;1778
-Afrique du nord;Marchand;P;4;59;1773;1778
+Afrique du nord;Marchand;Po;4;59;1773;1778
 Afrique du nord;Interlope;PU;4;64;1773;1778
 Afrique du nord;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1773;1778
 Afrique du nord;Marchand;S;4;92;1773;1778
@@ -3421,7 +3421,7 @@ Afrique du nord;Compagnie française des Indes Orientales$^m$;F;4;37;1778;1785
 Afrique du nord;Compagnie de Chine;F;4;41;1778;1785
 Afrique du nord;Compagnie des Indes$^m$;F;4;48;1778;1785
 Afrique du nord;Société d’Angola;F;4;53;1778;1785
-Afrique du nord;Marchand;P;4;60;1778;1785
+Afrique du nord;Marchand;Po;4;60;1778;1785
 Afrique du nord;Interlope;PU;4;65;1778;1785
 Afrique du nord;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1778;1785
 Afrique du nord;Marchand;S;4;93;1778;1785
@@ -3435,7 +3435,7 @@ Afrique occidentale;Compagnie de Chine;F;4;36;1785;1790
 Afrique occidentale;Compagnie des Indes$^m$;F;4;43;1785;1790
 Afrique occidentale;Société d’Angola;F;4;48;1785;1790
 Afrique occidentale;C. des Indes Orientales et de la Chine$^m$;F;4;56;1785;1790
-Afrique occidentale;Marchand;P;4;70;1785;1790
+Afrique occidentale;Marchand;Po;4;70;1785;1790
 Afrique occidentale;Interlope;PU;4;72;1785;1790
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;87;1785;1790
 Afrique occidentale;Marchand;S;4;92;1785;1790
@@ -3448,7 +3448,7 @@ Afrique occidentale;Compagnie française des Indes Orientales$^m$;F;4;30;1791;179
 Afrique occidentale;Compagnie de Chine;F;4;35;1791;1793
 Afrique occidentale;Société d’Angola;F;4;45;1791;1793
 Afrique occidentale;C. des Indes Orientales et de la Chine;F;4;52;1791;1793
-Afrique occidentale;Marchand;P;4;61;1791;1793
+Afrique occidentale;Marchand;Po;4;61;1791;1793
 Afrique occidentale;Interlope;PU;4;64;1791;1793
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1791;1793
 Afrique occidentale;Marchand;S;4;92;1791;1793
@@ -3459,7 +3459,7 @@ Afrique occidentale;Marchand;F;3;25;1794;1795
 Afrique occidentale;Interlope;F;3;28;1794;1795
 Afrique occidentale;Compagnie française des Indes Orientales$^m$;F;3;37;1794;1795
 Afrique occidentale;Compagnie de Chine;F;3;42;1794;1795
-Afrique occidentale;Marchand;P;3;51;1794;1795
+Afrique occidentale;Marchand;Po;3;51;1794;1795
 Afrique occidentale;Interlope;PU;3;57;1794;1795
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;85;1794;1795
 Afrique occidentale;Marchand;S;3;91;1794;1795
@@ -3468,7 +3468,7 @@ Afrique occidentale;Interlope;GB;3;17;1796;1799
 Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;3;9;1796;1799
 Afrique occidentale;Marchand;F;3;39;1796;1799
 Afrique occidentale;Compagnie de Chine;F;3;45;1796;1799
-Afrique occidentale;Marchand;P;3;47;1796;1799
+Afrique occidentale;Marchand;Po;3;47;1796;1799
 Afrique occidentale;Interlope;PU;3;51;1796;1799
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;83;1796;1799
 Afrique occidentale;Marchand;S;3;90;1796;1799
@@ -3477,7 +3477,7 @@ Afrique occidentale;Compagnie anglaise des Indes Orientales$^m$;GB;3;24;1616;161
 Afrique occidentale;Marchand;F;3;31;1616;1617
 Afrique occidentale;Compagnie des Moluques;F;3;34;1616;1617
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;3;36;1616;1617
-Afrique occidentale;Marchand;P;3;85;1616;1617
+Afrique occidentale;Marchand;Po;3;85;1616;1617
 Afrique occidentale;Interlope;PU;3;87;1616;1617
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1616;1617
 Afrique occidentale;Interlope;D;4;1;1618;1620
@@ -3490,7 +3490,7 @@ Afrique occidentale;Biemba Company;GB;4;42;1618;1620
 Afrique occidentale;Marchand;F;4;48;1618;1620
 Afrique occidentale;Compagnie des Moluques;F;4;50;1618;1620
 Afrique occidentale;Compagnie de Montmorency pour les Indes Orientales;F;4;51;1618;1620
-Afrique occidentale;Marchand;P;4;88;1618;1620
+Afrique occidentale;Marchand;Po;4;88;1618;1620
 Afrique occidentale;Interlope;PU;4;90;1618;1620
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;100;1618;1620
 Afrique occidentale;Interlope;D;3;1;1621;1625
@@ -3502,7 +3502,7 @@ Afrique occidentale;Guinea Company;GB;3;33;1621;1625
 Afrique occidentale;Biemba Company;GB;3;38;1621;1625
 Afrique occidentale;Marchand;F;3;43;1621;1625
 Afrique occidentale;Compagnie des Moluques;F;3;45;1621;1625
-Afrique occidentale;Marchand;P;3;78;1621;1625
+Afrique occidentale;Marchand;Po;3;78;1621;1625
 Afrique occidentale;Interlope;PU;3;81;1621;1625
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;90;1621;1625
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;3;100;1621;1625
@@ -3515,7 +3515,7 @@ Afrique occidentale;Guinea Company;GB;4;32;1626;1631
 Afrique occidentale;Biemba Company;GB;4;37;1626;1631
 Afrique occidentale;Interlope;F;4;40;1626;1631
 Afrique occidentale;Compagnie normande$^m$;F;4;46;1626;1631
-Afrique occidentale;Marchand;P;4;79;1626;1631
+Afrique occidentale;Marchand;Po;4;79;1626;1631
 Afrique occidentale;Interlope;PU;4;82;1626;1631
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;90;1626;1631
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1626;1631
@@ -3528,7 +3528,7 @@ Afrique occidentale;Biemba Company;GB;4;31;1631;1641
 Afrique occidentale;Company of Merchants Trading to Guinea;GB;4;36;1631;1641
 Afrique occidentale;Interlope;F;4;39;1631;1641
 Afrique occidentale;Compagnie normande$^m$;F;4;45;1631;1641
-Afrique occidentale;Marchand;P;4;78;1631;1641
+Afrique occidentale;Marchand;Po;4;78;1631;1641
 Afrique occidentale;Interlope;PU;4;81;1631;1641
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;91;1631;1641
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1631;1641
@@ -3542,7 +3542,7 @@ Afrique occidentale;Company of Merchants Trading to Guinea;GB;4;48;1642;1646
 Afrique occidentale;Interlope;F;4;52;1642;1646
 Afrique occidentale;Compagnie normande$^m$;F;4;61;1642;1646
 Afrique occidentale;Compagnie d’Orient$^m$;F;4;64;1642;1646
-Afrique occidentale;Marchand;P;4;71;1642;1646
+Afrique occidentale;Marchand;Po;4;71;1642;1646
 Afrique occidentale;Interlope;PU;4;75;1642;1646
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;86;1642;1646
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;100;1642;1646
@@ -3574,7 +3574,7 @@ Afrique occidentale;Marchand;F;5;45;1650;1656
 Afrique occidentale;Interlope;F;5;48;1650;1656
 Afrique occidentale;Compagnie normande$^m$;F;5;55;1650;1656
 Afrique occidentale;Compagnie d’Orient$^m$;F;5;57;1650;1656
-Afrique occidentale;Marchand;P;5;66;1650;1656
+Afrique occidentale;Marchand;Po;5;66;1650;1656
 Afrique occidentale;Interlope;PU;5;69;1650;1656
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;78;1650;1656
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;88;1650;1656
@@ -3593,7 +3593,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;4
 Afrique occidentale;Interlope;F;5;52;1657;1658
 Afrique occidentale;Compagnie normande$^m$;F;5;58;1657;1658
 Afrique occidentale;Compagnie d’Orient$^m$;F;5;61;1657;1658
-Afrique occidentale;Marchand;P;5;68;1657;1658
+Afrique occidentale;Marchand;Po;5;68;1657;1658
 Afrique occidentale;Interlope;PU;5;72;1657;1658
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;79;1657;1658
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1657;1658
@@ -3611,7 +3611,7 @@ Afrique occidentale;Marchand;D;5;42;1659;1659
 Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;48;1659;1659
 Afrique occidentale;Marchand;F;5;57;1659;1659
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;5;62;1659;1659
-Afrique occidentale;Marchand;P;5;69;1659;1659
+Afrique occidentale;Marchand;Po;5;69;1659;1659
 Afrique occidentale;Interlope;PU;5;72;1659;1659
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;80;1659;1659
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1659;1659
@@ -3630,7 +3630,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;5;4
 Afrique occidentale;Marchand;F;5;55;1660;1661
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;5;60;1660;1661
 Afrique occidentale;Compagnie de Chine;F;5;63;1660;1661
-Afrique occidentale;Marchand;P;5;70;1660;1661
+Afrique occidentale;Marchand;Po;5;70;1660;1661
 Afrique occidentale;Interlope;PU;5;73;1660;1661
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;5;80;1660;1661
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;5;89;1660;1661
@@ -3646,7 +3646,7 @@ Afrique occidentale;Compagnie danoise des Indes Occidentales et Orientales;D;4;4
 Afrique occidentale;Marchand;F;4;50;1662;1663
 Afrique occidentale;Compagnie du Cap-Vert et du Sénégal;F;4;55;1662;1663
 Afrique occidentale;Compagnie de Chine;F;4;58;1662;1663
-Afrique occidentale;Marchand;P;4;66;1662;1663
+Afrique occidentale;Marchand;Po;4;66;1662;1663
 Afrique occidentale;Interlope;PU;4;70;1662;1663
 Afrique occidentale;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;78;1662;1663
 Afrique occidentale;Compagnie néerlandaise des Indes Occidentales$^m$;PU;4;88;1662;1663
@@ -3655,7 +3655,7 @@ Afrique occidentale;Compagnie suédoise d’Afrique;S;4;100;1662;1663
 Afrique du sud;Interlope;F;3;44;1664;1683
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;56;1664;1683
 Afrique du sud;Compagnie de Chine;F;3;64;1664;1683
-Afrique du sud;Marchand;P;3;76;1664;1683
+Afrique du sud;Marchand;Po;3;76;1664;1683
 Afrique du sud;Interlope;PU;3;80;1664;1683
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1664;1683
 Afrique du sud;Interlope;D;3;1;1684;1694
@@ -3666,7 +3666,7 @@ Afrique du sud;Marchand;F;3;40;1684;1694
 Afrique du sud;Interlope;F;3;44;1684;1694
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;56;1684;1694
 Afrique du sud;Compagnie de Chine;F;3;64;1684;1694
-Afrique du sud;Marchand;P;3;76;1684;1694
+Afrique du sud;Marchand;Po;3;76;1684;1694
 Afrique du sud;Interlope;PU;3;80;1684;1694
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1684;1694
 Afrique du sud;Interlope;D;3;1;1695;1718
@@ -3677,7 +3677,7 @@ Afrique du sud;Marchand;F;3;43;1695;1718
 Afrique du sud;Interlope;F;3;44;1695;1718
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;56;1695;1718
 Afrique du sud;Compagnie de Chine;F;3;64;1695;1718
-Afrique du sud;Marchand;P;3;76;1695;1718
+Afrique du sud;Marchand;Po;3;76;1695;1718
 Afrique du sud;Interlope;PU;3;80;1695;1718
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1695;1718
 Afrique du sud;Interlope;D;3;2;1719;1719
@@ -3689,7 +3689,7 @@ Afrique du sud;Interlope;F;3;37;1719;1719
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;45;1719;1719
 Afrique du sud;Compagnie de Chine;F;3;51;1719;1719
 Afrique du sud;Compagnie des Indes$^m$;F;3;59;1719;1719
-Afrique du sud;Marchand;P;3;67;1719;1719
+Afrique du sud;Marchand;Po;3;67;1719;1719
 Afrique du sud;Interlope;PU;3;72;1719;1719
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1719;1719
 Afrique du sud;Interlope;D;3;4;1720;1722
@@ -3698,7 +3698,7 @@ Afrique du sud;Marchand;GB;3;28;1720;1722
 Afrique du sud;Compagnie anglaise des Indes Orientales;GB;3;48;1720;1722
 Afrique du sud;Interlope;F;3;52;1720;1722
 Afrique du sud;Compagnie des Indes$^m$;F;3;64;1720;1722
-Afrique du sud;Marchand;P;3;76;1720;1722
+Afrique du sud;Marchand;Po;3;76;1720;1722
 Afrique du sud;Interlope;PU;3;80;1720;1722
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1720;1722
 Afrique du sud;Marchand;Au;3;2;1723;1730
@@ -3711,7 +3711,7 @@ Afrique du sud;Interlope;F;3;42;1723;1730
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;50;1723;1730
 Afrique du sud;Compagnie de Chine;F;3;55;1723;1730
 Afrique du sud;Compagnie des Indes$^m$;F;3;62;1723;1730
-Afrique du sud;Marchand;P;3;70;1723;1730
+Afrique du sud;Marchand;Po;3;70;1723;1730
 Afrique du sud;Interlope;PU;3;75;1723;1730
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;100;1723;1730
 Afrique du sud;Marchand;Au;3;2;1731;1731
@@ -3722,7 +3722,7 @@ Afrique du sud;Interlope;F;3;31;1731;1731
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;39;1731;1731
 Afrique du sud;Compagnie de Chine;F;3;43;1731;1731
 Afrique du sud;Compagnie des Indes$^m$;F;3;51;1731;1731
-Afrique du sud;Marchand;P;3;58;1731;1731
+Afrique du sud;Marchand;Po;3;58;1731;1731
 Afrique du sud;Interlope;PU;3;63;1731;1731
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;87;1731;1731
 Afrique du sud;Marchand;S;3;92;1731;1731
@@ -3737,7 +3737,7 @@ Afrique du sud;Interlope;F;3;36;1732;1733
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;43;1732;1733
 Afrique du sud;Compagnie de Chine;F;3;47;1732;1733
 Afrique du sud;Compagnie des Indes$^m$;F;3;54;1732;1733
-Afrique du sud;Marchand;P;3;61;1732;1733
+Afrique du sud;Marchand;Po;3;61;1732;1733
 Afrique du sud;Interlope;PU;3;65;1732;1733
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;88;1732;1733
 Afrique du sud;Marchand;S;3;93;1732;1733
@@ -3751,7 +3751,7 @@ Afrique du sud;Interlope;F;4;34;1734;1747
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;4;41;1734;1747
 Afrique du sud;Compagnie de Chine;F;4;46;1734;1747
 Afrique du sud;Compagnie des Indes$^m$;F;4;53;1734;1747
-Afrique du sud;Marchand;P;4;60;1734;1747
+Afrique du sud;Marchand;Po;4;60;1734;1747
 Afrique du sud;Interlope;PU;4;65;1734;1747
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1734;1747
 Afrique du sud;Marchand;S;4;93;1734;1747
@@ -3766,7 +3766,7 @@ Afrique du sud;Compagnie française des Indes Orientales$^m$;F;4;37;1748;1772
 Afrique du sud;Compagnie de Chine;F;4;41;1748;1772
 Afrique du sud;Compagnie des Indes$^m$;F;4;48;1748;1772
 Afrique du sud;Société d’Angola;F;4;53;1748;1772
-Afrique du sud;Marchand;P;4;60;1748;1772
+Afrique du sud;Marchand;Po;4;60;1748;1772
 Afrique du sud;Interlope;PU;4;65;1748;1772
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1748;1772
 Afrique du sud;Marchand;S;4;93;1748;1772
@@ -3780,7 +3780,7 @@ Afrique du sud;Compagnie française des Indes Orientales$^m$;F;4;35;1773;1778
 Afrique du sud;Compagnie de Chine;F;4;40;1773;1778
 Afrique du sud;Compagnie des Indes$^m$;F;4;47;1773;1778
 Afrique du sud;Société d’Angola;F;4;52;1773;1778
-Afrique du sud;Marchand;P;4;59;1773;1778
+Afrique du sud;Marchand;Po;4;59;1773;1778
 Afrique du sud;Interlope;PU;4;64;1773;1778
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1773;1778
 Afrique du sud;Marchand;S;4;92;1773;1778
@@ -3795,7 +3795,7 @@ Afrique du sud;Compagnie française des Indes Orientales$^m$;F;4;37;1778;1785
 Afrique du sud;Compagnie de Chine;F;4;41;1778;1785
 Afrique du sud;Compagnie des Indes$^m$;F;4;48;1778;1785
 Afrique du sud;Société d’Angola;F;4;53;1778;1785
-Afrique du sud;Marchand;P;4;60;1778;1785
+Afrique du sud;Marchand;Po;4;60;1778;1785
 Afrique du sud;Interlope;PU;4;65;1778;1785
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1778;1785
 Afrique du sud;Marchand;S;4;93;1778;1785
@@ -3809,7 +3809,7 @@ Afrique du sud;Compagnie de Chine;F;4;36;1785;1790
 Afrique du sud;Compagnie des Indes$^m$;F;4;43;1785;1790
 Afrique du sud;Société d’Angola;F;4;48;1785;1790
 Afrique du sud;C. des Indes Orientales et de la Chine$^m$;F;4;56;1785;1790
-Afrique du sud;Marchand;P;4;70;1785;1790
+Afrique du sud;Marchand;Po;4;70;1785;1790
 Afrique du sud;Interlope;PU;4;72;1785;1790
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;87;1785;1790
 Afrique du sud;Marchand;S;4;92;1785;1790
@@ -3822,7 +3822,7 @@ Afrique du sud;Compagnie française des Indes Orientales$^m$;F;4;30;1791;1793
 Afrique du sud;Compagnie de Chine;F;4;35;1791;1793
 Afrique du sud;Société d’Angola;F;4;45;1791;1793
 Afrique du sud;C. des Indes Orientales et de la Chine;F;4;52;1791;1793
-Afrique du sud;Marchand;P;4;61;1791;1793
+Afrique du sud;Marchand;Po;4;61;1791;1793
 Afrique du sud;Interlope;PU;4;64;1791;1793
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;4;88;1791;1793
 Afrique du sud;Marchand;S;4;92;1791;1793
@@ -3833,7 +3833,7 @@ Afrique du sud;Marchand;F;3;25;1794;1795
 Afrique du sud;Interlope;F;3;28;1794;1795
 Afrique du sud;Compagnie française des Indes Orientales$^m$;F;3;37;1794;1795
 Afrique du sud;Compagnie de Chine;F;3;42;1794;1795
-Afrique du sud;Marchand;P;3;51;1794;1795
+Afrique du sud;Marchand;Po;3;51;1794;1795
 Afrique du sud;Interlope;PU;3;57;1794;1795
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;85;1794;1795
 Afrique du sud;Marchand;S;3;91;1794;1795
@@ -3842,7 +3842,7 @@ Afrique du sud;Interlope;GB;3;5;1796;1799
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;3;29;1796;1799
 Afrique du sud;Marchand;F;3;39;1796;1799
 Afrique du sud;Compagnie de Chine;F;3;45;1796;1799
-Afrique du sud;Marchand;P;3;47;1796;1799
+Afrique du sud;Marchand;Po;3;47;1796;1799
 Afrique du sud;Interlope;PU;3;51;1796;1799
 Afrique du sud;Compagnie néerlandaise des Indes Orientales$^m$;PU;3;83;1796;1799
 Afrique du sud;Marchand;S;3;90;1796;1799
@@ -3851,7 +3851,7 @@ Afrique du sud;Interlope;GB;2;5;1800;3000
 Afrique du sud;Compagnie anglaise des Indes Orientales$^m$;GB;2;43;1800;3000
 Afrique du sud;Marchand;F;2;50;1800;3000
 Afrique du sud;Compagnie de Chine;F;2;61;1800;3000
-Afrique du sud;Marchand;P;2;67;1800;3000
+Afrique du sud;Marchand;Po;2;67;1800;3000
 Afrique du sud;Marchand;PU;2;88;1800;3000
 Afrique du sud;Marchand;S;2;100;1800;3000
 Afrique occidentale;Compagnie suédoise des Indes Orientales;S;2;100;1803;1813
@@ -3862,4 +3862,4 @@ Afrique Occidentale;Marchand;E;2;48;1813;3000
 Afrique Occidentale;Marchand;F;2;70;1813;3000
 Afrique Occidentale;Interlope;F;2;77;1813;3000
 Afrique Occidentale;Compagnie de Chine;F;2;85;1813;3000
-Afrique Occidentale;Marchand;P;2;100;1813;3000
+Afrique Occidentale;Marchand;Po;2;100;1813;3000

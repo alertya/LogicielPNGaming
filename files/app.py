@@ -36,6 +36,8 @@ from panneau_generation_equipage import PanneauGenerationEquipage
 
 from panneau_generation_navire import PanneauGenerationNavire
 
+from panneau_generation_pnj import PanneauGenerationPNJ
+
 from formulaire_action import FormulaireAction
 # ---------------------------------------------------------------------------
 # Structure des onglets, dérivée du fichier Excel fourni.
@@ -46,8 +48,9 @@ ONGLETS: Dict[str, List[str]] = {
     "Journal de bord": ["Journal", "Générer"],
     "Navire": ["Afficher", "Générer", "Actions"],
     "Equipage": ["Afficher", "Générer", "Recruter", "Actions"],
-    "Marchandises": ["Afficher", "Générer", "Vendre/Acheter", "Actions"],
+    "Marchandises": ["Afficher", "Générer", "Actions"],
     "Escale": ["Afficher", "Générer", "Actions"],
+    "PNJ": ["Afficher", "Générer", "Actions"],
     "Infirmerie": ["Afficher", "Actions"],
     "Reset": ["Actions"],
 }
@@ -59,6 +62,7 @@ PANNEAUX_SPECIAUX: Dict[tuple, str] = {
     ("Journal de bord", "Générer"): "_construire_panneau_generation",
     ("Equipage", "Générer"): "_construire_panneau_generation_equipage",
     ("Navire", "Générer"): "_construire_panneau_generation_navire",
+    ("PNJ", "Générer"): "_construire_panneau_generation_PNJ",
 }
 
 
@@ -533,6 +537,51 @@ class App(tk.Tk):
         # On bascule sur "Afficher" pour montrer immédiatement l'équipage généré.
         self.instance_actuelle = nom
         self.selectionner_sous_onglet("Afficher")
+
+    ```python
+
+    # ------------------------------------------------------------------ #
+    # Panneau spécial : PNJ -> Générer
+    # ------------------------------------------------------------------ #
+    def _construire_panneau_generation_PNJ(self):
+        for w in self.panneau_contenu.winfo_children():
+            w.destroy()
+
+        # Récupération des données depuis le moteur
+        zones_commerciales = self.moteur.get_zones_commerciales()
+        metiers = self.moteur.get_metiers()
+        types_pnj = self.moteur.get_types_pnj()
+
+        panneau = PanneauGenerationPNJ(
+            self.panneau_contenu,
+            zones_commerciales=zones_commerciales,
+            metiers=metiers,
+            types_pnj=types_pnj,
+            on_generer=self._generer_pnj
+        )
+
+        panneau.pack(
+            fill="both",
+            expand=True
+        )
+
+    def _generer_pnj(self, nom: str, zone, metier: str, type_pnj: str):
+
+        message = self.moteur.generer_pnj(
+            nom,
+            zone,
+            metier,
+            type_pnj
+        )
+
+        self.statut_var.set(
+            message or "PNJ généré."
+        )
+
+        # On bascule sur "Afficher"
+        self.instance_actuelle = nom
+        self.selectionner_sous_onglet("Afficher")
+
 
     # ------------------------------------------------------------------ #
     # Panneau spécial : Navire -> Générer

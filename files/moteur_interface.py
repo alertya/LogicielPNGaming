@@ -812,3 +812,12 @@ class MoteurExemple(MoteurBase):
     def JourSuivant(self, nom_voyage):
         voyage = Voyage.charger_depuis_csv(nom_voyage)
         return voyage.avancer_jour()
+
+    def get_metiers(self):
+        return utils.LISTE_METIER_PROF['TypeProfession']
+
+    def get_types_pnj(self):
+        return utils.LISTE_PROF['Type']
+
+    def get_zones_commerciales(self):
+        return utils.LISTE_REGIONS['RegionsCommerciale']

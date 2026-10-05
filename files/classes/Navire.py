@@ -63,6 +63,7 @@ class Navire:
                 self.separation: str = ""
                 self.CategorieNavire: int = 0
                 self.pirate: bool = False  # Géré en booléen (True pour 'O', False pour 'N')
+                self.Nationalite="E"
 
                 # -------------------------
                 # Dimensions & Structure
@@ -121,7 +122,7 @@ class Navire:
                 self.cargaison: Dict[str, float] = {}
                 self.munitions: Dict[str, int] = {}
                 self.journal: List[str] = []
-                df=pd.read_csv(config.BASE_PATH+"/RencontreNavire.csv",sep=";",decimal=",",encoding="cp1252")
+                df=utils.RENCONTRE_NAVIRE
                 df=df[df['Nom']==Type]
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
@@ -365,7 +366,7 @@ class Navire:
     def CalculType(zone, annee):
         de = random.randint(1, 100)
 
-        df = pd.read_csv(config.BASE_PATH + "/GeneNavire.csv",sep=";",decimal=",",encoding="cp1252")
+        df = utils.GENE_NAVIRE
 
         df = df[df['DeBateau'] >= de]
         df = df[df['Zone'] == zone]
@@ -378,12 +379,7 @@ class Navire:
     def CalculCompagnie(self, zone, annee):
         de = random.randint(1, 100)
 
-        df = pd.read_csv(
-                config.BASE_PATH + "/CompagnieCommerciale.csv",
-                sep=";",
-                decimal=",",
-                encoding="cp1252"
-            )
+        df = utils.COMPAGNIE_COMMERCIALE
 
         df = df[df["Zone"] == zone]
         df = df[df["PeriodMax"] > annee]
@@ -396,20 +392,15 @@ class Navire:
 
         compagnie = f"{ligne['Acteur']} ({ligne['Nationalite']})"
 
-        return compagnie
+        return ligne['Acteur'],ligne['Nationalite']
     @staticmethod
     def ConvertZone(region):
-        df = pd.read_csv(config.BASE_PATH + "/ListeRegions.csv", sep=";", decimal=",", encoding="cp1252")
+        df = utils.LISTE_REGIONS
         df=df[df['RegionsCommerciale']==region]
         return df['RegionsCommerciale'].iloc[0],df['RegionsCompagnie'].iloc[0],df['RegionsRencontre'].iloc[0]
 
     def ProbaRencontre(self,zone, annee):
-        df = pd.read_csv(
-                config.BASE_PATH + "/CompagnieCommerciale.csv",
-                sep=";",
-                decimal=",",
-                encoding="cp1252"
-            )
+        df = utils.COMPAGNIE_COMMERCIALE
 
         df = df[df["Zone"] == zone]
         df = df[df["PeriodMax"] > annee]
@@ -426,10 +417,12 @@ class Navire:
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=self.ConvertZone(region)
         res=self.ProbaRencontre(ZoneRencontre,annee)
         if de<res:
-            Compagnie=self.CalculCompagnie(ZoneCompagnie,annee)
+            Compagnie,Nationalite=self.CalculCompagnie(ZoneCompagnie,annee)
             Type=self.CalculType(ZoneRencontre,annee)
             NavireRencontre=Navire(Type,nom,region)
             NavireRencontre.Compagnie=Compagnie
+            NavireRencontre.Nationalite = Nationalite
+            NavireRencontre.Name=NavireRencontre.NomNavire(Nationalite)
             return NavireRencontre
         else:
             return None
@@ -688,3 +681,8 @@ class Navire:
         else:
             return f"Le capitaine ne souhaite pas commercer avec vous et vous demande si vous avez des papiers en règle \n Si vous n'avez pas de papier en règle veuillez assurer un combat naval entre {self.Name} et {autre_navire.Name} \n Sinon vous continuez votre route"
 
+    def NomNavire(self,Nationalite):
+        Name=utils.NOMS_NAVIRE
+        Name=Name[Name['Nationalite']==Nationalite]
+        Name = random.choice(Name)
+        return Name
