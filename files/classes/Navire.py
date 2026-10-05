@@ -333,32 +333,37 @@ class Navire:
         # Chargement des attributs
         for cle, valeur in donnees.items():
 
-            if not hasattr(navire, cle):
-                continue
+            for cle, valeur in donnees.items():
 
-            if valeur == "":
-                continue
+                if cle in ("Equipage", "Marchandise"):
+                    continue
 
-            type_origine = type(getattr(navire, cle))
+                if not hasattr(navire, cle):
+                    continue
 
-            try:
-                if type_origine is bool:
-                    setattr(navire, cle, valeur.lower() in ("true", "1", "o", "yes"))
+                if valeur == "":
+                    continue
 
-                elif type_origine is int:
-                    setattr(navire, cle, int(valeur))
+                type_origine = type(getattr(navire, cle))
 
-                elif type_origine is float:
-                    setattr(navire, cle, float(valeur.replace(",", ".")))
+                try:
+                    if type_origine is bool:
+                        setattr(navire, cle, valeur.lower() in ("true", "1", "o", "yes"))
 
-                elif type_origine in (list, dict):
-                    pass  # à adapter si tu souhaites les restaurer
+                    elif type_origine is int:
+                        setattr(navire, cle, int(valeur))
 
-                else:
-                    setattr(navire, cle, valeur)
+                    elif type_origine is float:
+                        setattr(navire, cle, float(valeur.replace(",", ".")))
 
-            except ValueError:
-                print(f"Erreur de conversion : {cle} = {valeur}")
+                    elif type_origine in (list, dict):
+                        pass
+
+                    else:
+                        setattr(navire, cle, valeur)
+
+                except ValueError:
+                    print(f"Erreur de conversion : {cle} = {valeur}")
 
         return navire
 
@@ -453,11 +458,12 @@ class Navire:
 
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
-
-        navire_attaquant=Navire.charger_depuis_csv(navire_attaquant)
-        navire_attaque=Navire.charger_depuis_csv(navire_attaque)
         bonus_tir = navire_attaque.CategorieNavire - 3
-
+        print("Equipage avant ResultatCompetence :", navire_attaquant.Equipage)
+        print("Type :", type(navire_attaquant.Equipage))
+        print(navire_attaquant.Equipage)
+        print(type(navire_attaquant.Equipage))
+        print(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
         succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
         succes_tir += succes_tir * bonus_tir / 5
         succes_tir = utils.ConvertFloatToInt(succes_tir)
@@ -541,6 +547,7 @@ class Navire:
         return pertes, texte
 
     def CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
+
 
         texte = ""
         navire1=self.charger_depuis_csv(navire1)
