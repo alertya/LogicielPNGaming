@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-
+import os
+import config
 from classes.Marchandise import Marchandise
 import utils
 class FormulaireAction(tk.Toplevel):
@@ -570,14 +571,69 @@ class FormulaireAction(tk.Toplevel):
             self.statut_var.set(message)
             self.rafraichir_instances()
         if self.action == "LanceCompetence":
+            valeurs={}
+            dossier_pnj = os.path.join(config.BASE_PATH, "PNJ")
+
+            self.instances_pnj = []
+
+            if os.path.exists(dossier_pnj):
+                for fichier in os.listdir(dossier_pnj):
+                    if fichier.lower().endswith(".csv"):
+                        self.instances_pnj.append(
+                            os.path.splitext(fichier)[0]
+                        )
+
+            self.instances_pnj.sort()
+
+            # =====================================================
+            # PNJ
+            # =====================================================
+
+            tk.Label(
+                self,
+                text="PNJ"
+            ).pack(
+                anchor="w",
+                padx=20,
+                pady=(20, 5)
+            )
+
+            self.pnj_var = tk.StringVar()
+            self.variables['instance']=self.pnj_var
+            self.combo_pnj = ttk.Combobox(
+                self,
+                textvariable=self.pnj_var,
+                values=self.instances_pnj,
+                state="readonly",
+                width=30
+            )
+
+            self.combo_pnj.pack(
+                anchor="w",
+                padx=20,
+                pady=5
+            )
+
+            if self.instances_pnj:
+                self.combo_pnj.current(0)
+
+            # =====================================================
+            # Compétence
+            # =====================================================
 
             tk.Label(
                 self,
                 text="Compétence"
-            ).pack(anchor="w", padx=20, pady=(20, 5))
+            ).pack(
+                anchor="w",
+                padx=20,
+                pady=(20, 5)
+            )
+
+            self.competences = list(utils.COMPETENCES['Competence'])
 
             self.competence_var = tk.StringVar()
-
+            self.variables['Competence']=self.competence_var
             self.combo_competence = ttk.Combobox(
                 self,
                 textvariable=self.competence_var,
@@ -595,16 +651,23 @@ class FormulaireAction(tk.Toplevel):
             if self.competences:
                 self.combo_competence.current(0)
 
-            # Récupération de la compétence sélectionnée
-            Competence = self.competence_var.get()
+            # =====================================================
+            # Bouton Valider
+            # =====================================================
 
-            message = self.moteur.LanceCompetence(
-                self.instance_actuelle,
-                Competence
+            self.bouton_valider = tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
             )
 
-            self.statut_var.set(message)
-            self.rafraichir_instances()
+            self.bouton_valider.pack(
+                padx=20,
+                pady=20
+            )
+
+
+
 
 
     def recuperer_valeurs(self):

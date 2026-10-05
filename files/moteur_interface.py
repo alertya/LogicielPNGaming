@@ -629,8 +629,8 @@ class MoteurExemple(MoteurBase):
                 messagebox.showinfo("Information", str(sortie))
             return sortie
         if onglet == "PNJ":
-            PNJ = PNJ.charger_depuis_csv(instance)
-            sortie = PNJ.executer_action(action, instance, valeurs)
+            pnj = PNJ.charger_depuis_csv(instance)
+            sortie = pnj.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
