@@ -450,7 +450,7 @@ class Navire:
 
         elif action == "CombatNaval":
             self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
-            self.sauvegarder(self.Name)
+            self.sauvegarder()
         elif action == "Reparer":
 
             Cout,TempsJour =self.Reparer(instance)
@@ -501,7 +501,7 @@ class Navire:
         return degats, recharge
 
     def PerteNavire(self,navire, pertes, type_munition):
-        navire=Navire.charger_depuis_csv(navire)
+
         pertes = int(pertes)
         texte = ""
 
@@ -589,7 +589,7 @@ class Navire:
             texte += temp + "\n"
 
             texte += navire1.Equipage.Attitude(
-                -perte1 / navire1.Equipage.Nombre * 50
+                -perte1 / navire1.Equipage.NombreMembres() * 50
             )[1]
 
         else:
@@ -597,7 +597,7 @@ class Navire:
             texte += f"{navire1.Name} a été décimé.\n"
 
         # Le navire 2 subit les dégâts du navire 1
-        if navire2.Equipage.Nombre > 0:
+        if navire2.Equipage.NombreMembres() > 0:
 
             perte2, temp = self.PerteNavire(
                 navire2,
@@ -608,7 +608,7 @@ class Navire:
             texte += temp + "\n"
 
             texte += navire2.Equipage.Attitude(
-                -perte2 / navire2.Equipage.Nombre * 50
+                -perte2 / navire2.Equipage.NombreMembres() * 50
             )[1]
 
         else:
