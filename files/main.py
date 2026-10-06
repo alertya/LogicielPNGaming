@@ -20,7 +20,7 @@ from moteur_interface import MoteurExemple
 
 import config
 # ---------------------------------------------------------------------
-# ⬇️  Remplace cette ligne par ton propre moteur quand il sera prêt :
+# ⬇  Remplace cette ligne par ton propre moteur quand il sera prêt :
 #
 #     from mon_moteur import MonMoteur
 #     moteur = MonMoteur()
