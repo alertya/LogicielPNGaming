@@ -54,7 +54,7 @@ from tkinter import messagebox
 import random
 import csv
 import pandas as pd
-
+import glob
 import utils
 from typing import Any, Dict, List, Optional, Union
 
@@ -237,7 +237,7 @@ ACTIONS_PAR_ONGLET: Dict[str, List[str]] = {
     "Escale": ["Recruter au port", "Réparer navire", "Trouver marchand", "Enquêter"],
     "PNJ":['LanceCompetence','VoirRelation'],
     "Infirmerie": ["Voir blessé/malade", "Sacrifier blessé"],
-    "Reset": ["Supprimer toutes les données (Navire, Equipage, Escale, Voyage)"],
+    "Reset": ["Reset"],
 }
 
 # ---------------------------------------------------------------------------
@@ -366,10 +366,26 @@ class MoteurExemple(MoteurBase):
 
 
     def _reset_toutes_les_donnees(self) -> str:
-        self._voyages = {}
-        self._navires = copy.deepcopy(self._NAVIRES_INITIAUX)
-        self._equipage = copy.deepcopy(self._EQUIPAGE_INITIAL)
-        return "Toutes les données (Navire, Equipage, Escale, Voyage) ont été réinitialisées."
+        dossiers = [
+            "PNJ",
+            "Navire",
+            "Voyage",
+            "Journal",
+            "Equipage",
+            "Marchandise"
+        ]
+
+        for dossier in dossiers:
+
+            chemin = os.path.join(config.BASE_PATH, dossier)
+
+            if not os.path.exists(chemin):
+                continue
+
+            for fichier in glob.glob(os.path.join(chemin, "*.csv")):
+                os.remove(fichier)
+
+        return "Toutes les données de la campagne ont été supprimées."
 
     # ------------------------------------------------------------------ #
     # Journal de bord / trajet
@@ -587,7 +603,8 @@ class MoteurExemple(MoteurBase):
         #if onglet == "Escale":
         #    escale = Escale.charger_depuis_csv(instance)
         #    return escale.get_actions() if escale else []
-
+        if onglet == "Reset" and sous_onglet == "Actions":
+            return ["Reset"]
         if onglet == "Infirmerie":
             return self._navires[instance].Equipage.Infirmerie.get_actions()
 
@@ -600,11 +617,6 @@ class MoteurExemple(MoteurBase):
             voyage = Voyage.charger_depuis_csv(instance)
             print("voyage chargé :", voyage)
             return voyage.executer_action(action, valeurs)
-
-
-
-        if onglet == "Reset" and sous_onglet == "Actions":
-            return self._reset_toutes_les_donnees()
 
         if onglet == "Equipage":
             equipage = Equipage.charger_depuis_csv(instance)
@@ -632,6 +644,9 @@ class MoteurExemple(MoteurBase):
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
+        if onglet == "Reset":
+            if action == "Reset":
+                return self.Reset()
 
         return ""
 
@@ -886,3 +901,26 @@ class MoteurExemple(MoteurBase):
         pnj.Save()
 
         return resultat
+
+    def Reset(self):
+
+
+        dossiers = [
+            "PNJ",
+            "Navire",
+            "Voyage",
+            "Journal",
+            "Equipage",
+            "Marchandise"
+        ]
+
+        for dossier in dossiers:
+            chemin = os.path.join(config.BASE_PATH, dossier)
+
+            if not os.path.exists(chemin):
+                continue
+
+            for fichier in glob.glob(os.path.join(chemin, "*.csv")):
+                os.remove(fichier)
+
+        return "Toutes les données ont été supprimées."

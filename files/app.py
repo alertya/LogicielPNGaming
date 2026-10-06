@@ -467,14 +467,9 @@ class App(tk.Tk):
             self.instance_actuelle,
             action
         )
-        print(action)
-        print(type(resultat))
-        print(resultat)
         if action == "JourSuivant" and isinstance(resultat, dict):
             self.afficher_texte(resultat["journal"])
-            print("Action:JourSuivant")
             if resultat.get("rencontre"):
-                print("Execution")
                 FormulaireRencontre(
                     self,
                     moteur=self.moteur,
@@ -827,10 +822,6 @@ class App(tk.Tk):
 
         self.statut_var.set(message)
         self.rafraichir_contenu()
-
-    def _generer_metier_pnj(self, metier):
-        print("Métier sélectionné :", metier)
-
     def _generer_type_pnj(self, type_pnj):
 
         nom = self.panneau_pnj.nom_var.get().strip()

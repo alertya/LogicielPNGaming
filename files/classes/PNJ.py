@@ -125,6 +125,9 @@ class PNJ:
     @classmethod
     def charger_depuis_csv(cls, Name):
         fichier = os.path.join(config.BASE_PATH, "PNJ", f"{Name}.csv")
+        if not os.path.exists(chemin_fichier):
+            print(f"Le fichier {chemin_fichier} n'existe pas.")
+            return None
         TempDF = pd.read_csv(
             fichier,
             sep=";",
@@ -133,9 +136,7 @@ class PNJ:
         )
 
         if TempDF.empty:
-            raise ValueError(
-                f"Le fichier PNJ est vide : {fichier}"
-            )
+            return None
 
         donnees = TempDF.iloc[0].to_dict()
 
