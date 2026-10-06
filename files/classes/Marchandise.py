@@ -288,3 +288,19 @@ class Marchandise:
         self.var_prix_exces.set(ligne["PrixExces"])
         self.var_prix_normal.set(ligne["PrixNormal"])
         self.var_prix_penurie.set(ligne["PrixPenurie"])
+
+    @classmethod
+    def Generer(cls, nom_stock, nom_marchandise, tonnage):
+
+        marchandise = cls()
+
+        marchandise.Name = nom_stock
+
+        marchandise.AjouterMarchandise(
+            nom_marchandise,
+            tonnage
+        )
+
+        marchandise.sauvegarder()
+
+        return "Marchandise générée."

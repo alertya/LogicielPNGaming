@@ -647,6 +647,15 @@ class MoteurExemple(MoteurBase):
         if onglet == "Reset":
             if action == "Reset":
                 return self.Reset()
+        elif action == "GenererMarchandise":
+
+            marchandise = Marchandise()
+
+            return marchandise.Generer(
+                valeurs["Nom"],
+                valeurs["Marchandise"],
+                valeurs["Tonnage"]
+            )
 
         return ""
 
