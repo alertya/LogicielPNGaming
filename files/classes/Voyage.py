@@ -365,6 +365,8 @@ class Voyage:
             return self.avancer_jour()
 
         elif action == "Commercer":
+            print("Action :", action)
+            print("Valeurs :", valeurs)
             return self.Commercer(valeurs['navire_rencontre'])
 
         elif action == "Poursuivre":
