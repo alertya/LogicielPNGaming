@@ -588,7 +588,7 @@ class Navigation:
     @staticmethod
     def HautsFonds(nom_navire, zone):
         navire = Navire.charger_depuis_csv(nom_navire)
-        equipage = Equipage.charger_depuis_csv(navire.Equipage)
+        equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         texte = ""
 
@@ -618,7 +618,7 @@ class Navigation:
                 texte += "Le pilote évite les hauts-fonds.\n"
 
         navire.sauvegarder()
-        equipage.sauvegarder()
+        equipage.Save(equipage.Name)
 
         return texte
 

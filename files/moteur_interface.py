@@ -391,7 +391,14 @@ class MoteurExemple(MoteurBase):
     # Journal de bord / trajet
     # ------------------------------------------------------------------ #
     def get_navires(self):
-        return [self._navires.Name]
+
+        dossier = os.path.join(utils.BASE_PATH, "Navire")
+        print(dossier)
+        return sorted([
+                os.path.splitext(f)[0]
+                for f in os.listdir(dossier)
+                if f.endswith(".csv")
+            ])
 
     import csv
     import os
