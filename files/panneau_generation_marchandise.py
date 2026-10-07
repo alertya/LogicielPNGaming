@@ -102,7 +102,7 @@ class PanneauGenerationMarchandise(tk.Frame):
 
         self.lblTotal.pack()
         self.toutes_les_marchandises = self.charger_liste()
-
+        print(self.toutes_les_marchandises)
         self.filtrer()
 
     # ======================================================
@@ -110,24 +110,13 @@ class PanneauGenerationMarchandise(tk.Frame):
     def charger_liste(self):
 
         noms = []
-
-        try:
-
-            if hasattr(utils, "MARCHANDISES"):
-
-                df = utils.MARCHANDISES
-
-                if "Nom" in df.columns:
-                    noms = sorted(df["Nom"].unique())
-
-                else:
-                    noms = sorted(df.iloc[:, 0].unique())
-
-        except Exception:
-
-            pass
-
-        return noms
+        marchandise=utils.MARCHANDISES
+        print(marchandise)
+        cargaisons=marchandise['Cargaison'].dropna().astype(str).unique().tolist()
+        print(cargaisons)
+        cargaisons_trie=sorted(cargaisons)
+        print(cargaisons_trie)
+        return cargaisons_trie
 
     # ======================================================
 
@@ -197,7 +186,7 @@ class PanneauGenerationMarchandise(tk.Frame):
             return
         for nom, tonnage in self.Cargaisons:
 
-            marchandise.AjouterMarchandise(
+            marchandise.AjoutMarchandise(marchandise,
                 nom,
                 tonnage
             )
@@ -248,7 +237,6 @@ class PanneauGenerationMarchandise(tk.Frame):
 
         self.tree.delete(item)
 
-        self.mettre_a_jour_total()
         self.mettre_a_jour_total()
     def mettre_a_jour_total(self):
 

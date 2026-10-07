@@ -939,10 +939,10 @@ class MoteurExemple(MoteurBase):
 
     def generer_marchandise(self, nom, cargaisons):
 
-        marchandise = Marchandise(nom)
-
+        marchandise = Marchandise()
+        marchandise.Name=nom
         for nom_marchandise, tonnage in cargaisons:
-            marchandise.AjouterMarchandise(
+            marchandise.AjoutMarchandise(marchandise,
                 nom_marchandise,
                 tonnage
             )
