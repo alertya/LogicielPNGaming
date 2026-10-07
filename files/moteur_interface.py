@@ -393,7 +393,6 @@ class MoteurExemple(MoteurBase):
     def get_navires(self):
 
         dossier = os.path.join(utils.BASE_PATH, "Navire")
-        print(dossier)
         return sorted([
                 os.path.splitext(f)[0]
                 for f in os.listdir(dossier)
@@ -620,9 +619,7 @@ class MoteurExemple(MoteurBase):
     def executer_action(self, onglet, sous_onglet, instance, action, valeurs=None):
 
         if onglet == "Journal de bord":
-            print(instance)
             voyage = Voyage.charger_depuis_csv(instance)
-            print("voyage chargé :", voyage)
             return voyage.executer_action(action, valeurs)
 
         if onglet == "Equipage":

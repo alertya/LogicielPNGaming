@@ -38,7 +38,7 @@ class Voyage:
             "ZoneMaritime": ZoneMaritime,
             "TaillePortEscale": TaillePortEscale,
             "ChanceRencontreAventurier": ChanceRencontreAventurier,
-            "ChanceRencontreMarchand": 4,
+            "ChanceRencontreMarchand": ChanceRencontreMarchand,
             "DeAventurier": DeAventurier,
             "CompetenceVigie": CompetenceVigie
         })
@@ -88,6 +88,7 @@ class Voyage:
             lignes.append(ligne)
 
         df = pd.DataFrame(lignes)
+        df = pd.DataFrame(lignes)
 
         df.to_csv(
             os.path.join(config.BASE_PATH, "Voyage", f"{nom}.csv"),
@@ -128,8 +129,7 @@ class Voyage:
 
         if not os.path.exists(fichier):
             return None
-        print("FICHIER")
-        print(fichier)
+
         df = pd.read_csv(
             fichier,
             sep=";",
@@ -140,8 +140,6 @@ class Voyage:
         if df.empty:
             return None
 
-        print("Chargement :", fichier)
-        print("Colonnes :", df.columns.tolist())
 
         # Création du voyage
         voyage = cls(
@@ -163,7 +161,7 @@ class Voyage:
                 ZoneMaritime=ligne["ZoneMaritime"],
                 TaillePortEscale=ligne["TaillePortEscale"],
                 ChanceRencontreAventurier=ligne["ChanceRencontreAventurier"],
-                ChanceRencontreMarchand=ligne["ChanceRencontreMarchand"],
+                ChanceRencontreMarchand=ligne.get("ChanceRencontreMarchand", 0),
                 DeAventurier=ligne["DeAventurier"],
                 CompetenceVigie=ligne["CompetenceVigie"]
             )
@@ -366,7 +364,15 @@ class Voyage:
 
     def executer_action(self, action, valeurs=None):
         if action == "JourSuivant":
-            return self.avancer_jour(4,4)
+            chanceAventurier = self.Etapes[self.EtapeCourante].get(
+                "ChanceRencontreAventurier", 0
+            )
+            chanceMarchand = self.Etapes[self.EtapeCourante].get(
+                "ChanceRencontreMarchand", 0
+            )
+            print(chanceAventurier)
+            print(chanceMarchand)
+            return self.avancer_jour(chanceAventurier,chanceMarchand)
 
         elif action == "Commercer":
             return self.Commercer()
@@ -395,14 +401,6 @@ class Voyage:
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
         DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
-        print("DeMarchand")
-        print(DeMarchand)
-        print("DeAventurier")
-        print(DeAventurier)
-        print("SueilMarchand")
-        print(SeuilMa)
-        print("SeuilAventurier")
-        print(SeuilAv)
         navire_rencontre=None
         if "D" not in DeMarchand:
             DeMarchand=int(DeMarchand)

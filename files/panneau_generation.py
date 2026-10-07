@@ -84,8 +84,8 @@ class LigneEtape(tk.Frame):
 
         self._champ_nombre(grille, 1, 0, "Distance (milles nautiques)", self.var_distance, jusqu_a=20000)
         self._champ_nombre(grille, 1, 1, "Chance de rencontre (aventurier)", self.var_chance_aventurier, jusqu_a=1000)
-        self._champ_nombre(grille, 1, 1, "Chance de rencontre (marchand)", self.var_chance_marchand, jusqu_a=1000)
-        self._champ_nombre(grille, 1, 2, "Compétence de vigie", self.var_vigie, jusqu_a=20)
+        self._champ_nombre(grille, 1, 2, "Chance de rencontre (marchand)", self.var_chance_marchand, jusqu_a=1000)
+        self._champ_nombre(grille, 1, 3, "Compétence de vigie", self.var_vigie, jusqu_a=20)
 
         self._champ_nombre(grille, 2, 0, "Escale — recrutement possible", self.var_recrutement, jusqu_a=1)
         self._champ_nombre(grille, 2, 1, "Escale — commerce possible", self.var_commerce, jusqu_a=1)
