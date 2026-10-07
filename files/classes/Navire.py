@@ -403,7 +403,7 @@ class Navire:
 
         if df.empty:
             raise ValueError(
-                f"La région '{region}' est introuvable dans utils.ZONES."
+
                 print("Region reçue :", region)
             )
 
