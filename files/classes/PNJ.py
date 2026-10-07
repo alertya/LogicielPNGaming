@@ -199,23 +199,13 @@ class PNJ:
         for _, ligne in df.iterrows():
             competence = ligne["Competence"]
             trait = ligne["Trait"]
-            print("Trait et competence")
-            print(trait)
-            print(competence)
                 # Vérifie que le membre possède cette compétence
             if hasattr(self, competence):
-                print("Etape has att validée")
                 if getattr(self, competence) > 1:
-                    print("Etape getatt validée")
                     if trait not in self.Traits:
-                        print("Etape append validée")
                         self.Traits.append(trait)
     def LanceCompetence(self,Competence):
         Comp = getattr(self, Competence)
-
-        print("Compétence :", Competence)
-        print("Valeur :", Comp)
-
         return utils.Test(Comp, 0)
     def executer_action(self, action, instance,valeurs=None):
 
