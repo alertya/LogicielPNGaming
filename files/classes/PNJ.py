@@ -83,7 +83,8 @@ class PNJ:
 
         self.PVMax = random.randint(5, 8)
         self.PV = self.PVMax
-
+        self.ScoreMembre(membre)
+        self.AttributeGroupeMembre(membre)
         self.AjoutTrait()
         self.Save()
 
