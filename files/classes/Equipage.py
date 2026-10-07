@@ -51,6 +51,14 @@ class Equipage:
             membre.Attitude = int(
                 np.random.normal(50, 5)
             )
+
+            for attribut, valeur in donnees.items():
+                setattr(membre, attribut, valeur)
+            # Initialisation des PV
+            membre.PVMax = random.randint(5, 8)
+            membre.PV = membre.PVMax
+            # Calculs individuels
+
             membre.Groupe = ""
             membre.Role = ""
             membre.Pirate = 1
@@ -60,6 +68,8 @@ class Equipage:
             membre.PVMax=random.randint(5,8)
             membre.PV=membre.PVMax
             membre.Traits=[]
+            self.ScoreMembre(membre)
+            self.AttributeGroupeMembre(membre)
             self.Membres.append(membre)
             self.AjoutTrait()
             Equipage.Save(self)
