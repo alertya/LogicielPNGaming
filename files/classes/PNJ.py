@@ -84,7 +84,7 @@ class PNJ:
         self.PVMax = random.randint(5, 8)
         self.PV = self.PVMax
 
-        self.Traits = self.AjoutTrait()
+        self.AjoutTrait()
         self.Save()
 
 
@@ -125,8 +125,8 @@ class PNJ:
     @classmethod
     def charger_depuis_csv(cls, Name):
         fichier = os.path.join(config.BASE_PATH, "PNJ", f"{Name}.csv")
-        if not os.path.exists(chemin_fichier):
-            print(f"Le fichier {chemin_fichier} n'existe pas.")
+        if not os.path.exists(fichier):
+            print(f"Le fichier {fichier} n'existe pas.")
             return None
         TempDF = pd.read_csv(
             fichier,
@@ -199,12 +199,17 @@ class PNJ:
         for _, ligne in df.iterrows():
             competence = ligne["Competence"]
             trait = ligne["Trait"]
-
+            print("Trait et competence")
+            print(trait)
+            print(competence)
                 # Vérifie que le membre possède cette compétence
             if hasattr(self, competence):
+                print("Etape has att validée")
                 if getattr(self, competence) > 1:
+                    print("Etape getatt validée")
                     if trait not in self.Traits:
-                            self.Traits.append(trait)
+                        print("Etape append validée")
+                        self.Traits.append(trait)
     def LanceCompetence(self,Competence):
         Comp = getattr(self, Competence)
 
