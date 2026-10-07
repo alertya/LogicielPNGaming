@@ -64,7 +64,8 @@ class LigneEtape(tk.Frame):
         self.var_zone = tk.StringVar(value=ref.ZONES_MARITIMES[0])
         self.var_taille_port = tk.StringVar(value=ref.TAILLES_PORT[0])
         self.var_distance = tk.StringVar(value="0")
-        self.var_chance = tk.StringVar(value="0")
+        self.var_chance_aventurier = tk.StringVar(value="0")
+        self.var_chance_marchand = tk.StringVar(value="0")
         self.var_vigie = tk.StringVar(value="0")
         self.var_recrutement = tk.StringVar(value="0")
         self.var_commerce = tk.StringVar(value="0")
@@ -82,7 +83,8 @@ class LigneEtape(tk.Frame):
         self._champ_combo(grille, 0, 2, "Taille du port d'escale", self.var_taille_port, ref.TAILLES_PORT, width=22)
 
         self._champ_nombre(grille, 1, 0, "Distance (milles nautiques)", self.var_distance, jusqu_a=20000)
-        self._champ_nombre(grille, 1, 1, "Chance de rencontre (aventurier)", self.var_chance, jusqu_a=1000)
+        self._champ_nombre(grille, 1, 1, "Chance de rencontre (aventurier)", self.var_chance_aventurier, jusqu_a=1000)
+        self._champ_nombre(grille, 1, 1, "Chance de rencontre (marchand)", self.var_chance_marchand, jusqu_a=1000)
         self._champ_nombre(grille, 1, 2, "Compétence de vigie", self.var_vigie, jusqu_a=20)
 
         self._champ_nombre(grille, 2, 0, "Escale — recrutement possible", self.var_recrutement, jusqu_a=1)
@@ -134,7 +136,8 @@ class LigneEtape(tk.Frame):
             "ZoneMaritime": self.var_zone.get(),
             "TaillePortEscale": self.var_taille_port.get(),
             "Distance": _vers_nombre(self.var_distance.get()),
-            "ChanceRencontreAventurier": _vers_nombre(self.var_chance.get()),
+            "ChanceRencontreAventurier": _vers_nombre(self.var_chance_aventurier.get()),
+            "ChanceRencontreMarchand": _vers_nombre(self.var_chance_marchand.get()),
             "CompetenceVigie": _vers_nombre(self.var_vigie.get()),
             "EscaleRecrutement": _vers_nombre(self.var_recrutement.get()),
             "EscaleCommerce": _vers_nombre(self.var_commerce.get()),

@@ -28,6 +28,7 @@ class Voyage:
             ZoneMaritime="",
             TaillePortEscale="",
             ChanceRencontreAventurier=0,
+            ChanceRencontreMarchand=0,
             DeAventurier=0,
             CompetenceVigie=0):
 
@@ -37,6 +38,7 @@ class Voyage:
             "ZoneMaritime": ZoneMaritime,
             "TaillePortEscale": TaillePortEscale,
             "ChanceRencontreAventurier": ChanceRencontreAventurier,
+            "ChanceRencontreMarchand": 4,
             "DeAventurier": DeAventurier,
             "CompetenceVigie": CompetenceVigie
         })
@@ -126,7 +128,8 @@ class Voyage:
 
         if not os.path.exists(fichier):
             return None
-
+        print("FICHIER")
+        print(fichier)
         df = pd.read_csv(
             fichier,
             sep=";",
@@ -160,6 +163,7 @@ class Voyage:
                 ZoneMaritime=ligne["ZoneMaritime"],
                 TaillePortEscale=ligne["TaillePortEscale"],
                 ChanceRencontreAventurier=ligne["ChanceRencontreAventurier"],
+                ChanceRencontreMarchand=ligne["ChanceRencontreMarchand"],
                 DeAventurier=ligne["DeAventurier"],
                 CompetenceVigie=ligne["CompetenceVigie"]
             )
@@ -271,6 +275,7 @@ class Voyage:
         # -------------------------------------------------
 
         navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],SeuilMarchand,Seuilventurier,self.Jour,etape['ZoneMaritime'])
+        self.navire_rencontre = navire_rencontre
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {navire_rencontre.Name}.")
@@ -361,19 +366,19 @@ class Voyage:
 
     def executer_action(self, action, valeurs=None):
         if action == "JourSuivant":
-            return self.avancer_jour(valeurs['DeAventurier'])
+            return self.avancer_jour(4,4)
 
         elif action == "Commercer":
-            return self.Commercer(valeurs['navire_rencontre'])
+            return self.Commercer()
 
         elif action == "Poursuivre":
-            return self.Poursuivre(valeurs['navire_rencontre'])
+            return self.Poursuivre()
 
         elif action == "PavillonNoir":
-            return self.PavillonNoir(valeurs['navire_rencontre'])
+            return self.PavillonNoir()
 
         elif action == "Canonner":
-            return self.Canonner(valeurs['navire_rencontre'])
+            return self.Canonner()
 
         return ""
 
@@ -418,11 +423,12 @@ class Voyage:
             navire_rencontre.ReconnaissanceNavire(navire_rencontre,3)
         return navire_rencontre
 
-    def Commercer(self,navire_rencontre):
+    def Commercer(self):
+        print(self.navire_rencontre.Name)
         return f"Fonction pas encore implemente {navire_rencontre.Name}"
-    def Canonner(self,navire_rencontre):
+    def Canonner(self):
         return "Fonction pas encore implemente"
-    def Poursuivre(self,navire_rencontre):
+    def Poursuivre(self):
         return "Fonction pas encore implemente"
-    def PavillonNoir(self,navire_rencontre):
+    def PavillonNoir(self):
         return "Fonction pas encore implemente"

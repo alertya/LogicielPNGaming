@@ -3,7 +3,7 @@ from tkinter import messagebox
 
 class FormulaireRencontre(tk.Toplevel):
 
-    def __init__(self, parent, moteur, voyage=self.instance_actuelle,navire=resultat['navire_rencontre'], on_fin=None,instance=None):
+    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None):
         super().__init__(parent)
 
         self.title("Rencontre en mer")
@@ -46,7 +46,7 @@ class FormulaireRencontre(tk.Toplevel):
             "Journal de bord",
             "Journal",
             self.voyage,
-            navire=resultat["navire_rencontre"]
+            self.navire
         )
 
         if self.on_fin:
