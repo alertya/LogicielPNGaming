@@ -254,6 +254,11 @@ class App(tk.Tk):
     # ------------------------------------------------------------------ #
     def rafraichir_instances(self):
         cle = (self.onglet_actuel, self.sous_onglet_actuel)
+        print(self.onglet_actuel)
+        print(self.sous_onglet_actuel)
+
+        cle = (self.onglet_actuel, self.sous_onglet_actuel)
+        print(cle)
         if cle in PANNEAUX_SPECIAUX:
             self.instance_bar.pack_forget()
             self.action_bar.pack_forget()
@@ -286,7 +291,8 @@ class App(tk.Tk):
     def rafraichir_contenu(self):
         for w in self.panneau_contenu.winfo_children():
             w.destroy()
-
+        print("rafraichir_contenu")
+        print(self.onglet_actuel, self.sous_onglet_actuel)
         if self.sous_onglet_actuel == "Afficher":
             donnees = self.moteur.get_affichage(
                 self.onglet_actuel,
@@ -298,6 +304,8 @@ class App(tk.Tk):
                 self.sous_onglet_actuel,
                 self.instance_actuelle
             )
+        print(type(donnees))
+        print(donnees)
         self._afficher_donnees(donnees)
         self._construire_barre_actions()
 

@@ -181,7 +181,7 @@ class PNJ:
             "Profession": self.Profession,
             "Type": self.Type,
             "Localisation": self.Localisation,
-            "Traits": self.Traits,
+            "Traits": self._format_traits(),
         }
 
 
@@ -222,3 +222,15 @@ class PNJ:
 
     def get_actions(self):
         return ["LanceCompetence"]
+
+    def _format_traits(self):
+
+        if not self.Traits:
+            return ""
+
+        lignes = []
+
+        for i in range(0, len(self.Traits), 4):
+            lignes.append(", ".join(self.Traits[i:i + 4]))
+
+        return "\n".join(lignes)
