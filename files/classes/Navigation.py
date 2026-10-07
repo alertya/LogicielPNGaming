@@ -612,7 +612,7 @@ class Navigation:
             if meilleur_test < 2:
                 perte = random.randint(1, 4)
                 navire.StructureCoque = max(0, navire.StructureCoque - perte)
-                texte += f"⚓ Le navire heurte un haut-fond (-{perte} coque).\n"
+                texte += f"Le navire heurte un haut-fond (-{perte} coque).\n"
 
             else:
                 texte += "Le pilote évite les hauts-fonds.\n"

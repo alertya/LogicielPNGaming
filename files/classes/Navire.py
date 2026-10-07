@@ -399,7 +399,7 @@ class Navire:
     @staticmethod
     def ConvertZone(region):
 
-        df = utils.LISTE_REGIONS[utils.LISTE_REGIONS["Region"] == region]
+        df = utils.LISTE_REGIONS[utils.LISTE_REGIONS["RegionsCommerciale"] == region]
 
         if df.empty:
             raise ValueError(

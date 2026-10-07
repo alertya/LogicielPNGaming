@@ -360,7 +360,7 @@ class Voyage:
             )
 
     def executer_action(self, action, valeurs=None):
-
+        print(valeurs)
         if action == "JourSuivant":
             return self.avancer_jour()
 

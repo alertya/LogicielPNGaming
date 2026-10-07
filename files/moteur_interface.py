@@ -419,7 +419,7 @@ class MoteurExemple(MoteurBase):
             "etapes": etapes,
             "etape_idx": 0,
             "avancement_nm": 0,
-            "jour": 1,
+            "jour": 0,
             "journal": {
                 1: [
                     f"Départ du voyage (année {annee_historique}). "

@@ -97,7 +97,7 @@ class App(tk.Tk):
         self.sidebar.pack_propagate(False)
 
         titre = tk.Label(
-            self.sidebar, text="⚓ Compagnie", bg=theme.BG_SIDEBAR,
+            self.sidebar, text="Compagnie", bg=theme.BG_SIDEBAR,
             fg=theme.FG_TITLE, font=theme.FONT_TITLE, pady=18,
         )
         titre.pack(fill="x")
