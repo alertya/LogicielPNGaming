@@ -388,8 +388,6 @@ class Voyage:
 
     def determiner_rencontre(self, annee,region,SeuilMa,SeuilAv,Jour,zone):
         df = utils.DE_RENCONTRE
-        print(df)
-        print(zone)
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
         DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
