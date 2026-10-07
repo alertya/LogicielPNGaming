@@ -391,6 +391,14 @@ class Voyage:
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
         DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
+        print("DeMarchand")
+        print(DeMarchand)
+        print("DeAventurier")
+        print(DeAventurier)
+        print("SueilMarchand")
+        print(SeuilMa)
+        print("SeuilAventurier")
+        print(SeuilAv)
         navire_rencontre=None
         if "D" not in DeMarchand:
             DeMarchand=int(DeMarchand)
