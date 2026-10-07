@@ -469,8 +469,7 @@ class App(tk.Tk):
             action
         )
         if action == "JourSuivant" and isinstance(resultat, dict):
-            print("Resultat")
-            print(resultat)
+
             self.afficher_texte(resultat["journal"])
             if resultat.get("rencontre"):
                 FormulaireRencontre(
