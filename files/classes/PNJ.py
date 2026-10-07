@@ -84,7 +84,8 @@ class PNJ:
         self.PVMax = random.randint(5, 8)
         self.PV = self.PVMax
         self.ScoreMembre(membre)
-        self.AttributeGroupeMembre(membre)
+        self.ScorePNJ()
+        self.AttribuerRole()
         self.AjoutTrait()
         self.Save()
 
@@ -235,3 +236,39 @@ class PNJ:
             lignes.append(", ".join(self.Traits[i:i + 4]))
 
         return "\n".join(lignes)
+
+    def ScorePNJ(self):
+        """Calcule le score moyen du PNJ."""
+
+        exclusions = {
+            "Name", "Profession", "Type", "Localisation",
+            "Traits", "Score", "PV", "PVMax"
+        }
+
+        scores = []
+
+        for attribut, valeur in vars(self).items():
+            if attribut not in exclusions and isinstance(valeur, (int, float)):
+                scores.append(valeur)
+
+        self.Score = sum(scores) / len(scores) if scores else 0
+
+        return self
+
+    def AttribuerRole(self):
+
+        roles = utils.ROLES
+
+        self.Role = ""
+
+        for _, row in roles.iterrows():
+
+            competence = row["Competence"]
+            seuil = row["Seuil"]
+            role = row["Role"]
+
+            if getattr(self, competence, 0) >= seuil:
+                self.Role = role
+                break
+
+        return self
