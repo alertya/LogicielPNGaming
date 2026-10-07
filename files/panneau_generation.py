@@ -225,7 +225,7 @@ class PanneauGenerationTrajet(tk.Frame):
 
         if not navires:
             tk.Label(
-                entete, text="⚠ Aucun navire disponible (moteur.get_navires() a renvoyé une liste vide).",
+                entete, text="Aucun navire disponible (moteur.get_navires() a renvoyé une liste vide).",
                 bg=theme.BG_PANEL, fg=theme.ERROR, font=theme.FONT_TEXT,
             ).grid(row=3, column=0, columnspan=2, sticky="w", pady=(10, 0))
 
@@ -237,7 +237,7 @@ class PanneauGenerationTrajet(tk.Frame):
         bas = tk.Frame(self, bg=theme.BG_ROOT, pady=12)
         bas.pack(fill="x")
         tk.Button(
-            bas, text="+ Ajouter une étape", font=theme.FONT_TEXT_BOLD,
+            bas, text="Ajouter une étape", font=theme.FONT_TEXT_BOLD,
             bg=theme.BG_INPUT, fg=theme.FG_TEXT, relief="flat", cursor="hand2",
             padx=14, pady=7, command=self.ajouter_etape,
         ).pack(side="left")

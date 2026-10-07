@@ -197,7 +197,7 @@ class Voyage:
 
         return voyage
 
-    def avancer_jour(self):
+    def avancer_jour(self,Seuilventurier,SeuilMarchand):
         """Fait progresser le voyage d'une journée."""
 
         # Voyage terminé
@@ -270,7 +270,7 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
 
-        navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],4,4,self.Jour,etape['ZoneMaritime'])
+        navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],SeuilMarchand,Seuilventurier,self.Jour,etape['ZoneMaritime'])
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {navire_rencontre.Name}.")
@@ -360,13 +360,10 @@ class Voyage:
             )
 
     def executer_action(self, action, valeurs=None):
-        print(valeurs)
         if action == "JourSuivant":
-            return self.avancer_jour()
+            return self.avancer_jour(valeurs['DeAventurier'])
 
         elif action == "Commercer":
-            print("Action :", action)
-            print("Valeurs :", valeurs)
             return self.Commercer(valeurs['navire_rencontre'])
 
         elif action == "Poursuivre":
@@ -421,11 +418,11 @@ class Voyage:
             navire_rencontre.ReconnaissanceNavire(navire_rencontre,3)
         return navire_rencontre
 
-    def Commercer(self):
+    def Commercer(self,navire_rencontre):
+        return f"Fonction pas encore implemente {navire_rencontre.Name}"
+    def Canonner(self,navire_rencontre):
         return "Fonction pas encore implemente"
-    def Canonner(self):
+    def Poursuivre(self,navire_rencontre):
         return "Fonction pas encore implemente"
-    def Poursuivre(self):
-        return "Fonction pas encore implemente"
-    def PavillonNoir(self):
+    def PavillonNoir(self,navire_rencontre):
         return "Fonction pas encore implemente"

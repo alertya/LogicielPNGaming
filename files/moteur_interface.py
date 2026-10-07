@@ -400,9 +400,6 @@ class MoteurExemple(MoteurBase):
                 if f.endswith(".csv")
             ])
 
-    import csv
-    import os
-    import config
 
     def creer_trajet(self, nom_trajet, navire, annee_historique, etapes):
         if not navire:
