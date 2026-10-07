@@ -31,6 +31,7 @@ import numpy as np
 import pandas as pd
 from tkinter import messagebox
 import utils
+import config
 # ---------------------------------------------------------------------------
 # Constantes
 # ---------------------------------------------------------------------------
@@ -107,8 +108,8 @@ class Navigation:
         if isinstance(navire, str):
             nom = os.path.basename(navire)
             candidats = [
-                os.path.join(NAVIRE_PATH, nom),
-                os.path.join(NAVIRE_PATH, f"{nom}.csv") if not nom.lower().endswith(".csv") else None,
+                os.path.join(config.config.NAVIRE_PATH, nom),
+                os.path.join(config.config.NAVIRE_PATH, f"{nom}.csv") if not nom.lower().endswith(".csv") else None,
             ]
             for chemin in candidats:
                 if chemin and os.path.exists(chemin):
@@ -119,7 +120,7 @@ class Navigation:
                         encoding=ENCODAGE,
                     )
             raise FileNotFoundError(
-                f"Navire introuvable : {navire!r} dans {NAVIRE_PATH!r}."
+                f"Navire introuvable : {navire!r} dans {config.NAVIRE_PATH!r}."
             )
         raise TypeError("Le navire doit être un nom de fichier, DataFrame, Series ou dict.")
 
@@ -158,7 +159,7 @@ class Navigation:
         nom = self._nom_equipage(navire_df)
         if not nom:
             return None
-        chemin = os.path.join(EQUIPAGE_PATH, nom)
+        chemin = os.path.join(config.config.EQUIPAGE_PATH, nom)
         if not os.path.exists(chemin):
             return None
         return pd.read_csv(
@@ -169,7 +170,7 @@ class Navigation:
         )
 
     def _sauver_navire(self, nom_navire: str, navire_df: pd.DataFrame) -> None:
-        path = os.path.join(NAVIRE_PATH, os.path.basename(nom_navire))
+        path = os.path.join(config.NAVIRE_PATH, os.path.basename(nom_navire))
         navire_df.to_csv(path, sep=SEPARATEUR, decimal=DECIMAL, encoding=ENCODAGE, index=False)
 
     def _sauver_equipage(self, navire_df: pd.DataFrame, equipage: Optional[pd.DataFrame]) -> None:
@@ -178,7 +179,7 @@ class Navigation:
         nom = self._nom_equipage(navire_df)
         if not nom:
             return
-        path = os.path.join(EQUIPAGE_PATH, nom)
+        path = os.path.join(config.EQUIPAGE_PATH, nom)
         equipage.to_csv(path, sep=SEPARATEUR, decimal=DECIMAL, encoding=ENCODAGE, index=False)
 
     # ------------------------------------------------------------------
@@ -672,11 +673,11 @@ class Navigation:
             recif = 0
 
         if detection is None:
-            pilotes = (
-                equipage[equipage["Type"] == "Pilote"]
-                if equipage is not None and "Type" in equipage.columns
-                else pd.DataFrame()
-            )
+            pilotes = [
+                membre
+                for membre in equipage.Membres
+                if "Navigateur" in membre.Traits
+            ]
 
             if pilotes.empty:
                 detection = -1
