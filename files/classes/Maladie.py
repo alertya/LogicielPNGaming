@@ -67,7 +67,7 @@ class Maladie:
                     continue
 
                 mal = maladies[
-                    maladies["Maladie"] == membre.Maladie
+                    maladies["Nom"] == membre.Maladie
                     ].iloc[0]
 
                 membre.Cycle = mal["Cycle"]

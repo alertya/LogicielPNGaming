@@ -395,11 +395,23 @@ class Navire:
         compagnie = f"{ligne['Acteur']} ({ligne['Nationalite']})"
 
         return ligne['Acteur'],ligne['Nationalite']
+
     @staticmethod
     def ConvertZone(region):
-        df = utils.LISTE_REGIONS
-        df=df[df['RegionsCommerciale']==region]
-        return df['RegionsCommerciale'].iloc[0],df['RegionsCompagnie'].iloc[0],df['RegionsRencontre'].iloc[0]
+
+        df = utils.ZONES[utils.ZONES["Region"] == region]
+
+        if df.empty:
+            raise ValueError(
+                f"La région '{region}' est introuvable dans utils.ZONES."
+                print("Region reçue :", region)
+            )
+
+        return (
+            df["RegionsCommerciale"].iloc[0],
+            df["RegionsCompagnie"].iloc[0],
+            df["RegionsRencontre"].iloc[0]
+        )
 
     def ProbaRencontre(self,zone, annee):
         df = utils.COMPAGNIE_COMMERCIALE
