@@ -102,7 +102,6 @@ class PanneauGenerationMarchandise(tk.Frame):
 
         self.lblTotal.pack()
         self.toutes_les_marchandises = self.charger_liste()
-        print(self.toutes_les_marchandises)
         self.filtrer()
 
     # ======================================================
@@ -111,11 +110,8 @@ class PanneauGenerationMarchandise(tk.Frame):
 
         noms = []
         marchandise=utils.MARCHANDISES
-        print(marchandise)
         cargaisons=marchandise['Cargaison'].dropna().astype(str).unique().tolist()
-        print(cargaisons)
         cargaisons_trie=sorted(cargaisons)
-        print(cargaisons_trie)
         return cargaisons_trie
 
     # ======================================================
