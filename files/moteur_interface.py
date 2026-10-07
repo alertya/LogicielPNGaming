@@ -536,6 +536,9 @@ class MoteurExemple(MoteurBase):
     def get_types_equipage(self) -> List[str]:
         chemin = os.path.join(config.BASE_PATH, "ListeProf.csv")
         return self._lire_colonne_csv(chemin, "Type")
+    def get_types_marchandises(self) -> List[str]:
+        chemin = os.path.join(config.BASE_PATH, "Marchandises.csv")
+        return self._lire_colonne_csv(chemin, "Cargaison")
 
     def generer_equipage(self, nom, type_equipage, nombre, effectifs):
 
@@ -933,3 +936,17 @@ class MoteurExemple(MoteurBase):
                 os.remove(fichier)
 
         return "Toutes les données ont été supprimées."
+
+    def generer_marchandise(self, nom, cargaisons):
+
+        marchandise = Marchandise(nom)
+
+        for nom_marchandise, tonnage in cargaisons:
+            marchandise.AjouterMarchandise(
+                nom_marchandise,
+                tonnage
+            )
+
+        marchandise.sauvegarder()
+
+        return "Marchandise enregistrée."

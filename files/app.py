@@ -37,7 +37,7 @@ from panneau_generation_equipage import PanneauGenerationEquipage
 from panneau_generation_navire import PanneauGenerationNavire
 
 from panneau_generation_pnj import PanneauGenerationPNJ
-
+from panneau_generation_marchandise import PanneauGenerationMarchandise
 from formulaire_action import FormulaireAction
 # ---------------------------------------------------------------------------
 # Structure des onglets, dérivée du fichier Excel fourni.
@@ -63,6 +63,7 @@ PANNEAUX_SPECIAUX: Dict[tuple, str] = {
     ("Equipage", "Générer"): "_construire_panneau_generation_equipage",
     ("Navire", "Générer"): "_construire_panneau_generation_navire",
     ("PNJ", "Générer"): "_construire_panneau_generation_PNJ",
+    ("Marchandises", "Générer"): "_construire_panneau_generation_marchandise",
 }
 
 
@@ -879,3 +880,29 @@ class App(tk.Tk):
         )
     def _LanceCompetence(self,Competence):
         return self.moteur.LanceCompetence(self,Competence)
+
+    def _construire_panneau_generation_marchandise(self):
+
+        for w in self.panneau_contenu.winfo_children():
+            w.destroy()
+
+        panneau = PanneauGenerationMarchandise(
+            self.panneau_contenu,
+            moteur=self.moteur,
+            on_generer=self._generer_marchandise
+        )
+
+        panneau.pack(fill="both", expand=True)
+
+    def _generer_marchandise(self, nom, cargaisons):
+
+        message = self.moteur.generer_marchandise(
+            nom,
+            cargaisons
+        )
+
+        self.statut_var.set(message or "Marchandise générée.")
+
+        self.instance_actuelle = nom
+
+        self.selectionner_sous_onglet("Afficher")

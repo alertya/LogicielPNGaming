@@ -5,19 +5,15 @@ import utils
 from classes.Marchandise import Marchandise
 
 
-class PanneauGenerationMarchandise(tk.Toplevel):
+class PanneauGenerationMarchandise(tk.Frame):
 
-    def __init__(self, parent, moteur=None):
+    def __init__(self, parent, moteur=None,on_generer=None):
 
         super().__init__(parent)
 
         self.moteur = moteur
-
-        self.title("Génération de marchandises")
-        self.geometry("700x600")
-
-        self.stock = []
-
+        self.on_generer = on_generer
+        self.Cargaisons = []
         # -----------------------------
         # Nom du fichier
         # -----------------------------
@@ -27,8 +23,8 @@ class PanneauGenerationMarchandise(tk.Toplevel):
 
         tk.Label(frame, text="Nom du stock").pack(anchor="w")
 
-        self.nom_stock = tk.Entry(frame)
-        self.nom_stock.pack(fill="x")
+        self.Name = tk.Entry(frame)
+        self.Name.pack(fill="x")
 
         # -----------------------------
         # Recherche
@@ -93,7 +89,18 @@ class PanneauGenerationMarchandise(tk.Toplevel):
             text="Enregistrer",
             command=self.enregistrer
         ).pack(pady=10)
+        self.tree.bind("<Double-1>", self.modifier)
+        tk.Button(
+            self,
+            text="Supprimer",
+            command=self.supprimer
+        ).pack()
+        self.lblTotal = tk.Label(
+            self,
+            text="Tonnage : 0"
+        )
 
+        self.lblTotal.pack()
         self.toutes_les_marchandises = self.charger_liste()
 
         self.filtrer()
@@ -162,23 +169,25 @@ class PanneauGenerationMarchandise(tk.Toplevel):
             )
             return
 
-        self.stock.append((nom, tonnage))
+        self.Cargaisons.append((nom, tonnage))
 
         self.tree.insert(
             "",
             tk.END,
             values=(nom, tonnage)
         )
-
+        self.mettre_a_jour_total()
         self.tonnage.delete(0, tk.END)
 
     # ======================================================
 
     def enregistrer(self):
 
-        nom_stock = self.nom_stock.get().strip()
-
-        if nom_stock == "":
+        Name = self.Name.get().strip()
+        marchandise = Marchandise(
+        )
+        marchandise.Name=Name
+        if Name == "":
 
             messagebox.showwarning(
                 "Erreur",
@@ -186,10 +195,7 @@ class PanneauGenerationMarchandise(tk.Toplevel):
             )
 
             return
-
-        marchandise = Marchandise(nom_stock)
-
-        for nom, tonnage in self.stock:
+        for nom, tonnage in self.Cargaisons:
 
             marchandise.AjouterMarchandise(
                 nom,
@@ -203,4 +209,64 @@ class PanneauGenerationMarchandise(tk.Toplevel):
             "Stock enregistré."
         )
 
-        self.destroy()
+        if self.on_generer:
+            self.on_generer(self.Name.get(), self.Cargaisons)
+
+    def modifier(self, event):
+
+        item = self.tree.focus()
+
+        if not item:
+            return
+
+        index = self.tree.index(item)
+
+        nom, tonnage = self.Cargaisons[index]
+
+        self.recherche.delete(0, tk.END)
+        self.recherche.insert(0, nom)
+
+        self.tonnage.delete(0, tk.END)
+        self.tonnage.insert(0, str(tonnage))
+
+        self.Cargaisons.pop(index)
+
+        self.tree.delete(item)
+
+        self.filtrer()
+
+    def supprimer(self):
+
+        item = self.tree.focus()
+
+        if not item:
+            return
+
+        index = self.tree.index(item)
+
+        self.Cargaisons.pop(index)
+
+        self.tree.delete(item)
+
+        self.mettre_a_jour_total()
+        self.mettre_a_jour_total()
+    def mettre_a_jour_total(self):
+
+        total = sum(t for _, t in self.Cargaisons)
+
+        self.lblTotal.config(
+            text=f"Tonnage : {total:.1f}"
+        )
+
+    def rafraichir_tree(self):
+
+        self.tree.delete(*self.tree.get_children())
+
+        for nom, tonnage in self.Cargaisons:
+            self.tree.insert(
+                "",
+                "end",
+                values=(nom, tonnage)
+            )
+
+        self.mettre_a_jour_total()
