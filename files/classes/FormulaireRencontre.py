@@ -46,7 +46,7 @@ class FormulaireRencontre(tk.Toplevel):
             "Journal de bord",
             "Journal",
             self.voyage,
-            action
+            action,{"navire_rencontre":self.navire}
         )
 
         if self.on_fin:
