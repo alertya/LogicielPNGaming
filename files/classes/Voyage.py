@@ -483,6 +483,6 @@ class Voyage:
         return f"Il est {heure } heures. Vous essayez de poursuivre ce navire, veuillez transmettre la fiche navire de vos PJs et de garder la fiche de {navire.Name} \n Le navire se situe à {dx} miles à babord et {dy} devant vous \n si vous arrivez à vous approcher du navire avant la nuit tombée \n Vous pouvez entamer un combat naval dans Navire Action entre votre navire et {navire.Name}\n Vous pouvez hisser le pavillon noir avant afin d'intimider l'équipage adverse"
 
     def AfficherReconnu(self,name):
-        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        navire = Navire.charger_depuis_csv(name)
 
         return f"Le navire est de {navire.CategorieNavire} avec une longueur de {navire.Longueur},un tonnage de {navire.Tonnage}, {navire.NbMats} mats et {navire.NbCanons} canons."
