@@ -217,22 +217,22 @@ De;Cargaison;Suffixe;Region;Volume;Origine;DeOrigine;UtilisationParJourParPerson
 95;Zinc (1T,P:40,N:40,E:40); ;Côte de Malabar;9;;;;;40;40;1;;1;1;0;0;216;Zinc
 97;Déjà pillé par un aventurier; ;Côte de Malabar;10;;;;0;0;0;1;;1;1;0;0;217;Navire déjà pillé
 100;vide; ;Côte de Malabar;10;;;;0;0;0;1;;1;1;0;0;218;Vide
-7;8 bois de construction de Nouvelle-Angleterre; ;Côte est d'amérique du nord;8;Europe du nord;80;;;140;80;1;;1;1;0;0;219;Bois de construction
-16;7 chanvre du Maine;P : 20, N : 15, E : 5;Côte est d'amérique du nord;7;Acadie, baie d'Hudson et terre-neuve;87;;;20;15;5;1;1;1;0;0;220;Chanvre
-26;8 coton de Caroline du Sud; ;Côte est d'amérique du nord;8;Grandes antilles;94;;;150;100;1;;1;1;0;0;221;Huile
-29;5 cuivre du Maine;P : 100, N : 100, E : 100;Côte est d'amérique du nord;5;Petites antilles;100;;;100;100;100;1;1;1;0;0;222;Cuivre
-35;9 fer du Maine; ;Côte est d'amérique du nord;9;;;;;150;100;1;;1;1;0;0;223;Fer
-37;2 indigo de Caroline du Sud; ;Côte est d'amérique du nord;2;;;;;700;600;0,1;;1;1;0;0;224;Indigo
-51;8 maïs; ;Côte est d'amérique du nord;8;;;;;15;10;1;;1;1;0;0;225;Maïs
-52;2 passagers de marque;Mod. de richesse : D100;Côte est d'amérique du nord;2;;;;0;;;;;100;1;0;0;226;Passagers de marque
-65;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +15 (D20+15 dans les ports);Côte est d'amérique du nord;6;;;;0;;;;;1;20;15;15;227;Pièces de monnaie (vente de marchandises)
-73;8 poisson de Nouvelle-Angleterre (à destination des Caraïbes) (1T);P : 5, N : 4, E : 2;Côte est d'amérique du nord;8;;;;;5;4;2;1;1;1;0;0;228;Poisson
-75;7 plomb du Maine;P : 30, N : 30, E : 30;Côte est d'amérique du nord;7;;;;;30;30;30;1;1;1;0;0;229;Plomb
-79;7 riz de Caroline du Sud; ;Côte est d'amérique du nord;7;;;;;300;250;100;1;1;1;0;0;230;Riz
-80;2 safran de Pennsylvanie (depuis 1730); ;Côte est d'amérique du nord;2;;;;;850;700;0,01;;1;1;0;0;231;Safran
-94;6 tabac de Virginie (depuis 1606); ;Côte est d'amérique du nord;6;;;;;500;350;1;;1;1;0;0;232;Tabac
-95;10 déjà pillé par un aventurier; ;Côte est d'amérique du nord;10;;;;0;0;0;1;;1;1;0;0;233;Navire déjà pillé
-100;vide; ;Côte est d'amérique du nord;10;;;;0;0;0;1;;1;1;0;0;234;Vide
+7;8 bois de construction de Nouvelle-Angleterre; ;Côte est d'Amérique du Nord;8;Europe du nord;80;;;140;80;1;;1;1;0;0;219;Bois de construction
+16;7 chanvre du Maine;P : 20, N : 15, E : 5;Côte est d'Amérique du Nord;7;Acadie, baie d'Hudson et terre-neuve;87;;;20;15;5;1;1;1;0;0;220;Chanvre
+26;8 coton de Caroline du Sud; ;Côte est d'Amérique du Nord;8;Grandes antilles;94;;;150;100;1;;1;1;0;0;221;Huile
+29;5 cuivre du Maine;P : 100, N : 100, E : 100;Côte est d'Amérique du Nord;5;Petites antilles;100;;;100;100;100;1;1;1;0;0;222;Cuivre
+35;9 fer du Maine; ;Côte est d'Amérique du Nord;9;;;;;150;100;1;;1;1;0;0;223;Fer
+37;2 indigo de Caroline du Sud; ;Côte est d'Amérique du Nord;2;;;;;700;600;0,1;;1;1;0;0;224;Indigo
+51;8 maïs; ;Côte est d'Amérique du Nord;8;;;;;15;10;1;;1;1;0;0;225;Maïs
+52;2 passagers de marque;Mod. de richesse : D100;Côte est d'Amérique du Nord;2;;;;0;;;;;100;1;0;0;226;Passagers de marque
+65;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +15 (D20+15 dans les ports);Côte est d'Amérique du Nord;6;;;;0;;;;;1;20;15;15;227;Pièces de monnaie (vente de marchandises)
+73;8 poisson de Nouvelle-Angleterre (à destination des Caraïbes) (1T);P : 5, N : 4, E : 2;Côte est d'Amérique du Nord;8;;;;;5;4;2;1;1;1;0;0;228;Poisson
+75;7 plomb du Maine;P : 30, N : 30, E : 30;Côte est d'Amérique du Nord;7;;;;;30;30;30;1;1;1;0;0;229;Plomb
+79;7 riz de Caroline du Sud; ;Côte est d'Amérique du Nord;7;;;;;300;250;100;1;1;1;0;0;230;Riz
+80;2 safran de Pennsylvanie (depuis 1730); ;Côte est d'Amérique du Nord;2;;;;;850;700;0,01;;1;1;0;0;231;Safran
+94;6 tabac de Virginie (depuis 1606); ;Côte est d'Amérique du Nord;6;;;;;500;350;1;;1;1;0;0;232;Tabac
+95;10 déjà pillé par un aventurier; ;Côte est d'Amérique du Nord;10;;;;0;0;0;1;;1;1;0;0;233;Navire déjà pillé
+100;vide; ;Côte est d'Amérique du Nord;10;;;;0;0;0;1;;1;1;0;0;234;Vide
 3;7 argent du Guatemala (1733-1753); ;Du guatemala au Panama;7;Nouvelle-Espagne;50;;;;;;;1;1;0;0;235;Argent
 13;9 excellent cacao du Darien (prix × 1,25); ;Du guatemala au Panama;9;Europe du sud;77;;;1000;875;1;;1;1;0;0;236;Cacao
 26;8 maïs; ;Du guatemala au Panama;8;Nord ouest de l'Afrique;85;;;15;10;1;;1;1;0;0;237;Maïs

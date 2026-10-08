@@ -178,14 +178,12 @@ class Marchandise:
 
     def GenerateMarchandise(self, region):
         de = random.randint(1, 100)
-
         marchandises =utils.MARCHANDISES
         ligne = marchandises[
             (marchandises["Region"] == region)
             & (marchandises["De"] >= de)
             ]
-        print("DFMarchand")
-        print(ligne)
+
         if ligne.empty:
             ligne = marchandises[
                 marchandises["Region"] == region
