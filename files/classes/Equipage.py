@@ -72,6 +72,7 @@ class Equipage:
             self.AttributeGroupeMembre(membre)
             self.Membres.append(membre)
             self.AjoutTrait()
+            self.SauvegarderCapitaine()
             Equipage.Save(self)
 
     def Affichage(self):
@@ -1230,3 +1231,22 @@ class Equipage:
     def NombreMembres(self):
         """Retourne le nombre de membres de l'équipage."""
         return len(self.Membres)
+    def SauvegarderCapitaine(self):
+        capitaine = max(self.Membres, key=lambda m: m.Capi)
+
+        # Sauvegarde du capitaine
+        Equipage.SauvegarderPNJ(
+            capitaine,
+            f"Capitaine_{self.Name}"
+        )
+    @staticmethod
+    def SauvegarderPNJ(membre, nom):
+        df = pd.DataFrame([membre.__dict__])
+
+        df.to_csv(
+            os.path.join(config.BASE_PATH, "PNJ", f"{nom}.csv"),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
+        )
