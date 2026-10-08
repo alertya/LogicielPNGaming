@@ -619,13 +619,15 @@ class MoteurExemple(MoteurBase):
     def executer_action(self, onglet, sous_onglet, instance, action, valeurs=None):
 
         if onglet == "Journal de bord":
-            print(instance)
+            if isinstance(instance, Voyage):
+                print("C'est bien une instance Voyage")
             voyage = Voyage.charger_depuis_csv(instance)
-            print("voyage chargé :", voyage)
+
             return voyage.executer_action(action, valeurs)
 
         if onglet == "Equipage":
-            print(instance)
+            if isinstance(instance, Equipage):
+                print("C'est bien une instance equipage")
             equipage = Equipage.charger_depuis_csv(instance)
             sortie = equipage.executer_action(action, instance, valeurs)
             if sortie:
@@ -633,7 +635,8 @@ class MoteurExemple(MoteurBase):
             return sortie
 
         if onglet == "Navire":
-            print(instance)
+            if isinstance(instance, Navire):
+                print("C'est bien une instance Navire")
             navire = Navire.charger_depuis_csv(instance)
             sortie = navire.executer_action(action, instance, valeurs)
             if sortie:
@@ -641,14 +644,16 @@ class MoteurExemple(MoteurBase):
             return sortie
 
         if onglet == "Marchandises":
-            print(instance)
+            if isinstance(instance, Marchandises):
+                print("C'est bien une instance Marchandise")
             marchandise = Marchandise.charger_depuis_csv(instance)
             sortie = marchandise.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
         if onglet == "PNJ":
-            print(instance)
+            if isinstance(instance, PNJ):
+                print("C'est bien une instance PNJ")
             pnj = PNJ.charger_depuis_csv(instance)
             sortie = pnj.executer_action(action, instance, valeurs)
             if sortie:
