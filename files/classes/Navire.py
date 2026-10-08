@@ -235,8 +235,8 @@ class Navire:
 
     def CalculEquipage(self):
         return random.randint(int(self.EquipMin), int(self.EquipMax))
-
-    def CheckNavire(self, Type):
+    @staticmethod
+    def CheckNavire( Type):
         garde_cote = False
 
         types_autorises = {
