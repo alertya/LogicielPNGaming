@@ -15,7 +15,7 @@ immédiatement avec : python main.py
 """
 print()
 from app import App
-print("Import moteur")
+
 from moteur_interface import MoteurExemple
 
 import config

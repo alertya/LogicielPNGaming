@@ -619,10 +619,13 @@ class MoteurExemple(MoteurBase):
     def executer_action(self, onglet, sous_onglet, instance, action, valeurs=None):
 
         if onglet == "Journal de bord":
+            print(instance)
             voyage = Voyage.charger_depuis_csv(instance)
+            print("voyage chargé :", voyage)
             return voyage.executer_action(action, valeurs)
 
         if onglet == "Equipage":
+            print(instance)
             equipage = Equipage.charger_depuis_csv(instance)
             sortie = equipage.executer_action(action, instance, valeurs)
             if sortie:
@@ -630,6 +633,7 @@ class MoteurExemple(MoteurBase):
             return sortie
 
         if onglet == "Navire":
+            print(instance)
             navire = Navire.charger_depuis_csv(instance)
             sortie = navire.executer_action(action, instance, valeurs)
             if sortie:
@@ -637,25 +641,29 @@ class MoteurExemple(MoteurBase):
             return sortie
 
         if onglet == "Marchandises":
+            print(instance)
             marchandise = Marchandise.charger_depuis_csv(instance)
             sortie = marchandise.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
         if onglet == "PNJ":
+            print(instance)
             pnj = PNJ.charger_depuis_csv(instance)
             sortie = pnj.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
         if onglet == "Reset":
+            print(instance)
             if action == "Reset":
                 return self.Reset()
         if onglet=="Voyage":
+            print(instance)
             if action=="Commercer":
                 messagebox.showinfo("Information", "FELICIATIONS")
         elif action == "GenererMarchandise":
-
+            print(instance)
             marchandise = Marchandise()
 
             return marchandise.Generer(
