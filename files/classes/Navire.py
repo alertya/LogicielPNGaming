@@ -149,6 +149,11 @@ class Navire:
                     self.Marchandise.Name = self.Name + "_Marchandises"
                     self.Marchandise.sauvegarder(self.Name+"_Marchandises")
                     self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
+                    self.combat=self.Equipage.Combat
+                    self.ruse=self.Equipage.Ruse
+                    self.pointage = self.Equipage.Pointage
+                    self.recharge = self.Equipage.Recharge
+                    self.manoeuvre = self.Equipage.Manoeuvre
                 self.ValeurCombat=self.CalculScoreCombat()
                 self.sauvegarder()
 

@@ -260,7 +260,7 @@ class Equipage:
             # Calculs individuels
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
-
+            self.CalculerCompetences()
             self.Membres.append(membre)
             self.AjoutTrait()
         self.ValeurCombat = self.CalculCombatEquipage()
@@ -1254,3 +1254,25 @@ class Equipage:
             encoding="cp1252",
             index=False
         )
+
+    def MoyenneCompetence(self, competence):
+        if not self.Membres:
+            return 0
+
+        return sum(
+            getattr(membre, competence, 0)
+            for membre in self.Membres
+        ) / len(self.Membres)
+
+    def CalculerCompetences(self):
+        self.Charpenterie = self.MoyenneCompetence("Charpenterie")
+        self.Agriculture = self.MoyenneCompetence("Agriculture")
+        self.Manoeuvre = self.MoyenneCompetence("Pratique nautique")
+        self.Acrobatie = self.MoyenneCompetence("Acrobatie")
+        self.Ruse = self.MoyenneCompetence("Comédie")
+
+        self.Natation = self.MoyenneCompetence("Natation")
+        self.Combat = self.MoyenneCompetence("Armes blanches")
+        self.Tir = self.MoyenneCompetence("Mousquet")
+        self.Recharge = self.MoyenneCompetence("Recharge")
+        self.Pointage = self.MoyenneCompetence("Pointage")
