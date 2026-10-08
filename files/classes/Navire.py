@@ -80,7 +80,7 @@ class Navire:
                 self.EquipMin: int = 0
                 self.EquipMax: int = 0
                 self.EquipageNom: str = ""
-
+                self.MarchandiseNom:str=""
                 self.combat: int = 0
                 self.manoeuvre: int = 0
                 self.pointage: int = 0
@@ -147,13 +147,14 @@ class Navire:
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
                     self.Marchandise.Tonnage=self.TonnageMarchandise
                     self.Marchandise.Name = self.Name + "_Marchandises"
+                    self.MarchandiseNom=self.Name + "_Marchandises"
                     self.Marchandise.sauvegarder(self.Name+"_Marchandises")
                     self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
-                    self.combat=self.Equipage.Combat
-                    self.ruse=self.Equipage.Ruse
-                    self.pointage = self.Equipage.Pointage
-                    self.recharge = self.Equipage.Recharge
-                    self.manoeuvre = self.Equipage.Manoeuvre
+                    #self.combat=self.Equipage.Combat
+                    #self.ruse=self.Equipage.Ruse
+                    #self.pointage = self.Equipage.Pointage
+                    #self.recharge = self.Equipage.Recharge
+                    #self.manoeuvre = self.Equipage.Manoeuvre
                 self.ValeurCombat=self.CalculScoreCombat()
                 self.sauvegarder()
 
@@ -374,7 +375,8 @@ class Navire:
 
             except ValueError:
                 print(f"Erreur de conversion : {cle} = {valeur}")
-
+        navire.Equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
+        navire.Marchandise=Marchandise.charger_depuis_csv(navire.No)
         return navire
 
     @staticmethod
@@ -469,11 +471,11 @@ class Navire:
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
         bonus_tir = navire_attaque.CategorieNavire - 3
-        print("Equipage avant ResultatCompetence :", navire_attaquant.Equipage)
-        print("Type :", type(navire_attaquant.Equipage))
-        print(navire_attaquant.Equipage)
-        print(type(navire_attaquant.Equipage))
-        print(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1])
+        print("Attaquant :", navire_attaquant)
+        print("Id :", id(navire_attaquant))
+        print("Attributs :", navire_attaquant.__dict__.keys())
+        print(hasattr(navire_attaquant, "Equipage"))
+        print(navire_attaquant.__dict__)
         succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1],bonus)
         succes_tir += succes_tir * bonus_tir / 5
         succes_tir = utils.ConvertFloatToInt(succes_tir)
