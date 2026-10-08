@@ -1,3 +1,4 @@
+import math
 import os
 import csv
 import pandas as pd
@@ -385,18 +386,11 @@ class Voyage:
             return self.avancer_jour(chanceAventurier,chanceMarchand)
 
         elif action == "Commercer":
-            navire=Navire.charger_depuis_csv(self.NavireRencontre)
-            print("Navire rencontré dans Commercer :", navire.Name)
             return self.Commercer()
 
         elif action == "Poursuivre":
             return self.Poursuivre()
 
-        elif action == "PavillonNoir":
-            return self.PavillonNoir()
-
-        elif action == "Canonner":
-            return self.Canonner()
 
         return ""
 
@@ -463,11 +457,19 @@ class Voyage:
     def Commercer(self):
 
         navire=Navire.charger_depuis_csv(self.NavireRencontre)
-        print(navire.Name)
-        return f"Vous pouvez commercer avec {navire.Name}"
-    def Canonner(self):
-        return "Fonction pas encore implemente"
+        if "Interlope" in navire.Compagnie or "Pirate" in navire.Compagnie:
+            return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {self.Navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
+        else:
+            return f"Le capitaine ne souhaite pas commercer avec vous"
+
     def Poursuivre(self):
-        return "Fonction pas encore implemente"
-    def PavillonNoir(self):
-        return "Fonction pas encore implemente"
+        theta=random.randint(0,360)
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        dx=math.cos(theta)
+        dy=math.sin(theta)
+        rayon=random.randint(1,8)
+        dx=dx*rayon
+        dy=dy*rayon
+        heure=random.randint(1,12)+6
+        return f"Il est {heure } heures. Vous essayez de poursuivre ce navire, veuillez transmettre la fiche navire de vos PJs et de garder la fiche de {navire.Name} \n Le navire se situe à {dx} miles à babord et {dy} devant vous \n si vous arrivez à vous approcher du navire avant la nuit tombée \n Vous pouvez entamer un combat naval dans Navire Action entre votre navire et {navire.Name}\n Vous pouvez hisser le pavillon noir avant afin d'intimider l'équipage adverse"
+
