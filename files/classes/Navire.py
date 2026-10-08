@@ -376,7 +376,7 @@ class Navire:
             except ValueError:
                 print(f"Erreur de conversion : {cle} = {valeur}")
         navire.Equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
-        navire.Marchandise=Marchandise.charger_depuis_csv(navire.No)
+        navire.Marchandise=Marchandise.charger_depuis_csv(navire.MarchandiseNom)
         return navire
 
     @staticmethod
