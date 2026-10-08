@@ -382,26 +382,20 @@ class Navire:
     def CalculCompagnie(zone, annee):
         de = random.randint(1, 100)
 
-        print("Zone demandée :", zone)
-        print("Année :", annee)
-        print("Dé :", de)
 
         df = utils.COMPAGNIE_COMMERCIALE
-        print("Lignes départ :", len(df))
 
         df = df[df["Zone"] == zone]
-        print("Après filtre Zone :", len(df))
 
         df = df[df["PeriodMax"] > annee]
-        print("Après filtre PeriodMax :", len(df))
 
-        df = df[df["Intervalle"] <= de]
-        print("Après filtre Intervalle :", len(df))
-        df['Bateau'].iloc[-1]
+        df = df[df["Intervalle"] >= de]
         if df.empty:
             print("Aucune compagnie trouvée")
             return None
-        return
+        ligne = df.iloc[0]
+
+        return ligne["Acteur"], ligne["Nationalite"]
 
     @staticmethod
     def ConvertZone(region):
