@@ -201,7 +201,7 @@ class Voyage:
 
     def avancer_jour(self,Seuilventurier,SeuilMarchand):
         """Fait progresser le voyage d'une journée."""
-
+        print("Voyage :", id(self))
         # Voyage terminé
         if self.EtapeCourante >= len(self.Etapes):
             return "Le voyage est déjà terminé."
@@ -271,9 +271,21 @@ class Voyage:
         # -------------------------------------------------
         # Rencontres
         # -------------------------------------------------
-        print("Rencontre générée :", self.navire_rencontre)
-        navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],SeuilMarchand,Seuilventurier,self.Jour,etape['ZoneMaritime'])
-        print("Rencontre générée :", self.navire_rencontre)
+
+        navire_rencontre = self.determiner_rencontre(
+            self.Annee,
+            etape["Region"],
+            SeuilMarchand,
+            Seuilventurier,
+            self.Jour,
+            etape["ZoneMaritime"]
+        )
+
+        print("APRES APPEL")
+        print("Type :", type(navire_rencontre))
+        print("Valeur :", navire_rencontre)
+        print("Id :", id(navire_rencontre))
+
         self.navire_rencontre = navire_rencontre
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
@@ -364,6 +376,7 @@ class Voyage:
             )
 
     def executer_action(self, action, valeurs=None):
+        print("executer_action sur", id(self), action)
         if action == "JourSuivant":
             chanceAventurier = self.Etapes[self.EtapeCourante].get(
                 "ChanceRencontreAventurier", 0
@@ -398,6 +411,7 @@ class Voyage:
     import config
 
     def determiner_rencontre(self, annee,region,SeuilMa,SeuilAv,Jour,zone):
+        print("determiner_rencontre sur", id(self))
         df = utils.DE_RENCONTRE
         ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
@@ -413,10 +427,13 @@ class Voyage:
             tirage = random.randint(1, DeMarchand)
             print("Tirage marchand :", tirage)
             if SeuilMa>=tirage: ###Alors on rencontre un navire marchand
+
                 Type = Navire.CalculType(ZoneRencontre, annee)
-                Compagnie = Navire.CalculType(ZoneCompagnie, annee)
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+                Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
+
                 navire_rencontre.Compagnie = Compagnie
+                navire_rencontre.Nationalite = Nationalite
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
         print("Seuil aventurier :", SeuilAv)
@@ -429,18 +446,21 @@ class Voyage:
 
             Type = Navire.CalculType(ZoneRencontre, annee)
             print("Type :", Type)
-
-            Compagnie = Navire.CalculType(ZoneCompagnie, annee)
+            navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+            Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
             print("Compagnie :", Compagnie)
 
             navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
             print("Navire créé :", navire_rencontre)
 
-            navire_rencontre.Compagnie = Compagnie
+            navire_rencontre.Compagnie = "Pirate"
+            navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             #navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
 
             print("Avant return :", navire_rencontre)
+        print("Retour final :", navire_rencontre)
+        print("Id retour :", id(navire_rencontre))
         return navire_rencontre
 
     def Commercer(self):

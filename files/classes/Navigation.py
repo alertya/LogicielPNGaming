@@ -287,7 +287,7 @@ class Navigation:
                 texte += "VOUS AVEZ PERDU UN MEMBRE D'EQUIPAGE DURANT LA TEMPETE\n"
 
             elif de == 4:
-                _, moyen = equipage.ActionEquipage("Charpenterie", "Charpentier")
+                _, moyen = equipage.ActionEquipage("Charpenterie", "Charpentier",0)
                 perte = max(0, navire.StructureVoile * 0.3 - moyen)
                 _, tmp = navire.PerteNavire(nom_navire, perte, "Voile")
                 texte += "VOUS AVEZ PERDU UNE PARTIE DU MAT\n"

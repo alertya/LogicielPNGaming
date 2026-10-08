@@ -378,23 +378,30 @@ class Navire:
 
         return df['Bateau'].iloc[0]
 
-    def CalculCompagnie(self, zone, annee):
+    @staticmethod
+    def CalculCompagnie(zone, annee):
         de = random.randint(1, 100)
 
+        print("Zone demandée :", zone)
+        print("Année :", annee)
+        print("Dé :", de)
+
         df = utils.COMPAGNIE_COMMERCIALE
+        print("Lignes départ :", len(df))
 
         df = df[df["Zone"] == zone]
+        print("Après filtre Zone :", len(df))
+
         df = df[df["PeriodMax"] > annee]
+        print("Après filtre PeriodMax :", len(df))
+
         df = df[df["Intervalle"] <= de]
-
+        print("Après filtre Intervalle :", len(df))
+        df['Bateau'].iloc[-1]
         if df.empty:
+            print("Aucune compagnie trouvée")
             return None
-
-        ligne = df.iloc[-1]
-
-        compagnie = f"{ligne['Acteur']} ({ligne['Nationalite']})"
-
-        return ligne['Acteur'],ligne['Nationalite']
+        return
 
     @staticmethod
     def ConvertZone(region):
@@ -426,20 +433,6 @@ class Navire:
 
 
         return proba
-
-    def DeterRencontre(self,region,de,annee,nom):
-        ZoneCommerce,ZoneCompagnie,ZoneRencontre=self.ConvertZone(region)
-        res=self.ProbaRencontre(ZoneRencontre,annee)
-        if de<res:
-            Compagnie,Nationalite=self.CalculCompagnie(ZoneCompagnie,annee)
-            Type=self.CalculType(ZoneRencontre,annee)
-            NavireRencontre=Navire(Type,nom,region)
-            NavireRencontre.Compagnie=Compagnie
-            NavireRencontre.Nationalite = Nationalite
-            NavireRencontre.Name=NavireRencontre.NomNavire(Nationalite)
-            return NavireRencontre
-        else:
-            return None
     def Reparer(self,navire):
         navire=self.charger_depuis_csv(navire)
         ReparationCoque=navire.StructureCoque/navire.StructureCoqueMax
