@@ -43,7 +43,9 @@ class Equipage:
 
             for attribut, valeur in donnees.items():
                 setattr(membre, attribut, valeur)
-
+            membre.Profession=Type
+            membre.Type=Type
+            membre.Localisation="Europe du Nord"
             membre.Name=""
             membre.Nom = ""
             membre.Maladie = ""
