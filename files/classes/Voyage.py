@@ -430,6 +430,7 @@ class Voyage:
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
                 NomNavireRencontre = navire_rencontre.Name
+                navire_reconnu = self.AfficherReconnu(navire_rencontre.Name + "Reconnu")
 
         tirage = random.randint(1, DeAventurier)
 
@@ -450,6 +451,7 @@ class Voyage:
             navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
+            navire_reconnu=self.AfficherReconnu(navire_rencontre.Name+"Reconnu")
             NomNavireRencontre=navire_rencontre.Name
 
         return NomNavireRencontre
@@ -473,3 +475,7 @@ class Voyage:
         heure=random.randint(1,12)+6
         return f"Il est {heure } heures. Vous essayez de poursuivre ce navire, veuillez transmettre la fiche navire de vos PJs et de garder la fiche de {navire.Name} \n Le navire se situe à {dx} miles à babord et {dy} devant vous \n si vous arrivez à vous approcher du navire avant la nuit tombée \n Vous pouvez entamer un combat naval dans Navire Action entre votre navire et {navire.Name}\n Vous pouvez hisser le pavillon noir avant afin d'intimider l'équipage adverse"
 
+    def AfficherReconnu(self,name):
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+
+        return f"Le navire est de {navire.CategorieNavire} avec une longueur de {navire.Longueur},un tonnage de {navire.Tonnage}, {navire.NbMats} mats et {navire.NbCanons} canons."
