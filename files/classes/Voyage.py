@@ -426,9 +426,11 @@ class Voyage:
 
             if SeuilMa>=tirage: ###Alors on rencontre un navire marchand
 
-                Type = Navire.CalculType(ZoneRencontre, annee)
+                Type,garde_cote = Navire.CalculType(ZoneRencontre, annee)
                 print("Determination type navire marchand réalisé")
+
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+                navire_rencontre.GardeCote = garde_cote
                 print("Initialisation  navire marchand réalisé")
                 Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
                 print("Calcul compagnie  navire marchand réalisé")
@@ -444,12 +446,12 @@ class Voyage:
         if SeuilAv >= tirage:  ###Alors on rencontre un navire aventurier
 
 
-            Type = Navire.CalculType(ZoneRencontre, annee)
+            Type,garde_cote = Navire.CalculType(ZoneRencontre, annee)
             print("Determination type navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
             print("Initialisation  navire aventurier réalisé")
             Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
-
+            navire_rencontre.GardeCote=garde_cote
             print("Calcul compagnie  navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
             print("Navire créé :", navire_rencontre)

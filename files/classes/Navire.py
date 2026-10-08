@@ -54,7 +54,7 @@ class Navire:
                 # -------------------------
                 self.de_depart: int = 0
                 self.regions_depart: str = Region
-
+                self.GardeCote:bool=False
                 self.Compagnie: str = ""
 
                 # -------------------------
@@ -124,6 +124,8 @@ class Navire:
                 self.journal: List[str] = []
                 df=utils.RENCONTRE_NAVIRE
                 df=df[df['Nom']==Type]
+
+
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
@@ -227,7 +229,7 @@ class Navire:
     def CalculEquipage(self):
         return random.randint(int(self.EquipMin), int(self.EquipMax))
 
-    def CheckNavire(self, navire):
+    def CheckNavire(self, Type):
         garde_cote = False
 
         types_autorises = {
@@ -267,15 +269,20 @@ class Navire:
             "yacht (Sloop)"
         }
 
-        if navire.Type == "Garde côte (relancer jusqu’à trouver sloop, goélette, brigantin, brick, chebec, etc)":
-            while True:
-                navire = Navire.generer_aleatoire()
+        if Type == "Garde côte (relancer jusqu’à trouver sloop, goélette, brigantin, brick, chebec, etc)":
+            while Type not in types_autorises:
+                de = random.randint(1, 100)
 
-                if navire.Type in types_autorises:
-                    garde_cote = True
-                    break
+                df = utils.GENE_NAVIRE
 
-        return navire, garde_cote
+                df = df[df['DeBateau'] >= de]
+                df = df[df['Zone'] == zone]
+
+                if df.empty:
+                    return None
+                Type = df['Bateau'].iloc[0]
+
+        return Type,garde_cote
 
     def GeneEquipage(self):
                 comp = {'combat': 4, 'manoeuvre': 5, 'pointage': 3, 'recharge': 4, 'ruse': 2, 'valeur_combat': 12.5}
@@ -375,8 +382,9 @@ class Navire:
 
         if df.empty:
             return None
-
-        return df['Bateau'].iloc[0]
+        Type=df['Bateau'].iloc[0]
+        Type,garde_cote=Navire.CheckNavire(Type)
+        return Type,garde_cote
 
     @staticmethod
     def CalculCompagnie(zone, annee):
