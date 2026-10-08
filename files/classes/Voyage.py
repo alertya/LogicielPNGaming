@@ -376,6 +376,13 @@ class Voyage:
     def executer_action(self, action, valeurs=None):
 
         if action == "JourSuivant":
+
+            if self.EtapeCourante >= len(self.Etapes):
+                return {
+                    "journal": "Le voyage est terminé.",
+                    "rencontre": False
+                }
+
             chanceAventurier = self.Etapes[self.EtapeCourante].get(
                 "ChanceRencontreAventurier", 0
             )
@@ -383,7 +390,7 @@ class Voyage:
                 "ChanceRencontreMarchand", 0
             )
 
-            return self.avancer_jour(chanceAventurier,chanceMarchand)
+            return self.avancer_jour(chanceAventurier, chanceMarchand)
 
         elif action == "Commercer":
             return self.Commercer()
@@ -430,7 +437,7 @@ class Voyage:
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
                 NomNavireRencontre = navire_rencontre.Name
-                navire_reconnu = self.AfficherReconnu(navire_rencontre.Name + "Reconnu")
+                navire_reconnu = self.AfficherReconnu(navire_rencontre.Name + "_Reconnu")
 
         tirage = random.randint(1, DeAventurier)
 
@@ -451,7 +458,7 @@ class Voyage:
             navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
-            navire_reconnu=self.AfficherReconnu(navire_rencontre.Name+"Reconnu")
+            navire_reconnu=self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
             NomNavireRencontre=navire_rencontre.Name
 
         return NomNavireRencontre
