@@ -70,6 +70,7 @@ class Equipage:
             membre.PVMax=random.randint(5,8)
             membre.PV=membre.PVMax
             membre.Traits=[]
+            self.Pirate(1)
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
             self.Membres.append(membre)
@@ -755,9 +756,10 @@ class Equipage:
         Text = ""
 
         for membre in self.Membres:
-
-            tirage = np.random.randint(0, 10)
-
+            tirage = np.random.randint(1, 10)
+            print(membre, tirage)
+            print(tirage)
+            print(Symp)
             if Symp == 1:
 
                 if tirage > 0:
