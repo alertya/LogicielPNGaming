@@ -757,9 +757,7 @@ class Equipage:
 
         for membre in self.Membres:
             tirage = np.random.randint(1, 10)
-            print(membre, tirage)
-            print(tirage)
-            print(Symp)
+
             if Symp == 1:
 
                 if tirage > 0:
