@@ -651,6 +651,9 @@ class MoteurExemple(MoteurBase):
         if onglet == "Reset":
             if action == "Reset":
                 return self.Reset()
+        if onglet=="Voyage":
+            if action=="Commercer":
+                messagebox.showinfo("Information", "FELICIATIONS")
         elif action == "GenererMarchandise":
 
             marchandise = Marchandise()

@@ -69,3 +69,20 @@ class FormulaireRencontre(tk.Toplevel):
             "Canonner",
             "Fuir"
         ]
+
+    def _executer(self, action):
+
+        resultat = self.moteur.executer_action(
+            "Journal de bord",
+            "Journal",
+            self.voyage,
+            action
+        )
+
+        if action == "Commercer":
+            messagebox.showinfo("Commerce", str(resultat))
+
+        if self.on_fin:
+            self.on_fin()
+
+        self.destroy()

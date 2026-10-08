@@ -690,6 +690,12 @@ class FormulaireAction(tk.Toplevel):
                 padx=20,
                 pady=20
             )
+        if self.action == "Commercer":
+            message = self.moteur.JourSuivant(self.instance_actuelle)
+            messagebox.showinfo(
+                "Commercer",
+                "Vous pouvez commercer avec"
+            )
 
 
 

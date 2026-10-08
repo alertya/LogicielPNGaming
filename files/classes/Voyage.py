@@ -14,7 +14,7 @@ class Voyage:
         self.Navire = Navire
         self.Annee = Annee
         self.Etapes = etapes if etapes is not None else []
-
+        self.navire_rencontre=None
         self.EtapeCourante = 0
         self.Avancement = 0
         self.Jour = 1
@@ -271,8 +271,9 @@ class Voyage:
         # -------------------------------------------------
         # Rencontres
         # -------------------------------------------------
-
+        print("Rencontre générée :", self.navire_rencontre)
         navire_rencontre = self.determiner_rencontre(self.Annee,etape["Region"],SeuilMarchand,Seuilventurier,self.Jour,etape['ZoneMaritime'])
+        print("Rencontre générée :", self.navire_rencontre)
         self.navire_rencontre = navire_rencontre
         if navire_rencontre:
             actions = navire_rencontre.actions_rencontre()
@@ -294,7 +295,7 @@ class Voyage:
             self.EtapeCourante += 1
 
             if self.EtapeCourante >= len(self.Etapes):
-                journal.append("🏁 Le voyage est terminé.")
+                journal.append("Le voyage est terminé.")
 
         # -------------------------------------------------
         # Journal
@@ -370,11 +371,11 @@ class Voyage:
             chanceMarchand = self.Etapes[self.EtapeCourante].get(
                 "ChanceRencontreMarchand", 0
             )
-            print(chanceAventurier)
-            print(chanceMarchand)
+
             return self.avancer_jour(chanceAventurier,chanceMarchand)
 
         elif action == "Commercer":
+            print("Navire rencontré dans Commercer :", self.navire_rencontre)
             return self.Commercer()
 
         elif action == "Poursuivre":
@@ -402,28 +403,49 @@ class Voyage:
         DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
         DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
         navire_rencontre=None
+
+
         if "D" not in DeMarchand:
             DeMarchand=int(DeMarchand)
-            if SeuilMa>=random.randint(1,DeMarchand): ###Alors on rencontre un navire marchand
+            print("Seuil marchand :", SeuilMa)
+            print("Dé marchand :", DeMarchand)
+
+            tirage = random.randint(1, DeMarchand)
+            print("Tirage marchand :", tirage)
+            if SeuilMa>=tirage: ###Alors on rencontre un navire marchand
                 Type = Navire.CalculType(ZoneRencontre, annee)
                 Compagnie = Navire.CalculType(ZoneCompagnie, annee)
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
                 navire_rencontre.Compagnie = Compagnie
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
-        if SeuilAv >= random.randint(1, DeAventurier):  ###Alors on rencontre un navire aventurier
-            Type=Navire.CalculType(ZoneRencontre,annee)
-            Compagnie=Navire.CalculType(ZoneCompagnie,annee)
-            navire_rencontre=Navire(Type,str(Jour)+"_Aventurier",ZoneCommerce)
+        print("Seuil aventurier :", SeuilAv)
+        print("Dé aventurier :", DeAventurier)
+
+        tirage = random.randint(1, DeAventurier)
+        print("Tirage aventurier :", tirage)
+        if SeuilAv >= tirage:  ###Alors on rencontre un navire aventurier
+            print("Entrée dans le if marchand")
+
+            Type = Navire.CalculType(ZoneRencontre, annee)
+            print("Type :", Type)
+
+            Compagnie = Navire.CalculType(ZoneCompagnie, annee)
+            print("Compagnie :", Compagnie)
+
+            navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+            print("Navire créé :", navire_rencontre)
+
             navire_rencontre.Compagnie = Compagnie
-            navire_rencontre.Compagnie="Pirate"
             navire_rencontre.sauvegarder()
-            navire_rencontre.ReconnaissanceNavire(navire_rencontre,3)
+            #navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
+
+            print("Avant return :", navire_rencontre)
         return navire_rencontre
 
     def Commercer(self):
-        print(self.navire_rencontre.Name)
-        return f"Fonction pas encore implemente {navire_rencontre.Name}"
+        print("Navire rencontré dans Commercer :", self.navire_rencontre)
+        return f"Fonction pas encore implemente {self.navire_rencontre.Name}"
     def Canonner(self):
         return "Fonction pas encore implemente"
     def Poursuivre(self):
