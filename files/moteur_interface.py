@@ -967,3 +967,4 @@ class MoteurExemple(MoteurBase):
         marchandise.sauvegarder()
 
         return "Marchandise enregistrée."
+
