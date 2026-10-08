@@ -32,3 +32,5 @@ if __name__ == "__main__":
     app = App(moteur)
     print("Affichage écran")
     app.mainloop()
+
+
