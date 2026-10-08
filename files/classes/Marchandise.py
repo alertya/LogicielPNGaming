@@ -184,7 +184,8 @@ class Marchandise:
             (marchandises["Region"] == region)
             & (marchandises["De"] >= de)
             ]
-
+        print("DFMarchand")
+        print(ligne)
         if ligne.empty:
             ligne = marchandises[
                 marchandises["Region"] == region

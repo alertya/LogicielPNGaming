@@ -142,6 +142,7 @@ class Navire:
                 if charger==False:
                     self.EquipageNom=self.Name+"_Equipage"
                     self.Marchandise = Marchandise()
+                    print(Region)
                     Cargaison =self.Marchandise.GenerateMarchandise(Region)
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
                     self.Marchandise.Tonnage=self.TonnageMarchandise
