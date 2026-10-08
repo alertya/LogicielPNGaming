@@ -1243,6 +1243,8 @@ class Equipage:
     def SauvegarderPNJ(membre, nom):
         df = pd.DataFrame([membre.__dict__])
         membre.Name=nom
+        membre.Profession="Capitaine"
+        membre.Localisation="Europe"
         df.to_csv(
             os.path.join(config.BASE_PATH, "PNJ", f"{nom}.csv"),
             sep=";",
