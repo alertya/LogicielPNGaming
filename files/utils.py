@@ -168,6 +168,7 @@ def ConvertListFloatToListInt(fl_list):
     return result
 
 def ConvertFloatToInt(x):
+    x=round(x,1)
     if (x % 1 * 100 <= random.randint(1, 99)) and (x % 1 * 100 != 0):
         x += 1
     return int(x)
