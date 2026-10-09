@@ -1208,7 +1208,7 @@ class Equipage:
             return f"Recrutement effectué pour {equipage.Name}"
         elif action=="Echantillonnage":
             return self.Echantillonnage(valeurs['Nombre'],valeurs['Nom'])
-            return f"Un membre de {self.Name} a été sélectionné au hasard et est enregistré dans PNJ/f{valeurs['Nom]}"
+            return f"Un membre de {self.Name} a été sélectionné au hasard et est enregistré dans PNJ/f{valeurs['Nom']}"
         return "Action inconnue."
 
     @classmethod
