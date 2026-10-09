@@ -363,26 +363,26 @@ De;Cargaison;Suffixe;Region;Volume;Origine;DeOrigine;UtilisationParJourParPerson
 94;9 sel du Delta du Niger (Guinée); ;Golfe de Guinée;9;;;;;285;140;1;;1;1;0;0;362;Sel
 97;10 déjà pillé par un aventurier; ;Golfe de Guinée;10;;;;0;0;0;1;;1;1;0;0;363;Navire déjà pillé
 100;vide; ;Golfe de Guinée;10;;;;0;0;0;1;;1;1;0;0;364;Vide
-1;7 acajou de Cuba (1T);P : 350, N : 300, E : 200;Grandes antilles;7;Grandes antilles;50;;;350;300;100;1;1;1;0;0;365;Acajou
-2;2 animaux exotiques (perroquet, singe, toucan); ;Grandes antilles;2;Europe du nord;59;;;;;;;1;1;0;0;366;Animaux exotiques
-8;8 café d’Hispaniola (faible production depuis 1721, production forte et croissante depuis 1755); ;Grandes antilles;8;Europe du sud;78;;;650;220;1;;1;1;0;0;367;Café
-16;8 café de Cuba (depuis la fin du XVIIIe siècle); ;Grandes antilles;8;Nord ouest de l'Afrique;85;;;650;220;1;;1;1;0;0;368;Café
-21;8 café de la Jamaïque (croissante depuis 1728); ;Grandes antilles;8;Golfe de Guinée;93;;;650;220;1;;1;1;0;0;369;Café
-29;8 coton d’Hispaniola (production croissante depuis 1740 et très forte depuis 1764); ;Grandes antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;150;100;1;;1;1;0;0;370;Huile
-33;7 cuir d’Hispaniola et de La Tortue (1630-1700); ;Grandes antilles;7;Madagascar;100;;;300;200;1;;1;1;0;0;371;Huile
-35;2 gingembre de Puerto Rico (1T);P : 600, N : 500, E : 150;Grandes antilles;2;;;;;600;500;150;1;1;1;0;0;372;Gingembre
-36;2 passagers de marque;Mod. de richesse : +D100+5;Grandes antilles;2;;;;0;;;;;100;1;5;0;373;Passagers de marque
-45;2 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+60 dans les ports);Grandes antilles;2;;;;0;;;;;1;1;30;60;374;Pièces de monnaie (vente de marchandises)
-56;5 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100+20;Grandes antilles;5;;;;0;;;;;100;1;20;0;375;Pièces de monnaie (vente d’esclaves)
-59;4 piment antillais (1T);P : 150, N : 120, E : 60;Grandes antilles;4;;;;;150;120;60;1;1;1;0;0;376;Piment
-62;4 piment de la Jamaïque (1T);P : 150, N : 120, E : 60;Grandes antilles;4;;;;;150;120;60;1;1;1;0;0;377;Piment
-64;6 sel d’Hispaniola; ;Grandes antilles;6;;;;;285;140;1;;1;1;0;0;378;Sel
-82;9 sucre (depuis le milieu du XVIIe siècle); ;Grandes antilles;9;;;;;750;450;1;;1;1;0;0;379;Sucre
-85;6 tabac de La Tortue (1630-1700); ;Grandes antilles;6;;;;;500;350;1;;1;1;0;0;380;Tabac
-94;6 tabac des Grandes Antilles; ;Grandes antilles;6;;;;;500;350;1;;1;1;0;0;381;Tabac
-95;4 tortue des Îles Caymans (1T);P : 120, N : 100, E : 60;Grandes antilles;4;;;;;120;100;60;1;1;1;0;0;382;Tortue des Îles Caymans
-96;10 déjà pillé par un aventurier; ;Grandes antilles;10;;;;0;0;0;1;;1;1;0;0;383;Navire déjà pillé
-100;vide; ;Grandes antilles;10;;;;0;0;0;1;;1;1;0;0;384;Vide
+1;7 acajou de Cuba (1T);P : 350, N : 300, E : 200;Grandes Antilles;7;Grandes antilles;50;;;350;300;100;1;1;1;0;0;365;Acajou
+2;2 animaux exotiques (perroquet, singe, toucan); ;Grandes Antilles;2;Europe du nord;59;;;;;;;1;1;0;0;366;Animaux exotiques
+8;8 café d’Hispaniola (faible production depuis 1721, production forte et croissante depuis 1755); ;Grandes Antilles;8;Europe du sud;78;;;650;220;1;;1;1;0;0;367;Café
+16;8 café de Cuba (depuis la fin du XVIIIe siècle); ;Grandes Antilles;8;Nord ouest de l'Afrique;85;;;650;220;1;;1;1;0;0;368;Café
+21;8 café de la Jamaïque (croissante depuis 1728); ;Grandes Antilles;8;Golfe de Guinée;93;;;650;220;1;;1;1;0;0;369;Café
+29;8 coton d’Hispaniola (production croissante depuis 1740 et très forte depuis 1764); ;Grandes Antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;150;100;1;;1;1;0;0;370;Huile
+33;7 cuir d’Hispaniola et de La Tortue (1630-1700); ;Grandes Antilles;7;Madagascar;100;;;300;200;1;;1;1;0;0;371;Huile
+35;2 gingembre de Puerto Rico (1T);P : 600, N : 500, E : 150;Grandes Antilles;2;;;;;600;500;150;1;1;1;0;0;372;Gingembre
+36;2 passagers de marque;Mod. de richesse : +D100+5;Grandes Antilles;2;;;;0;;;;;100;1;5;0;373;Passagers de marque
+45;2 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+60 dans les ports);Grandes Antilles;2;;;;0;;;;;1;1;30;60;374;Pièces de monnaie (vente de marchandises)
+56;5 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100+20;Grandes Antilles;5;;;;0;;;;;100;1;20;0;375;Pièces de monnaie (vente d’esclaves)
+59;4 piment antillais (1T);P : 150, N : 120, E : 60;Grandes Antilles;4;;;;;150;120;60;1;1;1;0;0;376;Piment
+62;4 piment de la Jamaïque (1T);P : 150, N : 120, E : 60;Grandes Antilles;4;;;;;150;120;60;1;1;1;0;0;377;Piment
+64;6 sel d’Hispaniola; ;Grandes Antilles;6;;;;;285;140;1;;1;1;0;0;378;Sel
+82;9 sucre (depuis le milieu du XVIIe siècle); ;Grandes Antilles;9;;;;;750;450;1;;1;1;0;0;379;Sucre
+85;6 tabac de La Tortue (1630-1700); ;Grandes Antilles;6;;;;;500;350;1;;1;1;0;0;380;Tabac
+94;6 tabac des Grandes Antilles; ;Grandes Antilles;6;;;;;500;350;1;;1;1;0;0;381;Tabac
+95;4 tortue des Îles Caymans (1T);P : 120, N : 100, E : 60;Grandes Antilles;4;;;;;120;100;60;1;1;1;0;0;382;Tortue des Îles Caymans
+96;10 déjà pillé par un aventurier; ;Grandes Antilles;10;;;;0;0;0;1;;1;1;0;0;383;Navire déjà pillé
+100;vide; ;Grandes Antilles;10;;;;0;0;0;1;;1;1;0;0;384;Vide
 27;9 indigo du Guatemala (Côte Pacifique); ;Guatemala, Costa Rica Panama;9;Nouvelle-Espagne;50;;;700;600;0,1;;1;1;0;0;385;Indigo
 30;10 passagers de marque (Mod. de richesse : D100); ;Guatemala, Costa Rica Panama;10;Europe du sud;77;;0;;;;;100;1;0;0;386;Passagers de marque
 38;10 perles de l’Île San Juan de Coiba (1kg) (P : 10000, N : 9000, E : 2000); ;Guatemala, Costa Rica Panama;10;Nord ouest de l'Afrique;85;;;10000;9000;2000;0,001;1;1;0;0;387;Perles
@@ -592,31 +592,31 @@ De;Cargaison;Suffixe;Region;Volume;Origine;DeOrigine;UtilisationParJourParPerson
 88;Pièces de monnaie résultant de la vente de marchandises +30 (+60 pour la Compagnie néerlandaise des Indes Orientales); ;Perse;5;;;;0;;;;;1;1;30;0;591;Pièces de monnaie (vente de marchandises)
 94;Pièces de monnaie résultant de la vente d’esclaves (D100+5); ;Perse;5;;;;0;;;;;100;1;5;0;592;Pièces de monnaie (vente d’esclaves)
 95;Déjà pillé par un aventurier; ;Perse;10;;;;0;0;0;1;;1;1;0;0;593;Navire déjà pillé
-1;7 animaux exotiques (perroquet, singe, toucan); ;Petites antilles;7;Petites antilles;50;;;;;;;1;1;0;0;594;Animaux exotiques
-7;9 cacao de la Martinique; ;Petites antilles;9;Europe du nord;59;;;800;700;1;;1;1;0;0;595;Cacao
-8;5 café de la Guadeloupe, de la Martinique;Très faible production depuis 1721;Petites antilles;5;Europe du sud;78;;;650;220;1;;1;1;0;0;596;Café
-11;6 cannelle; ;Petites antilles;6;Nord ouest de l'Afrique;85;;;700;250;1;;1;1;0;0;597;Cannelle
-12;5 clous de girofle de la Grenade;Depuis le dernier tiers du XVIIIe siècle;Petites antilles;5;Golfe de Guinée;93;;;800;700;0,1;;1;1;0;0;598;Clous de girofle
-13;8 coton;Faible production;Petites antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;600;300;1;;1;1;0;0;599;Coton
-17;7 curcuma de la Grenade (100kg);P : 250, N : 200, E : 100;Petites antilles;7;Madagascar;100;;;250;20;100;0,1;1;1;0;0;600;Curcuma
-22;6 indigo de la Guadeloupe et de la Martinique; ;Petites antilles;6;;;;;700;600;0,1;;1;1;0;0;601;Indigo
-23;3 macis (« fleur de muscade ») de la Grenade (100kg);P : 1500, N : 1400, E : 900;Petites antilles;3;;;;;1400;900;0,1;;1;1;0;0;602;Macis de la Grenade
-25;6 noix de muscade de la Grenade; ;Petites antilles;6;;;;;1000;700;0,1;;1;1;0;0;603;Noix de muscade
-26;2 passagers de marque;Mod. de richesse : D100;Petites antilles;2;;;;0;;;;;100;1;0;0;604;Passagers de marque
-32;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+40 dans les ports);Petites antilles;6;;;;0;;;;;1;1;30;40;605;Pièces de monnaie (vente de marchandises)
-39;8 pièces de monnaie résultant d’esclaves;Mod. de richesse : D100-5;Petites antilles;8;;;;0;;;;;100;1;-5;-5;606;Pièces de monnaie
-45;4 piment antillais (1T);P : 150, N : 120, E : 60;Petites antilles;4;;;;;150;120;60;1;1;1;0;0;607;Piment
-50;8 rhum de la Barbade;Depuis 1627 ou 1688, sans distillation jusqu’au début du XVIIIe siècle;Petites antilles;8;;;;;800;600;1;;1;1;0;0;608;Rhum
-56;5 excellent rhum de la Martinique;Depuis 1694, de la Guadeloupe (plus tard) (prix × 1,5);Petites antilles;5;;;;;800;600;1;;1;1;0;0;609;Rhum
-61;9 riz de la Barbade; ;Petites antilles;9;;;;;300;250;100;1;1;1;0;0;610;Riz
-63;8 rocou (1T);P : 500, N : 450, E : 100;Petites antilles;8;;;;;500;450;100;1;1;1;0;0;611;Roucou
-67;10 sel de Tobago; ;Petites antilles;10;;;;;285;140;1;;1;1;0;0;612;Sel
-83;9 sucre;Depuis le milieu du XVIIe siècle;Petites antilles;9;;;;;750;450;1;;1;1;0;0;613;Sucre
-88;8 tabac de Saint Christophe;1628-1713, Saint Kitts (depuis 1628) et Nevis (1628-1706);Petites antilles;8;;;;;500;350;1;;1;1;0;0;614;Tabac
-94;7 excellent tabac de la Martinique;Prix × 1,5 jusqu’en 1674, abandonné au profit du sucre;Petites antilles;7;;;;;750;525;1;;1;1;0;0;615;Tabac
-95;3 vanille de la Martinique et de la Guadeloupe;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Petites antilles;3;;;;;1400;1200;800;1;1;1;0;0;616;Vanille
-96;10 déjà pillé par un aventurier; ;Petites antilles;10;;;;0;0;0;1;;1;1;0;0;617;Navire déjà pillé
-100;vide; ;Petites antilles;10;;;;0;0;0;1;;1;1;0;0;618;Vide
+1;7 animaux exotiques (perroquet, singe, toucan); ;Petites Antilles;7;Petites antilles;50;;;;;;;1;1;0;0;594;Animaux exotiques
+7;9 cacao de la Martinique; ;Petites Antilles;9;Europe du nord;59;;;800;700;1;;1;1;0;0;595;Cacao
+8;5 café de la Guadeloupe, de la Martinique;Très faible production depuis 1721;Petites Antilles;5;Europe du sud;78;;;650;220;1;;1;1;0;0;596;Café
+11;6 cannelle; ;Petites Antilles;6;Nord ouest de l'Afrique;85;;;700;250;1;;1;1;0;0;597;Cannelle
+12;5 clous de girofle de la Grenade;Depuis le dernier tiers du XVIIIe siècle;Petites Antilles;5;Golfe de Guinée;93;;;800;700;0,1;;1;1;0;0;598;Clous de girofle
+13;8 coton;Faible production;Petites Antilles;8;Afrique du Sud-Ouest (Congo au ca de bonne-espérance);99;;;600;300;1;;1;1;0;0;599;Coton
+17;7 curcuma de la Grenade (100kg);P : 250, N : 200, E : 100;Petites Antilles;7;Madagascar;100;;;250;20;100;0,1;1;1;0;0;600;Curcuma
+22;6 indigo de la Guadeloupe et de la Martinique; ;Petites Antilles;6;;;;;700;600;0,1;;1;1;0;0;601;Indigo
+23;3 macis (« fleur de muscade ») de la Grenade (100kg);P : 1500, N : 1400, E : 900;Petites Antilles;3;;;;;1400;900;0,1;;1;1;0;0;602;Macis de la Grenade
+25;6 noix de muscade de la Grenade; ;Petites Antilles;6;;;;;1000;700;0,1;;1;1;0;0;603;Noix de muscade
+26;2 passagers de marque;Mod. de richesse : D100;Petites Antilles;2;;;;0;;;;;100;1;0;0;604;Passagers de marque
+32;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +30 (+40 dans les ports);Petites Antilles;6;;;;0;;;;;1;1;30;40;605;Pièces de monnaie (vente de marchandises)
+39;8 pièces de monnaie résultant d’esclaves;Mod. de richesse : D100-5;Petites Antilles;8;;;;0;;;;;100;1;-5;-5;606;Pièces de monnaie
+45;4 piment antillais (1T);P : 150, N : 120, E : 60;Petites Antilles;4;;;;;150;120;60;1;1;1;0;0;607;Piment
+50;8 rhum de la Barbade;Depuis 1627 ou 1688, sans distillation jusqu’au début du XVIIIe siècle;Petites Antilles;8;;;;;800;600;1;;1;1;0;0;608;Rhum
+56;5 excellent rhum de la Martinique;Depuis 1694, de la Guadeloupe (plus tard) (prix × 1,5);Petites Antilles;5;;;;;800;600;1;;1;1;0;0;609;Rhum
+61;9 riz de la Barbade; ;Petites Antilles;9;;;;;300;250;100;1;1;1;0;0;610;Riz
+63;8 rocou (1T);P : 500, N : 450, E : 100;Petites Antilles;8;;;;;500;450;100;1;1;1;0;0;611;Roucou
+67;10 sel de Tobago; ;Petites Antilles;10;;;;;285;140;1;;1;1;0;0;612;Sel
+83;9 sucre;Depuis le milieu du XVIIe siècle;Petites Antilles;9;;;;;750;450;1;;1;1;0;0;613;Sucre
+88;8 tabac de Saint Christophe;1628-1713, Saint Kitts (depuis 1628) et Nevis (1628-1706);Petites Antilles;8;;;;;500;350;1;;1;1;0;0;614;Tabac
+94;7 excellent tabac de la Martinique;Prix × 1,5 jusqu’en 1674, abandonné au profit du sucre;Petites Antilles;7;;;;;750;525;1;;1;1;0;0;615;Tabac
+95;3 vanille de la Martinique et de la Guadeloupe;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Petites Antilles;3;;;;;1400;1200;800;1;1;1;0;0;616;Vanille
+96;10 déjà pillé par un aventurier; ;Petites Antilles;10;;;;0;0;0;1;;1;1;0;0;617;Navire déjà pillé
+100;vide; ;Petites Antilles;10;;;;0;0;0;1;;1;1;0;0;618;Vide
 5;Curry du Siam (100kg);500, 450, 150;Siam et Tonkin;7;;;;;500;450;150;0,1;1;1;0;0;619;Curry du Siam
 15;Opium du Siam (1kg);600, 550, 200;Siam et Tonkin;10;;;;;600;550;200;0,001;1;1;0;0;620;Opium
 23;Pavot du Siam (100kg);200, 180, 10;Siam et Tonkin;7;;;;;200;180;10;0,1;1;1;0;0;621;Pavot

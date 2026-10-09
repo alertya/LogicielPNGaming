@@ -247,7 +247,7 @@ class Navire:
     def CalculEquipage(self):
         return random.randint(int(self.EquipMin), int(self.EquipMax))
     @staticmethod
-    def CheckNavire( Type):
+    def CheckNavire( Type,zone):
         garde_cote = False
 
         types_autorises = {
@@ -406,7 +406,7 @@ class Navire:
         if df.empty:
             return None
         Type=df['Bateau'].iloc[0]
-        Type,garde_cote=Navire.CheckNavire(Type)
+        Type,garde_cote=Navire.CheckNavire(Type,zone)
         return Type,garde_cote
 
     @staticmethod
