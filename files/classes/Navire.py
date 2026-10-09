@@ -158,11 +158,11 @@ class Navire:
                     self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
                     print("Compagnie enregsitré")
                     print(self.Compagnie)
-                    #self.combat=self.Equipage.Combat
-                    #self.ruse=self.Equipage.Ruse
-                    #self.pointage = self.Equipage.Pointage
-                    #self.recharge = self.Equipage.Recharge
-                    #self.manoeuvre = self.Equipage.Manoeuvre
+                    self.combat=self.Equipage.Combat
+                    self.ruse=self.Equipage.Ruse
+                    self.pointage = self.Equipage.Pointage
+                    self.recharge = self.Equipage.Recharge
+                    self.manoeuvre = self.Equipage.Manoeuvre
 
                 #self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
 
