@@ -439,7 +439,7 @@ class Voyage:
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
                 NomNavireRencontre = navire_rencontre.Name
-                navire_reconnu = self.AfficherReconnu(navire_rencontre.Name + "_Reconnu")
+                self.AfficherReconnu(navire_rencontre.Name + "_Reconnu")
 
         tirage = random.randint(1, DeAventurier)
 
@@ -448,19 +448,19 @@ class Voyage:
 
             Type,garde_cote = Navire.CalculType(ZoneRencontre, annee)
             print("Determination type navire aventurier réalisé")
-            navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+            navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Initialisation  navire aventurier réalisé")
             Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
             navire_rencontre.GardeCote=garde_cote
             print("Calcul compagnie  navire aventurier réalisé")
-            navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
+            navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Navire créé :", navire_rencontre)
 
             navire_rencontre.Compagnie = "Pirate"
             navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
-            navire_reconnu=self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
+            self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
             NomNavireRencontre=navire_rencontre.Name
 
         return NomNavireRencontre
@@ -468,6 +468,7 @@ class Voyage:
     def Commercer(self):
 
         navire=Navire.charger_depuis_csv(self.NavireRencontre)
+        print(navire.Compagnie)
         if "Interlope" in navire.Compagnie or "Pirate" in navire.Compagnie:
             return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {self.Navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
         else:

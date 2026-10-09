@@ -156,7 +156,8 @@ class Navire:
                     print("REGIONS PRISE SEN COMPTES")
                     print(Region)
                     self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
-
+                    print("Compagnie enregsitré")
+                    print(self.Compagnie)
                     #self.combat=self.Equipage.Combat
                     #self.ruse=self.Equipage.Ruse
                     #self.pointage = self.Equipage.Pointage
@@ -347,7 +348,10 @@ class Navire:
         donnees = lignes[-1]
 
         # Création d'un navire "vide"
-        navire = cls(charger=True)
+        navire = cls(charger=False)
+        print("Avant chargement :", repr(navire.Compagnie), type(navire.Compagnie))
+
+
 
         # Le nom du navire devient le nom du fichier
         navire.Name = nom_fichier
@@ -387,6 +391,7 @@ class Navire:
                 print(f"Erreur de conversion : {cle} = {valeur}")
         navire.Equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
         navire.Marchandise=Marchandise.charger_depuis_csv(navire.MarchandiseNom)
+        print("Apres chargement :", repr(navire.Compagnie), type(navire.Compagnie))
         return navire
 
     @staticmethod
@@ -420,7 +425,7 @@ class Navire:
             print("Aucune compagnie trouvée")
             return None
         ligne = df.iloc[0]
-
+        print(ligne['Acteur'])
         return ligne["Acteur"], ligne["Nationalite"]
 
     @staticmethod
