@@ -773,26 +773,31 @@ class Equipage:
 
             if Symp == 1:
 
-                if tirage > 0:
-                    membre.Pirate = -1
+                if tirage > 4:
+                    membre.Pirate = 0
 
-                if tirage <= 5:
+                if tirage <= 4:
+                    membre.Pirate = -1
+                if tirage >9:
+                    membre.Pirate = 2
+                if tirage >6:
                     membre.Pirate = 1
 
+            elif Symp == 2:
+                membre.Pirate=0
+                if tirage <2 :
+                    membre.Pirate = -1
+
+                if tirage <= 4:
+                    membre.Pirate = 1
                 if tirage <= 1:
                     membre.Pirate = 2
 
             elif Symp == 0:
 
-                if tirage > 5:
-                    membre.Pirate = -1
-
-                if tirage <= 2:
-                    membre.Pirate = 1
-
-            elif Symp == -1:
-
                 membre.Pirate = -1
+                if tirage<2:
+                    membre.Pirate = 0
 
         Size1 = sum(
             membre.Pirate == -1
