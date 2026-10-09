@@ -54,6 +54,8 @@ class Navire:
                 # -------------------------
                 self.de_depart: int = 0
                 self.regions_depart: str = Region
+
+
                 self.GardeCote:bool=False
                 self.Compagnie: str = ""
 
@@ -124,7 +126,7 @@ class Navire:
                 self.journal: List[str] = []
                 df=utils.RENCONTRE_NAVIRE
                 df=df[df['Nom']==Type]
-                ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
+                #ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
@@ -141,6 +143,7 @@ class Navire:
                 if charger==False:
                     self.EquipageNom=self.Name+"_Equipage"
                     self.Marchandise = Marchandise()
+                    print("REGIONS ENREGISTRES")
                     print(Region)
                     Cargaison =self.Marchandise.GenerateMarchandise(Region)
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
@@ -148,15 +151,21 @@ class Navire:
                     self.Marchandise.Name = self.Name + "_Marchandises"
                     self.MarchandiseNom=self.Name + "_Marchandises"
                     self.Marchandise.sauvegarder(self.Name+"_Marchandises")
+                    ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                     self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
+                    print("REGIONS PRISE SEN COMPTES")
+                    print(Region)
+                    self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
+
                     #self.combat=self.Equipage.Combat
                     #self.ruse=self.Equipage.Ruse
                     #self.pointage = self.Equipage.Pointage
                     #self.recharge = self.Equipage.Recharge
                     #self.manoeuvre = self.Equipage.Manoeuvre
-                self.ValeurCombat=self.CalculScoreCombat()
-                self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
-                self.Name = self.SetName()
+
+                #self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
+
+                #self.Name = self.SetName()
                 self.sauvegarder()
 
     def Affichage(self):
@@ -704,9 +713,19 @@ class Navire:
 
 
     def SetName(self):
+        print("Nationalité recherchée :", repr(self.Nationalite))
+        print("Nationalités disponibles :")
+        print(utils.NOMS_NAVIRE["Nationalite"].unique())
+
         Liste = utils.NOMS_NAVIRE
         Liste = Liste[Liste["Nationalite"] == self.Nationalite]
 
-        ligne = Liste.sample(n=1)['Nom'].iloc[0]
-        self.Name=ligne
-        return ligne
+        print("Nb lignes :", len(Liste))
+
+        if Liste.empty:
+            raise ValueError(
+                f"Aucun nom de navire pour la nationalité {self.Nationalite!r}"
+            )
+
+        ligne = Liste.sample(n=1).iloc[0]
+        return ligne["Nom"]
