@@ -89,6 +89,7 @@ class Equipage:
         self.Tir = 0
         self.Recharge = 0
         self.Pointage = 0
+
         if Nb > 0:
             self.CalculerCompetences()
             self.SauvegarderCapitaine()
@@ -281,12 +282,13 @@ class Equipage:
             self.Membres.append(membre)
 
         self.ValeurCombat = self.CalculCombatEquipage()
-
         self.CalculerCompetences()
         self.AjoutTrait()
         self.HommesValides()
         self.CalculCombatEquipage()
         self.AttributionSalaireParRole()
+        self.SauvegarderCapitaine()
+        self.Save(self.Name)
         return Temp
 
     def CalculPointDeVieMembre(self, membre):
