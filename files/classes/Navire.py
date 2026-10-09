@@ -42,7 +42,7 @@ BASE_PATH = "."  # À adapter selon l'emplacement de vos fichiers CSV
 class Navire:
     from typing import Dict, List
 
-    def __init__(self, Type="Sloop", Name="Test",Region="Brésil",charger=False):
+    def __init__(self, Type="Sloop", Name="Test",Region="Brésil",charger=False,Annee=1715):
                 # -------------------------
                 # Paramètres requis à la création
                 # -------------------------
@@ -124,8 +124,7 @@ class Navire:
                 self.journal: List[str] = []
                 df=utils.RENCONTRE_NAVIRE
                 df=df[df['Nom']==Type]
-
-
+                ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                 # On récupère la première ligne correspondante sous forme de dictionnaire
                 ligne_data = df.iloc[0].to_dict()
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
@@ -156,6 +155,8 @@ class Navire:
                     #self.recharge = self.Equipage.Recharge
                     #self.manoeuvre = self.Equipage.Manoeuvre
                 self.ValeurCombat=self.CalculScoreCombat()
+                self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
+                self.Name = self.SetName()
                 self.sauvegarder()
 
     def Affichage(self):
@@ -395,7 +396,7 @@ class Navire:
         return Type,garde_cote
 
     @staticmethod
-    def CalculCompagnie(zone, annee):
+    def CalculCompagnie(zone, annee=1715):
         de = random.randint(1, 100)
 
 
@@ -700,8 +701,12 @@ class Navire:
         else:
             return f"Le capitaine ne souhaite pas commercer avec vous et vous demande si vous avez des papiers en règle \n Si vous n'avez pas de papier en règle veuillez assurer un combat naval entre {self.Name} et {autre_navire.Name} \n Sinon vous continuez votre route"
 
-    def NomNavire(self,Nationalite):
-        Name=utils.NOMS_NAVIRE
-        Name=Name[Name['Nationalite']==Nationalite]
-        Name = random.choice(Name)
-        return Name
+
+
+    def SetName(self):
+        Liste = utils.NOMS_NAVIRE
+        Liste = Liste[Liste["Nationalite"] == self.Nationalite]
+
+        ligne = Liste.sample(n=1)['Nom'].iloc[0]
+        self.Name=ligne
+        return ligne
