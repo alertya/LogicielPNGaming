@@ -282,6 +282,11 @@ class Equipage:
 
         self.ValeurCombat = self.CalculCombatEquipage()
 
+        self.CalculerCompetences()
+        self.AjoutTrait()
+        self.HommesValides()
+        self.CalculCombatEquipage()
+        self.AttributionSalaireParRole()
         return Temp
 
     def CalculPointDeVieMembre(self, membre):
@@ -1232,7 +1237,7 @@ class Equipage:
             equipage.Recrute(1,type_equipage,0)
         equipage.AjoutTrait()
         equipage.CalculerCompetences()
-        equipage.SauvegarderCapitaine()
+
         equipage.Save(nom)
 
 
