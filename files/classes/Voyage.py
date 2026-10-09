@@ -470,7 +470,7 @@ class Voyage:
         navire=Navire.charger_depuis_csv(self.NavireRencontre)
         print(navire.Compagnie)
         if "Interlope" in navire.Compagnie or "Pirate" in navire.Compagnie:
-            return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {self.Navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
+            return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
         else:
             return f"Le capitaine ne souhaite pas commercer avec vous"
 

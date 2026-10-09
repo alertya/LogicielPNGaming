@@ -96,14 +96,14 @@ class PNJ:
 
     def Save(self):
 
-        dossier = config.BASE_PATH + "/PNJ"
+        fichier = os.path.join(config.BASE_PATH, "PNJ", f"{Name}.csv")
 
         os.makedirs(
             dossier,
             exist_ok=True
         )
 
-        fichier = dossier + "/" + self.Name + ".csv"
+
 
         TempDF = pd.DataFrame([
             vars(self)
