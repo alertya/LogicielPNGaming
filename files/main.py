@@ -15,7 +15,9 @@ immédiatement avec : python main.py
 """
 print()
 from app import App
-
+import os
+from classes.Equipage import Equipage
+from classes.Navire import Navire
 from moteur_interface import MoteurExemple
 
 import config

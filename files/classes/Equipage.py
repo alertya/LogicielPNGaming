@@ -70,13 +70,26 @@ class Equipage:
             membre.PVMax=random.randint(5,8)
             membre.PV=membre.PVMax
             membre.Traits=[]
-            self.Pirate(1)
+
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
             self.Membres.append(membre)
-            self.AjoutTrait()
-            self.SauvegarderCapitaine()
-            Equipage.Save(self)
+        self.AjoutTrait()
+        self.Pirate(1)
+        self.SauvegarderCapitaine()
+        self.Charpenterie = 0
+        self.Agriculture =0
+        self.Manoeuvre = 0
+        self.Acrobatie = 0
+        self.Ruse = 0
+
+        self.Natation = 0
+        self.Combat = 0
+        self.Tir = 0
+        self.Recharge = 0
+        self.Pointage = 0
+        self.CalculerCompetences()
+        Equipage.Save(self)
 
     def Affichage(self):
 
@@ -1276,3 +1289,4 @@ class Equipage:
         self.Tir = self.MoyenneCompetence("Mousquet")
         self.Recharge = self.MoyenneCompetence("Recharge")
         self.Pointage = self.MoyenneCompetence("Pointage")
+        return self
