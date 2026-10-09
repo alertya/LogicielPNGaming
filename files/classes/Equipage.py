@@ -7,7 +7,7 @@ import csv
 import random
 import utils
 import config
-
+import random
 from collections import Counter
 class Equipage:
 
@@ -1207,8 +1207,8 @@ class Equipage:
 
             return f"Recrutement effectué pour {equipage.Name}"
         elif action=="Echantillonnage":
-            return self.Echantillonnage(valeurs['Nombre'],valeurs['Nom'])
-            return f"Un membre de {self.Name} a été sélectionné au hasard et est enregistré dans PNJ/f{valeurs['Nom']}"
+            self.Echantillonnage(valeurs['Nombre'],valeurs['Nom'])
+            return f"{valeurs['Nombre']} membres de {self.Name} ont été sélectionnés au hasard et est enregistré dans PNJ/f{valeurs['Nom']}"
         return "Action inconnue."
 
     @classmethod
@@ -1307,32 +1307,28 @@ class Equipage:
 
         return self
 
-    def Echantillonnage(self, nombre,nom):
+    def Echantillonnage(self, nombre, nom):
 
         import random
 
         nombre = min(nombre, len(self.Membres))
 
-        membres = random.sample(
-            self.Membres,
-            nombre
+        membres = random.sample(self.Membres, nombre)
+
+        donnees = [membre.__dict__ for membre in membres]
+
+        df = pd.DataFrame(donnees)
+
+        df.to_csv(
+            os.path.join(
+                config.BASE_PATH,
+                "PNJ",
+                f"{nom}.csv"
+            ),
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            index=False
         )
-
-        for membre in membres:
-
-
-            df = pd.DataFrame([membre.__dict__])
-
-            df.to_csv(
-                os.path.join(
-                    config.BASE_PATH,
-                    "PNJ",
-                    f"{nom}.csv"
-                ),
-                sep=";",
-                decimal=",",
-                encoding="cp1252",
-                index=False
-            )
 
         return f"{nombre} PNJ enregistrés."
