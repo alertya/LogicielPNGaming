@@ -1289,4 +1289,17 @@ class Equipage:
         self.Tir = self.MoyenneCompetence("Mousquet")
         self.Recharge = self.MoyenneCompetence("Recharge")
         self.Pointage = self.MoyenneCompetence("Pointage")
+
+
+        self.Charpenterie = utils.ConvertFloatToInt(self.Charpenterie)
+        self.Agriculture = utils.ConvertFloatToInt(self.Agriculture)
+        self.Manoeuvre = utils.ConvertFloatToInt(self.Manoeuvre)
+        self.Acrobatie = utils.ConvertFloatToInt(self.Acrobatie)
+        self.Ruse = utils.ConvertFloatToInt(self.Ruse)
+        self.Natation = utils.ConvertFloatToInt(self.Natation)
+        self.Combat = utils.ConvertFloatToInt(self.Combat)
+        self.Tir = utils.ConvertFloatToInt(self.Tir)
+        self.Recharge = utils.ConvertFloatToInt(self.Recharge)
+        self.Pointage = utils.ConvertFloatToInt(self.Pointage)
+
         return self
