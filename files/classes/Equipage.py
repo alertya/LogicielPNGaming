@@ -74,9 +74,10 @@ class Equipage:
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
             self.Membres.append(membre)
+
         self.AjoutTrait()
         self.Pirate(1)
-        self.SauvegarderCapitaine()
+
         self.Charpenterie = 0
         self.Agriculture =0
         self.Manoeuvre = 0
@@ -88,7 +89,9 @@ class Equipage:
         self.Tir = 0
         self.Recharge = 0
         self.Pointage = 0
-        self.CalculerCompetences()
+        if Nb > 0:
+            self.CalculerCompetences()
+            self.SauvegarderCapitaine()
         Equipage.Save(self)
 
     def Affichage(self):
@@ -132,7 +135,7 @@ class Equipage:
 
     def Save(self, nom=None):
         nom = nom or self.Name
-        self.AjoutTrait()
+
         lignes = []
 
         for membre in self.Membres:
@@ -274,9 +277,9 @@ class Equipage:
             # Calculs individuels
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
-            self.CalculerCompetences()
+
             self.Membres.append(membre)
-            self.AjoutTrait()
+
         self.ValeurCombat = self.CalculCombatEquipage()
 
         return Temp
@@ -1225,10 +1228,13 @@ class Equipage:
                 equipage.Recrute(1,typologie,0)
         # Compléter avec la typologie de l'equipage
         deja_crees = sum(effectifs.values())
-        for _ in range(nombre - deja_crees):
+        for _ in range(nombre - deja_crees-1):
             equipage.Recrute(1,type_equipage,0)
         equipage.AjoutTrait()
+        equipage.CalculerCompetences()
+        equipage.SauvegarderCapitaine()
         equipage.Save(nom)
+
 
         return equipage
 
@@ -1255,6 +1261,7 @@ class Equipage:
         """Retourne le nombre de membres de l'équipage."""
         return len(self.Membres)
     def SauvegarderCapitaine(self):
+
         capitaine = max(self.Membres, key=lambda m: m.Capi)
 
         # Sauvegarde du capitaine
@@ -1291,7 +1298,6 @@ class Equipage:
         self.Manoeuvre = self.MoyenneCompetence("Pratique nautique")
         self.Acrobatie = self.MoyenneCompetence("Acrobatie")
         self.Ruse = self.MoyenneCompetence("Comédie")
-
         self.Natation = self.MoyenneCompetence("Natation")
         self.Combat = self.MoyenneCompetence("Armes blanches")
         self.Tir = self.MoyenneCompetence("Mousquet")
@@ -1309,7 +1315,7 @@ class Equipage:
         self.Tir = utils.ConvertFloatToInt(self.Tir)
         self.Recharge = utils.ConvertFloatToInt(self.Recharge)
         self.Pointage = utils.ConvertFloatToInt(self.Pointage)
-
+        self.Save(self.Name)
         return self
 
     def Echantillonnage(self, nombre, nom):

@@ -13,7 +13,7 @@ Tant que tu n'as pas encore de moteur, ce fichier utilise `MoteurExemple`
 (données factices) pour que tu puisses lancer et tester l'interface
 immédiatement avec : python main.py
 """
-print()
+
 from app import App
 import os
 from classes.Equipage import Equipage
