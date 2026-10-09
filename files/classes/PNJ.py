@@ -96,12 +96,8 @@ class PNJ:
 
     def Save(self):
 
-        fichier = os.path.join(config.BASE_PATH, "PNJ", f"{Name}.csv")
+        fichier = os.path.join(config.BASE_PATH, "PNJ", f"{self.Name}.csv")
 
-        os.makedirs(
-            dossier,
-            exist_ok=True
-        )
 
 
 
