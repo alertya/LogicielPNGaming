@@ -700,7 +700,7 @@ class FormulaireAction(tk.Toplevel):
             tk.Label(
                 self,
                 text="Equipage"
-            ).grid(row=0, column=0, padx=10, pady=10)
+            ).grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
             self.variables["Equipage"] = tk.StringVar()
 
@@ -709,12 +709,25 @@ class FormulaireAction(tk.Toplevel):
                 textvariable=self.variables["Equipage"],
                 values=self.moteur.get_instances("Equipage", "Afficher"),
                 state="readonly"
-            ).grid(row=0, column=1)
+            ).grid(row=0, column=1, padx=10, pady=10)
+
+            tk.Label(
+                self,
+                text="Nom du PNJ"
+            ).grid(row=1, column=0, padx=10, pady=10, sticky="w")
+
+            self.variables["Nom"] = tk.StringVar()
+
+            tk.Entry(
+                self,
+                textvariable=self.variables["Nom"],
+                width=30
+            ).grid(row=1, column=1, padx=10, pady=10)
 
             tk.Label(
                 self,
                 text="Nombre de personnes"
-            ).grid(row=1, column=0, padx=10, pady=10)
+            ).grid(row=2, column=0, padx=10, pady=10, sticky="w")
 
             self.variables["Nombre"] = tk.IntVar(value=1)
 
@@ -723,13 +736,13 @@ class FormulaireAction(tk.Toplevel):
                 from_=1,
                 to=100,
                 textvariable=self.variables["Nombre"]
-            ).grid(row=1, column=1)
+            ).grid(row=2, column=1, padx=10, pady=10)
 
             tk.Button(
                 self,
                 text="Valider",
                 command=self.valider
-            ).grid(row=2, column=0, columnspan=2, pady=20)
+            ).grid(row=3, column=0, columnspan=2, pady=20)
 
 
 

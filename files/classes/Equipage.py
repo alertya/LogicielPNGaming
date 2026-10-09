@@ -1207,7 +1207,8 @@ class Equipage:
 
             return f"Recrutement effectué pour {equipage.Name}"
         elif action=="Echantillonnage":
-            self.Echantillonnage(valeurs['Nombre'])
+            return self.Echantillonnage(valeurs['Nombre'],valeurs['Nom'])
+            return f"Un membre de {self.Name} a été sélectionné au hasard et est enregistré dans PNJ/f{valeurs['Nom]}"
         return "Action inconnue."
 
     @classmethod
@@ -1306,7 +1307,7 @@ class Equipage:
 
         return self
 
-    def Echantillonnage(self, nombre):
+    def Echantillonnage(self, nombre,nom):
 
         import random
 
@@ -1318,7 +1319,7 @@ class Equipage:
         )
 
         for membre in membres:
-            nom = f"{membre.Type}_{self.Name}_{membre.Nom}"
+
 
             df = pd.DataFrame([membre.__dict__])
 
