@@ -696,6 +696,40 @@ class FormulaireAction(tk.Toplevel):
                 "Commercer",
                 "Vous pouvez commercer avec"
             )
+        if self.action == "Echantillonnage":
+            tk.Label(
+                self,
+                text="Equipage"
+            ).grid(row=0, column=0, padx=10, pady=10)
+
+            self.variables["Equipage"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly"
+            ).grid(row=0, column=1)
+
+            tk.Label(
+                self,
+                text="Nombre de personnes"
+            ).grid(row=1, column=0, padx=10, pady=10)
+
+            self.variables["Nombre"] = tk.IntVar(value=1)
+
+            tk.Spinbox(
+                self,
+                from_=1,
+                to=100,
+                textvariable=self.variables["Nombre"]
+            ).grid(row=1, column=1)
+
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(row=2, column=0, columnspan=2, pady=20)
 
 
 

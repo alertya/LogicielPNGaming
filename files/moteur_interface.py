@@ -676,6 +676,13 @@ class MoteurExemple(MoteurBase):
                 valeurs["Marchandise"],
                 valeurs["Tonnage"]
             )
+        elif action == "Echantillonnage":
+
+            equipage = Equipage.charger_depuis_csv(valeurs["Equipage"])
+
+            return equipage.Echantillonnage(
+                valeurs["Nombre"]
+            )
 
         return ""
 

@@ -1133,7 +1133,7 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience']
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience','Echantillonnage']
 
     def executer_action(self, action, instance,valeurs=None):
 
@@ -1206,6 +1206,8 @@ class Equipage:
             equipage.Save(equipage.Name)
 
             return f"Recrutement effectué pour {equipage.Name}"
+        elif action=="Echantillonnage":
+            self.Echantillonnage(valeurs['Nombre'])
         return "Action inconnue."
 
     @classmethod
@@ -1303,3 +1305,33 @@ class Equipage:
         self.Pointage = utils.ConvertFloatToInt(self.Pointage)
 
         return self
+
+    def Echantillonnage(self, nombre):
+
+        import random
+
+        nombre = min(nombre, len(self.Membres))
+
+        membres = random.sample(
+            self.Membres,
+            nombre
+        )
+
+        for membre in membres:
+            nom = f"{membre.Type}_{self.Name}_{membre.Nom}"
+
+            df = pd.DataFrame([membre.__dict__])
+
+            df.to_csv(
+                os.path.join(
+                    config.BASE_PATH,
+                    "PNJ",
+                    f"{nom}.csv"
+                ),
+                sep=";",
+                decimal=",",
+                encoding="cp1252",
+                index=False
+            )
+
+        return f"{nombre} PNJ enregistrés."
