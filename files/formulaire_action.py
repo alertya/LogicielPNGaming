@@ -696,6 +696,44 @@ class FormulaireAction(tk.Toplevel):
                 "Commercer",
                 "Vous pouvez commercer avec"
             )
+        if self.action == "HisserPavillonRouge":
+            tk.Label(
+                self,
+                text="Equipage"
+            ).grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+            self.variables["Equipage"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly"
+            ).grid(row=0, column=1, padx=10, pady=10)
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(row=2, column=0, columnspan=2, pady=20)
+        if self.action == "HisserPavillonNoir":
+            tk.Label(
+                self,
+                text="Equipage"
+            ).grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+            self.variables["Equipage"] = tk.StringVar()
+
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly"
+            ).grid(row=0, column=1, padx=10, pady=10)
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(row=2, column=0, columnspan=2, pady=20)
         if self.action == "Echantillonnage":
             tk.Label(
                 self,

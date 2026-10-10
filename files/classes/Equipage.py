@@ -81,7 +81,7 @@ class Equipage:
         self.Manoeuvre = 0
         self.Acrobatie = 0
         self.Ruse = 0
-
+        self.Morale=2
         self.Nager = 0
         self.CombatArmesBlanche = 0
         self.Tir = 0
@@ -159,7 +159,8 @@ class Equipage:
             "CombatArmesBlanche",
             "Tir",
             "RechargeCanon",
-            "PointageCanon"
+            "PointageCanon",
+            "Morale"
         ]
 
         for attribut in attributs_groupe:
@@ -1139,26 +1140,45 @@ class Equipage:
 
     ###Determine le moral d'un equipage des hommes valides pour une action
     ###Si echec critique alors les hommes s'enfuient ou se cachent
-    def MoraleEquipage(self, Bonus):
+    def MoraleEquipage(self, equipage,Pavillon):
+        equipage=Equipage.charger_depuis_csv(equipage)
+        #####Equipage moyen max 117 hommes, donc base de Bonus à 58 hommes
+        if len(self.Membres)>=58:
+            Bonus=0
 
-        for membre in self.Membres:
+        if len(self.Membres) < 58:
+            Bonus=-1
+        if len(self.Membres) < 29:
+            Bonus-=2
+        if len(self.Membres) > 72:
+            Bonus+=1
+        if len(self.Membres) > 86:
+              Bonus+=2
+        if len(self.Membres) > 100:
+            Bonus += 3
+        if len(self.Membres) < 15:
+                Bonus -= 3
+        Morale=utils.Test(self.Morale,Bonus)
+        if Pavillon=="Noir":
+            if Morale>1:
+                return f"L'équipage {self.Name} ne craint pas votre pavillon et hisse le pavillon de sa nationalité en retour, le combat naval est iminent"
+            if Morale>0:
+                return f"L'équipage {self.Name} semble indécis, ils mettent 1 tour de plus à naviguer et recharger"
+            if Morale<1:
+                return f"L'équipage {self.Name} hissent le pavillon blanc, vous pouvez piller le navire"
+            if Morale<0:
+                return f"L'équipage {self.Name} prennent les chaloupes et abandonne le navire, vous pouvez piller le navire et le prendre intact"
+        if Pavillon == "Rouge":
+            if Morale > 1:
+                return f"L'équipage {self.Name} ne craint pas votre pavillon et hisse le pavillon de sa nationalité en retour, le combat naval est iminent et durera jusqu'à l'extermination d'un des équipages"
+            if Morale > 0:
+                return f"L'équipage {self.Name} semble indécis, ils mettent 1 tour de plus à naviguer et recharger"
+            if Morale < 1:
+                return f"L'équipage {self.Name} prennent les chaloupes et abandonne le navire, vous pouvez piller le navire et le prendre intact"
+            if Morale < 0:
+                return f"L'équipage {self.Name} prennent les chaloupes et abandonne le navire, vous pouvez piller le navire et le prendre intact"
+        equipage.Save()
 
-            # Les membres qui ont déjà Moral = -1
-            # ne font pas de nouveau test
-            if membre.Moral > 0:
-                membre.Moral = utils.lancer_de(2, Bonus)[0]
-
-        # Membres qui restent dans l'équipage
-        self.Membres = [
-            membre
-            for membre in self.Membres
-            if membre.Moral >0
-        ]
-
-        # Mise à jour de la valeur de combat
-        self.ValeurCombat = self.CalculCombatEquipage()
-
-        return self.Membres
 
     ###A la fin d'une action, on remet le moral des restants à 2
     def ResetMoral(self):
@@ -1175,7 +1195,7 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience','Echantillonnage',"AjoutSurnumeraire"]
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience','Echantillonnage',"AjoutSurnumeraire","HisserPavillonNoir","HisserPavillonRouge"]
 
     def executer_action(self, action, instance,valeurs=None):
 
@@ -1263,6 +1283,12 @@ class Equipage:
 
             )
             return "Les surnumeraires ont été ajoutés"
+        if action == "HisserPavillonNoir":
+
+            return self.MoraleEquipage(valeurs['Equipage'],'Noir')
+        if action == "HisserPavillonRouge":
+
+            return self.MoraleEquipage(valeurs['Equipage'],'Rouge')
         return "Action inconnue."
 
     @classmethod
@@ -1349,6 +1375,7 @@ class Equipage:
         self.Tir = self.MoyenneCompetence("Mousquet")
         self.RechargeCanon = self.MoyenneCompetence("Recharge")
         self.PointageCanon = self.MoyenneCompetence("Pointage")
+        self.Morale=self.PointageCanon+self.CombatArmesBlanche
 
 
         self.Charpentier = utils.ConvertFloatToInt(self.Charpentier)
@@ -1361,6 +1388,7 @@ class Equipage:
         self.Tir = utils.ConvertFloatToInt(self.Tir)
         self.RechargeCanon = utils.ConvertFloatToInt(self.RechargeCanon)
         self.PointageCanon = utils.ConvertFloatToInt(self.PointageCanon)
+        self.Morale=utils.ConvertFloatToInt(self.Morale)
         self.Save()
         return self
 

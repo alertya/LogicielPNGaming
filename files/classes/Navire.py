@@ -323,7 +323,7 @@ class Navire:
 
     @classmethod
     def charger_depuis_csv(cls, nom_fichier: str):
-        print("CHARGEMENT NAVIRE :", nom_fichier)
+
 
         chemin_fichier = os.path.join(
             config.BASE_PATH,
@@ -346,7 +346,7 @@ class Navire:
 
         # Création d'un navire "vide"
         navire = cls(charger=False)
-        print("Avant chargement :", repr(navire.Compagnie), type(navire.Compagnie))
+
 
 
 
@@ -388,7 +388,7 @@ class Navire:
                 print(f"Erreur de conversion : {cle} = {valeur}")
         navire.Equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
         navire.Marchandise=Marchandise.charger_depuis_csv(navire.MarchandiseNom)
-        print("Apres chargement :", repr(navire.Compagnie), type(navire.Compagnie))
+
         return navire
 
     @staticmethod
@@ -656,6 +656,7 @@ class Navire:
             "Commercer",
             "Poursuivre",
             "Hisser le pavillon noir",
+            "Hisser le pavillon rouge",
             "Canonner",
             "Fuir"
         ]
@@ -696,20 +697,6 @@ class Navire:
     def CalculScoreCombat(self):
         return self.NombreEquipage*self.StructureCoque*self.ValeurCanonnade
 
-    def PavillonNoir(self,autre_navire):
-        NbSelf=self.NombreEquipage
-        NbAutre=autre_navire.NombreEquipage
-        if NbSelf/NbAutre>1:
-            Bonus=int(-NbSelf/NbAutre)
-        else:
-            Bonus=int(NbAutre/NbSelf)
-        MembreMotive=len(autre_navire.Equipage)
-        Test=len(autre_navire.Equipage.Reddition(Bonus))
-        if Test<MembreMotive/2:
-            return (f"Le capitaine hisse le drapeau blanc \n Il est pret à vous céder sa marchandise sans combat \n  \n Veuillez vous rendre dans l'onglet Marchandise/Actions \n")
-            (f"Vous pourrez alors procéder au pillage de {self.Marchandise.Name} pour {self.Marchandise.Name} \n")
-        return (f"Le capitaine ne cède pas, vous devez alors le poursuivre avant d'entrer au combat, si vous parvenez à le suivre \n Veuillez vous rendre dans Navire/Actions et \n")
-        (f" (et choisir CombatNaval entre {self.Name} et {autre_navire.Name}")
 
     def Commercer(self,autre_navire):
         if "Interlope" in autre_navire.Compagnie:
