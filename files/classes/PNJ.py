@@ -24,7 +24,7 @@ class PNJ:
         Ponds = Pond[Pond["Type"] == Type]
 
         if Ponds.empty:
-            Ponds = Pond2[Pond2["TypeProfession"] == Type]
+            Ponds = Pond2[Pond2["TypeProfession"] == Profession]
 
         if Ponds.empty:
             raise ValueError(
@@ -276,8 +276,8 @@ class PNJ:
         Liste=["RicheMarchand","PetitMarchand"]
         ##On choisiit au hasard si c'est un petit ou riche marchand
         choix = random.choice(Liste)
-        pnj=PNJ(Name,Localisation,Type=None,Profession=choix)
-        SuccesCommerce=utils.Test(pnj.Commerce)
+        pnj=PNJ(Name,Localisation,Profession=choix)
+        SuccesCommerce=utils.Test(pnj.Commerce,0)
         pnj.Fortune=self.CalculFortune(SuccesCommerce,0,0)
         pnj.Save()
         return f"Vous avez trouver {Name} en {Localisation} avec une capacité d'achat de {pnj.Fortune}"
@@ -301,6 +301,6 @@ class PNJ:
         Bonus+=Tonnage/10
         Bonus += random.randint(1, 100)
         ValeurRancon=utils.VALEUR_RANCON
-        Fortune=ValeurRancon[ValeurRancon['Text']>=Bonus].iloc[0]
-
+        Fortune=ValeurRancon[ValeurRancon['ValeurDe']>=Bonus].iloc[0]
+        Fortune=Fortune['PieceDeHuit']
         return Fortune
