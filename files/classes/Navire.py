@@ -89,7 +89,7 @@ class Navire:
                 self.recharge: int = 0
                 self.ruse: int = 0
                 self.valeur_combat: float = 0.0
-
+                self.MesureMitraille:int=0
                 # -------------------------
                 # Navigation & Allures
                 # -------------------------
@@ -486,12 +486,8 @@ class Navire:
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
         bonus_tir = navire_attaque.CategorieNavire - 3
-        print("Attaquant :", navire_attaquant)
-        print("Id :", id(navire_attaquant))
-        print("Attributs :", navire_attaquant.__dict__.keys())
-        print(hasattr(navire_attaquant, "Equipage"))
         print(navire_attaquant.__dict__)
-        succes_tir = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Pointage",bonus)[1],bonus)
+        succes_tir = utils.Test(navire_attaquant.pointage,bonus)
         succes_tir += succes_tir * bonus_tir / 5
         succes_tir = utils.ConvertFloatToInt(succes_tir)
 
@@ -515,13 +511,21 @@ class Navire:
                 if localisation > 3:
                     succes_tir += 1
 
-        succes_recharge = utils.Test(navire_attaquant.Equipage.ResultatCompetence("Recharge",bonus)[1],bonus)
+        succes_recharge = utils.Test(navire_attaquant.recharge,bonus)
         recharge = utils.ConvertFloatToInt(7 - succes_recharge)
+        if type_munition != "Mitraille":
+            degats = 2.5 * np.exp(
+            0.23 * (navire_attaquant.ValeurCanonnade - 4 + 2 * succes_tir)
 
-        degats = 0.9925 * np.exp(
-            0.2298 * (navire_attaquant.ValeurCanonnade - 3.9721 + 2 * succes_tir)
         )
-
+        else: ##Pour la mitraille on récupère la valeur canonndande à partir de sa mesure
+            ValeurCanonnade = (
+                    4
+                    + np.log(navire_attaquant.MesureMitraille/ 2.5) / 0.23
+            )
+            degats = 2.5 * np.exp(
+            0.23 * (ValeurCanonnade - 4 + 2 * succes_tir)
+            )
         degats = utils.ConvertFloatToInt(degats)
         navire_attaque.sauvegarder()
         navire_attaquant.sauvegarder()
@@ -570,7 +574,7 @@ class Navire:
             texte += f"{navire.Name} a dématé.\n"
 
         navire.sauvegarder()
-
+        navire.Equipage.Save(navire.EquipageNom)
         return pertes, texte
 
     def CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
