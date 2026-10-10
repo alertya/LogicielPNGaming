@@ -163,7 +163,10 @@ class Equipage:
         ]
 
         for attribut in attributs_groupe:
-            df[attribut] = getattr(self, attribut)
+            if hasattr(self, attribut):
+                df[attribut] = getattr(self, attribut)
+            else:
+                print(f"Attribut manquant : {attribut}")
 
         # Enregistrer le CSV
         df.to_csv(

@@ -571,7 +571,7 @@ class Navire:
             texte += f"{navire.Name} a dématé.\n"
 
         navire.sauvegarder()
-        navire.Equipage.Save(navire.EquipageNom)
+        navire.Equipage.Save()
         return pertes, texte
 
     def CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
