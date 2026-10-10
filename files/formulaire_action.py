@@ -744,9 +744,76 @@ class FormulaireAction(tk.Toplevel):
                 command=self.valider
             ).grid(row=3, column=0, columnspan=2, pady=20)
 
+        if self.action == "AjoutSurnumeraire":
 
+            # Sélection de l'équipage
+            tk.Label(
+                self,
+                text="Équipage"
+            ).grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
+            self.variables["Equipage"] = tk.StringVar()
 
+            ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly",
+                width=30
+            ).grid(row=0, column=1, padx=10, pady=10)
+
+            # Nom du groupe de surnuméraires
+            tk.Label(
+                self,
+                text="Nom du groupe"
+            ).grid(row=1, column=0, padx=10, pady=10, sticky="w")
+
+            self.variables["Nom"] = tk.StringVar()
+
+            tk.Entry(
+                self,
+                textvariable=self.variables["Nom"],
+                width=30
+            ).grid(row=1, column=1, padx=10, pady=10)
+
+            # Professions et quantités
+            professions = [
+                "Charpentier",
+                "Calfat",
+                "Coq",
+                "Pilote",
+                "Voilier"
+            ]
+
+            for i, profession in enumerate(professions, start=2):
+                tk.Label(
+                    self,
+                    text=profession
+                ).grid(
+                    row=i, column=0, padx=10, pady=7, sticky="w"
+                )
+
+                self.variables[profession] = tk.IntVar(value=1)
+
+                tk.Spinbox(
+                    self,
+                    from_=0,
+                    to=100,
+                    increment=1,
+                    textvariable=self.variables[profession],
+                    width=10
+                ).grid(
+                    row=i, column=1, padx=10, pady=7, sticky="w"
+                )
+
+            # Validation
+            tk.Button(
+                self,
+                text="Valider",
+                command=self.valider
+            ).grid(
+                row=7, column=0, columnspan=2, pady=20
+            )
 
     def recuperer_valeurs(self):
         return {

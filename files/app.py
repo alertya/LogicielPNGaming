@@ -452,7 +452,7 @@ class App(tk.Tk):
         if action in (
                 "Vendre", "Acheter", "Piller", "Recruter",
                 "Generer", "BatailleTerrestre", "RecruterType",
-                "CombatNaval", "Reparer", "Poursuivre","Commercer","Fuir","Poursuivre","Canonner","PavillonNoir","LanceCompetence","Echantillonnage"
+                "CombatNaval", "Reparer", "Poursuivre","Commercer","Fuir","Poursuivre","Canonner","PavillonNoir","LanceCompetence","Echantillonnage","AjoutSurnumeraire"
         ):
             FormulaireAction(
                 self,

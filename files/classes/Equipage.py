@@ -1175,7 +1175,7 @@ class Equipage:
         return Equipage
 
     def get_actions(self):
-        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience','Echantillonnage']
+        return ["Recruter", "Attribuer les rôles", "Distribuer les soldes","BatailleTerrestre","Soins",'RecruterType','AjoutExperience','Echantillonnage',"AjoutSurnumeraire"]
 
     def executer_action(self, action, instance,valeurs=None):
 
@@ -1251,6 +1251,18 @@ class Equipage:
         elif action=="Echantillonnage":
             self.Echantillonnage(valeurs['Nombre'],valeurs['Nom'])
             return f"{valeurs['Nombre']} membres de {self.Name} ont été sélectionnés au hasard et est enregistré dans PNJ/f{valeurs['Nom']}"
+
+        elif action=="AjoutSurnumeraire":
+            self.AjoutSurnumeraires(
+                    valeurs['Equipage'],
+                    valeurs['Charpentier'],
+                    valeurs['Calfat'],
+                    valeurs['Coq'],
+                    valeurs['Pilote'],
+                    valeurs['Voilier'],
+
+            )
+            return "Les surnumeraires ont été ajoutés"
         return "Action inconnue."
 
     @classmethod
@@ -1377,3 +1389,29 @@ class Equipage:
         )
 
         return f"{nombre} PNJ enregistrés."
+
+    def AjoutSurnumeraires(
+            self,
+            nom,
+            charpentier,
+            calfat,
+            coq,
+            pilote,
+            voiliers
+    ):
+        repartition = {
+            "Charpentier": charpentier,
+            "Calfat": calfat,
+            "Coq": coq,
+            "Pilote": pilote,
+            "Voilier": voiliers
+        }
+        equipage=self.charger_depuis_csv(nom)
+        for profession, quantite in repartition.items():
+            if quantite > 0:
+                print(quantite)
+                print(profession)
+                equipage.Recrute(quantite, profession, 0)
+
+        # Sauvegarde finale de l'équipage
+        equipage.Save()
