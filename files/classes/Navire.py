@@ -143,8 +143,7 @@ class Navire:
                 if charger==False:
                     self.EquipageNom=self.Name+"_Equipage"
                     self.Marchandise = Marchandise()
-                    print("REGIONS ENREGISTRES")
-                    print(Region)
+
                     Cargaison =self.Marchandise.GenerateMarchandise(Region)
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
                     self.Marchandise.Tonnage=self.TonnageMarchandise
@@ -153,15 +152,13 @@ class Navire:
                     self.Marchandise.sauvegarder(self.Name+"_Marchandises")
                     ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                     self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
-                    print("REGIONS PRISE SEN COMPTES")
-                    print(Region)
+
                     self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
-                    print("Compagnie enregsitré")
-                    print(self.Compagnie)
-                    self.combat=self.Equipage.Combat
+
+                    self.combat=self.Equipage.CombatArmesBlanche
                     self.ruse=self.Equipage.Ruse
-                    self.pointage = self.Equipage.Pointage
-                    self.recharge = self.Equipage.Recharge
+                    self.pointage = self.Equipage.PointageCanon
+                    self.recharge = self.Equipage.RechargeCanon
                     self.manoeuvre = self.Equipage.Manoeuvre
 
                 #self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)

@@ -76,17 +76,17 @@ class Equipage:
         self.AjoutTrait()
         self.Pirate(1)
 
-        self.Charpenterie = 0
-        self.Agriculture =0
+        self.Charpentier = 0
+        self.Agriculteur =0
         self.Manoeuvre = 0
         self.Acrobatie = 0
         self.Ruse = 0
 
-        self.Natation = 0
-        self.Combat = 0
+        self.Nager = 0
+        self.CombatArmesBlanche = 0
         self.Tir = 0
-        self.Recharge = 0
-        self.Pointage = 0
+        self.RechargeCanon = 0
+        self.PointageCanon = 0
 
         if Nb > 0:
             self.CalculerCompetences()
@@ -132,7 +132,7 @@ class Equipage:
             }
         }
 
-    def save(self):
+    def Save(self):
 
         # Convertir les membres en dictionnaires
         lignes = []
@@ -150,16 +150,16 @@ class Equipage:
 
         # Ajouter les attributs du groupe à chaque ligne
         attributs_groupe = [
-            "Charpenterie",
-            "Agriculture",
+            "Charpentier",
+            "Agriculteur",
             "Manoeuvre",
             "Acrobatie",
             "Ruse",
-            "Natation",
-            "Combat",
+            "Nager",
+            "CombatArmesBlanche",
             "Tir",
-            "Recharge",
-            "Pointage"
+            "RechargeCanon",
+            "PointageCanon"
         ]
 
         for attribut in attributs_groupe:
@@ -310,7 +310,7 @@ class Equipage:
         self.CalculCombatEquipage()
         self.AttributionSalaireParRole()
         self.SauvegarderCapitaine()
-        self.Save(self.Name)
+        self.Save()
         return Temp
 
     def CalculPointDeVieMembre(self, membre):
@@ -1257,12 +1257,12 @@ class Equipage:
                 equipage.Recrute(1,typologie,0)
         # Compléter avec la typologie de l'equipage
         deja_crees = sum(effectifs.values())
-        for _ in range(nombre - deja_crees-1):
+        for _ in range(nombre - deja_crees):
             equipage.Recrute(1,type_equipage,0)
         equipage.AjoutTrait()
         equipage.CalculerCompetences()
 
-        equipage.Save(nom)
+        equipage.Save()
 
 
         return equipage
@@ -1322,29 +1322,29 @@ class Equipage:
         ) / len(self.Membres)
 
     def CalculerCompetences(self):
-        self.Charpenterie = self.MoyenneCompetence("Charpenterie")
-        self.Agriculture = self.MoyenneCompetence("Agriculture")
+        self.Charpentier = self.MoyenneCompetence("Charpenterie")
+        self.Agriculteur = self.MoyenneCompetence("Agriculture")
         self.Manoeuvre = self.MoyenneCompetence("Pratique nautique")
         self.Acrobatie = self.MoyenneCompetence("Acrobatie")
         self.Ruse = self.MoyenneCompetence("Comédie")
-        self.Natation = self.MoyenneCompetence("Natation")
-        self.Combat = self.MoyenneCompetence("Armes blanches")
+        self.Nager = self.MoyenneCompetence("Natation")
+        self.CombatArmesBlanche = self.MoyenneCompetence("ArmesBlanches")
         self.Tir = self.MoyenneCompetence("Mousquet")
-        self.Recharge = self.MoyenneCompetence("Recharge")
-        self.Pointage = self.MoyenneCompetence("Pointage")
+        self.RechargeCanon = self.MoyenneCompetence("Recharge")
+        self.PointageCanon = self.MoyenneCompetence("Pointage")
 
 
-        self.Charpenterie = utils.ConvertFloatToInt(self.Charpenterie)
-        self.Agriculture = utils.ConvertFloatToInt(self.Agriculture)
+        self.Charpentier = utils.ConvertFloatToInt(self.Charpentier)
+        self.Agriculteur = utils.ConvertFloatToInt(self.Agriculteur)
         self.Manoeuvre = utils.ConvertFloatToInt(self.Manoeuvre)
         self.Acrobatie = utils.ConvertFloatToInt(self.Acrobatie)
         self.Ruse = utils.ConvertFloatToInt(self.Ruse)
-        self.Natation = utils.ConvertFloatToInt(self.Natation)
-        self.Combat = utils.ConvertFloatToInt(self.Combat)
+        self.Nager = utils.ConvertFloatToInt(self.Nager)
+        self.CombatArmesBlanche = utils.ConvertFloatToInt(self.CombatArmesBlanche)
         self.Tir = utils.ConvertFloatToInt(self.Tir)
-        self.Recharge = utils.ConvertFloatToInt(self.Recharge)
-        self.Pointage = utils.ConvertFloatToInt(self.Pointage)
-        self.Save(self.Name)
+        self.RechargeCanon = utils.ConvertFloatToInt(self.RechargeCanon)
+        self.PointageCanon = utils.ConvertFloatToInt(self.PointageCanon)
+        self.Save()
         return self
 
     def Echantillonnage(self, nombre, nom):
