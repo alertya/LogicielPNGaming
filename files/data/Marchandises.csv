@@ -26,18 +26,18 @@ De;Cargaison;Suffixe;Region;Volume;Origine;DeOrigine;UtilisationParJourParPerson
 100;vide; ;Afrique orientale (Mozambique à Kenya);10;Bengale;97;;0;0;0;0;1;1;1;0;0;25;Vide
 101;vide; ;Afrique orientale (Mozambique à Kenya);11;Siam et Tonkin;99;;0;0;0;0;1;1;1;0;0;26;Vide
 102;vide; ;Afrique orientale (Mozambique à Kenya);12;Indonésie et Philippines;100;;0;0;0;0;1;1;1;0;0;27;Vide
-3;7 cacao de Suriname;Faible production;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;50;;;1200;800;700;1;1;1;0;0;28;Cacao
-6;7 café de Guyane;Faible production depuis 1725;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;Europe du nord;76;;;750;650;220;1;1;1;0;0;29;Café
-16;8 café du Suriname;Depuis 1718;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;8;Côte est d'amérique du nord;80;;;750;650;220;1;1;1;0;0;30;Café
-27;8 maïs; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;8;Petites antilles;86;;;20;15;10;1;1;1;0;0;31;Maïs
-48;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +10 (+30 dans les ports);Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;6;Venezuela;93;;0;;;;;1;1;10;30;32;Pièces de monnaie (vente de marchandises)
-54;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100-20;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;Brésil;100;;0;;;;;100;1;-20;-20;33;Pièces de monnaie (vente d’esclaves)
-68;7 rhum de Guyane;Depuis 1700;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;7;;;;;1400;800;600;1;1;1;0;0;34;Rhum
-76;6 rocou de Guyane (1T);P : 500, N : 450, E : 100;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;6;;;;;500;450;100;1;1;1;0;0;35;Roucou
-91;10 sucre;Depuis le milieu du XVIIe siècle;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;;1200;750;450;1;1;1;0;0;36;Sucre
-94;3 vanille de Guyane;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;3;;;;;1400;1200;800;1;1;1;0;0;37;Vanille
-95;10 déjà pillé par un aventurier; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;0;0;0;0;1;1;1;0;0;38;Navire déjà pillé
-100;vide; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;10;;;;0;0;0;0;1;1;1;0;0;39;Vide
+3;7 cacao de Suriname;Faible production;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);7;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine):;50;;;1200;800;700;1;1;1;0;0;28;Cacao
+6;7 café de Guyane;Faible production depuis 1725;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);7;Europe du nord;76;;;750;650;220;1;1;1;0;0;29;Café
+16;8 café du Suriname;Depuis 1718;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);8;Côte est d'amérique du nord;80;;;750;650;220;1;1;1;0;0;30;Café
+27;8 maïs; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);8;Petites antilles;86;;;20;15;10;1;1;1;0;0;31;Maïs
+48;6 pièces de monnaie résultant de la vente de marchandises;Mod. de richesse : +10 (+30 dans les ports);Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);6;Venezuela;93;;0;;;;;1;1;10;30;32;Pièces de monnaie (vente de marchandises)
+54;10 pièces de monnaie résultant de la vente d’esclaves;Mod. de richesse : D100-20;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);10;Brésil;100;;0;;;;;100;1;-20;-20;33;Pièces de monnaie (vente d’esclaves)
+68;7 rhum de Guyane;Depuis 1700;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);7;;;;;1400;800;600;1;1;1;0;0;34;Rhum
+76;6 rocou de Guyane (1T);P : 500, N : 450, E : 100;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);6;;;;;500;450;100;1;1;1;0;0;35;Roucou
+91;10 sucre;Depuis le milieu du XVIIe siècle;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);10;;;;;1200;750;450;1;1;1;0;0;36;Sucre
+94;3 vanille de Guyane;Depuis 1724, en faible quantité, P : 1400, N : 1200, E : 800;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);3;;;;;1400;1200;800;1;1;1;0;0;37;Vanille
+95;10 déjà pillé par un aventurier; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);10;;;;0;0;0;0;1;1;1;0;0;38;Navire déjà pillé
+100;vide; ;Amérique du Sud (Côte Atlantique de la Guyane à l'Argentine);10;;;;0;0;0;0;1;1;1;0;0;39;Vide
 19;Excellent café d'Arabie (prix × 1.5); ;Arabie;10;Arabie;50;;;1125;975;330;1;1;1;0;0;40;Café
 23;Chevaux d'Arabie (Mascate x10); ;Arabie;10;Mer rouge;61;;;;;;;1;1;0;0;41;Chevaux
 29;Cuivre du Dhofar (Oman) (1T, 100); ;Arabie;9;Perse;64;;;100;100;100;1;1;1;0;0;42;Cuivre

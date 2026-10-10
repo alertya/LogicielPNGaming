@@ -41,7 +41,7 @@ class Maladie:
                         f"{membre.Nom} contracte la {maladie.Nom}.\n"
                     )
 
-        equipage.Save(equipage_nom)
+        equipage.Save()
 
         return texte
 
@@ -102,7 +102,7 @@ class Maladie:
             for mort in morts:
                 equipage.Membres.remove(mort)
 
-        equipage.Save(equipage_nom)
+        equipage.Save()
 
         return texte
 
@@ -126,7 +126,7 @@ class Maladie:
                 else:
                     succes = utils.Test(membre.Cuisine, 0)
                     repas += succes * repas_par_succes
-        equipage.Save(equipage_nom)
+        equipage.Save()
         return max(0, repas)
 
     @staticmethod
@@ -169,7 +169,7 @@ class Maladie:
                 if membre.EtatMaladie == 0:
                     membre.EtatMaladie = -1
 
-        equipage.Save(equipage_nom)
+        equipage.Save()
 
         return texte
     def JourMaladie(self,NbJour,NomEquipage):

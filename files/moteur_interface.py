@@ -637,7 +637,7 @@ class MoteurExemple(MoteurBase):
                 messagebox.showinfo("Information", str(sortie))
             return sortie
 
-        if onglet == "Navire":
+        if onglet == "Navire" and sous_onglet!="Affichage":
             if isinstance(instance, Navire):
                 print("C'est bien une instance Navire")
             navire = Navire.charger_depuis_csv(instance)

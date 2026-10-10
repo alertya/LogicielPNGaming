@@ -162,9 +162,9 @@ class Navire:
                     self.manoeuvre = self.Equipage.Manoeuvre
 
                 #self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
-
+                self.Name=self.SetName()
                 #self.Name = self.SetName()
-                self.sauvegarder()
+
 
     def Affichage(self):
 
@@ -422,7 +422,6 @@ class Navire:
             print("Aucune compagnie trouvée")
             return None
         ligne = df.iloc[0]
-        print(ligne['Acteur'])
         return ligne["Acteur"], ligne["Nationalite"]
 
     @staticmethod
