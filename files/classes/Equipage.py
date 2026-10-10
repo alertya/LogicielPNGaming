@@ -300,6 +300,8 @@ class Equipage:
             # Initialisation des PV
             membre.PVMax = random.randint(5, 8)
             membre.PV = membre.PVMax
+            # Initialisation après la copie des données
+            membre.Traits = []
             # Calculs individuels
             self.ScoreMembre(membre)
             self.AttributeGroupeMembre(membre)
@@ -1243,7 +1245,7 @@ class Equipage:
 
             equipage.Recrute(valeurs['Nombre'],valeurs['Type'],0)
 
-            equipage.Save(equipage.Name)
+            equipage.Save()
 
             return f"Recrutement effectué pour {equipage.Name}"
         elif action=="Echantillonnage":
@@ -1276,7 +1278,7 @@ class Equipage:
         for membre in self.Membres:
 
             # Initialisation de la liste de traits
-            if not hasattr(membre, "Traits"):
+            if not isinstance(getattr(membre, "Traits", None), list):
                 membre.Traits = []
 
             for _, ligne in df.iterrows():
