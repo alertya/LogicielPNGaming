@@ -41,8 +41,6 @@ class Equipage:
 
             membre = type("MembreEquipage", (), {})()
 
-            for attribut, valeur in donnees.items():
-                setattr(membre, attribut, valeur)
             membre.Profession=Type
             membre.Type=Type
             membre.Localisation="Europe du Nord"
@@ -134,18 +132,42 @@ class Equipage:
             }
         }
 
-    def Save(self, nom=None):
-        nom = nom or self.Name
+    def save(self):
 
+        # Convertir les membres en dictionnaires
         lignes = []
 
         for membre in self.Membres:
-            lignes.append(vars(membre).copy())
+            ligne = membre.__dict__.copy()
+
+            # Ne pas enregistrer les listes complexes telles quelles
+            if "Traits" in ligne:
+                ligne["Traits"] = str(ligne["Traits"])
+
+            lignes.append(ligne)
 
         df = pd.DataFrame(lignes)
 
+        # Ajouter les attributs du groupe à chaque ligne
+        attributs_groupe = [
+            "Charpenterie",
+            "Agriculture",
+            "Manoeuvre",
+            "Acrobatie",
+            "Ruse",
+            "Natation",
+            "Combat",
+            "Tir",
+            "Recharge",
+            "Pointage"
+        ]
+
+        for attribut in attributs_groupe:
+            df[attribut] = getattr(self, attribut)
+
+        # Enregistrer le CSV
         df.to_csv(
-            os.path.join(config.BASE_PATH, "Equipage", f"{nom}.csv"),
+            os.path.join(config.BASE_PATH, "Equipage", f"{self.Name}.csv"),
             sep=";",
             decimal=",",
             encoding="cp1252",
