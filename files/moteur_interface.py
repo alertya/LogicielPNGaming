@@ -693,12 +693,8 @@ class MoteurExemple(MoteurBase):
 
             equipage = Equipage.charger_depuis_csv(nom_equipage)
 
-
-        else:
-
-            equipage = Equipage.charger_depuis_csv(instance)
-
-        sortie = equipage.executer_action(action, instance, valeurs)
+        if action == "TrouverMarchand":
+            sortie = PNJ.executer_action(action, instance, valeurs)
 
         if sortie:
             messagebox.showinfo("Information", str(sortie))

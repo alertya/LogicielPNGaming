@@ -814,6 +814,8 @@ class FormulaireAction(tk.Toplevel):
             ).grid(
                 row=7, column=0, columnspan=2, pady=20
             )
+        if self.action=="TrouverMarchand":
+        if self.action=="RecruterHommes"
 
     def recuperer_valeurs(self):
         return {

@@ -524,3 +524,5 @@ NOMS_NAVIRE= pd.read_csv(
         )
 
 GENE_NAVIRE=pd.read_csv(config.BASE_PATH + "/GeneNavire.csv",sep=";",decimal=",",encoding="cp1252")
+
+

@@ -206,7 +206,10 @@ class PNJ:
         return utils.Test(Comp, 0)
     def executer_action(self, action, instance,valeurs=None):
 
-
+        if action=="RecuteHommes":
+        if action=='TrouverMarchand':
+            pnj=PNJ.charger_depuis_csv(instance)
+            Result=pnj.TrouverMarchand(valeurs["Nom"],valeurs['Zone'])
         if action == "LanceCompetence":
             pnj = PNJ.charger_depuis_csv(instance)
             Result=pnj.LanceCompetence(valeurs['Competence'])
@@ -267,3 +270,36 @@ class PNJ:
                 break
 
         return self
+
+    def TrouverMarchand(self,Name,Localisation):
+        Liste=["RicheMarchand","PetitMarchand"]
+        ##On choisiit au hasard si c'est un petit ou riche marchand
+        choix = random.choice(Liste)
+        pnj=PNJ(Name,Localisation,Type=None,Profession=choix)
+        SuccesCommerce=utils.Test(pnj.Commerce)
+        pnj.Fortune=self.CalculFortune(SuccesCommerce,0,0)
+        pnj.Save()
+        return f"Vous avez trouver {Name} en {Localisation} avec une capacité d'achat de {pnj.Fortune}"
+    def RecruteHommes(self,Tailleport,SuccesRecrute,Equipage,Type):
+        equipage=Equipage.charger_depuis_csv(Equipage)
+        ###Si la taille du port est de 1 c'est 1d60 hommes disponibles, si c'est deux 2d60 et 3 3d60
+        ###Attention ces valeurs sont pour des matelots trouvés en taverne
+        NbHommes=random.randint(1,60)
+        if Tailleport>1:
+            NbHommes += random.randint(1, 60)
+        if Tailleport>2:
+            NbHommes += random.randint(1, 60)
+
+        NbHommesRecrute=int(NbHommes*SuccesRecrute/10)
+        equipage.Recrute(NbHommesRecrute,Type,)
+        return f"Vous avez recrute {NbHommesRecrute} {Type} a l'équipage {Equipage}"
+    def CalculFortune(self,SuccesCommerce,NbCanons=0,Tonnage=0):
+        Bonus=random.randint(1,100)
+        Bonus+=SuccesCommerce
+        Bonus+=NbCanons*
+        Bonus+=Tonnage/10
+        Bonus += random.randint(1, 100)
+        ValeurRancon=utils.VALEUR_RANCON
+        Fortune=ValeurRancon[ValeurRancon['Text']>=Bonus].iloc[0]
+
+        return Fortune

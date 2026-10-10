@@ -445,8 +445,7 @@ def Escale(RegionMaritime,Port,Navire,Action,SuccesAction):
         NbHommes+=Navire['Equipage']
         NbHommesRecrute=NbHommes/10*SuccesAction
         Text+=FonctionEquipage.Recrute(NbHommesRecrute,"Matelot",Navire,0)
-    if Action=="Acheter":
-        Marchandises=CalculMarchandise.TrouverMarchand(RegionMaritime)[2]
+
 
     return Text
 
