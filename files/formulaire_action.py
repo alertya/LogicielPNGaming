@@ -834,7 +834,7 @@ class FormulaireAction(tk.Toplevel):
             combo_zone = ttk.Combobox(
                 self,
                 textvariable=self.variables["Zone"],
-                values=utils.ZONE_COMMERCIALE,
+                values=utils.LISTE_REGIONS["RegionsCommerciale"].tolist(),
                 state="readonly",
                 width=30
             )
@@ -890,7 +890,7 @@ class FormulaireAction(tk.Toplevel):
             combo_type = ttk.Combobox(
                 self,
                 textvariable=self.variables["Type"],
-                values=utils.LISTE_PROF,
+                values=utils.LISTE_PROF['Type'].tolist(),
                 state="readonly",
                 width=30
             )

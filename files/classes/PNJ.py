@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 import utils
 import config
-
+from classes.Equipage import Equipage
 class PNJ:
 
     def __init__(self, Name, Zone,Profession=None, Type=None):
@@ -281,8 +281,8 @@ class PNJ:
         pnj.Fortune=self.CalculFortune(SuccesCommerce,0,0)
         pnj.Save()
         return f"Vous avez trouver {Name} en {Localisation} avec une capacité d'achat de {pnj.Fortune}"
-    def RecruteMatelot(self,Tailleport,SuccesRecrute,Equipage,Type):
-        equipage=Equipage.charger_depuis_csv(Equipage)
+    def RecruteMatelot(self,Tailleport,SuccesRecrute,nomequipage,Type):
+        equipage=Equipage.charger_depuis_csv(nomequipage)
         ###Si la taille du port est de 1 c'est 1d60 hommes disponibles, si c'est deux 2d60 et 3 3d60
         ###Attention ces valeurs sont pour des matelots trouvés en taverne
         NbHommes=random.randint(1,60)
@@ -292,7 +292,7 @@ class PNJ:
             NbHommes += random.randint(1, 60)
 
         NbHommesRecrute=int(NbHommes*SuccesRecrute/10)
-        equipage.Recrute(NbHommesRecrute,Type,)
+        equipage.Recrute(NbHommesRecrute,Type,0)
         return f"Vous avez recrute {NbHommesRecrute} {Type} a l'équipage {Equipage}"
     def CalculFortune(self,SuccesCommerce,NbCanons=0,Tonnage=0):
         Bonus=random.randint(1,100)

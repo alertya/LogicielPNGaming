@@ -604,8 +604,11 @@ class MoteurExemple(MoteurBase):
             marchandise = Marchandise.charger_depuis_csv(instance)
             return marchandise.get_actions() if marchandise else []
         if onglet == "PNJ":
-            pnj= PNJ.charger_depuis_csv(instance)
-            return pnj.get_actions() if PNJ else []
+            if sous_onglet == "Actions":
+                return ["LanceCompetence","RecruteMatelot", "TrouverMarchand"]
+
+            pnj = PNJ.charger_depuis_csv(instance)
+            return pnj.get_actions() if pnj else []
         #if onglet == "Escale":
         #    escale = Escale.charger_depuis_csv(instance)
         #    return escale.get_actions() if escale else []
@@ -653,18 +656,16 @@ class MoteurExemple(MoteurBase):
             return sortie
         if onglet == "PNJ":
             if isinstance(instance, PNJ):
-                print("C'est bien une instance PNJ")
+                p
             pnj = PNJ.charger_depuis_csv(instance)
             sortie = pnj.executer_action(action, instance, valeurs)
             if sortie:
                 messagebox.showinfo("Information", str(sortie))
             return sortie
         if onglet == "Reset":
-            print(instance)
             if action == "Reset":
                 return self.Reset()
         if onglet=="Voyage":
-            print(instance)
             if action=="Commercer":
                 messagebox.showinfo("Information", "FELICIATIONS")
         elif action == "GenererMarchandise":
@@ -690,8 +691,6 @@ class MoteurExemple(MoteurBase):
 
             if not nom_equipage:
                 return "Erreur : aucun équipage sélectionné."
-
-            equipage = Equipage.charger_depuis_csv(nom_equipage)
 
         if action == "TrouverMarchand":
             sortie = PNJ.executer_action(action, instance, valeurs)
@@ -992,4 +991,37 @@ class MoteurExemple(MoteurBase):
         marchandise.sauvegarder()
 
         return "Marchandise enregistrée."
+        return self
 
+    def TrouverMarchand(self,Name,Localisation):
+        Liste=["RicheMarchand","PetitMarchand"]
+        ##On choisiit au hasard si c'est un petit ou riche marchand
+        choix = random.choice(Liste)
+        pnj=PNJ(Name,Localisation,Type=None,Profession=choix)
+        SuccesCommerce=utils.Test(pnj.Commerce)
+        pnj.Fortune=self.CalculFortune(SuccesCommerce,0,0)
+        pnj.Save()
+        return f"Vous avez trouver {Name} en {Localisation} avec une capacité d'achat de {pnj.Fortune}"
+    def RecruteMatelot(self,Tailleport,SuccesRecrute,Equipage,Type):
+        equipage=Equipage.charger_depuis_csv(Equipage)
+        ###Si la taille du port est de 1 c'est 1d60 hommes disponibles, si c'est deux 2d60 et 3 3d60
+        ###Attention ces valeurs sont pour des matelots trouvés en taverne
+        NbHommes=random.randint(1,60)
+        if Tailleport>1:
+            NbHommes += random.randint(1, 60)
+        if Tailleport>2:
+            NbHommes += random.randint(1, 60)
+
+        NbHommesRecrute=int(NbHommes*SuccesRecrute/10)
+        equipage.Recrute(NbHommesRecrute,Type,)
+        return f"Vous avez recrute {NbHommesRecrute} {Type} a l'équipage {Equipage}"
+    def CalculFortune(self,SuccesCommerce,NbCanons=0,Tonnage=0):
+        Bonus=random.randint(1,100)
+        Bonus+=SuccesCommerce
+        Bonus+=NbCanons
+        Bonus+=Tonnage/10
+        Bonus += random.randint(1, 100)
+        ValeurRancon=utils.VALEUR_RANCON
+        Fortune=ValeurRancon[ValeurRancon['Text']>=Bonus].iloc[0]
+
+        return Fortune
