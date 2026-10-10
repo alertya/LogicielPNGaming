@@ -695,7 +695,8 @@ class MoteurExemple(MoteurBase):
 
         if action == "TrouverMarchand":
             sortie = PNJ.executer_action(action, instance, valeurs)
-
+        if action=="RecruteMatelot":
+            sortie = PNJ.executer_action(action, instance, valeurs)
         if sortie:
             messagebox.showinfo("Information", str(sortie))
 

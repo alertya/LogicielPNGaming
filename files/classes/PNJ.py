@@ -183,7 +183,7 @@ class PNJ:
 
 
     def get_actions(self):
-        return ['LanceCompetence']
+        return ['LanceCompetence','RecruteMatelot','TrouverMarchand']
 
     def AjoutTrait(self):
         df = utils.COMPETENCES
@@ -206,10 +206,11 @@ class PNJ:
         return utils.Test(Comp, 0)
     def executer_action(self, action, instance,valeurs=None):
 
-        if action=="RecuteHommes":
+        if action=="RecruteMatelot":
+            return self.RecruteMatelot(valeurs['TaillePort'],valeurs['Succes'],valeurs['Equipage'],valeurs['Type'])
         if action=='TrouverMarchand':
             pnj=PNJ.charger_depuis_csv(instance)
-            Result=pnj.TrouverMarchand(valeurs["Nom"],valeurs['Zone'])
+            return pnj.TrouverMarchand(valeurs["Nom"],valeurs['Zone'])
         if action == "LanceCompetence":
             pnj = PNJ.charger_depuis_csv(instance)
             Result=pnj.LanceCompetence(valeurs['Competence'])
@@ -280,7 +281,7 @@ class PNJ:
         pnj.Fortune=self.CalculFortune(SuccesCommerce,0,0)
         pnj.Save()
         return f"Vous avez trouver {Name} en {Localisation} avec une capacité d'achat de {pnj.Fortune}"
-    def RecruteHommes(self,Tailleport,SuccesRecrute,Equipage,Type):
+    def RecruteMatelot(self,Tailleport,SuccesRecrute,Equipage,Type):
         equipage=Equipage.charger_depuis_csv(Equipage)
         ###Si la taille du port est de 1 c'est 1d60 hommes disponibles, si c'est deux 2d60 et 3 3d60
         ###Attention ces valeurs sont pour des matelots trouvés en taverne
@@ -296,7 +297,7 @@ class PNJ:
     def CalculFortune(self,SuccesCommerce,NbCanons=0,Tonnage=0):
         Bonus=random.randint(1,100)
         Bonus+=SuccesCommerce
-        Bonus+=NbCanons*
+        Bonus+=NbCanons
         Bonus+=Tonnage/10
         Bonus += random.randint(1, 100)
         ValeurRancon=utils.VALEUR_RANCON

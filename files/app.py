@@ -452,7 +452,7 @@ class App(tk.Tk):
         if action in (
                 "Vendre", "Acheter", "Piller", "Recruter",
                 "Generer", "BatailleTerrestre", "RecruterType",
-                "CombatNaval", "Reparer", "Poursuivre","Commercer","Fuir","Poursuivre","Canonner","PavillonNoir","LanceCompetence","Echantillonnage","AjoutSurnumeraire",'TrouverMarchand','RecruterHommes'
+                "CombatNaval", "Reparer", "Poursuivre","Commercer","Fuir","Poursuivre","Canonner","PavillonNoir","LanceCompetence","Echantillonnage","AjoutSurnumeraire",'TrouverMarchand','RecruteMatelot'
         ):
             FormulaireAction(
                 self,
@@ -905,3 +905,4 @@ class App(tk.Tk):
         self.instance_actuelle = nom
 
         self.selectionner_sous_onglet("Afficher")
+

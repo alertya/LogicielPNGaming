@@ -814,8 +814,94 @@ class FormulaireAction(tk.Toplevel):
             ).grid(
                 row=7, column=0, columnspan=2, pady=20
             )
-        if self.action=="TrouverMarchand":
-        if self.action=="RecruterHommes"
+
+        elif self.action == "TrouverMarchand":
+
+            tk.Label(self, text="Nom du marchand").grid(
+                row=0, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["Nom"] = tk.StringVar()
+            tk.Entry(
+                self,
+                textvariable=self.variables["Nom"],
+                width=30
+            ).grid(row=0, column=1, padx=10, pady=7)
+
+            tk.Label(self, text="Zone commerciale").grid(
+                row=1, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["Zone"] = tk.StringVar()
+            combo_zone = ttk.Combobox(
+                self,
+                textvariable=self.variables["Zone"],
+                values=utils.ZONE_COMMERCIALE,
+                state="readonly",
+                width=30
+            )
+            combo_zone.grid(row=1, column=1, padx=10, pady=7)
+
+            if combo_zone["values"]:
+                combo_zone.current(0)
+
+            tk.Button(
+                self, text="Valider", command=self.valider
+            ).grid(row=2, column=0, columnspan=2, pady=20)
+
+        if self.action == "RecruteMatelot":
+
+            tk.Label(self, text="Taille du port").grid(
+                row=0, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["TaillePort"] = tk.IntVar(value=1)
+            tk.Spinbox(
+                self, from_=1, to=100, increment=1,
+                textvariable=self.variables["TaillePort"], width=10
+            ).grid(row=0, column=1, padx=10, pady=7, sticky="w")
+
+            tk.Label(self, text="Succès").grid(
+                row=1, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["Succes"] = tk.IntVar(value=1)
+            tk.Spinbox(
+                self, from_=0, to=100, increment=1,
+                textvariable=self.variables["Succes"], width=10
+            ).grid(row=1, column=1, padx=10, pady=7, sticky="w")
+
+            tk.Label(self, text="Équipage").grid(
+                row=2, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["Equipage"] = tk.StringVar()
+            combo_equipage = ttk.Combobox(
+                self,
+                textvariable=self.variables["Equipage"],
+                values=self.moteur.get_instances("Equipage", "Afficher"),
+                state="readonly",
+                width=30
+            )
+            combo_equipage.grid(row=2, column=1, padx=10, pady=7)
+
+            if combo_equipage["values"]:
+                combo_equipage.current(0)
+
+            tk.Label(self, text="Type de matelot").grid(
+                row=3, column=0, padx=10, pady=7, sticky="w"
+            )
+            self.variables["Type"] = tk.StringVar()
+            combo_type = ttk.Combobox(
+                self,
+                textvariable=self.variables["Type"],
+                values=utils.LISTE_PROF,
+                state="readonly",
+                width=30
+            )
+            combo_type.grid(row=3, column=1, padx=10, pady=7)
+
+            if combo_type["values"]:
+                combo_type.current(0)
+
+            tk.Button(
+                self, text="Valider", command=self.valider
+            ).grid(row=4, column=0, columnspan=2, pady=20)
 
     def recuperer_valeurs(self):
         return {
