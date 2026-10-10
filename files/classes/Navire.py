@@ -632,12 +632,14 @@ class Navire:
                 degat1,
                 munition1
             )
-
+            # Le navire 2 subit les dégâts du navire 1
+        if navire2.Equipage.NombreMembres() > 0:
             texte += temp + "\n"
 
             texte += navire2.Equipage.Attitude(
                 -perte2 / navire2.Equipage.NombreMembres() * 50
             )[1]
+
 
         else:
 
