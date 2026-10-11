@@ -74,7 +74,7 @@ class Equipage:
             self.Membres.append(membre)
 
         self.AjoutTrait()
-        self.Pirate(1)
+
 
         self.Charpentier = 0
         self.Agriculteur =0
@@ -87,7 +87,7 @@ class Equipage:
         self.Tir = 0
         self.RechargeCanon = 0
         self.PointageCanon = 0
-
+        self.Pirate(1)
         if Nb > 0:
             self.CalculerCompetences()
             self.SauvegarderCapitaine()
@@ -316,6 +316,7 @@ class Equipage:
         self.CalculCombatEquipage()
         self.AttributionSalaireParRole()
         self.SauvegarderCapitaine()
+        self.Pirate(1)
         self.Save()
         return Temp
 
@@ -803,70 +804,45 @@ class Equipage:
         return "Les expériences ont été attribuées."
 
     def Pirate(self, Symp):
-
-        Text = ""
-
         for membre in self.Membres:
-            tirage = np.random.randint(1, 10)
+            tirage = np.random.randint(1, 11)  # de 1 à 10 inclus
 
             if Symp == 1:
-
-                if tirage > 4:
-                    membre.Pirate = 0
-
                 if tirage <= 4:
                     membre.Pirate = -1
-                if tirage >9:
-                    membre.Pirate = 2
-                if tirage >6:
+                elif tirage <= 6:
+                    membre.Pirate = 0
+                elif tirage <= 9:
                     membre.Pirate = 1
+                else:
+                    membre.Pirate = 2
 
             elif Symp == 2:
-                membre.Pirate=0
-                if tirage <2 :
-                    membre.Pirate = -1
-
-                if tirage <= 4:
-                    membre.Pirate = 1
-                if tirage <= 1:
+                if tirage == 1:
                     membre.Pirate = 2
-
-            elif Symp == 0:
-
-                membre.Pirate = -1
-                if tirage<2:
+                elif tirage <= 4:
+                    membre.Pirate = 1
+                else:
                     membre.Pirate = 0
 
-        Size1 = sum(
-            membre.Pirate == -1
-            for membre in self.Membres
-        )
+            elif Symp == 0:
+                if tirage == 1:
+                    membre.Pirate = 0
+                else:
+                    membre.Pirate = -1
 
-        Size2 = sum(
-            membre.Pirate == 0
-            for membre in self.Membres
-        )
-
-        Size3 = sum(
-            membre.Pirate == 1
-            for membre in self.Membres
-        )
-
-        Size4 = sum(
-            membre.Pirate == 2
-            for membre in self.Membres
-        )
+        Size1 = sum(m.Pirate == -1 for m in self.Membres)
+        Size2 = sum(m.Pirate == 0 for m in self.Membres)
+        Size3 = sum(m.Pirate == 1 for m in self.Membres)
+        Size4 = sum(m.Pirate == 2 for m in self.Membres)
 
         Text = (
-            f"{Size1} membres sont prêts à dénoncer "
-            f"des agissements pirates\n"
-            f"{Size2} membres sont neutres envers "
-            f"des agissements pirates\n"
-            f"{Size3} membres sont prêts à aider "
-            f"des agissements pirates\n"
-            f"{Size4} membres sont prêts à sauver "
-            f"des agissements pirates\n"
+            f"{Size1} membres sont prêts à dénoncer des agissements pirates\n"
+            f"{Size2} membres sont neutres envers des agissements pirates\n"
+            f"{Size3} membres sont prêts à aider des agissements pirates\n"
+            f"{Size4} membres sont prêts à sauver des agissements pirates\n"
         )
+
 
         return Text
 
