@@ -1351,7 +1351,7 @@ class Equipage:
         self.Tir = self.MoyenneCompetence("Mousquet")
         self.RechargeCanon = self.MoyenneCompetence("Recharge")
         self.PointageCanon = self.MoyenneCompetence("Pointage")
-        self.Morale=self.PointageCanon+self.CombatArmesBlanche
+        self.Morale=int((self.PointageCanon+self.CombatArmesBlanche)/2)
 
 
         self.Charpentier = utils.ConvertFloatToInt(self.Charpentier)

@@ -13,15 +13,15 @@ Tant que tu n'as pas encore de moteur, ce fichier utilise `MoteurExemple`
 (données factices) pour que tu puisses lancer et tester l'interface
 immédiatement avec : python main.py
 """
-print("DEBUT PROGRAMME", flush=True)
-from app import App
-print("DEBUT PROGRAMME", flush=True)
-import os
-print("DEBUT PROGRAMME", flush=True)
 
-print("DEBUT PROGRAMME", flush=True)
+from app import App
+
+import os
+
+
+
 from moteur_interface import MoteurExemple
-print("DEBUT PROGRAMME", flush=True)
+
 import config
 # ---------------------------------------------------------------------
 # ⬇  Remplace cette ligne par ton propre moteur quand il sera prêt :

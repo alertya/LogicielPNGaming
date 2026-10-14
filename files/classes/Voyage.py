@@ -6,6 +6,7 @@ import random
 import config
 import utils
 from classes.Navire import Navire
+from classes.Equipage import Equipage
 from classes.Navigation import Navigation
 from classes.Maladie import Maladie
 class Voyage:
@@ -398,12 +399,15 @@ class Voyage:
 
         elif action == "Poursuivre":
             return self.Poursuivre()
+        elif action == "HisserPavillonRouge":
+            return self.HisserPavillonRouge()
 
-
+        elif action == "HisserPavillonNoirr":
+            return self.HisserPavillonNoir()
         return ""
 
     def get_actions(self):
-        return ["JourSuivant"]
+        return ["JourSuivant","Commerce",'HisserPavillonNoir']
 
     import re
     import random
@@ -490,3 +494,11 @@ class Voyage:
         navire = Navire.charger_depuis_csv(name)
 
         return f"Le navire est de {navire.CategorieNavire} avec une longueur de {navire.Longueur},un tonnage de {navire.Tonnage}, {navire.NbMats} mats et {navire.NbCanons} canons."
+    def HisserPavillonNoir(self):
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        equipage=Equipage(navire.EquipageNom)
+        return equipage.MoraleEquipage(navire.EquipageNom,"Noir")
+    def HisserPavillonRouge(self):
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        equipage=Equipage(navire.EquipageNom)
+        return equipage.MoraleEquipage(navire.EquipageNom,"Rouge")
