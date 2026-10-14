@@ -29,9 +29,9 @@ import config
 #     from mon_moteur import MonMoteur
 #     moteur = MonMoteur()
 # ---------------------------------------------------------------------
-print("OK")
+
 moteur = MoteurExemple()
-print("OK")
+
 if __name__ == "__main__":
     print("Calcul generation interface moteur-graphisme")
     app = App(moteur)
