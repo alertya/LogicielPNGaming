@@ -447,7 +447,7 @@ class Navigation:
             distance = -999999999999999999
 
         navire.sauvegarder()
-        equipage.sauvegarder()
+        equipage.Save()
 
         return texte, distance
 
@@ -572,7 +572,7 @@ class Navigation:
 
         # On recharge les données pour vérifier l'état final.
         navire.sauvegarder()
-        equipage.Save(equipage.Name)
+        equipage.Save()
 
         if "StructureCoque" in navire_final.columns and navire_final.iloc[0]["StructureCoque"] <= 0:
             distance = -99999999999999999999999
