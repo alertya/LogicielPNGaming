@@ -482,7 +482,6 @@ class Navire:
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
         bonus_tir = navire_attaque.CategorieNavire - 3
-        print(navire_attaquant.__dict__)
         succes_tir = utils.Test(navire_attaquant.pointage,bonus)
         succes_tir += succes_tir * bonus_tir / 5
         succes_tir = utils.ConvertFloatToInt(succes_tir)
