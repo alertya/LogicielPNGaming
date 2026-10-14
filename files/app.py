@@ -49,7 +49,6 @@ ONGLETS: Dict[str, List[str]] = {
     "Navire": ["Afficher", "Générer", "Actions"],
     "Equipage": ["Afficher", "Générer", "Recruter", "Actions"],
     "Marchandises": ["Afficher", "Générer", "Actions"],
-    "Escale": ["Afficher", "Générer", "Actions"],
     "PNJ": ["Afficher", "Générer", "Actions"],
     "Infirmerie": ["Afficher", "Actions"],
     "Reset": ["Actions"],

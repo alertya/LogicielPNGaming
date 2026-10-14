@@ -249,7 +249,7 @@ class Navigation:
             texte += "Les hydrographes anticipent la tempête et le navire l'évite.\n"
 
         navire.sauvegarder()
-        equipage.Save(navire.EquipageNom)
+        equipage.Save()
 
         return texte
 
@@ -629,7 +629,9 @@ class Navigation:
         120 = +20%
         80 = -20%
         """
+        print(nom_navire)
         navire = Navire.charger_depuis_csv(nom_navire)
+        print(navire.EquipageNom)
         equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         meilleur_test = -999

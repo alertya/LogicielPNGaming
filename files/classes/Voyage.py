@@ -217,6 +217,7 @@ class Voyage:
         # Chargement du navire
         # -------------------------------------------------
         print("Chargement du navire")
+        print(self.Navire)
         navire = Navire.charger_depuis_csv(self.Navire)
         navigation = Navigation(navire,False)
         # -------------------------------------------------

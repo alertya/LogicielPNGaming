@@ -13,13 +13,15 @@ Tant que tu n'as pas encore de moteur, ce fichier utilise `MoteurExemple`
 (données factices) pour que tu puisses lancer et tester l'interface
 immédiatement avec : python main.py
 """
-
+print("DEBUT PROGRAMME", flush=True)
 from app import App
+print("DEBUT PROGRAMME", flush=True)
 import os
-from classes.Equipage import Equipage
-from classes.Navire import Navire
-from moteur_interface import MoteurExemple
+print("DEBUT PROGRAMME", flush=True)
 
+print("DEBUT PROGRAMME", flush=True)
+from moteur_interface import MoteurExemple
+print("DEBUT PROGRAMME", flush=True)
 import config
 # ---------------------------------------------------------------------
 # ⬇  Remplace cette ligne par ton propre moteur quand il sera prêt :
@@ -27,8 +29,9 @@ import config
 #     from mon_moteur import MonMoteur
 #     moteur = MonMoteur()
 # ---------------------------------------------------------------------
-
+print("OK")
 moteur = MoteurExemple()
+print("OK")
 if __name__ == "__main__":
     print("Calcul generation interface moteur-graphisme")
     app = App(moteur)
