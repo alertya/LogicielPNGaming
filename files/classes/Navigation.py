@@ -618,7 +618,7 @@ class Navigation:
                 texte += "Le pilote évite les hauts-fonds.\n"
 
         navire.sauvegarder()
-        equipage.Save(equipage.Name)
+        equipage.Save()
 
         return texte
 
