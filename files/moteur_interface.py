@@ -647,7 +647,7 @@ class MoteurExemple(MoteurBase):
             return sortie
 
         if onglet == "Marchandises":
-            if isinstance(instance, Marchandises):
+            if isinstance(instance, Marchandise):
                 print("C'est bien une instance Marchandise")
             marchandise = Marchandise.charger_depuis_csv(instance)
             sortie = marchandise.executer_action(action, instance, valeurs)
