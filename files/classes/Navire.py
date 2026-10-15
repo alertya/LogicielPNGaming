@@ -164,7 +164,7 @@ class Navire:
                 #self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
                 #self.Name=self.SetName()
                 #self.Name = self.SetName()
-
+                self.sauvegarder()
 
     def Affichage(self):
 
