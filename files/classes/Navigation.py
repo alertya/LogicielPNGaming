@@ -412,7 +412,7 @@ class Navigation:
 
         elif avarie == 2:
 
-            _, moyen = equipage.ActionEquipage("ReparationsFortune")
+            _, moyen = equipage.ActionEquipage("ReparationsFortune","Equipage",0)
 
             _, tmp = navire.PerteNavire(
                 nom_navire,
