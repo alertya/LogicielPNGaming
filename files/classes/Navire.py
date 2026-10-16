@@ -162,7 +162,7 @@ class Navire:
                     self.manoeuvre = self.Equipage.Manoeuvre
 
                 self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
-        )
+
                 self.Name = self.SetName()
                 self.sauvegarder()
 
@@ -708,9 +708,10 @@ class Navire:
     def SetName(self):
         print("Nationalité recherchée :", repr(self.Nationalite))
         print("Nationalités disponibles :")
-        print(utils.NOMS_NAVIRE["Nationalite"].unique())
+
 
         Liste = utils.NOMS_NAVIRE
+        print(Liste)
         Liste = Liste[Liste["Nationalite"] == self.Nationalite]
 
         print("Nb lignes :", len(Liste))
