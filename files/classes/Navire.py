@@ -706,12 +706,11 @@ class Navire:
 
 
     def SetName(self):
-        print("Nationalité recherchée :", repr(self.Nationalite))
-        print("Nationalités disponibles :")
+
 
 
         Liste = utils.NOMS_NAVIRE
-        print(Liste)
+
         Liste = Liste[Liste["Nationalite"] == self.Nationalite]
 
         print("Nb lignes :", len(Liste))
