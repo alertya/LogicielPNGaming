@@ -73,6 +73,7 @@ REGIONS = [
     "Golfe de Guinée",
     "Grandes Antilles",
     "Guatemala, Costa Rica, Panama",
+    "Guyane, Guyana et Suriname",
     "Indonésie et Philippines",
     "Madagascar",
     "Maghreb",
