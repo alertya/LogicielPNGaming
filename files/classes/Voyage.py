@@ -475,10 +475,9 @@ class Voyage:
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
                 navire_rencontre.GardeCote = garde_cote
                 print("Initialisation  navire marchand réalisé")
-                Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
+
                 print("Calcul compagnie  navire marchand réalisé")
-                navire_rencontre.Compagnie = Compagnie
-                navire_rencontre.Nationalite = Nationalite
+
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
                 NomNavireRencontre = navire_rencontre.Name
@@ -493,14 +492,13 @@ class Voyage:
             print("Determination type navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Initialisation  navire aventurier réalisé")
-            Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
+
             navire_rencontre.GardeCote=garde_cote
             print("Calcul compagnie  navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Navire créé :", navire_rencontre)
 
             navire_rencontre.Compagnie = "Pirate"
-            navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
             self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
