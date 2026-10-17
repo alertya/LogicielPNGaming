@@ -16,7 +16,7 @@ from .Equipage import Equipage
 from .Marchandise import Marchandise
 import utils
 import config
-
+import traceback
 ##### Variables & Constantes voyage
 NbJour = 6
 CompetenceVigie = 2
@@ -46,6 +46,13 @@ class Navire:
                 # -------------------------
                 # Paramètres requis à la création
                 # -------------------------
+                print(
+                    "CRÉATION NAVIRE :",
+                    Name, Type, Region,
+                    "ID :", id(self)
+                )
+
+
                 self.type_navire: str = Type  # Représente 'Bateau' ou 'CategorieNavire' du CSV
                 self.Name: str = Name  # Représente 'Nom' dans le CSV
 
@@ -124,6 +131,18 @@ class Navire:
                 self.cargaison: Dict[str, float] = {}
                 self.munitions: Dict[str, int] = {}
                 self.journal: List[str] = []
+                self.cargaison: Dict[str, float] = {}
+                self.munitions: Dict[str, int] = {}
+                self.journal: List[str] = []
+
+                # Arrêter ici si l'objet est créé pour charger un CSV
+                if charger:
+                    print("MODE CHARGEMENT :", self.Name)
+                    return
+
+                # Génération d'un nouveau navire
+                df = utils.RENCONTRE_NAVIRE
+                df = df[df["Nom"] == Type]
                 df=utils.RENCONTRE_NAVIRE
                 df=df[df['Nom']==Type]
                 #ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
@@ -154,33 +173,43 @@ class Navire:
                 ZoneCommerciale, ZoneCompagnie, ZoneRencontre = self.ConvertZone(Region)
                 self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
 
-                self.Name = self.SetName()
-                if charger==False:
-                    self.EquipageNom=self.Name+"_Equipage"
-                    self.Marchandise = Marchandise()
+                if not Name or Name == "Test":
+                    self.Name = self.SetName()
+                # Mode chargement : ne pas générer de nouveau navire
+                if charger:
+                    return
 
-                    Cargaison =self.Marchandise.GenerateMarchandise(Region,self.NbCanons,self.TonnageMarchandise)
-                    print(Cargaison['PrixExces'])
-                    self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
-                    self.Marchandise.PrixExces=Cargaison["PrixExces"]
-                    self.Marchandise.PrixNormal = Cargaison["PrixNormal"]
-                    self.Marchandise.PrixPenurie = Cargaison["PrixPenurie"]
-                    self.Marchandise.Tonnage = self.TonnageMarchandise
-                    self.Marchandise.Tonnage = self.TonnageMarchandise
-                    self.Marchandise.Tonnage = self.TonnageMarchandise
-                    self.Marchandise.Name = self.Name + "_Marchandises"
-                    self.MarchandiseNom=self.Name + "_Marchandises"
-                    self.Marchandise.sauvegarder(self.Name+"_Marchandises")
-                    ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
-                    self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
+                print("NOT SUPPOSED TO")
+                self.EquipageNom=self.Name+"_Equipage"
+                self.Marchandise = Marchandise()
 
-                    self.combat=self.Equipage.CombatArmesBlanche
-                    self.ruse=self.Equipage.Ruse
-                    self.pointage = self.Equipage.PointageCanon
-                    self.recharge = self.Equipage.RechargeCanon
-                    self.manoeuvre = self.Equipage.Manoeuvre
+                Cargaison =self.Marchandise.GenerateMarchandise(Region,self.NbCanons,self.TonnageMarchandise)
 
+                self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
+                self.Marchandise.PrixExces=Cargaison["PrixExces"]
+                self.Marchandise.PrixNormal = Cargaison["PrixNormal"]
+                self.Marchandise.PrixPenurie = Cargaison["PrixPenurie"]
+                self.Marchandise.Tonnage = self.TonnageMarchandise
+                self.Marchandise.Tonnage = self.TonnageMarchandise
+                self.Marchandise.Tonnage = self.TonnageMarchandise
+                self.Marchandise.Name = self.Name + "_Marchandises"
+                self.MarchandiseNom=self.Name + "_Marchandises"
+                self.Marchandise.sauvegarder(self.Name+"_Marchandises")
+                self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
 
+                self.combat=self.Equipage.CombatArmesBlanche
+                self.ruse=self.Equipage.Ruse
+                self.pointage = self.Equipage.PointageCanon
+                self.recharge = self.Equipage.RechargeCanon
+                self.manoeuvre = self.Equipage.Manoeuvre
+
+                print(
+                    "CRÉATION NAVIRE :",
+                    Name,
+                    Type,
+                    Region,
+                    "ID :", id(self)
+                )
 
 
 
@@ -341,72 +370,42 @@ class Navire:
 
 
     @classmethod
-    def charger_depuis_csv(cls, nom_fichier: str):
+    def charger_depuis_csv(cls, nom_fichier):
 
-
-        chemin_fichier = os.path.join(
+        chemin = os.path.join(
             config.BASE_PATH,
             "Navire",
             f"{nom_fichier}.csv"
         )
 
-        if not os.path.exists(chemin_fichier):
-            print(f"Le fichier {chemin_fichier} n'existe pas.")
+        if not os.path.exists(chemin):
             return None
 
-        with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
-            reader = csv.DictReader(f, delimiter=";")
-            lignes = list(reader)
+        df = pd.read_csv(
+            chemin,
+            sep=";",
+            decimal=",",
+            encoding="cp1252"
+        )
 
-        if not lignes:
+        if df.empty:
             return None
 
-        donnees = lignes[-1]
+        navire = cls(charger=True)
 
-        # Création d'un navire "vide"
-        navire = cls(charger=False)
+        # Restaurer d'abord les attributs
+        ligne = df.iloc[0].to_dict()
 
+        for cle, valeur in ligne.items():
+            setattr(navire, cle, valeur)
 
+        # Charger ensuite les objets associés
+        nom_equipage = getattr(navire, "EquipageNom", None)
 
-
-        # Le nom du navire devient le nom du fichier
-        navire.Name = nom_fichier
-
-        # Chargement des attributs
-
-        for cle, valeur in donnees.items():
-
-            if cle in ("Equipage", "Marchandise"):
-                continue
-
-            if not hasattr(navire, cle):
-                continue
-
-            if valeur == "":
-                 continue
-
-            type_origine = type(getattr(navire, cle))
-
-            try:
-                if type_origine is bool:
-                        setattr(navire, cle, valeur.lower() in ("true", "1", "o", "yes"))
-
-                elif type_origine is int:
-                        setattr(navire, cle, int(valeur))
-
-                elif type_origine is float:
-                        setattr(navire, cle, float(valeur.replace(",", ".")))
-
-                elif type_origine in (list, dict):
-                    pass
-
-                else:
-                    setattr(navire, cle, valeur)
-
-            except ValueError:
-                print(f"Erreur de conversion : {cle} = {valeur}")
-        navire.Equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
-        navire.Marchandise=Marchandise.charger_depuis_csv(navire.MarchandiseNom)
+        if pd.notna(nom_equipage) and str(nom_equipage).strip():
+            navire.Equipage = Equipage.charger_depuis_csv(
+                str(nom_equipage)
+            )
 
         return navire
 

@@ -293,11 +293,12 @@ class MoteurExemple(MoteurBase):
         #     "jour": int,                    # jour de voyage courant
         #     "journal": {jour: [evenements]} # historique des événements par jour
         # }
-        self._voyages: Dict[str, Dict[str, Any]] = {}
-        self._navires = Navire("Sloop","NavireTest","Brésil")
-        self._equipage= Equipage(10,"Matelot","EquipageTest")
-        self._PNJ=PNJ("Martin","Europe du Nord",None,"Matelot")
-        self._marchandise=Marchandise()
+        self._voyages = {}
+
+        self._navires = None
+        self._equipage = None
+        self._PNJ = None
+        self._marchandise = None
         # NB : ChargerEquipages() peuple self._equipage lui-même (il ne
         # renvoie rien) — on l'appelle donc sans réaffecter self._equipage.
 
@@ -354,11 +355,13 @@ class MoteurExemple(MoteurBase):
             voyage = Voyage.charger_depuis_csv(instance)
             return voyage.Affichage()
         if onglet == "Navire" and sous_onglet == "Afficher":
-            return self._navires.charger_depuis_csv(instance)
+            return Navire.charger_depuis_csv(instance)
+
         if onglet == "Equipage" and sous_onglet == "Afficher":
-            return self._equipage.charger_depuis_csv(instance)
-        if onglet == "Marchandises":
-            return self._marchandise.charger_depuis_csv(instance)
+            return Equipage.charger_depuis_csv(instance)
+
+        if onglet == "Marchandises" and sous_onglet == "Afficher":
+            return Marchandise.charger_depuis_csv(instance)
         if onglet == "PNJ":
             return self._PNJ.charger_depuis_csv(instance)
         return f"(Exemple) Pas encore de données pour {onglet} / {sous_onglet} / {instance}"
@@ -567,25 +570,28 @@ class MoteurExemple(MoteurBase):
         return self._lire_colonne_csv(chemin, "RegionsCommerciale")
 
     def generer_navire(self, nom, type_navire, region):
+
         if not nom:
             return "Merci de saisir un nom de navire."
 
-        dossier = os.path.join(config.BASE_PATH, "Navire")
-        os.makedirs(dossier, exist_ok=True)
+        # Création d'une seule instance
+        navire = Navire(
+            Type=type_navire,
+            Name=nom,
+            Region=region
+        )
 
-        ligne = {"Nom": nom, "Type": type_navire, "Region": region}
-        df = pd.DataFrame([ligne])
-        chemin = os.path.join(dossier, f"{nom}.csv")
-        df.to_csv(chemin, sep=";", decimal=",", encoding="cp1252", index=False)
+        # Sauvegarde unique
+        navire.sauvegarder()
 
-        # Fiche minimale pour affichage immédiat dans l'onglet Navire -> Afficher.
-        # À remplacer par ta vraie génération (coque, canons, équipage...),
-        # par exemple en appelant ta classe Navire.
-        self._navires = Navire(type_navire,nom,region)
+        # Conservation de l'instance
+        self._navires = navire
 
-        self._navires.Name=nom
-        self._navires.sauvegarder()
-        return f"Navire « {self._navires.Name} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
+        return (
+            f"Navire « {navire.Name} » "
+            f"({type_navire}, origine {region}) "
+            f"généré et enregistré."
+        )
 
     def get_actions(self, onglet, sous_onglet, instance):
 

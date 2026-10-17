@@ -91,7 +91,7 @@ class Equipage:
         if Nb > 0:
             self.CalculerCompetences()
             self.SauvegarderCapitaine()
-        Equipage.Save(self)
+
 
     def Affichage(self):
 
