@@ -151,6 +151,10 @@ class Navire:
                 self.NombreEquipage: int = self.CalculEquipage()
                 self.StructureCoqueMax: float = self.StructureCoque
                 self.StructureVoileMax: float = self.StructureVoile
+                ZoneCommerciale, ZoneCompagnie, ZoneRencontre = self.ConvertZone(Region)
+                self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
+
+                self.Name = self.SetName()
                 if charger==False:
                     self.EquipageNom=self.Name+"_Equipage"
                     self.Marchandise = Marchandise()
@@ -170,18 +174,13 @@ class Navire:
                     ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                     self.Equipage=Equipage(self.NombreEquipage,"Matelot",self.EquipageNom)
 
-                    self.Compagnie, self.Nationalite = self.CalculCompagnie(ZoneCompagnie, Annee)
-
                     self.combat=self.Equipage.CombatArmesBlanche
                     self.ruse=self.Equipage.Ruse
                     self.pointage = self.Equipage.PointageCanon
                     self.recharge = self.Equipage.RechargeCanon
                     self.manoeuvre = self.Equipage.Manoeuvre
 
-                self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
-                print("Verif Nationalite")
-                print(self.Nationalite)
-                self.Name=self.SetName()
+
 
 
 

@@ -306,13 +306,12 @@ class Marchandise:
         base+=NbCanon
         base+=NbTonnage/10
         base+=BonusNport
+        baseport=base
+        baseport+=BonusPort
         if BonusAleaNport > 0:
             base+=random.randint(1,int(BonusAleaNport))
         if BonusAleaNport<0:
             baseport+=random.uniform(int(BonusAleaport),-1)
-        baseport=base
-        baseport+=BonusPort
-        print(BonusAleaport)
         if BonusAleaport>0:
             baseport+=random.randint(1,int(BonusAleaport))
         if BonusAleaport<0:
