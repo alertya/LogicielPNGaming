@@ -74,13 +74,15 @@ class Voyage:
             "Journal": journal,
             "Étapes": lignes
         }
+
     def sauvegarder(self, nom=None):
         nom = nom or self.Name
 
         lignes = []
 
         for i, etape in enumerate(self.Etapes, start=1):
-            ligne = etape.copy()  # copie du dictionnaire de l'étape
+            ligne = etape.copy()
+
             ligne["NomTrajet"] = nom
             ligne["Navire"] = self.Navire
             ligne["Annee"] = self.Annee
@@ -88,10 +90,10 @@ class Voyage:
             ligne["Jour"] = self.Jour
             ligne["EtapeCourante"] = self.EtapeCourante
             ligne["Avancement"] = self.Avancement
-            ligne['NavireRencontre']=self.NavireRencontre
+            ligne["NavireRencontre"] = self.NavireRencontre
+
             lignes.append(ligne)
 
-        df = pd.DataFrame(lignes)
         df = pd.DataFrame(lignes)
 
         df.to_csv(
@@ -101,19 +103,52 @@ class Voyage:
             encoding="cp1252",
             index=False
         )
+
+        # ----------------------------------
+        # Sauvegarde du journal
+        # ----------------------------------
+
         journal_lignes = []
 
         for jour, evenements in self.Journal.items():
             for evenement in evenements:
+
+                texte = str(evenement)
+
+                try:
+                    texte.encode("cp1252")
+
+                except UnicodeEncodeError as e:
+                    print("ERREUR ENCODAGE")
+                    print("Jour :", jour)
+                    print("Événement :", repr(texte))
+                    print(
+                        "Caractères incompatibles :",
+                        repr(texte[e.start:e.end])
+                    )
+
+                    # Remplacement des caractères incompatibles
+                    texte = texte.encode(
+                        "cp1252",
+                        errors="replace"
+                    ).decode("cp1252")
+
                 journal_lignes.append({
                     "Jour": jour,
-                    "Evenement": evenement
+                    "Evenement": texte
                 })
 
-        df_journal = pd.DataFrame(journal_lignes)
+        df_journal = pd.DataFrame(
+            journal_lignes,
+            columns=["Jour", "Evenement"]
+        )
 
         df_journal.to_csv(
-            os.path.join(config.BASE_PATH, "Journal", f"{nom}_journal.csv"),
+            os.path.join(
+                config.BASE_PATH,
+                "Journal",
+                f"{nom}_journal.csv"
+            ),
             sep=";",
             decimal=",",
             encoding="cp1252",
