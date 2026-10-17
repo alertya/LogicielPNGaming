@@ -204,6 +204,8 @@ class Navigation:
     def Tempest(self, nom_navire):
         print(nom_navire)
         navire = Navire.charger_depuis_csv(nom_navire)
+        print("Instance tempete")
+        print(navire)
         equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         texte = ""
