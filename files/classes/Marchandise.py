@@ -158,7 +158,7 @@ class Marchandise:
         Chargement= {key: value / divisor*Tonnage for key, value in Chargement.items()}
         return Chargement
 
-    def GenerateMarchandise(self, region):
+    def GenerateMarchandise(self, region,NbCanons,NbTonnage):
         de = random.randint(1, 100)
         marchandises =utils.MARCHANDISES
         ligne = marchandises[
@@ -178,8 +178,8 @@ class Marchandise:
                 ligne['PrixNormal'],
                 ligne['PrixExces']
             ) = self.CalculValeurMarchandise(
-                0,
-                0,
+                NbCanons,
+                NbTonnage,
                 ligne['ModRichesseNormal'],
                 ligne['ModRichessePort'],
                 ligne['BonusRichesseNormal'],

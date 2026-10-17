@@ -144,7 +144,7 @@ class Navire:
                     self.EquipageNom=self.Name+"_Equipage"
                     self.Marchandise = Marchandise()
 
-                    Cargaison =self.Marchandise.GenerateMarchandise(Region)
+                    Cargaison =self.Marchandise.GenerateMarchandise(Region,self.NbCanons,self.TonnageMarchandise)
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
                     self.Marchandise.Tonnage=self.TonnageMarchandise
                     self.Marchandise.Name = self.Name + "_Marchandises"
