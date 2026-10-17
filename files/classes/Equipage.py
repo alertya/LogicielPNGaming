@@ -1135,6 +1135,7 @@ class Equipage:
         if len(self.Membres) < 15:
                 Bonus -= 3
         Morale=utils.Test(self.Morale,Bonus)
+        equipage.Save()
         if Pavillon=="Noir":
             if Morale>1:
                 return f"L'équipage {self.Name} ne craint pas votre pavillon et hisse le pavillon de sa nationalité en retour, le combat naval est iminent"
@@ -1153,7 +1154,7 @@ class Equipage:
                 return f"L'équipage {self.Name} prennent les chaloupes et abandonne le navire, vous pouvez piller le navire et le prendre intact"
             if Morale < 0:
                 return f"L'équipage {self.Name} prennent les chaloupes et abandonne le navire, vous pouvez piller le navire et le prendre intact"
-        equipage.Save()
+
 
 
     ###A la fin d'une action, on remet le moral des restants à 2

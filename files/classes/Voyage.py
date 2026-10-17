@@ -402,12 +402,12 @@ class Voyage:
         elif action == "HisserPavillonRouge":
             return self.HisserPavillonRouge()
 
-        elif action == "HisserPavillonNoirr":
+        elif action == "HisserPavillonNoir":
             return self.HisserPavillonNoir()
         return ""
 
     def get_actions(self):
-        return ["JourSuivant","Commerce",'HisserPavillonNoir']
+        return ["JourSuivant","Commerce",'HisserPavillonNoir','Poursuivre','HisserPavillonRouge']
 
     import re
     import random
