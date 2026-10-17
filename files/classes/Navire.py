@@ -179,8 +179,11 @@ class Navire:
                     self.manoeuvre = self.Equipage.Manoeuvre
 
                 self.Compagnie,self.Nationalite=self.CalculCompagnie(ZoneCompagnie,Annee)
+                print("Verif Nationalite")
+                print(self.Nationalite)
+                self.Name=self.SetName()
 
-                self.Name = self.SetName()
+
 
 
     def Affichage(self):

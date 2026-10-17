@@ -582,7 +582,11 @@ class MoteurExemple(MoteurBase):
         # À remplacer par ta vraie génération (coque, canons, équipage...),
         # par exemple en appelant ta classe Navire.
         self._navires = Navire(type_navire,nom,region)
+        print("Nom sur génération : Moteur interface ligne 585")
+        print(self._navires.Name)
+        print(Nom)
         self._navires.Name=nom
+        print(self._navires.Name)
         self._navires.sauvegarder()
         return f"Navire « {self._navires.Name} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
 
