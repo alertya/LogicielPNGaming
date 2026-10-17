@@ -510,7 +510,7 @@ class Voyage:
         return f"Le navire est de {navire.CategorieNavire} avec une longueur de {navire.Longueur},un tonnage de {navire.Tonnage}, {navire.NbMats} mats et {navire.NbCanons} canons."
     def HisserPavillonNoir(self):
         navire = Navire.charger_depuis_csv(self.NavireRencontre)
-        equipage=Equipage(navire.EquipageNom)
+        equipage=Equipage(navire.NombreEquipage,"Matelot",navire.EquipageNom)
         return equipage.MoraleEquipage(navire.EquipageNom,"Noir")
     def HisserPavillonRouge(self):
         navire = Navire.charger_depuis_csv(self.NavireRencontre)

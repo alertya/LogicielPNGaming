@@ -35,7 +35,7 @@ class FormulaireRencontre(tk.Toplevel):
         tk.Button(
             self,
             text="Hisser le pavillon noir",
-            command=lambda: self._executer("PavillonNoir")
+            command=lambda: self._executer("HisserPavillonNoir")
         ).pack(fill="x", padx=20, pady=5)
 
         tk.Button(
