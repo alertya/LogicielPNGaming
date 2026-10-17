@@ -244,8 +244,9 @@ class Navigation:
 
             txt, variation_distance = self.AvarieResultat(
                 avarie,
+                navire.VitesseMoyenne,
                 nom_navire,
-                navire.VitesseMoyenne,navire.EquipageNom
+                navire.EquipageNom
             )
             texte += txt
         else:
