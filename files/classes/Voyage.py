@@ -514,5 +514,5 @@ class Voyage:
         return equipage.MoraleEquipage(navire.EquipageNom,"Noir")
     def HisserPavillonRouge(self):
         navire = Navire.charger_depuis_csv(self.NavireRencontre)
-        equipage=Equipage(navire.EquipageNom)
+        equipage=Equipage(navire.NombreEquipage,"Matelot",navire.EquipageNom)
         return equipage.MoraleEquipage(navire.EquipageNom,"Rouge")
