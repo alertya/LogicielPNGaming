@@ -582,8 +582,8 @@ class MoteurExemple(MoteurBase):
         # À remplacer par ta vraie génération (coque, canons, équipage...),
         # par exemple en appelant ta classe Navire.
         self._navires = Navire(type_navire,nom,region)
-
-        return f"Navire « {nom} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
+        self._navires.sauvegarder()
+        return f"Navire « {self._navires.Name} » ({type_navire}, origine {region}) généré et enregistré dans {chemin}."
 
     def get_actions(self, onglet, sous_onglet, instance):
 
