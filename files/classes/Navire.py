@@ -701,17 +701,18 @@ class Navire:
     def CalculScoreCombat(self):
         return self.NombreEquipage*self.StructureCoque*self.ValeurCanonnade
 
-
-
-
     def SetName(self):
 
-
-
         Liste = utils.NOMS_NAVIRE
-        print(self.Nationalite)
-        Liste = Liste[Liste["Nationalite"] == self.Nationalite]
 
+        nationalite = str(self.Nationalite).strip().casefold()
+
+        Liste = Liste[
+            Liste["Nationalite"].astype(str).str.strip().str.casefold()
+            == nationalite
+            ]
+
+        print("Nationalité recherchée :", self.Nationalite)
         print("Nb lignes :", len(Liste))
 
         if Liste.empty:
@@ -720,4 +721,4 @@ class Navire:
             )
 
         ligne = Liste.sample(n=1).iloc[0]
-        return ligne["Nom"]
+        return ligne['Nom']
