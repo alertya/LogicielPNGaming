@@ -318,6 +318,3 @@ class Marchandise:
         prixpenurie=de_rancon_exces
         return prixpenurie,prixnormal,prixexces
 
-    def Cargaison(self,NbCanon,NbTonnage,nom_marchandise):
-        if :
-            self.CalculValeurMarchandise(NbCanon,NbTonnage)
