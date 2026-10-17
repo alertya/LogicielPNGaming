@@ -145,8 +145,14 @@ class Navire:
                     self.Marchandise = Marchandise()
 
                     Cargaison =self.Marchandise.GenerateMarchandise(Region,self.NbCanons,self.TonnageMarchandise)
+                    print(Cargaison['PrixExces'])
                     self.Marchandise.AjoutMarchandise(self.Marchandise,Cargaison["Cargaison"],self.TonnageMarchandise)
-                    self.Marchandise.Tonnage=self.TonnageMarchandise
+                    self.Marchandise.PrixExces=Cargaison["PrixExces"]
+                    self.Marchandise.PrixNormal = Cargaison["PrixNormal"]
+                    self.Marchandise.PrixPenurie = Cargaison["PrixPenurie"]
+                    self.Marchandise.Tonnage = self.TonnageMarchandise
+                    self.Marchandise.Tonnage = self.TonnageMarchandise
+                    self.Marchandise.Tonnage = self.TonnageMarchandise
                     self.Marchandise.Name = self.Name + "_Marchandises"
                     self.MarchandiseNom=self.Name + "_Marchandises"
                     self.Marchandise.sauvegarder(self.Name+"_Marchandises")
