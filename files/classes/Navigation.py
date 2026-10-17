@@ -205,7 +205,7 @@ class Navigation:
         print(nom_navire)
         navire = Navire.charger_depuis_csv(nom_navire)
         print("Instance tempete")
-        print(navire)
+        print(navire.Name)
         equipage = Equipage.charger_depuis_csv(navire.EquipageNom)
 
         texte = ""
