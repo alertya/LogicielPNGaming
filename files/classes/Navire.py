@@ -128,6 +128,17 @@ class Navire:
                 df=df[df['Nom']==Type]
                 #ZoneCommerciale,ZoneCompagnie,ZoneRencontre=self.ConvertZone(Region)
                 # On récupère la première ligne correspondante sous forme de dictionnaire
+                print("Type demandé :", repr(Type))
+                print("Région demandée :", repr(Region))
+                print("Nombre de lignes après filtrage :", len(df))
+                print("Colonnes :", df.columns.tolist())
+
+                if df.empty:
+                    raise ValueError(
+                        f"Aucune donnée de navire trouvée pour "
+                        f"Type={Type!r}, Region={Region!r}"
+                    )
+
                 ligne_data = df.iloc[0].to_dict()
                 # 2. Parcours de toutes les colonnes pour mettre à jour l'objet
                 for colonne, valeur in ligne_data.items():

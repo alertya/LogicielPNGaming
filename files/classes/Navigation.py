@@ -215,7 +215,7 @@ class Navigation:
         if random.randint(1, 40) != 1:
             return texte, variation_distance
 
-        texte += "⛈️ Une tempête éclate !\n"
+        texte += "Une tempête éclate !\n"
 
         # Test des hydrographes
         meilleur_test = -99
