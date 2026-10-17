@@ -45,24 +45,6 @@ class Marchandise:
         Rancon = Rancon.iloc[0]
         return Rancon
 
-    def PossessionPieceHuit(self):
-        Base=114
-        Bonus=random.randint(0,90)
-        return Base+Bonus
-
-
-    def CalculMonetaireMarchandise(
-            self,
-            cargaison,
-            tonnage_navire,
-            nb_canons,
-            succes,
-            port):
-        BonusAleaNPort = cargaison["ModRichesseNormal"]
-        BonusNPort = cargaison["BonusRichesseNormal"]
-
-        BonusAleaPort = cargaison["ModRichessePort"]
-        BonusPort = cargaison["BonusRichessePort"]
 
     def CalculTaillePort(self,Ville):
         CompNegatif = ['Maladie', 'Vide', 'IndigeneHostile']
@@ -183,13 +165,28 @@ class Marchandise:
             (marchandises["Region"] == region)
             & (marchandises["De"] >= de)
             ]
-
         if ligne.empty:
             ligne = marchandises[
                 marchandises["Region"] == region
                 ]
+        ligne=ligne.iloc[0].to_dict()
+        Monnaie = ['marque', 'pèlerins', 'vente','esclave','monnaies']
+
+        if any(k in str(ligne['Cargaison']).lower() for k in Monnaie):
+            (
+                ligne['PrixPenurie'],
+                ligne['PrixNormal'],
+                ligne['PrixExces']
+            ) = self.CalculValeurMarchandise(
+                0,
+                0,
+                ligne['ModRichesseNormal'],
+                ligne['ModRichessePort'],
+                ligne['BonusRichesseNormal'],
+                ligne['BonusRichessePort']
+            )
         self.sauvegarder(self.Name)
-        return ligne.iloc[0].to_dict()
+        return ligne
 
     def sauvegarder(self, name=None):
 
@@ -303,3 +300,24 @@ class Marchandise:
         marchandise.sauvegarder()
 
         return "Marchandise générée."
+
+    def CalculValeurMarchandise(self,NbCanon,NbTonnage,BonusNport,BonusAleaNport,BonusPort,BonusAleaport):
+        base=random.randint(2,200)
+        base+=NbCanon
+        base+=NbTonnage/10
+        base+=BonusNport
+        base+=random.randint(1,BonusAleaNport)
+        baseport=base
+        baseport+=BonusPort
+        baseport+=random.randint(1,BonusAleaport)
+        de_rancon=utils.VALEUR_RANCON
+        de_rancon_normal=de_rancon[de_rancon['ValeurDe']>=base]['PieceDeHuit'].iloc[0]
+        de_rancon_exces = de_rancon[de_rancon['ValeurDe'] >= baseport]['PieceDeHuit'].iloc[0]
+        prixexces=de_rancon_normal
+        prixnormal=de_rancon_normal
+        prixpenurie=de_rancon_exces
+        return prixpenurie,prixnormal,prixexces
+
+    def Cargaison(self,NbCanon,NbTonnage,nom_marchandise):
+        if :
+            self.CalculValeurMarchandise(NbCanon,NbTonnage)
