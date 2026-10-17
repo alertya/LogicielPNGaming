@@ -709,7 +709,7 @@ class Navire:
 
 
         Liste = utils.NOMS_NAVIRE
-
+        print(self.Nationalite)
         Liste = Liste[Liste["Nationalite"] == self.Nationalite]
 
         print("Nb lignes :", len(Liste))
