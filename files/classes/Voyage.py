@@ -265,7 +265,6 @@ class Voyage:
         # Tempêtes
         # -------------------------------------------------
         print("Calcul tempête")
-        print(navire.Name)
         texte = navigation.Tempest(navire.Name)
 
         if texte:
@@ -278,7 +277,6 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
         print("Calcul rencontre")
-        print()
         self.NavireRencontre = self.determiner_rencontre(
             self.Annee,
             etape["Region"],
@@ -293,7 +291,7 @@ class Voyage:
             actions = NavireRencontre.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {NavireRencontre}.")
         print("Navire ajouté dans le journal")
-        print(navire.Name)
+
         # -------------------------------------------------
         # Arrivée
         # -------------------------------------------------
@@ -322,8 +320,7 @@ class Voyage:
         # -------------------------------------------------
         print("Sauvegarde")
         self.sauvegarder()
-        print(navire.Name)
-        print(navire.Name)
+
         return {
             "journal": "\n".join(journal),
             "rencontre": self.NavireRencontre is not None,
