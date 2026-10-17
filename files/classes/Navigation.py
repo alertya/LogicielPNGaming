@@ -305,16 +305,16 @@ class Navigation:
 
                 elif moyen < 0:
 
-                    _, voilure = equipage.ActionEquipage("ReduireVoilure")
+                    _, voilure = equipage.ActionEquipage("ReduireVoilure","Equipage",0)
 
                     if voilure < 2:
 
-                        _, hache = equipage.ActionEquipage("Hache")
+                        _, hache = equipage.ActionEquipage("Hache","Equipage",0)
 
                         if hache < 2:
 
-                            _, mat = equipage.ActionEquipage("Hache")
-                            _, construction = equipage.ActionEquipage("ConstructionNavire")
+                            _, mat = equipage.ActionEquipage("Hache","Equipage",0)
+                            _, construction = equipage.ActionEquipage("ConstructionNavire","Equipage",0)
 
                             distance += vitesse_moyenne * (7 - construction)
 
@@ -354,7 +354,7 @@ class Navigation:
                 essais = 0
 
                 while moyen < navire.Calibre / 6 and essais < 20:
-                    _, gain = equipage.ActionEquipage("EmbarquerMarchandise")
+                    _, gain = equipage.ActionEquipage("EmbarquerMarchandise","Equipage",0)
                     moyen += gain
                     essais += 1
 
@@ -387,7 +387,7 @@ class Navigation:
 
             elif de == 4:
 
-                _, moyen = equipage.ActionEquipage("VirementBord")
+                _, moyen = equipage.ActionEquipage("VirementBord","Equipage",0)
 
                 perte = max(0, navire.StructureVoile * 0.4 * (4 - moyen))
 
@@ -402,7 +402,7 @@ class Navigation:
 
             else:
 
-                _, moyen = equipage.ActionEquipage("ReparationsFortune")
+                _, moyen = equipage.ActionEquipage("ReparationsFortune","Equipage",0)
 
                 _, tmp = navire.PerteNavire(
                     nom_navire,
@@ -431,14 +431,14 @@ class Navigation:
 
             elif moyen < 0:
 
-                _, voilure = equipage.ActionEquipage("ReduireVoilure")
+                _, voilure = equipage.ActionEquipage("ReduireVoilure","Equipage",0)
 
                 if voilure < 2:
 
-                    _, hache = equipage.ActionEquipage("Hache")
+                    _, hache = equipage.ActionEquipage("Hache","Equipage",0)
 
                     if hache < 2:
-                        _, construction = equipage.ActionEquipage("ConstructionNavire")
+                        _, construction = equipage.ActionEquipage("ConstructionNavire","Equipage",0)
 
                         distance += vitesse_moyenne * (7 - construction)
 

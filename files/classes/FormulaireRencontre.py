@@ -12,6 +12,7 @@ class FormulaireRencontre(tk.Toplevel):
         self.on_fin = on_fin
         self.voyage=voyage
         self.navire=navire
+        self.navire_rencontre = self.voyage.NavireRencontre
         tk.Label(
             self,
             text="Vous rencontrez un navire. Que souhaitez-vous faire ?"
@@ -81,6 +82,7 @@ class FormulaireRencontre(tk.Toplevel):
         )
 
         if action == "Commercer":
+            resultat = self.voyage.Commercer()
             messagebox.showinfo("Commerce", str(resultat))
         if action == "HisserPavillonRouge":
             messagebox.showinfo("HisserPavillonRouge", str(resultat))

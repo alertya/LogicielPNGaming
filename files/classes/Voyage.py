@@ -14,6 +14,7 @@ class Voyage:
     def __init__(self, Nom="", Navire="", Annee=1715,etapes=None):
         self.Name = Nom
         self.Navire = Navire
+        self.navire_rencontre=None
         self.Annee = Annee
         self.Etapes = etapes if etapes is not None else []
         self.NavireRencontre=""
@@ -472,12 +473,23 @@ class Voyage:
 
     def Commercer(self):
 
-        navire=Navire.charger_depuis_csv(self.NavireRencontre)
-        print(navire.Compagnie)
-        if "Interlope" in navire.Compagnie or "Pirate" in navire.Compagnie:
-            return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
-        else:
-            return f"Le capitaine ne souhaite pas commercer avec vous"
+        if self.NavireRencontre is None:
+            return "Aucun navire rencontré."
+
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+
+        if navire is None:
+            return "Impossible de charger le navire rencontré."
+
+        if any(
+                compagnie in str(navire.Compagnie)
+                for compagnie in ("Interlope", "Pirate")
+        ):
+            return (
+                f"Vous pouvez commercer avec {navire.Name}."
+            )
+
+        return "Le capitaine ne souhaite pas commercer avec vous."
 
     def Poursuivre(self):
         theta=random.randint(0,360)
