@@ -306,13 +306,17 @@ class Marchandise:
         base+=NbCanon
         base+=NbTonnage/10
         base+=BonusNport
-        if BonusAleaNport != 0:
+        if BonusAleaNport > 0:
             base+=random.randint(1,int(BonusAleaNport))
+        if BonusAleaNport<0:
+            baseport+=random.uniform(int(BonusAleaport),-1)
         baseport=base
         baseport+=BonusPort
         print(BonusAleaport)
-        if BonusAleaport!=0:
+        if BonusAleaport>0:
             baseport+=random.randint(1,int(BonusAleaport))
+        if BonusAleaport<0:
+            baseport+=random.uniform(int(BonusAleaport),-1)
         de_rancon=utils.VALEUR_RANCON
         de_rancon_normal=de_rancon[de_rancon['ValeurDe']>=base]['PieceDeHuit'].iloc[0]
         de_rancon_exces = de_rancon[de_rancon['ValeurDe'] >= baseport]['PieceDeHuit'].iloc[0]

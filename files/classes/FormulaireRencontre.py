@@ -3,16 +3,16 @@ from tkinter import messagebox
 
 class FormulaireRencontre(tk.Toplevel):
 
-    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None):
+    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None,navire_rencontre=None):
         super().__init__(parent)
 
         self.title("Rencontre en mer")
         self.instance=instance
         self.moteur = moteur
         self.on_fin = on_fin
-        self.voyage=voyage
-        self.navire=navire
-        self.navire_rencontre = self.voyage.NavireRencontre
+        self.voyage = voyage
+        self.navire = navire
+        self.navire_rencontre = navire_rencontre
         tk.Label(
             self,
             text="Vous rencontrez un navire. Que souhaitez-vous faire ?"

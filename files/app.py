@@ -482,7 +482,9 @@ class App(tk.Tk):
                 FormulaireRencontre(
                     self,
                     moteur=self.moteur,
-                    navire=resultat["navire_rencontre"].Name
+                    voyage=resultat["voyage"],
+                    navire=resultat['navire'],
+                    navire_rencontre=resultat["navire_rencontre"]
                 )
 
         if isinstance(resultat, dict):

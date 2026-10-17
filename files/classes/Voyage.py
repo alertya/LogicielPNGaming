@@ -325,7 +325,9 @@ class Voyage:
         return {
             "journal": "\n".join(journal),
             "rencontre": self.NavireRencontre is not None,
-            "navire_rencontre": self.NavireRencontre
+            "navire_rencontre": self.NavireRencontre,
+            "voyage": self.Name,
+            "navire": self.Navire
         }
 
     def AfficherVoyage(self):
