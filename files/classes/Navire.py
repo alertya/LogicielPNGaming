@@ -536,7 +536,7 @@ class Navire:
 
         pertes = int(pertes)
         texte = ""
-
+        navire=Navire.charger_depuis_csv(navire)
         if type_munition == "Voile":
 
             navire.StructureVoile = max(
@@ -613,7 +613,7 @@ class Navire:
         if navire1.Equipage.NombreMembres()> 0:
 
             perte1, temp = self.PerteNavire(
-                navire1,
+                navire1.Name,
                 degat2,
                 munition2
             )
@@ -632,7 +632,7 @@ class Navire:
         if navire2.Equipage.NombreMembres() > 0:
 
             perte2, temp = self.PerteNavire(
-                navire2,
+                navire2.Name,
                 degat1,
                 munition1
             )
@@ -703,22 +703,27 @@ class Navire:
 
     def SetName(self):
 
-        Liste = utils.NOMS_NAVIRE
+        liste = utils.NOMS_NAVIRE.copy()
 
         nationalite = str(self.Nationalite).strip().casefold()
 
-        Liste = Liste[
-            Liste["Nationalite"].astype(str).str.strip().str.casefold()
+        liste = liste[
+            liste["Nationalite"]
+            .astype(str)
+            .str.strip()
+            .str.casefold()
             == nationalite
             ]
 
-        print("Nationalité recherchée :", self.Nationalite)
-        print("Nb lignes :", len(Liste))
-
-        if Liste.empty:
+        if liste.empty:
             raise ValueError(
-                f"Aucun nom de navire pour la nationalité {self.Nationalite!r}"
+                f"Aucun nom de navire pour la nationalité "
+                f"{self.Nationalite!r}"
             )
 
-        ligne = Liste.sample(n=1).iloc[0]
-        return ligne['Nom']
+        nom = liste.sample(n=1).iloc[0]["Nom"]
+
+        print("Nationalité :", self.Nationalite)
+        print("Nom généré :", nom)
+
+        return nom
