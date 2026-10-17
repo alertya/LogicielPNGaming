@@ -65,7 +65,8 @@ class FormulaireRencontre(tk.Toplevel):
             "JourSuivant",
             "Commercer",
             "Poursuivre",
-            "PavillonNoir",
+            "HisserPavillonNoir",
+            "HisserPavillonRouge"
             "Canonner",
             "Fuir"
         ]
@@ -81,7 +82,10 @@ class FormulaireRencontre(tk.Toplevel):
 
         if action == "Commercer":
             messagebox.showinfo("Commerce", str(resultat))
-
+        if action == "HisserPavillonRouge":
+            messagebox.showinfo("HisserPavillonRouge", str(resultat))
+        if action == "HisserPavillonNoir":
+            messagebox.showinfo("HisserPavillonNoir", str(resultat))
         if self.on_fin:
             self.on_fin()
 
