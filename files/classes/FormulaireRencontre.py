@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+from classes.Voyage import Voyage
+from classes.Navire import Navire
 
 class FormulaireRencontre(tk.Toplevel):
 
@@ -10,7 +12,7 @@ class FormulaireRencontre(tk.Toplevel):
         self.instance=instance
         self.moteur = moteur
         self.on_fin = on_fin
-        self.voyage = voyage
+        self.voyage = Voyage.charger_depuis_csv(voyage)
         self.navire = navire
         self.navire_rencontre = navire_rencontre
         tk.Label(

@@ -623,11 +623,24 @@ class MoteurExemple(MoteurBase):
     def executer_action(self, onglet, sous_onglet, instance, action, valeurs=None):
 
         if onglet == "Journal de bord":
-            if isinstance(instance, Voyage):
-                print("C'est bien une instance Voyage")
-            voyage = Voyage.charger_depuis_csv(instance)
 
-            return voyage.executer_action(action, valeurs)
+            if isinstance(instance, Voyage):
+                print("Instance Voyage déjà chargée")
+                voyage_obj = instance
+
+            elif isinstance(instance, str):
+                print("Chargement du voyage :", instance)
+                voyage_obj = Voyage.charger_depuis_csv(instance)
+
+            else:
+                raise TypeError(
+                    f"Type de voyage invalide : {type(instance)}"
+                )
+
+            if voyage_obj is None:
+                raise ValueError("Impossible de charger le voyage")
+
+            return voyage_obj.executer_action(action, valeurs)
 
         if onglet == "Equipage":
             if isinstance(instance, Equipage):
