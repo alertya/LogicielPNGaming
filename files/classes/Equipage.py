@@ -514,10 +514,13 @@ class Equipage:
         Moyen = Total / len(Resultats)
 
         return Total, Moyen
+
     def Tues(self, Morts):
 
-        if Morts < 0:
-            Morts = 0
+        Morts = max(0, int(Morts))
+
+        # Limiter les morts à l'effectif réel
+        Morts = min(Morts, len(self.Membres))
 
         if Morts == 0:
             return 0

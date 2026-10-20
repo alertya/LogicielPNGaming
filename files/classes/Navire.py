@@ -544,11 +544,16 @@ class Navire:
         navire_attaquant.sauvegarder()
         return degats, recharge
 
-    def PerteNavire(self,navire, pertes, type_munition):
+    def PerteNavire(self, navire, pertes, type_munition):
 
-        pertes = int(pertes)
+        pertes = max(0, int(pertes))
         texte = ""
-        navire=Navire.charger_depuis_csv(navire)
+
+        navire = Navire.charger_depuis_csv(navire)
+
+        if navire is None:
+            raise ValueError("Impossible de charger le navire.")
+
         if type_munition == "Voile":
 
             navire.StructureVoile = max(
@@ -557,7 +562,9 @@ class Navire:
             )
 
             navire.Equipage.Tues(pertes)
-            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+            navire.NombreEquipage = max(
+                0, navire.NombreEquipage - pertes
+            )
 
             texte += f"{navire.Name} a perdu {pertes} hommes et des voiles.\n"
 
@@ -569,16 +576,23 @@ class Navire:
             )
 
             navire.Equipage.Tues(pertes)
-            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+            navire.NombreEquipage = max(
+                0, navire.NombreEquipage - pertes
+            )
 
             texte += f"{navire.Name} a perdu {pertes} hommes et des points de coque.\n"
 
         elif type_munition == "Mitraille":
 
             navire.Equipage.Tues(pertes)
-            navire.NombreEquipage = max(0, navire.NombreEquipage - pertes)
+            navire.NombreEquipage = max(
+                0, navire.NombreEquipage - pertes
+            )
 
             texte += f"{navire.Name} a perdu {pertes} hommes.\n"
+
+        else:
+            raise ValueError(f"Type de munition inconnu : {type_munition}")
 
         if navire.StructureCoque <= 0:
             texte += f"{navire.Name} a coulé.\n"
@@ -586,26 +600,31 @@ class Navire:
         if navire.StructureVoile <= 0:
             texte += f"{navire.Name} a dématé.\n"
 
+        # Enregistrer les objets réellement modifiés
         navire.sauvegarder()
         navire.Equipage.Save()
+
         return pertes, texte
 
-    def CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
-
+    def CombatNaval(self, navire1, munition1, bonus1,
+                    navire2, munition2, bonus2):
 
         texte = ""
-        navire1=self.charger_depuis_csv(navire1)
-        navire2=self.charger_depuis_csv(navire2)
+
+        # Chargement initial des navires
+        navire1 = self.charger_depuis_csv(navire1)
+        navire2 = self.charger_depuis_csv(navire2)
+
+        if navire1 is None or navire2 is None:
+            raise ValueError("Impossible de charger un des deux navires.")
+
+        # Calcul des dégâts infligés par chaque navire
         degat1, recharge1 = self.DegatsNavire(
-            navire1,
-            navire2,
-            munition1,bonus1
+            navire1, navire2, munition1, bonus1
         )
 
         degat2, recharge2 = self.DegatsNavire(
-            navire2,
-            navire1,
-            munition2,bonus2
+            navire2, navire1, munition2, bonus2
         )
 
         texte += (
@@ -618,11 +637,13 @@ class Navire:
             "pour recharger sa prochaine batterie.\n"
         )
 
-        print(f"{navire1.Name} a besoin de {recharge1} tours pour recharger.")
-        print(f"{navire2.Name} a besoin de {recharge2} tours pour recharger.")
+        perte1 = 0
+        perte2 = 0
 
-        # Le navire 1 subit les dégâts du navire 2
-        if navire1.Equipage.NombreMembres()> 0:
+        # ------------------------------------
+        # Dégâts subis par le navire 1
+        # ------------------------------------
+        if navire1.Equipage.NombreMembres() > 0:
 
             perte1, temp = self.PerteNavire(
                 navire1.Name,
@@ -632,15 +653,30 @@ class Navire:
 
             texte += temp + "\n"
 
-            texte += navire1.Equipage.Attitude(
-                -perte1 / navire1.Equipage.NombreMembres() * 50
-            )[1]
+            # Récupérer les dégâts sauvegardés par PerteNavire
+            navire1 = self.charger_depuis_csv(navire1.Name)
+
+            survivants = navire1.Equipage.NombreMembres()
+
+            if survivants > 0:
+                resultat = navire1.Equipage.Attitude(
+                    -perte1 / survivants * 50
+                )
+
+                texte += resultat[1]
+
+                # Sauvegarder les changements éventuels de moral
+                navire1.Equipage.Save()
+
+            else:
+                texte += f"L'équipage de {navire1.Name} a été décimé.\n"
 
         else:
+            texte += f"L'équipage de {navire1.Name} est déjà décimé.\n"
 
-            texte += f"{navire1.Name} a été décimé.\n"
-
-        # Le navire 2 subit les dégâts du navire 1
+        # ------------------------------------
+        # Dégâts subis par le navire 2
+        # ------------------------------------
         if navire2.Equipage.NombreMembres() > 0:
 
             perte2, temp = self.PerteNavire(
@@ -648,22 +684,34 @@ class Navire:
                 degat1,
                 munition1
             )
-            # Le navire 2 subit les dégâts du navire 1
-        if navire2.Equipage.NombreMembres() > 0:
+
             texte += temp + "\n"
 
-            texte += navire2.Equipage.Attitude(
-                -perte2 / navire2.Equipage.NombreMembres() * 50
-            )[1]
+            # Récupérer les dégâts sauvegardés par PerteNavire
+            navire2 = self.charger_depuis_csv(navire2.Name)
 
+            survivants = navire2.Equipage.NombreMembres()
+
+            if survivants > 0:
+                resultat = navire2.Equipage.Attitude(
+                    -perte2 / survivants * 50
+                )
+
+                texte += resultat[1]
+
+                navire2.Equipage.Save()
+
+            else:
+                texte += f"L'équipage de {navire2.Name} a été décimé.\n"
 
         else:
+            texte += f"L'équipage de {navire2.Name} est déjà décimé.\n"
 
-            texte += f"{navire2.Name} a été décimé.\n"
-        navire1.sauvegarder()
-        navire2.sauvegarder()
-        texte +=f"{navire1.Name} a perdu {perte1} hommes"
-        texte +=f"{navire2.Name} a perdu {perte2} hommes"
+        # ------------------------------------
+        # Résumé du combat
+        # ------------------------------------
+        texte += f"\n{navire1.Name} a perdu {perte1} hommes.\n"
+        texte += f"{navire2.Name} a perdu {perte2} hommes.\n"
 
         return texte
 
