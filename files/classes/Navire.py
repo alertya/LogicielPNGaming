@@ -495,11 +495,9 @@ class Navire:
             return self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
 
         elif action == "Reparer":
-            print(instance)
             Cout,TempsJour =self.Reparer(valeurs['Navire1'])
             return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
         elif action == "Poursuivre":
-            print(instance)
             Cout,TempsJour =self.CoursePoursuite(valeurs['Navire1'],valeurs['Navire2'],valeurs['Distance'],valeurs['HeureDeRencontre'])
             return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
 
@@ -792,3 +790,13 @@ class Navire:
         print("Nom généré :", nom)
 
         return nom
+
+
+    def CoursePoursuite(self,Navire1,Navire2,Distance, Heure):
+        Navire1=self.charger_depuis_csv(Navire1)
+        Navire2=self.charger_depuis_csv(Navire2)
+
+        if Distance<1:
+            return f"Vous rattrapez le navire avant la tombée de la nuit, vous pouvez entamer une bataille naval dans l'onglet Navire/Action entre {Navire1.Name} et {Navire2.Name}"
+        else:
+            return f"Vous ne rattrapez pas le navire avant la tombée de la nuit,  {Navire2.Name} s'enfuit à l'horizon"
