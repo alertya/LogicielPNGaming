@@ -981,7 +981,16 @@ class FormulaireAction(tk.Toplevel):
                 text="Navire 2",
                 font=("Arial", 10, "bold")
             ).grid(row=0, column=1, padx=10, pady=10)
-
+            tk.Label(
+                self,
+                text="Distance (1d8 Milles nautiques)",
+                font=("Arial", 10, "bold")
+            ).grid(row=2, column=0, padx=10, pady=10)
+            tk.Label(
+                self,
+                text="Heure de rencontre (1d12)+6)",
+                font=("Arial", 10, "bold")
+            ).grid(row=4, column=0, padx=10, pady=10)
             # ---------------- Equipage 1 ----------------
 
             self.variables["Navire1"] = tk.StringVar()
@@ -993,27 +1002,15 @@ class FormulaireAction(tk.Toplevel):
                 state="readonly"
             ).grid(row=1, column=0, padx=10, pady=5)
 
-            self.variables["Munition1"] = tk.StringVar()
 
-            ttk.Combobox(
-                self,
-                textvariable=self.variables["Munition1"],
-                values=[
-                    "Mitraille",
-                    "Coque",
-                    "Voile"
-                ],
-                state="readonly"
-            ).grid(row=2, column=0, padx=10, pady=5)
-
-            self.variables["Bonus1"] = tk.IntVar(value=0)
+            self.variables["Distance"] = tk.IntVar(value=0)
 
             tk.Spinbox(
                 self,
                 from_=-10,
                 to=10,
-                textvariable=self.variables["Bonus1"]
-            ).grid(row=3, column=0, padx=10, pady=5)
+                textvariable=self.variables["Distance"]
+            ).grid(row=2, column=1, padx=10, pady=5)
 
             # ---------------- Equipage 2 ----------------
 
@@ -1026,27 +1023,15 @@ class FormulaireAction(tk.Toplevel):
                 state="readonly"
             ).grid(row=1, column=1, padx=10, pady=5)
 
-            self.variables["Munition2"] = tk.StringVar()
 
-            ttk.Combobox(
-                self,
-                textvariable=self.variables["Munition2"],
-                values=[
-                    "Mitraille",
-                    "Coque",
-                    "Voile"
-                ],
-                state="readonly"
-            ).grid(row=2, column=1, padx=10, pady=5)
-
-            self.variables["Bonus2"] = tk.IntVar(value=0)
+            self.variables["HeureDeRencontre"] = tk.IntVar(value=0)
 
             tk.Spinbox(
                 self,
                 from_=-10,
                 to=10,
-                textvariable=self.variables["Bonus2"]
-            ).grid(row=3, column=1, padx=10, pady=5)
+                textvariable=self.variables["HeureDeRencontre"]
+            ).grid(row=4, column=1, padx=10, pady=5)
 
             # ---------------- Validation ----------------
 
@@ -1054,7 +1039,7 @@ class FormulaireAction(tk.Toplevel):
                 self,
                 text="Valider",
                 command=self.valider
-            ).grid(row=4, column=0, columnspan=2, pady=20)
+            ).grid(row=5, column=0, columnspan=2, pady=20)
 
     def recuperer_valeurs(self):
         return {
