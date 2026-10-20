@@ -421,7 +421,9 @@ class Navire:
         if df.empty:
             return None
         Type=df['Bateau'].iloc[0]
+        print(Type)
         Type,garde_cote=Navire.CheckNavire(Type,zone)
+        print(Type)
         return Type,garde_cote
 
     @staticmethod

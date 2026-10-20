@@ -179,15 +179,18 @@ class Maladie:
         Text+=self.impact_famine(NomEquipage)
 
         Text+=self.test_maladie(NomEquipage,NbJour,1)
+        print(NomEquipage)
+
         Text+=self.ReconnaissanceMaladie(NomEquipage)
         return Text
     @staticmethod
     def ReconnaissanceMaladie(nom_equipage):
         equipage = Equipage.charger_depuis_csv(nom_equipage)
-
+        if equipage.HommesValides()==0:
+            return "Il n'ya plus personnes dans l'équipage, il a été décimé"
         membres = equipage.Membres
         if not membres:
-            return False
+            return "Il n'ya plus personnes dans l'équipage, il a été décimé"
 
         personnes_a_inspecter = 0
 
