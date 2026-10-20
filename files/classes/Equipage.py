@@ -945,7 +945,7 @@ class Equipage:
                 soins_restants -= 1
         for Member in self.Membres:
             Member.PVMax=Member.PVMax
-        self.Save(self.Name)
+        self.Save()
         return self
     def RepartCompetence(self, Seuil, Lists):
 
@@ -1228,7 +1228,7 @@ class Equipage:
 
             equipage.SoinsEquipage()
 
-            equipage.Save(instance)
+            equipage.Save()
 
             return f"Soins effectués pour {equipage.Name}"
 

@@ -474,6 +474,7 @@ class Navire:
         return proba
     def Reparer(self,navire):
         navire=self.charger_depuis_csv(navire)
+
         ReparationCoque=navire.StructureCoque/navire.StructureCoqueMax
         ReparationVoile=navire.StructureVoile/navire.StructureVoileMax
         CoutReparation=navire.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
@@ -481,6 +482,7 @@ class Navire:
         navire.StructureCoque=navire.StructureCoqueMax
         CompCharpentier=utils.Compute(1)
         TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
+        navire.sauvegarder()
         return CoutReparation,TempsEnJourReparation
     def get_actions(self):
         return ["Poursuivre", "CombatNaval", "Reparer"]
@@ -491,12 +493,15 @@ class Navire:
 
         elif action == "CombatNaval":
             return self.CombatNaval(valeurs['Navire1'],valeurs['Munition1'],valeurs['Bonus1'],valeurs['Navire2'],valeurs['Munition2'],valeurs['Bonus2'])
-            self.sauvegarder()
+
         elif action == "Reparer":
-
-            Cout,TempsJour =self.Reparer(instance)
+            print(instance)
+            Cout,TempsJour =self.Reparer(valeurs['Navire1'])
             return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
-
+        elif action == "Poursuivre":
+            print(instance)
+            Cout,TempsJour =self.CoursePoursuite(valeurs['Navire1'],valeurs['Navire2'],valeurs['Distance'],valeurs['HeureDeRencontre'])
+            return f"Reparation  effectuée pour un cout de {Cout} et il faut {TempsJour} jours d'escale."
 
     def DegatsNavire(self,navire_attaquant, navire_attaque, type_munition,bonus):
         bonus_tir = navire_attaque.CategorieNavire - 3
