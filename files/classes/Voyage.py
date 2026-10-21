@@ -6,6 +6,7 @@ import random
 import config
 import utils
 from classes.Navire import Navire
+from classes.Equipage import Equipage
 from classes.Navigation import Navigation
 from classes.Maladie import Maladie
 class Voyage:
@@ -13,6 +14,7 @@ class Voyage:
     def __init__(self, Nom="", Navire="", Annee=1715,etapes=None):
         self.Name = Nom
         self.Navire = Navire
+        self.navire_rencontre=None
         self.Annee = Annee
         self.Etapes = etapes if etapes is not None else []
         self.NavireRencontre=""
@@ -72,13 +74,15 @@ class Voyage:
             "Journal": journal,
             "Étapes": lignes
         }
+
     def sauvegarder(self, nom=None):
         nom = nom or self.Name
 
         lignes = []
 
         for i, etape in enumerate(self.Etapes, start=1):
-            ligne = etape.copy()  # copie du dictionnaire de l'étape
+            ligne = etape.copy()
+
             ligne["NomTrajet"] = nom
             ligne["Navire"] = self.Navire
             ligne["Annee"] = self.Annee
@@ -86,10 +90,10 @@ class Voyage:
             ligne["Jour"] = self.Jour
             ligne["EtapeCourante"] = self.EtapeCourante
             ligne["Avancement"] = self.Avancement
-            ligne['NavireRencontre']=self.NavireRencontre
+            ligne["NavireRencontre"] = self.NavireRencontre
+
             lignes.append(ligne)
 
-        df = pd.DataFrame(lignes)
         df = pd.DataFrame(lignes)
 
         df.to_csv(
@@ -99,19 +103,52 @@ class Voyage:
             encoding="cp1252",
             index=False
         )
+
+        # ----------------------------------
+        # Sauvegarde du journal
+        # ----------------------------------
+
         journal_lignes = []
 
         for jour, evenements in self.Journal.items():
             for evenement in evenements:
+
+                texte = str(evenement)
+
+                try:
+                    texte.encode("cp1252")
+
+                except UnicodeEncodeError as e:
+                    print("ERREUR ENCODAGE")
+                    print("Jour :", jour)
+                    print("Événement :", repr(texte))
+                    print(
+                        "Caractères incompatibles :",
+                        repr(texte[e.start:e.end])
+                    )
+
+                    # Remplacement des caractères incompatibles
+                    texte = texte.encode(
+                        "cp1252",
+                        errors="replace"
+                    ).decode("cp1252")
+
                 journal_lignes.append({
                     "Jour": jour,
-                    "Evenement": evenement
+                    "Evenement": texte
                 })
 
-        df_journal = pd.DataFrame(journal_lignes)
+        df_journal = pd.DataFrame(
+            journal_lignes,
+            columns=["Jour", "Evenement"]
+        )
 
         df_journal.to_csv(
-            os.path.join(config.BASE_PATH, "Journal", f"{nom}_journal.csv"),
+            os.path.join(
+                config.BASE_PATH,
+                "Journal",
+                f"{nom}_journal.csv"
+            ),
             sep=";",
             decimal=",",
             encoding="cp1252",
@@ -217,6 +254,7 @@ class Voyage:
         # Chargement du navire
         # -------------------------------------------------
         print("Chargement du navire")
+        print(self.Navire)
         navire = Navire.charger_depuis_csv(self.Navire)
         navigation = Navigation(navire,False)
         # -------------------------------------------------
@@ -322,7 +360,9 @@ class Voyage:
         return {
             "journal": "\n".join(journal),
             "rencontre": self.NavireRencontre is not None,
-            "navire_rencontre": self.NavireRencontre
+            "navire_rencontre": self.NavireRencontre,
+            "voyage": self.Name,
+            "navire": self.Navire
         }
 
     def AfficherVoyage(self):
@@ -397,12 +437,15 @@ class Voyage:
 
         elif action == "Poursuivre":
             return self.Poursuivre()
+        elif action == "HisserPavillonRouge":
+            return self.HisserPavillonRouge()
 
-
+        elif action == "HisserPavillonNoir":
+            return self.HisserPavillonNoir()
         return ""
 
     def get_actions(self):
-        return ["JourSuivant"]
+        return ["JourSuivant","Commerce",'HisserPavillonNoir','Poursuivre','HisserPavillonRouge']
 
     import re
     import random
@@ -432,10 +475,9 @@ class Voyage:
                 navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
                 navire_rencontre.GardeCote = garde_cote
                 print("Initialisation  navire marchand réalisé")
-                Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
+
                 print("Calcul compagnie  navire marchand réalisé")
-                navire_rencontre.Compagnie = Compagnie
-                navire_rencontre.Nationalite = Nationalite
+
                 navire_rencontre.sauvegarder()
                 navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
                 NomNavireRencontre = navire_rencontre.Name
@@ -450,14 +492,13 @@ class Voyage:
             print("Determination type navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Initialisation  navire aventurier réalisé")
-            Compagnie,Nationalite = navire_rencontre.CalculCompagnie(ZoneCompagnie, annee)
+
             navire_rencontre.GardeCote=garde_cote
             print("Calcul compagnie  navire aventurier réalisé")
             navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
             print("Navire créé :", navire_rencontre)
 
             navire_rencontre.Compagnie = "Pirate"
-            navire_rencontre.Nationalite=Nationalite
             navire_rencontre.sauvegarder()
             navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
             self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
@@ -467,12 +508,23 @@ class Voyage:
 
     def Commercer(self):
 
-        navire=Navire.charger_depuis_csv(self.NavireRencontre)
-        print(navire.Compagnie)
-        if "Interlope" in navire.Compagnie or "Pirate" in navire.Compagnie:
-            return f"Vous pouvez commercer avec {navire.Name}, veuillez vous rendre dans l'onglet Marchandise, actions et\n  vous pouvez vendre  dans {navire.Marchandise.Name} en cours Exces et acheter des marchandises au {navire.Marchandise.Name} à 80% du cout normal"
-        else:
-            return f"Le capitaine ne souhaite pas commercer avec vous"
+        if self.NavireRencontre is None:
+            return "Aucun navire rencontré."
+
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+
+        if navire is None:
+            return "Impossible de charger le navire rencontré."
+
+        if any(
+                compagnie in str(navire.Compagnie)
+                for compagnie in ("Interlope", "Pirate")
+        ):
+            return (
+                f"Vous pouvez commercer avec {navire.Name}."
+            )
+
+        return "Le capitaine ne souhaite pas commercer avec vous."
 
     def Poursuivre(self):
         theta=random.randint(0,360)
@@ -489,3 +541,11 @@ class Voyage:
         navire = Navire.charger_depuis_csv(name)
 
         return f"Le navire est de {navire.CategorieNavire} avec une longueur de {navire.Longueur},un tonnage de {navire.Tonnage}, {navire.NbMats} mats et {navire.NbCanons} canons."
+    def HisserPavillonNoir(self):
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        equipage=Equipage(navire.NombreEquipage,"Matelot",navire.EquipageNom)
+        return equipage.MoraleEquipage(navire.EquipageNom,"Noir")
+    def HisserPavillonRouge(self):
+        navire = Navire.charger_depuis_csv(self.NavireRencontre)
+        equipage=Equipage(navire.NombreEquipage,"Matelot",navire.EquipageNom)
+        return equipage.MoraleEquipage(navire.EquipageNom,"Rouge")

@@ -1,17 +1,20 @@
 import tkinter as tk
 from tkinter import messagebox
+from classes.Voyage import Voyage
+from classes.Navire import Navire
 
 class FormulaireRencontre(tk.Toplevel):
 
-    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None):
+    def __init__(self, parent, moteur, voyage,navire, on_fin=None,instance=None,navire_rencontre=None):
         super().__init__(parent)
 
         self.title("Rencontre en mer")
         self.instance=instance
         self.moteur = moteur
         self.on_fin = on_fin
-        self.voyage=voyage
-        self.navire=navire
+        self.voyage = Voyage.charger_depuis_csv(voyage)
+        self.navire = navire
+        self.navire_rencontre = navire_rencontre
         tk.Label(
             self,
             text="Vous rencontrez un navire. Que souhaitez-vous faire ?"
@@ -32,7 +35,7 @@ class FormulaireRencontre(tk.Toplevel):
         tk.Button(
             self,
             text="Hisser le pavillon noir",
-            command=lambda: self._executer("PavillonNoir")
+            command=lambda: self._executer("HisserPavillonNoir")
         ).pack(fill="x", padx=20, pady=5)
 
         tk.Button(
@@ -65,7 +68,8 @@ class FormulaireRencontre(tk.Toplevel):
             "JourSuivant",
             "Commercer",
             "Poursuivre",
-            "PavillonNoir",
+            "HisserPavillonNoir",
+            "HisserPavillonRouge"
             "Canonner",
             "Fuir"
         ]
@@ -80,8 +84,12 @@ class FormulaireRencontre(tk.Toplevel):
         )
 
         if action == "Commercer":
+            resultat = self.voyage.Commercer()
             messagebox.showinfo("Commerce", str(resultat))
-
+        if action == "HisserPavillonRouge":
+            messagebox.showinfo("HisserPavillonRouge", str(resultat))
+        if action == "HisserPavillonNoir":
+            messagebox.showinfo("HisserPavillonNoir", str(resultat))
         if self.on_fin:
             self.on_fin()
 

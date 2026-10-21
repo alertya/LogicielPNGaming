@@ -49,7 +49,6 @@ ONGLETS: Dict[str, List[str]] = {
     "Navire": ["Afficher", "Générer", "Actions"],
     "Equipage": ["Afficher", "Générer", "Recruter", "Actions"],
     "Marchandises": ["Afficher", "Générer", "Actions"],
-    "Escale": ["Afficher", "Générer", "Actions"],
     "PNJ": ["Afficher", "Générer", "Actions"],
     "Infirmerie": ["Afficher", "Actions"],
     "Reset": ["Actions"],
@@ -483,7 +482,9 @@ class App(tk.Tk):
                 FormulaireRencontre(
                     self,
                     moteur=self.moteur,
-                    navire=resultat["navire_rencontre"].Name
+                    voyage=resultat["voyage"],
+                    navire=resultat['navire'],
+                    navire_rencontre=resultat["navire_rencontre"]
                 )
 
         if isinstance(resultat, dict):
