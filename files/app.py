@@ -85,7 +85,7 @@ class App(tk.Tk):
 
         self._construire_layout()
         self.selectionner_onglet(self.onglet_actuel)
-
+        self.file_rencontres = []
     # ------------------------------------------------------------------ #
     # Construction du squelette de la fenêtre
     # ------------------------------------------------------------------ #
@@ -469,23 +469,19 @@ class App(tk.Tk):
         )
         if action == "JourSuivant" and isinstance(resultat, dict):
 
-            self.afficher_texte(resultat["journal"])
-            if resultat.get("rencontre"):
-                FormulaireRencontre(
-                    self,
-                    moteur=self.moteur,
-                    instance=self.instance_actuelle
-                )
+            self.file_rencontres = []
 
-            if resultat["navire_rencontre"] is not None:
-                print("ExecutionResultat")
-                FormulaireRencontre(
-                    self,
-                    moteur=self.moteur,
-                    voyage=resultat["voyage"],
-                    navire=resultat['navire'],
-                    navire_rencontre=resultat["navire_rencontre"]
-                )
+            marchand = resultat.get("navire_rencontre_marchand")
+            aventurier = resultat.get("navire_rencontre_aventurier")
+
+            if marchand:
+                self.file_rencontres.append(("Marchand", marchand))
+
+            if aventurier:
+                self.file_rencontres.append(("Aventurier", aventurier))
+
+            if self.file_rencontres:
+                self.afficher_rencontre_suivante()
 
         if isinstance(resultat, dict):
             self.statut_var.set(resultat["journal"])
@@ -612,6 +608,7 @@ class App(tk.Tk):
 
         self.statut_var.set(message)
         self.rafraichir_instances()
+        self.afficher_rencontre_suivante()
 
     def _bataille_terrestre(self, nomAllie: str, nomAdverse: str, CompAllie: str,CompAdverse: str, BonusAllie: int,BonusAdverse:int):
         message = self.moteur.BatailleTerrestre(nomAllie, nomAdverse, CompAllie, CompAdverse,BonusAllie,BonusAdverse)
@@ -789,22 +786,43 @@ class App(tk.Tk):
 
     def _jour_suivant(self):
 
-
         resultat = self.moteur.executer_action(
-                "Journal de bord",
-                "Journal",
-                self.instance_actuelle,
-                "JourSuivant"
-            )
+            "Journal de bord",
+            "Actions",
+            self.instance_actuelle,
+            "JourSuivant",
+            {}
+        )
 
+        if not isinstance(resultat, dict):
+            self.statut_var.set(str(resultat))
+            return
 
-        if resultat.get("navire_rencontre"):
-            FormulaireRencontre(
-                self,
-                moteur=self.moteur,
-                voyage=self.instance_actuelle,
-                navire=resultat["navire_rencontre"]
-            )
+        # Affichage du journal
+        self.statut_var.set(resultat.get("journal", ""))
+        self.nom_voyage_rencontre = resultat.get(
+            "voyage",
+            self.instance_actuelle
+        )
+        # Construction de la file de rencontres
+        self.file_rencontres = []
+
+        marchand = resultat.get("navire_rencontre_marchand")
+        aventurier = resultat.get("navire_rencontre_aventurier")
+
+        if marchand:
+            self.file_rencontres.append(("Marchand", marchand))
+
+        if aventurier:
+            self.file_rencontres.append(("Aventurier", aventurier))
+
+        print("FILE DE RENCONTRES :", self.file_rencontres)
+
+        self.rafraichir_instances()
+
+        # Ouverture du premier formulaire
+        if self.file_rencontres:
+            self.afficher_rencontre_suivante()
     def _ouvrir_rencontre(self):
         FormulaireRencontre(
             self,
@@ -907,4 +925,38 @@ class App(tk.Tk):
 
         self.selectionner_sous_onglet("Afficher")
 
+    def ouvrir_formulaire_rencontre(self, nom_voyage, nom_navire, type_rencontre):
 
+        print("RENCONTRE :", type_rencontre)
+        print("VOYAGE :", nom_voyage)
+        print("NAVIRE :", nom_navire)
+
+        formulaire = FormulaireRencontre(
+            parent=self,
+            moteur=self.moteur,
+            voyage=nom_voyage,
+            navire=nom_navire,
+            on_fin=self.afficher_rencontre_suivante,
+            navire_rencontre=type_rencontre
+        )
+
+    def afficher_rencontre_suivante(self):
+
+        if not self.file_rencontres:
+            self.rencontre_en_cours = False
+            print("Toutes les rencontres sont terminées.")
+            return
+
+        type_rencontre, nom_navire = self.file_rencontres.pop(0)
+
+        self.rencontre_en_cours = True
+
+        print("Voyage :", self.nom_voyage_rencontre)
+        print("Type de rencontre :", type_rencontre)
+        print("Navire rencontré :", nom_navire)
+
+        self.ouvrir_formulaire_rencontre(
+            self.nom_voyage_rencontre,
+            nom_navire,
+            type_rencontre
+        )

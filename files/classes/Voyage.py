@@ -17,7 +17,8 @@ class Voyage:
         self.navire_rencontre=None
         self.Annee = Annee
         self.Etapes = etapes if etapes is not None else []
-        self.NavireRencontre=""
+        self.NavireRencontreAventurier=""
+        self.NavireRencontreMarchand= ""
         self.EtapeCourante = 0
         self.Avancement = 0
         self.Jour = 1
@@ -90,7 +91,8 @@ class Voyage:
             ligne["Jour"] = self.Jour
             ligne["EtapeCourante"] = self.EtapeCourante
             ligne["Avancement"] = self.Avancement
-            ligne["NavireRencontre"] = self.NavireRencontre
+            ligne["NavireRencontreAventurier"] = self.NavireRencontreAventurier
+            ligne["NavireRencontreMarchand"] = self.NavireRencontreMarchand
 
             lignes.append(ligne)
 
@@ -191,7 +193,8 @@ class Voyage:
         voyage.Jour = int(df["Jour"].iloc[0])
         voyage.EtapeCourante = int(df["EtapeCourante"].iloc[0])
         voyage.Avancement = float(df["Avancement"].iloc[0])
-        voyage.NavireRencontre=str(df["NavireRencontre"].iloc[0])
+        voyage.NavireRencontreAventurier=str(df["NavireRencontreAventurier"].iloc[0])
+        voyage.NavireRencontreMarchand = str(df["NavireRencontreMarchand"].iloc[0])
         # Reconstruction des étapes
         for _, ligne in df.iterrows():
             voyage.AjouterEtape(
@@ -313,19 +316,25 @@ class Voyage:
         # Rencontres
         # -------------------------------------------------
         print("Calcul rencontre")
-        self.NavireRencontre = self.determiner_rencontre(
-            self.Annee,
-            etape["Region"],
-            SeuilMarchand,
-            Seuilventurier,
-            self.Jour,
-            etape["ZoneMaritime"]
+        self.NavireRencontreMarchand, self.NavireRencontreAventurier = (
+            self.determiner_rencontre(
+                self.Annee,
+                etape["Region"],
+                SeuilMarchand,
+                Seuilventurier,
+                self.Jour,
+                etape["ZoneMaritime"]
+            )
         )
 
-        if self.NavireRencontre:
-            NavireRencontre=Navire.charger_depuis_csv(self.NavireRencontre)
+        if self.NavireRencontreMarchand:
+            NavireRencontre=Navire.charger_depuis_csv(self.NavireRencontreMarchand)
             actions = NavireRencontre.actions_rencontre()
-            journal.append(f"Vous rencontrez le navire {NavireRencontre}.")
+            journal.append(f"Vous rencontrez le navire {self.NavireRencontreMarchand}.")
+        if self.NavireRencontreAventurier:
+            NavireRencontre=Navire.charger_depuis_csv(self.NavireRencontreAventurier)
+            actions = NavireRencontre.actions_rencontre()
+            journal.append(f"Vous rencontrez le navire {self.NavireRencontreAventurier}.")
         print("Navire ajouté dans le journal")
 
         # -------------------------------------------------
@@ -343,7 +352,14 @@ class Voyage:
             self.EtapeCourante += 1
 
             if self.EtapeCourante >= len(self.Etapes):
-                journal.append("Le voyage est terminé.")
+                return {
+                    "journal": "Le voyage est terminé.",
+                    "rencontre": False,
+                    "voyage": self.Name,
+                    "navire": self.Navire,
+                    "navire_rencontre_marchand": None,
+                    "navire_rencontre_aventurier": None
+                }
 
         # -------------------------------------------------
         # Journal
@@ -359,8 +375,8 @@ class Voyage:
 
         return {
             "journal": "\n".join(journal),
-            "rencontre": self.NavireRencontre is not None,
-            "navire_rencontre": self.NavireRencontre,
+            "navire_rencontre_marchand": self.NavireRencontreMarchand,
+            "navire_rencontre_aventurier": self.NavireRencontreAventurier,
             "voyage": self.Name,
             "navire": self.Navire
         }
@@ -415,34 +431,58 @@ class Voyage:
 
     def executer_action(self, action, valeurs=None):
 
-        if action == "JourSuivant":
+            if action == "JourSuivant":
 
-            if self.EtapeCourante >= len(self.Etapes):
-                return {
-                    "journal": "Le voyage est terminé.",
-                    "rencontre": False
-                }
+                if self.EtapeCourante >= len(self.Etapes):
+                    return {
+                        "journal": "Le voyage est terminé.",
+                        "rencontre": False
+                    }
 
-            chanceAventurier = self.Etapes[self.EtapeCourante].get(
-                "ChanceRencontreAventurier", 0
-            )
-            chanceMarchand = self.Etapes[self.EtapeCourante].get(
-                "ChanceRencontreMarchand", 0
-            )
+                chanceAventurier = self.Etapes[self.EtapeCourante].get(
+                    "ChanceRencontreAventurier", 0
+                )
+                chanceMarchand = self.Etapes[self.EtapeCourante].get(
+                    "ChanceRencontreMarchand", 0
+                )
 
-            return self.avancer_jour(chanceAventurier, chanceMarchand)
+                return self.avancer_jour(chanceAventurier, chanceMarchand)
+            # Sélection du navire rencontré
+            if action in (
+                    "Commercer",
+                    "Poursuivre",
+                    "HisserPavillonRouge",
+                    "HisserPavillonNoir"
+            ):
 
-        elif action == "Commercer":
-            return self.Commercer()
+                valeurs = valeurs or {}
 
-        elif action == "Poursuivre":
-            return self.Poursuivre()
-        elif action == "HisserPavillonRouge":
-            return self.HisserPavillonRouge()
+                nom_navire = valeurs.get("NavireRencontreMarchand")
+                print(nom_navire)
+                # Vérification du navire concerné
+                if nom_navire not in (
+                        self.NavireRencontreMarchand,
+                        self.NavireRencontreAventurier
+                ):
+                    return "Erreur : navire rencontré non identifié."
 
-        elif action == "HisserPavillonNoir":
-            return self.HisserPavillonNoir()
-        return ""
+                # Sélection du navire actuellement traité
+                self.NavireRencontre = nom_navire
+
+                # Exécution de l'action
+                if action == "Commercer":
+                    return self.Commercer()
+
+                elif action == "Poursuivre":
+                    return self.Poursuivre()
+
+                elif action == "HisserPavillonRouge":
+                    return self.HisserPavillonRouge()
+
+                elif action == "HisserPavillonNoir":
+                    return self.HisserPavillonNoir()
+
+            return ""
 
     def get_actions(self):
         return ["JourSuivant","Commerce",'HisserPavillonNoir','Poursuivre','HisserPavillonRouge']
@@ -452,59 +492,122 @@ class Voyage:
     import pandas as pd
     import config
 
-    def determiner_rencontre(self, annee,region,SeuilMa,SeuilAv,Jour,zone):
+    def determiner_rencontre(self, annee, region, SeuilMa, SeuilAv, Jour, zone):
 
         df = utils.DE_RENCONTRE
-        ZoneCommerce,ZoneCompagnie,ZoneRencontre=Navire.ConvertZone(region)
-        DeMarchand = df[df["Zone"] == zone]["Marchand"].iloc[0]
-        DeAventurier = df[df["Zone"] == zone]["Aventurier"].iloc[0]
-        navire_rencontre=None
-        print("Initialisation parametre rencontre navire termine")
-        NomNavireRencontre=""
-        if "D" not in DeMarchand:
-            DeMarchand=int(DeMarchand)
 
+        ZoneCommerce, ZoneCompagnie, ZoneRencontre = Navire.ConvertZone(region)
 
-            tirage = random.randint(1, DeMarchand)
+        lignes = df[df["Zone"] == zone]
 
-            if SeuilMa>=tirage: ###Alors on rencontre un navire marchand
+        if lignes.empty:
+            raise ValueError(f"Zone de rencontre inconnue : {zone}")
 
-                Type,garde_cote = Navire.CalculType(ZoneRencontre, annee)
-                print("Determination type navire marchand réalisé")
+        DeMarchand = lignes["Marchand"].iloc[0]
+        DeAventurier = lignes["Aventurier"].iloc[0]
 
-                navire_rencontre = Navire(Type, str(Jour) + "_Marchand", ZoneCommerce)
-                navire_rencontre.GardeCote = garde_cote
-                print("Initialisation  navire marchand réalisé")
+        NomNavireMarchand = ""
+        NomNavireAventurier = ""
 
-                print("Calcul compagnie  navire marchand réalisé")
+        print("Initialisation paramètres rencontre navire terminée")
 
-                navire_rencontre.sauvegarder()
-                navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
-                NomNavireRencontre = navire_rencontre.Name
-                self.AfficherReconnu(navire_rencontre.Name + "_Reconnu")
+        # -------------------------------------------
+        # Fonction de tirage des dés
+        # -------------------------------------------
+        def lancer_de(valeur):
 
-        tirage = random.randint(1, DeAventurier)
+            valeur = str(valeur).strip().upper()
 
-        if SeuilAv >= tirage:  ###Alors on rencontre un navire aventurier
+            if "D" in valeur:
+                nombre, faces = valeur.split("D", 1)
 
+                nombre = int(nombre) if nombre else 1
+                faces = int(faces)
 
-            Type,garde_cote = Navire.CalculType(ZoneRencontre, annee)
-            print("Determination type navire aventurier réalisé")
-            navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
-            print("Initialisation  navire aventurier réalisé")
+                return sum(
+                    random.randint(1, faces)
+                    for _ in range(nombre)
+                )
 
-            navire_rencontre.GardeCote=garde_cote
-            print("Calcul compagnie  navire aventurier réalisé")
-            navire_rencontre = Navire(Type, str(Jour) + "_Aventurier", ZoneCommerce)
-            print("Navire créé :", navire_rencontre)
+            return random.randint(1, int(valeur))
 
-            navire_rencontre.Compagnie = "Pirate"
-            navire_rencontre.sauvegarder()
-            navire_rencontre.ReconnaissanceNavire(navire_rencontre, 3)
-            self.AfficherReconnu(navire_rencontre.Name+"_Reconnu")
-            NomNavireRencontre=navire_rencontre.Name
+        # -------------------------------------------
+        # Rencontre marchande
+        # -------------------------------------------
+        tirage_marchand = lancer_de(DeMarchand)
 
-        return NomNavireRencontre
+        print("Tirage marchand :", tirage_marchand)
+
+        if SeuilMa >= tirage_marchand:
+            Type, garde_cote = Navire.CalculType(
+                ZoneRencontre,
+                annee
+            )
+
+            navire_marchand = Navire(
+                Type,
+                str(Jour) + "_Marchand",
+                ZoneCommerce
+            )
+
+            navire_marchand.GardeCote = garde_cote
+
+            navire_marchand.sauvegarder()
+
+            navire_marchand.ReconnaissanceNavire(
+                navire_marchand,
+                3
+            )
+
+            NomNavireMarchand = navire_marchand.Name
+
+            self.AfficherReconnu(
+                NomNavireMarchand + "_Reconnu"
+            )
+
+            print("Navire marchand créé :", NomNavireMarchand)
+
+        # -------------------------------------------
+        # Rencontre aventurière
+        # -------------------------------------------
+        tirage_aventurier = lancer_de(DeAventurier)
+
+        print("Tirage aventurier :", tirage_aventurier)
+
+        if SeuilAv >= tirage_aventurier:
+            Type, garde_cote = Navire.CalculType(
+                ZoneRencontre,
+                annee
+            )
+
+            navire_aventurier = Navire(
+                Type,
+                str(Jour) + "_Aventurier",
+                ZoneCommerce
+            )
+
+            navire_aventurier.GardeCote = garde_cote
+            navire_aventurier.Compagnie = "Pirate"
+
+            navire_aventurier.sauvegarder()
+
+            navire_aventurier.ReconnaissanceNavire(
+                navire_aventurier,
+                3
+            )
+
+            NomNavireAventurier = navire_aventurier.Name
+
+            self.AfficherReconnu(
+                NomNavireAventurier + "_Reconnu"
+            )
+
+            print("Navire aventurier créé :", NomNavireAventurier)
+
+        # -------------------------------------------
+        # Résultat
+        # -------------------------------------------
+        return NomNavireMarchand, NomNavireAventurier
 
     def Commercer(self):
 

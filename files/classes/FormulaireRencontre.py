@@ -76,21 +76,48 @@ class FormulaireRencontre(tk.Toplevel):
 
     def _executer(self, action):
 
+        # Nom du navire actuellement rencontré
+
+        # Identification de la catégorie
+        if self.voyage.NavireRencontreMarchand:
+            type_rencontre = "Marchand"
+            self.voyage.NavireRencontre=self.voyage.NavireRencontreMarchand
+
+        if self.voyage.NavireRencontreAventurier:
+            type_rencontre = "Aventurier"
+            self.voyage.NavireRencontre = self.voyage.NavireRencontreAventurier
+
+
+        else:
+            messagebox.showerror(
+                "Erreur",
+                f"Navire rencontré non identifié : {self.voyage.NavireRencontre}"
+            )
+            return
+
+        # Transmission au moteur
+        valeurs = {
+            "NavireRencontre": self.voyage.NavireRencontre,
+            "TypeRencontre": type_rencontre
+        }
+
         resultat = self.moteur.executer_action(
             "Journal de bord",
-            "Journal",
+            "Actions",
             self.voyage,
-            action
+            action,
+            valeurs
         )
 
+        # Affichage du résultat
         if action == "Commercer":
-            resultat = self.voyage.Commercer()
             messagebox.showinfo("Commerce", str(resultat))
-        if action == "HisserPavillonRouge":
-            messagebox.showinfo("HisserPavillonRouge", str(resultat))
-        if action == "HisserPavillonNoir":
-            messagebox.showinfo("HisserPavillonNoir", str(resultat))
-        if self.on_fin:
-            self.on_fin()
 
-        self.destroy()
+        elif action == "HisserPavillonRouge":
+            messagebox.showinfo("Pavillon rouge", str(resultat))
+
+        elif action == "HisserPavillonNoir":
+            messagebox.showinfo("Pavillon noir", str(resultat))
+
+        elif action == "Poursuivre":
+            messagebox.showinfo("Navigation", str(resultat))
