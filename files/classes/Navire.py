@@ -224,7 +224,7 @@ class Navire:
                     "Type": self.type_navire,
                     "Compagnie": self.Compagnie,
                     "Région": self.regions_depart,
-                    "Allegeance":self.Nationalite
+                    "Allegeance":self.Nationalite,
                     "Pirate": self.pirate,
                 }
             },
