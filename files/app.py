@@ -235,6 +235,8 @@ class App(tk.Tk):
                 activebackground=theme.TAB_SELECTED_BG, activeforeground=theme.TAB_SELECTED_FG,
                 command=lambda n=nom: self.selectionner_sous_onglet(n),
             )
+
+
             btn.pack(side="left", fill="y")
             self._boutons_horizontaux[nom] = btn
 
@@ -424,27 +426,84 @@ class App(tk.Tk):
             ).pack(pady=10)
 
     def _construire_barre_actions(self):
+
         for w in self.action_bar.winfo_children():
             w.destroy()
 
         actions = self.moteur.get_actions(
-            self.onglet_actuel, self.sous_onglet_actuel, self.instance_actuelle
+            self.onglet_actuel,
+            self.sous_onglet_actuel,
+            self.instance_actuelle
         ) or []
+
         if not actions:
             self.action_bar.pack_forget()
             return
 
-        self.action_bar.pack(fill="x", side="bottom", before=self.statut)
-        conteneur = tk.Frame(self.action_bar, bg=theme.BG_PANEL, pady=10, padx=16)
+        # Réafficher la barre si elle était masquée
+        self.action_bar.pack(
+            fill="x",
+            side="bottom",
+            before=self.statut
+        )
+
+        conteneur = tk.Frame(
+            self.action_bar,
+            bg=theme.BG_PANEL,
+            pady=10,
+            padx=16
+        )
         conteneur.pack(fill="x")
 
-        for nom_action in actions:
-            tk.Button(
-                conteneur, text=nom_action, font=theme.FONT_TEXT_BOLD,
-                bg=theme.ACCENT, fg="#231a08", relief="flat", padx=18, pady=6,
-                activebackground=theme.ACCENT_HOVER, cursor="hand2",
-                command=lambda a=nom_action: self._executer_action(a),
-            ).pack(side="left", padx=(0, 10))
+        # Uniquement Equipage -> Actions
+        if (
+                self.onglet_actuel == "Equipage"
+                and self.sous_onglet_actuel == "Actions"
+        ):
+
+            for i, nom_action in enumerate(actions):
+                btn = tk.Button(
+                    conteneur,
+                    text=nom_action,
+                    font=theme.FONT_TEXT_BOLD,
+                    bg=theme.ACCENT,
+                    fg="#231a08",
+                    relief="flat",
+                    padx=18,
+                    pady=6,
+                    activebackground=theme.ACCENT_HOVER,
+                    cursor="hand2",
+                    command=lambda a=nom_action: self._executer_action(a)
+                )
+
+                btn.grid(
+                    row=i // 5,
+                    column=i % 5,
+                    padx=5,
+                    pady=5,
+                    sticky="ew"
+                )
+
+            for colonne in range(5):
+                conteneur.columnconfigure(colonne, weight=1)
+
+        # Tous les autres onglets : affichage original
+        else:
+
+            for nom_action in actions:
+                tk.Button(
+                    conteneur,
+                    text=nom_action,
+                    font=theme.FONT_TEXT_BOLD,
+                    bg=theme.ACCENT,
+                    fg="#231a08",
+                    relief="flat",
+                    padx=18,
+                    pady=6,
+                    activebackground=theme.ACCENT_HOVER,
+                    cursor="hand2",
+                    command=lambda a=nom_action: self._executer_action(a)
+                ).pack(side="left", padx=(0, 10))
 
     def _executer_action(self, action):
 
@@ -610,155 +669,8 @@ class App(tk.Tk):
         self.rafraichir_instances()
         self.afficher_rencontre_suivante()
 
-    def _bataille_terrestre(self, nomAllie: str, nomAdverse: str, CompAllie: str,CompAdverse: str, BonusAllie: int,BonusAdverse:int):
-        message = self.moteur.BatailleTerrestre(nomAllie, nomAdverse, CompAllie, CompAdverse,BonusAllie,BonusAdverse)
-        self.statut_var.set(message or "Équipage généré.")
-        # On bascule sur "Afficher" pour montrer immédiatement l'équipage généré.
-        self.selectionner_sous_onglet("Actions")
-    def _Recrute(self, Nb, Type, Bonus):
 
-        Pond = pd.read_csv(
-            BASE_PATH + "/ListeProf.csv",
-            sep=";",
-            decimal=",",
-            encoding="cp1252"
-        )
 
-        Ponds = Pond[Pond["Type"] == Type]
-
-        Temp = ""
-
-        for _ in range(Nb):
-
-            donnees = Ponds.iloc[0].to_dict()
-
-            # Génération des compétences
-            for k in Ponds.columns[1:71]:
-
-                if k not in ["Salaire", "Employeur"]:
-                    donnees[k] = utils.Compute(Ponds[k].iloc[0])
-
-            # Armes blanches
-            donnees["ArmesBlanches"] = max(
-                donnees["Dague"],
-                donnees["Hache"],
-                donnees["Sabre"]
-            )
-
-            # Attributs propres au membre
-            donnees["Nom"] = ""
-            donnees["Maladie"] = ""
-            donnees["Moral"] = 2
-            donnees["Groupe"] = ""
-            donnees["Pirate"] = 1
-            donnees["Score"] = 0
-            donnees["Role"] = ""
-            donnees["Famine"] = 0
-            donnees["KillCount"] = 0
-            donnees["LastSuccess"] = 0
-
-            donnees["Attitude"] = int(
-                np.random.normal(50, 5)
-            )
-
-            # Création du membre
-            membre = type("Membre", (), {})()
-
-            for attribut, valeur in donnees.items():
-                setattr(membre, attribut, valeur)
-            # Initialisation des PV
-            membre.PVMax = random.randint(5, 8)
-            membre.PV = membre.PVMax
-            # Calculs individuels
-            self.ScoreMembre(membre)
-            self.AttributeGroupeMembre(membre)
-
-            self.Membres.append(membre)
-            self.AjoutTrait()
-        self.ValeurCombat = self.CalculCombatEquipage()
-
-        return Temp
-    def _CombatNaval(self,navire1, munition1,bonus1, navire2, munition2,bonus2):
-
-        texte = ""
-
-        degat1, recharge1 = self.DegatsNavire(
-            navire1,
-            navire2,
-            munition1,bonus1
-        )
-
-        degat2, recharge2 = self.DegatsNavire(
-            navire2,
-            navire1,
-            munition2,bonus2
-        )
-
-        texte += (
-            f"{navire1.Name} a besoin de {recharge1} tours "
-            "pour recharger sa prochaine batterie.\n"
-        )
-
-        texte += (
-            f"{navire2.Name} a besoin de {recharge2} tours "
-            "pour recharger sa prochaine batterie.\n"
-        )
-
-        print(f"{navire1.Name} a besoin de {recharge1} tours pour recharger.")
-        print(f"{navire2.Name} a besoin de {recharge2} tours pour recharger.")
-
-        # Le navire 1 subit les dégâts du navire 2
-        if navire1.Equipage.Nombre > 0:
-
-            perte1, temp = self.PerteNavire(
-                navire1,
-                degat2,
-                munition2
-            )
-
-            texte += temp + "\n"
-
-            texte += navire1.Equipage.Attitude(
-                -perte1 / navire1.Equipage.Nombre * 50
-            )[1]
-
-        else:
-
-            texte += f"{navire1.Name} a été décimé.\n"
-
-        # Le navire 2 subit les dégâts du navire 1
-        if navire2.Equipage.Nombre > 0:
-
-            perte2, temp = self.PerteNavire(
-                navire2,
-                degat1,
-                munition1
-            )
-
-            texte += temp + "\n"
-
-            texte += navire2.Equipage.Attitude(
-                -perte2 / navire2.Equipage.Nombre * 50
-            )[1]
-
-        else:
-
-            texte += f"{navire2.Name} a été décimé.\n"
-
-        print(f"{navire1.Name} a perdu {perte1} hommes")
-        print(f"{navire2.Name} a perdu {perte2} hommes")
-
-        return texte
-
-    def _Reparer(self):
-        ReparationCoque=self.StructureCoque/self.StructureCoqueMax
-        ReparationVoile=self.StructureVoile/self.StructureVoileMax
-        CoutReparation=self.CoutSansCanon*(ReparationVoile+ReparationCoque)/2
-        self.StructureVoile=self.StructureVoileMax
-        self.StructureCoque=self.StructureCoqueMax
-        CompCharpentier=utils.Compute(1)
-        TempsEnJourReparation=utils.TestValeurNonNumerique(CompCharpentier,0)[0]
-        return CoutReparation,TempsEnJourReparation
 
     def _afficher_blocs(self, parent, blocs):
 
@@ -823,24 +735,8 @@ class App(tk.Tk):
         # Ouverture du premier formulaire
         if self.file_rencontres:
             self.afficher_rencontre_suivante()
-    def _ouvrir_rencontre(self):
-        FormulaireRencontre(
-            self,
-            moteur=self.moteur,
-            voyage=self.instance_actuelle,
-            navire=resultat["navire_rencontre"]
-        )
-    def _action_rencontre(self, action):
 
-        message = self.moteur.executer_action(
-            self.onglet_actuel,
-            self.sous_onglet_actuel,
-            self.instance_actuelle,
-            action
-        )
 
-        self.statut_var.set(message)
-        self.rafraichir_contenu()
     def _generer_type_pnj(self, type_pnj):
 
         nom = self.panneau_pnj.nom_var.get().strip()

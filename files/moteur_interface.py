@@ -722,9 +722,7 @@ class MoteurExemple(MoteurBase):
 
         return sortie
 
-        return ""
 
-        return ""
 
     def get_boutons_action(self, onglet, instance, action):
 
