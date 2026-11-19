@@ -37,11 +37,20 @@ class FormulaireRencontre(tk.Toplevel):
             text="Hisser le pavillon noir",
             command=lambda: self._executer("HisserPavillonNoir")
         ).pack(fill="x", padx=20, pady=5)
-
+        tk.Button(
+            self,
+            text="Hisser le pavillon rouge",
+            command=lambda: self._executer("HisserPavillonRouge")
+        ).pack(fill="x", padx=20, pady=5)
         tk.Button(
             self,
             text="Canonner",
             command=lambda: self._executer("Canonner")
+        ).pack(fill="x", padx=20, pady=5)
+        tk.Button(
+            self,
+            text="Fuir",
+            command=lambda: self._executer("Fuir")
         ).pack(fill="x", padx=20, pady=5)
 
     def _executer(self, action):
