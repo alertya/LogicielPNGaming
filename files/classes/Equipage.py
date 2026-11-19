@@ -160,7 +160,7 @@ class Equipage:
             "Tir",
             "RechargeCanon",
             "PointageCanon",
-            "Morale"
+            "NavireName"
         ]
 
         for attribut in attributs_groupe:
