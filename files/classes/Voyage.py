@@ -328,12 +328,12 @@ class Voyage:
         )
 
         if self.NavireRencontreMarchand:
-            NavireRencontre=Navire.charger_depuis_csv(self.NavireRencontreMarchand)
-            actions = NavireRencontre.actions_rencontre()
+            NavireRencontreMarchand=Navire.charger_depuis_csv(self.NavireRencontreMarchand)
+            actions = NavireRencontreMarchand.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {self.NavireRencontreMarchand}.")
         if self.NavireRencontreAventurier:
-            NavireRencontre=Navire.charger_depuis_csv(self.NavireRencontreAventurier)
-            actions = NavireRencontre.actions_rencontre()
+            NavireRencontreAventurier=Navire.charger_depuis_csv(self.NavireRencontreAventurier)
+            actions = NavireRencontreAventurier.actions_rencontre()
             journal.append(f"Vous rencontrez le navire {self.NavireRencontreAventurier}.")
         print("Navire ajouté dans le journal")
 
@@ -457,17 +457,25 @@ class Voyage:
 
                 valeurs = valeurs or {}
 
-                nom_navire = valeurs.get("NavireRencontreMarchand")
-                print(nom_navire)
-                # Vérification du navire concerné
-                if nom_navire not in (
-                        self.NavireRencontreMarchand,
-                        self.NavireRencontreAventurier
-                ):
-                    return "Erreur : navire rencontré non identifié."
+                self.file_rencontres = []
 
-                # Sélection du navire actuellement traité
-                self.NavireRencontre = nom_navire
+                navire_aventurier = valeurs.get("NavireRencontreAventurier")
+                navire_marchand = valeurs.get("NavireRencontreMarchand")
+
+                # Priorité au navire aventurier
+                if navire_aventurier is not None:
+                    self.file_rencontres.append(
+                        ("Aventurier", navire_aventurier)
+                    )
+
+                # Ensuite, le navire marchand
+                if navire_marchand is not None:
+                    self.file_rencontres.append(
+                        ("Marchand", navire_marchand)
+                    )
+                # Vérification du navire concerné
+
+
 
                 # Exécution de l'action
                 if action == "Commercer":
@@ -487,10 +495,25 @@ class Voyage:
     def get_actions(self):
         return ["JourSuivant","Commerce",'HisserPavillonNoir','Poursuivre','HisserPavillonRouge']
 
-    import re
-    import random
-    import pandas as pd
-    import config
+    def afficher_rencontre_suivante(self):
+
+        if not self.file_rencontres:
+            self.NavireRencontre = None
+            print("Toutes les rencontres sont terminées.")
+            return
+
+        type_rencontre, nom_navire = self.file_rencontres.pop(0)
+
+        self.NavireRencontre = nom_navire
+
+        print("Type de rencontre :", type_rencontre)
+        print("Navire rencontré :", nom_navire)
+
+        self.ouvrir_formulaire_rencontre(
+            self.nom_voyage_rencontre,
+            nom_navire,
+            type_rencontre
+        )
 
     def determiner_rencontre(self, annee, region, SeuilMa, SeuilAv, Jour, zone):
 

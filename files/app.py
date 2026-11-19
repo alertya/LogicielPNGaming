@@ -527,9 +527,9 @@ class App(tk.Tk):
             action
         )
         if action == "JourSuivant" and isinstance(resultat, dict):
-
+            print(isinstance(resultat))
             self.file_rencontres = []
-
+            print(resultat.get("navire_rencontre_marchand"))
             marchand = resultat.get("navire_rencontre_marchand")
             aventurier = resultat.get("navire_rencontre_aventurier")
 

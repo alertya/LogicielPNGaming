@@ -633,7 +633,8 @@ class MoteurExemple(MoteurBase):
 
             if isinstance(instance, Voyage):
                 print("Instance Voyage déjà chargée")
-                voyage_obj = instance
+                voyage_obj =instance
+
 
             elif isinstance(instance, str):
                 print("Chargement du voyage :", instance)
