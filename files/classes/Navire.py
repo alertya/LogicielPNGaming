@@ -46,11 +46,7 @@ class Navire:
                 # -------------------------
                 # Paramètres requis à la création
                 # -------------------------
-                print(
-                    "CRÉATION NAVIRE :",
-                    Name, Type, Region,
-                    "ID :", id(self)
-                )
+
 
 
                 self.type_navire: str = Type  # Représente 'Bateau' ou 'CategorieNavire' du CSV
@@ -202,15 +198,8 @@ class Navire:
                 self.pointage = self.Equipage.PointageCanon
                 self.recharge = self.Equipage.RechargeCanon
                 self.manoeuvre = self.Equipage.Manoeuvre
-
-                print(
-                    "CRÉATION NAVIRE :",
-                    Name,
-                    Type,
-                    Region,
-                    "ID :", id(self)
-                )
-                self.Equipage.NavireName = self.Name
+                self.Equipage.NbMax = self.EquipMax
+                self.Equipage.Save()
 
 
 

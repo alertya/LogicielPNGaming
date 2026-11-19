@@ -88,6 +88,7 @@ class Equipage:
         self.RechargeCanon = 0
         self.PointageCanon = 0
         self.Pirate(1)
+        self.NbMax=999
         if Nb > 0:
             self.CalculerCompetences()
             self.SauvegarderCapitaine()
@@ -160,7 +161,7 @@ class Equipage:
             "Tir",
             "RechargeCanon",
             "PointageCanon",
-            "NavireName"
+            "NbMax"
         ]
 
         for attribut in attributs_groupe:
@@ -200,41 +201,69 @@ class Equipage:
         nouvel_equipage.Membres = []
 
             # 2. Lecture et parcours du fichier CSV
-        with open(chemin_fichier, mode="r", newline="", encoding="cp1252") as f:
-            reader = csv.DictReader(f, delimiter=";")
 
-            for row in reader:
-                    # Si vous avez une classe Membre officielle importée (ex: Membre), remplacez par : membre = Membre()
-                    # Sinon, on conserve la création dynamique d'un objet générique propre :
-                membre = type("MembreEquipage", (), {})()
-                if row.get("NavireName"):
-                    nouvel_equipage.NavireName = row["NavireName"]
-                    # Pour chaque colonne, on applique dynamiquement l'attribut au membre
-                for attribut, valeur in row.items():
-                        # Conversion des cases vides
-                    if valeur == "":
-                        setattr(membre, attribut, "")
-                        continue
+        # Lecture du fichier CSV avec pandas
+        df = pd.read_csv(
+            chemin_fichier,
+            sep=";",
+            decimal=",",
+            encoding="cp1252",
+            keep_default_na=False
+        )
 
-                        # Tentative de conversion de type intelligente pour le membre (int, float, str)
-                    try:
-                        if "," in valeur and valeur.replace(",", "").replace("-", "").isdigit():
-                            setattr(membre, attribut, float(valeur.replace(",", ".")))
-                        elif valeur.replace("-", "").isdigit():
-                            setattr(membre, attribut, int(valeur))
-                        elif valeur.lower() in ["true", "false"]:
-                            setattr(membre, attribut, valeur.lower() == "true")
-                        else:
-                            setattr(membre, attribut, valeur)
-                    except ValueError:
-                        # En cas d'échec de conversion, on laisse la chaîne brute
-                        setattr(membre, attribut, valeur)
+        # Restauration des attributs de l'équipage
+        attributs_groupe = [
+            "NavireName",
+            "NbMax",
+            "Charpentier",
+            "Agriculteur",
+            "Manoeuvre",
+            "Acrobatie",
+            "Ruse",
+            "Nager",
+            "CombatArmesBlanche",
+            "Tir",
+            "RechargeCanon",
+            "PointageCanon",
+            "Morale"
+        ]
 
-                    # Ajout du membre reconstruit dans notre liste d'équipage
-                nouvel_equipage.Membres.append(membre)
-                nouvel_equipage.Name=Name
+        for attribut in attributs_groupe:
+            if attribut in df.columns and not df.empty:
+                setattr(
+                    nouvel_equipage,
+                    attribut,
+                    df[attribut].iloc[0]
+                )
 
-            # 3. Renvoi de la classe Equipage peuplée
+        # Reconstruction des membres
+        for _, row in df.iterrows():
+
+            membre = type("MembreEquipage", (), {})()
+
+            for attribut, valeur in row.items():
+
+                # Ne pas recopier les attributs de l'équipage
+                # dans chaque membre
+                if attribut in attributs_groupe:
+                    continue
+
+                # Conversion des valeurs numériques pandas
+                if pd.isna(valeur):
+                    valeur = ""
+
+                if isinstance(valeur, str):
+                    if valeur.lower() == "true":
+                        valeur = True
+                    elif valeur.lower() == "false":
+                        valeur = False
+
+                setattr(membre, attribut, valeur)
+
+            nouvel_equipage.Membres.append(membre)
+
+        nouvel_equipage.Name = Name
+
         return nouvel_equipage
 
     ###Convertit le nombre de succes en action courte
@@ -262,17 +291,7 @@ class Equipage:
 
         Temp = ""
 
-        if self.NavireName != "":
-            Bateau = Navire.charger_depuis_csv(self.NavireName)
-
-            if Bateau is None:
-                raise FileNotFoundError(
-                    f"Navire introuvable : {self.NavireName}"
-                )
-
-            Maximum = Bateau.Equipmax
-            PlacesDisponibles = max(0, Maximum - len(self.Membres))
-            Nb = min(Nb, PlacesDisponibles)
+        Nb = min(Nb, int(self.NbMax))
         for _ in range(Nb):
 
             donnees = Ponds.iloc[0].to_dict()
@@ -1150,7 +1169,7 @@ class Equipage:
             Bonus += 3
         if len(self.Membres) < 15:
                 Bonus -= 3
-        Morale=utils.Test(self.Morale,Bonus)
+        Morale=self.TestMoral(Bonus)
         equipage.Save()
         if Pavillon=="Noir":
             if Morale>1:
@@ -1174,10 +1193,35 @@ class Equipage:
 
 
     ###A la fin d'une action, on remet le moral des restants à 2
-    def ResetMoral(self):
+    def TestMoral(self, Bonus):
+
+        superieur_1 = 0
+        egal_1 = 0
+        egal_0 = 0
+        inferieur_0 = 0
 
         for membre in self.Membres:
-            membre.Moral = 2
+
+            Moral = utils.Test(membre.Moral, Bonus)
+
+            if Moral > 1:
+                superieur_1 += 1
+
+            elif Moral == 1:
+                egal_1 += 1
+
+            elif Moral == 0:
+                egal_0 += 1
+
+            else:
+                inferieur_0 += 1
+        if inferieur_0/len(self.Membres)>0.5:
+            return -1
+        if egal_0/len(self.Membres)>0.5:
+            return 0
+        if egal_1/len(self.Membres)>0.5:
+            return 1
+
 
     def Reddition(self, Bonus):
         Equipage = self.MoraleEquipage(Bonus)
