@@ -47,7 +47,7 @@ from formulaire_action import FormulaireAction
 ONGLETS: Dict[str, List[str]] = {
     "Journal de bord": ["Journal", "Générer"],
     "Navire": ["Afficher", "Générer", "Actions"],
-    "Equipage": ["Afficher", "Générer", "Recruter", "Actions"],
+    "Equipage": ["Afficher", "Générer", "Actions"],
     "Marchandises": ["Afficher", "Générer", "Actions"],
     "PNJ": ["Afficher", "Générer", "Actions"],
     "Infirmerie": ["Afficher", "Actions"],
