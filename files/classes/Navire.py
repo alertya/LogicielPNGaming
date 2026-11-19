@@ -210,7 +210,7 @@ class Navire:
                     Region,
                     "ID :", id(self)
                 )
-
+                self.Equipage.NavireName = self.Name
 
 
 

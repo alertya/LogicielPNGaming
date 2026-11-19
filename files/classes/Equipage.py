@@ -17,7 +17,7 @@ class Equipage:
         self.Name = Name
         self.Type = Type
         self.Membres = []
-
+        self.NavireName=""
         Pond = utils.PROFESSIONS
 
         Ponds = Pond[Pond["Type"] == Type]
@@ -196,6 +196,7 @@ class Equipage:
         nouvel_equipage = cls.__new__(cls)
         nouvel_equipage.Name = Name
         nouvel_equipage.Type = ""
+        nouvel_equipage.NavireName = ""
         nouvel_equipage.Membres = []
 
             # 2. Lecture et parcours du fichier CSV
@@ -206,7 +207,8 @@ class Equipage:
                     # Si vous avez une classe Membre officielle importée (ex: Membre), remplacez par : membre = Membre()
                     # Sinon, on conserve la création dynamique d'un objet générique propre :
                 membre = type("MembreEquipage", (), {})()
-
+                if row.get("NavireName"):
+                    nouvel_equipage.NavireName = row["NavireName"]
                     # Pour chaque colonne, on applique dynamiquement l'attribut au membre
                 for attribut, valeur in row.items():
                         # Conversion des cases vides
@@ -260,6 +262,17 @@ class Equipage:
 
         Temp = ""
 
+        if self.NavireName != "":
+            Bateau = Navire.charger_depuis_csv(self.NavireName)
+
+            if Bateau is None:
+                raise FileNotFoundError(
+                    f"Navire introuvable : {self.NavireName}"
+                )
+
+            Maximum = Bateau.Equipmax
+            PlacesDisponibles = max(0, Maximum - len(self.Membres))
+            Nb = min(Nb, PlacesDisponibles)
         for _ in range(Nb):
 
             donnees = Ponds.iloc[0].to_dict()
@@ -1399,13 +1412,7 @@ class Equipage:
         return f"{nombre} PNJ enregistrés."
 
     def AjoutSurnumeraires(
-            self,
-            nom,
-            charpentier,
-            calfat,
-            coq,
-            pilote,
-            voiliers
+            self, nom, charpentier, calfat, coq, pilote, voiliers
     ):
         repartition = {
             "Charpentier": charpentier,
@@ -1414,12 +1421,7 @@ class Equipage:
             "Pilote": pilote,
             "Voilier": voiliers
         }
-        equipage=self.charger_depuis_csv(nom)
+
         for profession, quantite in repartition.items():
             if quantite > 0:
-                print(quantite)
-                print(profession)
-                equipage.Recrute(quantite, profession, 0)
-
-        # Sauvegarde finale de l'équipage
-        equipage.Save()
+                self.Recrute(quantite, profession, 0)
