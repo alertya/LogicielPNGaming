@@ -369,8 +369,7 @@ def ChoixRencontre(NavirePJ,NavirePNJ,Distance,Choix,Interet):
             Text+="Le navire se rapproche de vous \n"
 
     LireEcrireCapitaine=utils.Compute(1)
-    if Choix=="Poursuivre":
-        Navigation.CoursePoursuite(3,Distance)
+
     ReussiteLire=utils.Test(LireEcrireCapitaine,0)
     if Choix=="Attaquer":
         Text+="Vous avez choisi d'attaquer le "+NavirePNJ['Name']+"\n Veuillez vous rendre dans l'onglet BatailleNavale et sélectionnez les navires combattants ainsi que vos munitions \n"

@@ -661,7 +661,8 @@ class Voyage:
         dx=dx*rayon
         dy=dy*rayon
         heure=random.randint(1,12)+6
-        return f"Il est {heure } heures. Vous essayez de poursuivre ce navire, veuillez transmettre la fiche navire de vos PJs et de garder la fiche de {navire.Name} \n Le navire se situe à {dx} miles à babord et {dy} devant vous \n si vous arrivez à vous approcher du navire avant la nuit tombée \n Vous pouvez entamer un combat naval dans Navire Action entre votre navire et {navire.Name}\n Vous pouvez hisser le pavillon noir avant afin d'intimider l'équipage adverse"
+        navigation=Navigation()
+        return navigation.CoursePoursuite(heure, dx+dy,navire.AllureMax(),navire.AllureMax(),self.Navire,navire.Name,"","")
 
     def AfficherReconnu(self,name):
         navire = Navire.charger_depuis_csv(name)

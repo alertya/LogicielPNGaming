@@ -792,3 +792,5 @@ class Navire:
             return f"Vous rattrapez le navire avant la tombée de la nuit, vous pouvez entamer une bataille naval dans l'onglet Navire/Action entre {Navire1.Name} et {Navire2.Name}"
         else:
             return f"Vous ne rattrapez pas le navire avant la tombée de la nuit,  {Navire2.Name} s'enfuit à l'horizon"
+    def AllureMax(self):
+        return max(self.Pres,self.Largue,self.GrandLargue,self.VentArriere)

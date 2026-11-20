@@ -108,8 +108,8 @@ class Navigation:
         if isinstance(navire, str):
             nom = os.path.basename(navire)
             candidats = [
-                os.path.join(config.config.NAVIRE_PATH, nom),
-                os.path.join(config.config.NAVIRE_PATH, f"{nom}.csv") if not nom.lower().endswith(".csv") else None,
+                os.path.join(config.NAVIRE_PATH, nom),
+                os.path.join(config.NAVIRE_PATH, f"{nom}.csv") if not nom.lower().endswith(".csv") else None,
             ]
             for chemin in candidats:
                 if chemin and os.path.exists(chemin):
@@ -159,7 +159,7 @@ class Navigation:
         nom = self._nom_equipage(navire_df)
         if not nom:
             return None
-        chemin = os.path.join(config.config.EQUIPAGE_PATH, nom)
+        chemin = os.path.join(config.EQUIPAGE_PATH, nom)
         if not os.path.exists(chemin):
             return None
         return pd.read_csv(
@@ -773,7 +773,7 @@ class Navigation:
                 )
             if distance <= 0.3:
                 return (
-                    f"Le navire a rattrapé sa cible en {compteur / 2:.1f} heures, il peut aborder ou canonner.",
+                    f"Le navire a rattrapé sa cible en {compteur / 2:.1f} heures, il peut aborder ou canonner le {NavirePoursuive}.",
                     0,
                 )
 
@@ -783,7 +783,7 @@ class Navigation:
     # Ecart quotidien
     # ------------------------------------------------------------------
 
-    def CoursePoursuite(
+    def CoursePoursuiteMap(
             self,
             HeureAvantNuit,
             Dx,
