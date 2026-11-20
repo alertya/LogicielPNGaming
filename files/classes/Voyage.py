@@ -647,7 +647,7 @@ class Voyage:
                 for compagnie in ("Interlope", "Pirate")
         ):
             return (
-                f"Vous pouvez commercer avec {navire.Name}. Vous pouvez acheter des cargaisons à {navire.MarchandiseNom} et vendre les votre à 80% du cours"
+                f"Vous pouvez commercer avec {navire.Name}. Vous pouvez acheter des cargaisons à {navire.MarchandiseNom} et vendre les votre à 80% du cours dans l'onglet Action de marchandise"
             )
 
         return "Le capitaine ne souhaite pas commercer avec vous."
